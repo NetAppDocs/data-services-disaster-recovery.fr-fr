@@ -6,15 +6,15 @@
 
 === Prise en charge de proxy intelligent
 
-L'agent de console NetApp prend en charge le proxy intelligent.  Le proxy intelligent est un moyen léger, sécurisé et efficace de connecter votre système sur site à NetApp Disaster Recovery.  Il fournit une connexion sécurisée entre votre système et NetApp Disaster Recovery sans nécessiter de VPN ou d'accès Internet direct.  Cette implémentation de proxy optimisée décharge le trafic API au sein du réseau local.
+L'agent de NetApp Console prend en charge le proxy intelligent.  Le proxy intelligent est un moyen léger, sécurisé et efficace de connecter votre système sur site à NetApp Disaster Recovery.  Il fournit une connexion sécurisée entre votre système et NetApp Disaster Recovery sans nécessiter de VPN ou d'accès Internet direct.  Cette implémentation de proxy optimisée décharge le trafic API au sein du réseau local.
 
 Lorsqu'un proxy est configuré, NetApp Disaster Recovery tente de communiquer directement avec VMware ou ONTAP et utilise le proxy configuré si la communication directe échoue.
 
 L'implémentation du proxy NetApp Disaster Recovery nécessite une communication sur le port 443 entre l'agent de console et tous les serveurs vCenter et baies ONTAP utilisant un protocole HTTPS.  L'agent NetApp Disaster Recovery au sein de l'agent de console communique directement avec VMware vSphere, VC ou ONTAP lors de l'exécution de toute action.
 
-Pour plus d'informations sur le proxy intelligent pour NetApp Disaster Recovery, consultez https://docs.netapp.com/us-en/bluexp-disaster-recovery/get-started/dr-setup.html["Configurez votre infrastructure pour la reprise après sinistre NetApp"] .
+Pour plus d'informations sur le proxy intelligent pour NetApp Disaster Recovery, consultez https://docs.netapp.com/us-en/bluexp-disaster-recovery/get-started/dr-setup.html["Configurez votre infrastructure pour la NetApp Disaster Recovery"] .
 
-Pour plus d'informations sur la configuration générale du proxy dans la console NetApp , consultez https://docs.netapp.com/us-en/bluexp-setup-admin/task-configuring-proxy.html["Configurer l'agent de console pour utiliser un serveur proxy"^] .
+Pour plus d'informations sur la configuration générale du proxy dans la NetApp Console, consultez https://docs.netapp.com/us-en/bluexp-setup-admin/task-configuring-proxy.html["Configurer l'agent de console pour utiliser un serveur proxy"^] .
 
 
 

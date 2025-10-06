@@ -18,7 +18,7 @@ Par exemple:
 
 VM1 dispose d'une vNIC (10.1.1.50) connectée à NetworkA.  NetworkA est mappé à NetworkB dans les paramètres du plan de réplication.
 
-En cas de basculement, NetApp Disaster Recovery remplace la partie réseau de l'adresse IP d'origine (10.1.1) et conserve l'adresse hôte (.50) de l'adresse IP d'origine (10.1.1.50).  Pour VM1, NetApp Disaster Recovery examine les paramètres CIDR pour NetworkB et utilise la partie réseau NetworkB 192.168.1 tout en conservant la partie hôte (.50) pour créer la nouvelle adresse IP pour VM1.  La nouvelle IP devient 192.168.1.50.
+Lors du basculement, NetApp Disaster Recovery remplace la partie réseau de l'adresse IP d'origine (10.1.1) et conserve l'adresse hôte (.50) de l'adresse IP d'origine (10.1.1.50).  Pour VM1, NetApp Disaster Recovery examine les paramètres CIDR pour NetworkB et utilise la partie réseau NetworkB 192.168.1 tout en conservant la partie hôte (.50) pour créer la nouvelle adresse IP pour VM1.  La nouvelle IP devient 192.168.1.50.
 
 En résumé, l’adresse de l’hôte reste la même, tandis que l’adresse réseau est remplacée par celle configurée dans le mappage de sous-réseau du site.  Cela vous permet de gérer plus facilement la réaffectation des adresses IP lors du basculement, en particulier si vous avez des centaines de réseaux et des milliers de machines virtuelles à gérer.
 
@@ -34,7 +34,7 @@ Lorsque vous lancez un basculement, par défaut, le service crée automatiquemen
 
 Lors du lancement d'un basculement, vous pouvez désormais choisir une option *Protection contre les sauts*.  Avec cela, le service n’inverse pas automatiquement la relation SnapMirror .  Au lieu de cela, il laisse le volume inscriptible des deux côtés du plan de réplication.
 
-Une fois le site source d'origine remis en ligne, vous pouvez établir une protection inverse en sélectionnant *Protéger les ressources* dans le menu Actions du plan de réplication.  Cela tente de créer une relation de réplication inverse pour chaque volume du plan.  Vous pouvez exécuter cette tâche à plusieurs reprises jusqu'à ce que la protection soit restaurée.  Une fois la protection restaurée, vous pouvez lancer une restauration automatique de la manière habituelle.
+Une fois le site source d'origine de nouveau en ligne, vous pouvez établir une protection inverse en sélectionnant *Protéger les ressources* dans le menu Actions du plan de réplication.  Cela tente de créer une relation de réplication inverse pour chaque volume du plan.  Vous pouvez exécuter cette tâche à plusieurs reprises jusqu'à ce que la protection soit restaurée.  Une fois la protection restaurée, vous pouvez lancer une restauration automatique de la manière habituelle.
 
 Pour plus de détails sur la protection contre le saut, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/failover.html["Basculer les applications vers un site distant"] .
 

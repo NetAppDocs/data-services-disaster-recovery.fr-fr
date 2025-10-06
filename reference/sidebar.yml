@@ -2,9 +2,9 @@
 section: reference
 title: Référence
 entries:
-- title: Privilèges vCenter requis pour la reprise après sinistre NetApp
+- title: Privilèges vCenter requis pour la NetApp Disaster Recovery
   url: "/reference/vcenter-privileges.html"
-- title: Rôles et privilèges de reprise après sinistre NetApp
+- title: Rôles et privilèges de NetApp Disaster Recovery
   url: "/reference/dr-reference-roles.html"
 - title: Utiliser NetApp Disaster Recovery avec Amazon EVS
   entries:
@@ -12,14 +12,14 @@ entries:
     url: "/reference/evs-deploy-guide-introduction.html"
   - title: Présentation de la solution
     url: "/reference/evs-deploy-guide-solution-overview.html"
-  - title: Installer l'agent de la console NetApp
+  - title: Installer l'agent de la NetApp Console
     url: "/reference/evs-deploy-guide-install-connector.html"
   - title: Configurer NetApp Disaster Recovery pour Amazon EVS
     entries:
     - title: Présentation de la configuration de NetApp Disaster Recovery pour Amazon
         EVS
       url: "/reference/evs-deploy-guide-config-draas.html"
-    - title: Prérequis pour Amazon EVS
+    - title: Conditions préalables pour Amazon EVS
       url: "/reference/evs-deploy-guide-config-prereqs.html"
     - title: Ajouter des baies de stockage ONTAP pour Amazon EVS
       url: "/reference/evs-deploy-guide-config-add-arrays.html"
@@ -31,7 +31,7 @@ entries:
       url: "/reference/evs-deploy-guide-add-vcenters.html"
   - title: Créer des plans de réplication pour Amazon EVS
     entries:
-    - title: 'Créer des plans de réplication pour Amazon EVS : présentation'
+    - title: Créer des plans de réplication pour Amazon EVS
       url: "/reference/evs-deploy-guide-creating-replication-plans.html"
     - title: Créer un plan de réplication Étape 1 pour Amazon EVS
       url: "/reference/evs-deploy-guide-create-rp-wiz-01.html"

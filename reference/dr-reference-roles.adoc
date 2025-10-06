@@ -16,13 +16,13 @@ NetApp Disaster Recovery utilise des rôles pour gérer l’accès de chaque uti
 
 Le service utilise les rôles suivants qui sont spécifiques à NetApp Disaster Recovery.
 
-* *Administrateur de récupération après sinistre* : effectuez toutes les actions dans NetApp Disaster Recovery.
+* *Administrateur de récupération après sinistre* : effectuez toutes les actions dans NetApp Disaster Recovery.
 * *Administrateur de basculement de reprise après sinistre* : effectuez des actions de basculement et de migration dans NetApp Disaster Recovery.
 * *Administrateur d'application de récupération après sinistre* : Créez et modifiez des plans de réplication et démarrez des tests de basculement.
 * *Visionneuse de récupération après sinistre* : affichez les informations dans NetApp Disaster Recovery, mais ne pouvez effectuer aucune action.
 
 
-Ces rôles sont spécifiques à NetApp Disaster Recovery et ne sont pas les mêmes que les rôles de plateforme utilisés dans la console NetApp .  Pour plus de détails sur tous les rôles de la plateforme NetApp Console, consultez https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["la documentation de configuration et d'administration de la console NetApp"^] .
+Ces rôles sont spécifiques à NetApp Disaster Recovery et ne sont pas les mêmes que les rôles de plate-forme utilisés dans la NetApp Console.  Pour plus de détails sur tous les rôles de la plateforme NetApp Console , consultez https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["la documentation de configuration et d'administration de la NetApp Console"^] .
 
 Le tableau suivant indique les actions que chaque rôle NetApp Disaster Recovery peut effectuer.
 

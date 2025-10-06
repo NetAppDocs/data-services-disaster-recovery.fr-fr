@@ -4,7 +4,7 @@ permalink: use/dashboard-view.html
 keywords: disaster recovery remediate, disaster recovery, failover, failback, replication, bluexp, netapp 
 summary: NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les flux de travail de reprise après sinistre. 
 ---
-= Consultez l'état de vos plans de reprise après sinistre NetApp sur le tableau de bord
+= Consultez l'état de vos plans de NetApp Disaster Recovery sur le tableau de bord
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
@@ -12,18 +12,18 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 
 
 [role="lead"]
-À l’aide du tableau de bord de reprise après sinistre NetApp , vous pouvez déterminer l’état de vos sites de reprise après sinistre et vos plans de réplication.  Vous pouvez rapidement déterminer quels sites et quels plans sont sains, déconnectés ou dégradés.
+À l’aide du tableau de bord de NetApp Disaster Recovery , vous pouvez déterminer l’état de vos sites de reprise après sinistre et vos plans de réplication.  Vous pouvez rapidement déterminer quels sites et quels plans sont sains, déconnectés ou dégradés.
 
-*Rôle de console NetApp requis* Administrateur d'organisation, Administrateur de dossier ou de projet, Administrateur de reprise après sinistre, Administrateur d'application de reprise après sinistre ou Rôle d'observateur de reprise après sinistre.
+*Rôle de NetApp Console requis* Administrateur d'organisation, Administrateur de dossier ou de projet, Administrateur de reprise après sinistre, Administrateur d'application de reprise après sinistre ou Rôle d'observateur de reprise après sinistre.
 
-link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la console NetApp pour tous les services"^] .
+link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^] .
 
 .Étapes
-. Connectez-vous à la https://console.netapp.com/["Console NetApp"^] .
-. Dans la navigation de gauche de la console NetApp , sélectionnez *Protection* > *Reprise après sinistre*.
-. Dans le menu NetApp Disaster Recovery, sélectionnez *Tableau de bord*.
+. Connectez-vous à la https://console.netapp.com/["NetApp Console"^] .
+. Dans la navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
+. Dans le menu NetApp Disaster Recovery , sélectionnez *Tableau de bord*.
 +
-image:dr-dashboard.png["Tableau de bord de reprise après sinistre NetApp"]
+image:dr-dashboard.png["Tableau de bord de NetApp Disaster Recovery"]
 
 . Consultez les informations suivantes sur le tableau de bord :
 +

@@ -14,5 +14,5 @@ NetApp Disaster Recovery fournit une solution DR cloud hybride économique pour 
 Pour plus d'informations :
 
 * https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/getting-started.html["Premiers pas avec Amazon FSx for NetApp ONTAP"^]
-* https://docs.netapp.com/us-en/bluexp-disaster-recovery/index.html["Documentation sur la reprise après sinistre de NetApp"]
+* https://docs.netapp.com/us-en/bluexp-disaster-recovery/index.html["Documentation sur la NetApp Disaster Recovery"]
 

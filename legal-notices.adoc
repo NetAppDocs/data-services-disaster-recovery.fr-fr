@@ -47,4 +47,4 @@ link:https://www.netapp.com/company/legal/privacy-policy/["https://www.netapp.co
 
 Les fichiers d'avis fournissent des informations sur les droits d'auteur et les licences tiers utilisés dans les logiciels NetApp .
 
-link:media/NOTICE.pdf["Avis concernant la reprise après sinistre de NetApp"^]
+link:media/NOTICE.pdf["Avis concernant la NetApp Disaster Recovery"^]

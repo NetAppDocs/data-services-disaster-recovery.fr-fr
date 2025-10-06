@@ -4,7 +4,7 @@ permalink: release-notes/dr-limitations.html
 keywords: disaster recovery, bluexp 
 summary: 'Les limitations connues identifient les plates-formes, les appareils ou les fonctions qui ne sont pas pris en charge par cette version du service ou qui n"interagissent pas correctement avec elle.' 
 ---
-= Limitations de la reprise après sinistre NetApp
+= Limitations de la NetApp Disaster Recovery
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
@@ -22,20 +22,20 @@ Une fois le basculement terminé, ne lancez pas la découverte manuellement sur 
 
 
 
-== La console NetApp risque de ne pas détecter Amazon FSx for NetApp ONTAP
+== La NetApp Console risque de ne pas détecter Amazon FSx for NetApp ONTAP
 
-Parfois, la console NetApp ne détecte pas les clusters Amazon FSx for NetApp ONTAP .  Cela peut être dû au fait que les informations d'identification FSx n'étaient pas correctes.
+Parfois, la NetApp Console ne détecte pas les clusters Amazon FSx for NetApp ONTAP .  Cela peut être dû au fait que les informations d'identification FSx n'étaient pas correctes.
 
-*Solution de contournement* : ajoutez le cluster Amazon FSx for NetApp ONTAP dans la console NetApp et actualisez régulièrement le cluster pour afficher les modifications.
+*Solution de contournement* : ajoutez le cluster Amazon FSx for NetApp ONTAP dans la NetApp Console et actualisez régulièrement le cluster pour afficher les modifications.
 
 Si vous devez supprimer le cluster ONTAP FSx de NetApp Disaster Recovery, procédez comme suit :
 
-. Dans l'agent de console NetApp , utilisez les options de connectivité de votre fournisseur de cloud, connectez-vous à la machine virtuelle Linux sur laquelle l'agent de console s'exécute, redémarrez le service « occm » à l'aide de l' `docker restart occm` commande.
+. Dans l'agent de NetApp Console , utilisez les options de connectivité de votre fournisseur de cloud, connectez-vous à la machine virtuelle Linux sur laquelle l'agent de console s'exécute, redémarrez le service « occm » à l'aide de l' `docker restart occm` commande.
 
 
 Se référer à https://docs.netapp.com/us-en/bluexp-setup-admin/task-managing-connectors.html#connect-to-the-linux-vm["Gérer les agents de console existants"^] .
 
-. Sur la page Systèmes de console NetApp , ajoutez à nouveau le système Amazon FSx for ONTAP et fournissez les informations d’identification FSx.
+. Sur la page Systèmes de NetApp Console , ajoutez à nouveau le système Amazon FSx for ONTAP et fournissez les informations d’identification FSx.
 +
 Se référer à https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/getting-started-step1.html["Créer un système de fichiers Amazon FSx for NetApp ONTAP"^] .
 

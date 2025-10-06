@@ -14,9 +14,9 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 [role="lead"]
 Après avoir ajouté des sites vCenter, vous pouvez créer des groupes de ressources pour protéger les machines virtuelles par machine virtuelle ou par banque de données en tant qu'unité unique.  Les groupes de ressources vous permettent d'organiser un ensemble de machines virtuelles dépendantes en groupes logiques qui répondent à vos besoins.  Par exemple, vous pouvez regrouper les machines virtuelles associées à une application ou regrouper les applications ayant des niveaux similaires.  À titre d’exemple, les groupes peuvent contenir des ordres de démarrage différés qui peuvent être exécutés lors de la récupération.
 
-*Rôle de console NetApp requis* Rôle d'administrateur d'organisation, d'administrateur de dossier ou de projet, d'administrateur de reprise après sinistre ou d'administrateur d'application de reprise après sinistre.
+*Rôle de NetApp Console requis* Rôle d'administrateur d'organisation, d'administrateur de dossier ou de projet, d'administrateur de reprise après sinistre ou d'administrateur d'application de reprise après sinistre.
 
-link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la console NetApp pour tous les services"^] .
+link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^] .
 
 *À propos de cette tâche*
 
@@ -77,9 +77,9 @@ Lorsque vous créez des groupes de ressources, tenez compte des points suivants�
 *MEILLEURE PRATIQUE* : Organisez vos machines virtuelles avant de déployer NetApp Disaster Recovery afin de minimiser la « prolifération des banques de données ».  Placez les machines virtuelles qui ont besoin d’être protégées sur un sous-ensemble de banques de données et placez les machines virtuelles qui ne seront pas protégées sur un autre sous-ensemble de banques de données.  Assurez-vous que les machines virtuelles d’un magasin de données donné ne sont pas protégées par des plans de réplication différents.
 
 .Étapes
-. Connectez-vous à la https://console.netapp.com/["Console NetApp"^] .
-. Dans la navigation de gauche de la console NetApp , sélectionnez *Protection* > *Reprise après sinistre*.
-. Dans le menu NetApp Disaster Recovery, sélectionnez *Groupes de ressources*.
+. Connectez-vous à la https://console.netapp.com/["NetApp Console"^] .
+. Dans la navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
+. Dans le menu NetApp Disaster Recovery , sélectionnez *Groupes de ressources*.
 . Sélectionnez *Ajouter*.
 . Saisissez un nom pour le groupe de ressources.
 . Sélectionnez le cluster vCenter source où se trouvent les machines virtuelles.

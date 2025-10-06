@@ -14,9 +14,9 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 [role="lead"]
 Une fois une catastrophe résolue, revenez du site de reprise après sinistre au site source pour revenir aux opérations normales.  Vous pouvez sélectionner l'instantané à partir duquel effectuer la récupération.
 
-*Rôle de console NetApp requis* Rôle d'administrateur d'organisation, d'administrateur de dossier ou de projet, d'administrateur de reprise après sinistre ou d'administrateur de basculement de reprise après sinistre.
+*Rôle de NetApp Console requis* Rôle d'administrateur d'organisation, d'administrateur de dossier ou de projet, d'administrateur de reprise après sinistre ou d'administrateur de basculement de reprise après sinistre.
 
-link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la console NetApp pour tous les services"^] .
+link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^] .
 
 *À propos de cette tâche*
 
@@ -31,9 +31,9 @@ Dans ce flux de travail, NetApp Disaster Recovery réplique (resynchronise) tout
 
 
 .Étapes
-. Connectez-vous à la https://console.netapp.com/["Console NetApp"^] .
-. Dans la navigation de gauche de la console NetApp , sélectionnez *Protection* > *Reprise après sinistre*.
-. Dans le menu NetApp Disaster Recovery, sélectionnez *Plans de réplication*.
+. Connectez-vous à la https://console.netapp.com/["NetApp Console"^] .
+. Dans la navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
+. Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
 . Sélectionnez le plan de réplication.
 . Sur la droite, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] et sélectionnez *Retour en arrière*.
 . Saisissez le nom du plan de réplication pour confirmer et démarrer la restauration automatique.

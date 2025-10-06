@@ -14,9 +14,9 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 [role="lead"]
 En cas de sinistre, basculez votre site VMware principal sur site vers un autre site VMware sur site ou VMware Cloud sur AWS.  Vous pouvez tester le processus de basculement pour garantir sa réussite lorsque vous en avez besoin.
 
-*Rôle de console NetApp requis* Rôle d'administrateur d'organisation, d'administrateur de dossier ou de projet, d'administrateur de reprise après sinistre ou d'administrateur de basculement de reprise après sinistre.
+*Rôle de NetApp Console requis* Rôle d'administrateur d'organisation, d'administrateur de dossier ou de projet, d'administrateur de reprise après sinistre ou d'administrateur de basculement de reprise après sinistre.
 
-link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la console NetApp pour tous les services"^] .
+link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^] .
 
 *À propos de cette tâche*
 
@@ -58,9 +58,9 @@ Pour un test de basculement, Disaster Recovery effectue les opérations suivante
 
 
 .Étapes
-. Connectez-vous à la https://console.netapp.com/["Console NetApp"^] .
-. Dans la navigation de gauche de la console NetApp , sélectionnez *Protection* > *Reprise après sinistre*.
-. Dans le menu NetApp Disaster Recovery, sélectionnez *Plans de réplication*.
+. Connectez-vous à la https://console.netapp.com/["NetApp Console"^] .
+. Dans la navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
+. Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
 . Sélectionnez le plan de réplication.
 . Sur la droite, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] et sélectionnez *Tester le basculement*.
 . Dans la page Test de basculement, saisissez « Test de basculement » et sélectionnez *Test de basculement*.
@@ -74,7 +74,7 @@ Pour un test de basculement, Disaster Recovery effectue les opérations suivante
 Une fois le test de basculement terminé, vous devez nettoyer l’environnement de test.  Ce processus supprime les machines virtuelles temporaires de l’emplacement de test, les FlexClones et les magasins de données temporaires.
 
 .Étapes
-. Dans le menu NetApp Disaster Recovery, sélectionnez *Plans de réplication*.
+. Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
 . Sélectionnez le plan de réplication.
 . Sur la droite, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] et sélectionnez *Nettoyer le test de basculement*.
 . Dans la page Test de basculement, saisissez « Nettoyer le basculement » et sélectionnez *Nettoyer le test de basculement*.
@@ -105,7 +105,7 @@ Le processus de basculement implique les opérations suivantes :
 TIP: Une fois le basculement démarré, vous pouvez voir les machines virtuelles récupérées dans le vCenter du site de reprise après sinistre (machines virtuelles, réseaux et banques de données).  Par défaut, les machines virtuelles sont récupérées dans le dossier Charge de travail.
 
 .Étapes
-. Dans le menu NetApp Disaster Recovery, sélectionnez *Plans de réplication*.
+. Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
 . Sélectionnez le plan de réplication.
 . Sur la droite, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] et sélectionnez *Fail over*.
 +

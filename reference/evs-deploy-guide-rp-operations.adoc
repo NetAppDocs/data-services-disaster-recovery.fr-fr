@@ -20,8 +20,8 @@ L’opération principale que vous devrez peut-être effectuer est celle que vou
 Le basculement est un processus lancé manuellement.
 
 .Étapes pour accéder à l'opération de basculement
-. Dans la barre de navigation de gauche de la console NetApp , sélectionnez *Protection* > *Reprise après sinistre*.
-. Dans le menu NetApp Disaster Recovery, sélectionnez *Plans de réplication*.
+. Dans la barre de navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
+. Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
 
 
 .Étapes pour effectuer un basculement
@@ -89,7 +89,7 @@ image:evs-rp-menu-compliance-check.png["Option de menu Exécuter la vérificatio
 
 == Actualiser les ressources
 
-Chaque fois que vous apportez des modifications à votre infrastructure virtuelle (par exemple, l'ajout ou la suppression de machines virtuelles, l'ajout ou la suppression de banques de données ou le déplacement de machines virtuelles entre des banques de données), vous devez effectuer une actualisation des clusters vCenter concernés dans le service NetApp Disaster Recovery.  Le service effectue cette opération automatiquement une fois toutes les 24 heures par défaut, mais une actualisation manuelle garantit que les dernières informations sur l'infrastructure virtuelle sont disponibles et prises en compte pour la protection DR.
+Chaque fois que vous apportez des modifications à votre infrastructure virtuelle (par exemple, l'ajout ou la suppression de machines virtuelles, l'ajout ou la suppression de banques de données ou le déplacement de machines virtuelles entre des banques de données), vous devez effectuer une actualisation des clusters vCenter concernés dans le service NetApp Disaster Recovery .  Le service effectue cette opération automatiquement une fois toutes les 24 heures par défaut, mais une actualisation manuelle garantit que les dernières informations sur l'infrastructure virtuelle sont disponibles et prises en compte pour la protection DR.
 
 Il existe deux cas où une actualisation est nécessaire :
 
@@ -117,7 +117,7 @@ image::evs-rp-menu-migrate.png[Option de menu Migrer]
 
 == Prenez un instantané maintenant
 
-À tout moment, vous pouvez prendre un instantané immédiat du plan de réplication.  Cet instantané est inclus dans les considérations de récupération après sinistre NetApp définies par le nombre de rétentions d'instantanés du plan de réplication.
+À tout moment, vous pouvez prendre un instantané immédiat du plan de réplication.  Cet instantané est inclus dans les considérations de NetApp Disaster Recovery définies par le nombre de rétentions d'instantanés du plan de réplication.
 
 . Sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à côté du plan de réplication.
 . Pour prendre un instantané immédiat des ressources du plan de réplication, sélectionnez *Prendre un instantané maintenant* dans le menu Actions du plan de réplication :

@@ -12,16 +12,16 @@ summary: Avant de pouvoir créer un plan de reprise après sinistre, vous devez 
 
 
 [role="lead"]
-Avant de pouvoir créer un plan de reprise après sinistre, vous devez ajouter un serveur vCenter principal à un site et un site de reprise après sinistre vCenter cible dans la console NetApp .
+Avant de pouvoir créer un plan de reprise après sinistre, vous devez ajouter un serveur vCenter principal à un site et un site de reprise après sinistre vCenter cible dans la NetApp Console.
 
 
-TIP: Assurez-vous que les vCenters source et de destination utilisent le même agent de console NetApp .
+TIP: Assurez-vous que les vCenters source et de destination utilisent le même agent de NetApp Console .
 
 Une fois les vCenter ajoutés, NetApp Disaster Recovery effectue une découverte approfondie des environnements vCenter, notamment les clusters vCenter, les hôtes ESXi, les banques de données, l'empreinte de stockage, les détails des machines virtuelles, les répliques SnapMirror et les réseaux de machines virtuelles.
 
-*Rôle de console NetApp requis* Administrateur d'organisation, administrateur de dossier ou de projet ou administrateur de reprise après sinistre.
+*Rôle de NetApp Console requis* Administrateur d'organisation, administrateur de dossier ou de projet ou administrateur de reprise après sinistre.
 
-link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la console NetApp pour tous les services"^] .
+link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^] .
 
 *À propos de cette tâche*
 
@@ -58,10 +58,10 @@ NOTE: Le service prend en charge les certificats de sécurité auto-signés ou l
 
 
 .Étapes
-. Connectez-vous à la https://console.netapp.com/["Console NetApp"^] .
-. Dans la navigation de gauche de la console NetApp , sélectionnez *Protection* > *Reprise après sinistre*.
+. Connectez-vous à la https://console.netapp.com/["NetApp Console"^] .
+. Dans la navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
 +
-Vous atterrirez sur la page du tableau de bord de reprise après sinistre de NetApp .  Lorsque vous démarrez le service pour la première fois, vous devez ajouter des informations vCenter.  Plus tard, le tableau de bord affiche des données sur vos sites et vos plans de réplication.
+Vous atterrirez sur la page du tableau de bord de NetApp Disaster Recovery .  Lorsque vous démarrez le service pour la première fois, vous devez ajouter des informations vCenter.  Plus tard, le tableau de bord affiche des données sur vos sites et vos plans de réplication.
 
 +
 
@@ -78,7 +78,7 @@ TIP: Si certains sites vCenter existent déjà et que vous souhaitez en ajouter 
 image:vcenter-add.png["Ajouter une capture d'écran du serveur vCenter"]
 
 +
-** Sélectionnez un site, sélectionnez l’agent de la console NetApp et fournissez les informations d’identification vCenter.
+** Sélectionnez un site, sélectionnez l’agent de la NetApp Console et fournissez les informations d’identification vCenter.
 ** (S'applique uniquement aux sites locaux) Pour accepter les certificats auto-signés pour le vCenter source, cochez la case.
 +
 
@@ -97,7 +97,7 @@ Ensuite, vous ajouterez un vCenter cible.
 .. Choisissez le site cible et l'emplacement.  Si la cible est le cloud, sélectionnez *AWS*.
 +
 *** (S'applique uniquement aux sites cloud) *Jeton API* : saisissez le jeton API pour autoriser l'accès au service pour votre organisation.  Créez le jeton API en fournissant des rôles d’organisation et de service spécifiques.
-*** (S'applique uniquement aux sites cloud) *ID d'organisation long* : saisissez l'ID unique de l'organisation.  Vous pouvez identifier cet ID en cliquant sur le nom d’utilisateur dans la section Compte de la console NetApp .
+*** (S'applique uniquement aux sites cloud) *ID d'organisation long* : saisissez l'ID unique de l'organisation.  Vous pouvez identifier cet ID en cliquant sur le nom d'utilisateur dans la section Compte de la NetApp Console.
 
 
 .. Sélectionnez *Ajouter*.
@@ -128,7 +128,7 @@ Par exemple:
 
 VM1 dispose d'une vNIC (10.1.1.50) connectée à NetworkA.  NetworkA est mappé à NetworkB dans les paramètres du plan de réplication.
 
-En cas de basculement, NetApp Disaster Recovery remplace la partie réseau de l'adresse IP d'origine (10.1.1) et conserve l'adresse hôte (.50) de l'adresse IP d'origine (10.1.1.50).  Pour VM1, NetApp Disaster Recovery examine les paramètres CIDR pour NetworkB et utilise la partie réseau NetworkB 192.168.1 tout en conservant la partie hôte (.50) pour créer la nouvelle adresse IP pour VM1.  La nouvelle IP devient 192.168.1.50.
+Lors du basculement, NetApp Disaster Recovery remplace la partie réseau de l'adresse IP d'origine (10.1.1) et conserve l'adresse hôte (.50) de l'adresse IP d'origine (10.1.1.50).  Pour VM1, NetApp Disaster Recovery examine les paramètres CIDR pour NetworkB et utilise la partie réseau NetworkB 192.168.1 tout en conservant la partie hôte (.50) pour créer la nouvelle adresse IP pour VM1.  La nouvelle IP devient 192.168.1.50.
 
 En résumé, l’adresse de l’hôte reste la même, tandis que l’adresse réseau est remplacée par celle configurée dans le mappage de sous-réseau du site.  Cela vous permet de gérer plus facilement la réaffectation des adresses IP lors du basculement, en particulier si vous avez des centaines de réseaux et des milliers de machines virtuelles à gérer.
 
@@ -139,7 +139,7 @@ L'utilisation du mappage de sous-réseau est un processus facultatif en deux ét
 
 
 .Étapes
-. Dans le menu NetApp Disaster Recovery, sélectionnez *Sites*.
+. Dans le menu NetApp Disaster Recovery , sélectionnez *Sites*.
 . Des actionsimage:icon-vertical-dots.png["Icône Actions"] icône sur la droite, sélectionnez *Ajouter un sous-réseau*.
 +
 image:dr-sites-subnet-menu.png["Capture d'écran du menu Ajouter un sous-réseau"]
@@ -177,7 +177,7 @@ L'utilisation du mappage de sous-réseau est un processus facultatif en deux ét
 
 
 .Étapes
-. Dans le menu NetApp Disaster Recovery, sélectionnez *Plans de réplication*.
+. Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
 . Sélectionnez *Ajouter* pour ajouter un plan de réplication.
 . Remplissez les champs de la manière habituelle en ajoutant les serveurs vCenter, en sélectionnant les groupes de ressources ou les applications et en complétant les mappages.
 . Dans la page Plan de réplication > Mappage des ressources, sélectionnez la section *Machines virtuelles*.
@@ -203,7 +203,7 @@ Si vous disposez de vCenters de versions antérieures et que vous souhaitez modi
 Si vous ne souhaitez pas planifier la découverte, vous pouvez désactiver l'option de découverte planifiée et actualiser la découverte manuellement à tout moment.
 
 .Étapes
-. Dans le menu NetApp Disaster Recovery, sélectionnez *Sites*.
+. Dans le menu NetApp Disaster Recovery , sélectionnez *Sites*.
 . Sélectionnez le site que vous souhaitez modifier.
 . Sélectionnez les actionsimage:icon-vertical-dots.png["Icône Actions"] icône sur la droite et sélectionnez *Modifier*.
 . Dans la page Modifier le serveur vCenter, modifiez les champs selon vos besoins.
@@ -221,7 +221,7 @@ image:sites-edit-schedule.png["Capture d'écran de la modification du calendrier
 Vous pouvez actualiser la découverte manuellement à tout moment.  Ceci est utile si vous avez ajouté ou supprimé des machines virtuelles et que vous souhaitez mettre à jour les informations dans NetApp Disaster Recovery.
 
 .Étapes
-. Dans le menu NetApp Disaster Recovery, sélectionnez *Sites*.
+. Dans le menu NetApp Disaster Recovery , sélectionnez *Sites*.
 . Sélectionnez le site que vous souhaitez actualiser.
 . Sélectionnez les actionsimage:icon-vertical-dots.png["Icône Actions"] icône sur la droite et sélectionnez *Actualiser*.
 

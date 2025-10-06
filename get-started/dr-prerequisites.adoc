@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: get-started/dr-prerequisites.html 
 keywords: what are disaster recovery requirements, disaster recovery prerequisites, bluexp, disaster recovery 
-summary: 'Avant d"utiliser NetApp Disaster Recovery, vous devez vous assurer que votre environnement répond aux exigences de stockage ONTAP , de cluster VMware vCenter et de console NetApp .' 
+summary: 'Avant d"utiliser NetApp Disaster Recovery, vous devez vous assurer que votre environnement répond aux exigences de stockage ONTAP , de cluster VMware vCenter et de NetApp Console .' 
 ---
-= Conditions préalables à la reprise après sinistre NetApp
+= Conditions préalables à la NetApp Disaster Recovery
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
@@ -12,7 +12,7 @@ summary: 'Avant d"utiliser NetApp Disaster Recovery, vous devez vous assurer que
 
 
 [role="lead"]
-Avant d'utiliser NetApp Disaster Recovery, vous devez vous assurer que votre environnement répond aux exigences de stockage ONTAP , de cluster VMware vCenter et de console NetApp .
+Avant d'utiliser NetApp Disaster Recovery, vous devez vous assurer que votre environnement répond aux exigences de stockage ONTAP , de cluster VMware vCenter et de NetApp Console .
 
 
 
@@ -64,7 +64,7 @@ Ces conditions préalables s'appliquent aux instances ONTAP ou Amazon FSX pour N
 
 Ces conditions préalables s’appliquent à la fois aux clusters vCenter sur site et au centre de données défini par logiciel (SDDC) VMware Cloud for AWS.
 
-* Revoirlink:../reference/vcenter-privileges.html["privilèges vCenter"] requis pour la reprise après sinistre NetApp .
+* Revoirlink:../reference/vcenter-privileges.html["privilèges vCenter"] requis pour la NetApp Disaster Recovery.
 * Tous les clusters VMware que vous souhaitez que NetApp Disaster Recovery gère utilisent les volumes ONTAP pour héberger toutes les machines virtuelles que vous souhaitez protéger.
 * Toutes les banques de données VMware à gérer par NetApp Disaster Recovery doivent utiliser l'un des protocoles suivants :
 +
@@ -83,34 +83,34 @@ Ces conditions préalables s’appliquent à la fois aux clusters vCenter sur si
 
 
 
-== Prérequis de la console NetApp
+== Prérequis de la NetApp Console
 
 
 
-=== Démarrer avec la console NetApp
+=== Démarrer avec la NetApp Console
 
-Si vous ne l'avez pas déjà fait, https://docs.netapp.com/us-en/bluexp-setup-admin/task-sign-up-saas.html["inscrivez-vous à la console NetApp et créez une organisation"^] .
+Si vous ne l'avez pas déjà fait, https://docs.netapp.com/us-en/bluexp-setup-admin/task-sign-up-saas.html["inscrivez-vous à la NetApp Console et créez une organisation"^] .
 
 
 
 === Collecter les informations d'identification pour ONTAP et VMware
 
-* Les informations d’identification Amazon FSx pour ONTAP et AWS doivent être ajoutées au système dans le projet NetApp Console qui sera utilisé pour gérer NetApp Disaster Recovery.
-* NetApp Disaster Recovery nécessite des informations d’identification vCenter.  Vous entrez les informations d’identification vCenter lorsque vous ajoutez un site dans NetApp Disaster Recovery.
+* Les informations d'identification Amazon FSx pour ONTAP et AWS doivent être ajoutées au système dans le projet NetApp Console qui sera utilisé pour gérer NetApp Disaster Recovery.
+* NetApp Disaster Recovery nécessite des informations d’identification vCenter.  Vous entrez les informations d'identification vCenter lorsque vous ajoutez un site dans NetApp Disaster Recovery.
 +
-Pour obtenir la liste des privilèges vCenter nécessaires, reportez-vous àlink:../reference/vcenter-privileges.html["Privilèges vCenter nécessaires pour la reprise après sinistre NetApp"] .  Pour obtenir des instructions sur la façon d'ajouter un site, reportez-vous àlink:../use/sites-add.html["Ajouter un site"] .
+Pour obtenir la liste des privilèges vCenter nécessaires, reportez-vous àlink:../reference/vcenter-privileges.html["Privilèges vCenter nécessaires pour la NetApp Disaster Recovery"] .  Pour obtenir des instructions sur la façon d'ajouter un site, reportez-vous àlink:../use/sites-add.html["Ajouter un site"] .
 
 
 
 
 
-=== Créer l'agent de la console NetApp
+=== Créer l'agent de la NetApp Console
 
 L'agent de console est un composant logiciel qui permet à la console de communiquer avec votre stockage ONTAP et vos clusters VMware vCenter.  Il est nécessaire au bon fonctionnement de la reprise après sinistre.  L'agent réside dans votre réseau privé (soit dans un centre de données sur site, soit dans un VPC cloud) et communique avec vos instances de stockage ONTAP et tous les composants de serveur et d'application supplémentaires.  Pour la reprise après sinistre, il s’agit d’un accès à vos clusters vCenter gérés.
 
-Un agent de console doit être configuré dans la console NetApp .  Lorsque vous utilisez l’agent, il inclura les fonctionnalités appropriées pour le service de reprise après sinistre.
+Un agent de console doit être configuré dans la NetApp Console.  Lorsque vous utilisez l’agent, il inclura les fonctionnalités appropriées pour le service de reprise après sinistre.
 
-* NetApp Disaster Recovery fonctionne uniquement avec le déploiement d’agent en mode standard. Voir https://docs.netapp.com/us-en/bluexp-setup-admin/task-quick-start-standard-mode.html["Prise en main de la console NetApp en mode standard"^] .
+* NetApp Disaster Recovery fonctionne uniquement avec le déploiement d’agent en mode standard. Voir https://docs.netapp.com/us-en/bluexp-setup-admin/task-quick-start-standard-mode.html["Prise en main de la NetApp Console en mode standard"^] .
 * Assurez-vous que les vCenters source et de destination utilisent le même agent de console.
 * Type d'agent de console requis :
 +
@@ -127,7 +127,7 @@ TIP: Pour les connexions sur site vers sur site, utilisez l’agent de console s
 +
 Voir https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["Découvrez les clusters ONTAP sur site"^] .
 
-* Pour plus d'informations sur la configuration d'un proxy intelligent pour NetApp Disaster Recovery, consultezlink:../get-started/dr-setup.html["Configurez votre infrastructure pour la reprise après sinistre NetApp"] .
+* Pour plus d'informations sur la configuration d'un proxy intelligent pour NetApp Disaster Recovery, consultezlink:../get-started/dr-setup.html["Configurez votre infrastructure pour la NetApp Disaster Recovery"] .
 
 
 

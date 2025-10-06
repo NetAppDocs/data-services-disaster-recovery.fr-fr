@@ -14,9 +14,9 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 [role="lead"]
 Après avoir ajouté des sites vCenter, vous êtes prêt à créer un plan de reprise après sinistre ou de réplication.  Les plans de réplication gèrent la protection des données de l’infrastructure VMware.  Sélectionnez les vCenters source et de destination, choisissez les groupes de ressources et déterminez la manière dont les applications doivent être restaurées et mises sous tension.  Par exemple, vous pouvez regrouper des machines virtuelles (VM) associées à une application ou regrouper des applications ayant des niveaux similaires.  De tels plans sont parfois appelés _plans_.
 
-*Rôle de console NetApp requis* Administrateur d'organisation, Administrateur de dossier ou de projet, Administrateur de reprise après sinistre, Administrateur de basculement de reprise après sinistre ou Administrateur d'application de reprise après sinistre.
+*Rôle de NetApp Console requis* Administrateur d'organisation, Administrateur de dossier ou de projet, Administrateur de reprise après sinistre, Administrateur de basculement de reprise après sinistre ou Administrateur d'application de reprise après sinistre.
 
-link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la console NetApp pour tous les services"^] .
+link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^] .
 
 *À propos de cette tâche*
 
@@ -83,9 +83,9 @@ Lorsque vous créez le plan, vous devez suivre ces directives :
 Tout d’abord, vous sélectionnez le vCenter source, puis sélectionnez le vCenter de destination.
 
 .Étapes
-. Connectez-vous à la https://console.netapp.com/["Console NetApp"^] .
-. Dans la navigation de gauche de la console NetApp , sélectionnez *Protection* > *Reprise après sinistre*.
-. Dans le menu NetApp Disaster Recovery, sélectionnez *Plans de réplication* et sélectionnez *Ajouter*.  Ou, si vous commencez tout juste à utiliser le service, depuis le tableau de bord, sélectionnez *Ajouter un plan de réplication*.
+. Connectez-vous à la https://console.netapp.com/["NetApp Console"^] .
+. Dans la navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
+. Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication* et sélectionnez *Ajouter*.  Ou, si vous commencez tout juste à utiliser le service, depuis le tableau de bord, sélectionnez *Ajouter un plan de réplication*.
 +
 image:dr-plan-create-name2.png["Capture d'écran montrant la page Ajouter un plan de réplication > Ajouter un plan"]
 
@@ -339,7 +339,7 @@ Bien que les données de la base de données ne puissent pas être répliquées,
 
 
 | Au sein d'une source de données externe | Non  a| 
-Si les données résident sur un LUN monté sur un invité ou sur un partage NFS, Disaster Recovery ne peut pas répliquer les données, mais peut répliquer la machine virtuelle du serveur de base de données.
+Si les données résident sur un LUN monté sur invité ou sur un partage NFS, Disaster Recovery ne peut pas répliquer les données, mais peut répliquer la machine virtuelle du serveur de base de données.
 
 Bien que les données de la base de données ne puissent pas être répliquées, le service garantit que le serveur de base de données exécute toutes les étapes nécessaires pour garantir que la base de données est mise au repos au moment de la sauvegarde de la machine virtuelle.
 
@@ -450,7 +450,7 @@ Un basculement de test crée un volume FlexClone , monte la banque de données e
 En fonction du calendrier, le test de basculement s'exécute et garantit que les charges de travail se déplacent vers la destination spécifiée par le plan de réplication.
 
 .Étapes
-. Dans le menu NetApp Disaster Recovery, sélectionnez *Plans de réplication*.
+. Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
 +
 image:dr-plan-list.png["Capture d'écran montrant la liste des plans de réplication"]
 

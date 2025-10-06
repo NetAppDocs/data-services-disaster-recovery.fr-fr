@@ -1,6 +1,6 @@
 ---
 indexpage:
-  title: Documentation sur la reprise après sinistre de NetApp
+  title: Documentation sur la NetApp Disaster Recovery
   summary: Avec NetApp Disaster Recovery pour VMware, vous pouvez répliquer vos charges
     de travail VMware sur site exécutant le stockage ONTAP vers un centre de données
     défini par logiciel VMware dans un cloud public en tant que site de reprise après
@@ -16,7 +16,7 @@ indexpage:
   tiles:
   - title: Commencer
     links:
-    - title: En savoir plus sur la reprise après sinistre NetApp
+    - title: En savoir plus sur la NetApp Disaster Recovery
       url: "/get-started/dr-intro.html"
     - title: Nouveautés de NetApp Disaster Recovery
       url: "/release-notes/dr-whats-new.html"
@@ -24,7 +24,7 @@ indexpage:
       url: "/get-started/dr-quick-start.html"
     - title: Prérequis
       url: "/get-started/dr-prerequisites.html"
-    - title: Accéder à la reprise après sinistre de NetApp
+    - title: Accéder à la NetApp Disaster Recovery
       url: "/get-started/dr-login.html"
     - title: FAQ
       url: "/get-started/dr-faq.html"
@@ -44,13 +44,13 @@ indexpage:
       url: "/use/failback.html"
   - title: Blogs et communauté
     links:
-    - title: Console NetApp
+    - title: NetApp Console
       url: https://www.netapp.com/console
-    - title: Services de données NetApp
+    - title: NetApp Data Services
       url: https://www.netapp.com/data-services/
     - title: Communauté NetApp
       url: https://community.netapp.com
-    - title: Blog sur la reprise après sinistre de NetApp
+    - title: Blog sur la NetApp Disaster Recovery
       url: https://community.netapp.com/t5/Tech-ONTAP-Blogs/BlueXP-disaster-recovery-service-for-BC-with-VMware-Cloud-on-AWS-and-FSx-for/ba-p/447066
     - title: Premiers pas avec NetApp Disaster Recovery en tant que service Lab à
         la demande

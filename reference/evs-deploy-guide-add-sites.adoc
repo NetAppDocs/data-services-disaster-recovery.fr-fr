@@ -24,7 +24,7 @@ Vous devez créer les éléments suivants :
 Créez un site vCenter de production.
 
 .Étapes
-. Dans la barre de navigation de gauche de la console NetApp , sélectionnez *Protection* > *Reprise après sinistre*.
+. Dans la barre de navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
 . À partir de n’importe quelle page de NetApp Disaster Recovery, sélectionnez l’option *Sites*.
 +
 image:evs-create-site-op-1.png["Option Sites"]

@@ -4,7 +4,7 @@ permalink: get-started/dr-setup.html
 keywords: bluexp, disaster recovery, aws, amazon web services, amazon fsx for netapp ontap 
 summary: Pour utiliser NetApp Disaster Recovery, effectuez quelques étapes pour le configurer. 
 ---
-= Configurez votre infrastructure pour la reprise après sinistre NetApp
+= Configurez votre infrastructure pour la NetApp Disaster Recovery
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
@@ -12,7 +12,7 @@ summary: Pour utiliser NetApp Disaster Recovery, effectuez quelques étapes pour
 
 
 [role="lead"]
-Pour utiliser NetApp Disaster Recovery, effectuez quelques étapes pour le configurer à la fois dans Amazon Web Services (AWS) et dans la console NetApp .
+Pour utiliser NetApp Disaster Recovery, effectuez quelques étapes pour le configurer à la fois dans Amazon Web Services (AWS) et dans la NetApp Console.
 
 
 TIP: Revoirlink:../get-started/dr-prerequisites.html["prérequis"] pour vous assurer que votre système est prêt.
@@ -93,7 +93,7 @@ Pour configurer NetApp Disaster Recovery pour la protection sur site vers le clo
 
 * Ajoutez Amazon FSx pour ONTAP au système et ajoutez les informations d’identification AWS pour FSx pour ONTAP.
 * Créez ou vérifiez votre destination ONTAP SVM dans l'instance AWS FSx pour ONTAP .
-* Configurez la réplication entre votre cluster ONTAP source sur site et votre instance FSx for ONTAP dans la console NetApp .
+* Configurez la réplication entre votre cluster ONTAP source sur site et votre instance FSx for ONTAP dans la NetApp Console.
 
 
 Se référer à https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/use/task-creating-fsx-working-environment.html["comment configurer un système FSx pour ONTAP"^] pour les étapes détaillées.
@@ -114,7 +114,7 @@ Vous pouvez utiliser NetApp Disaster Recovery pour protéger les machines virtue
 
 Pour les situations sur site vers sur site, installez l’agent de console sur l’un des sites physiques.
 
-La reprise après sinistre prend en charge la réplication site à site à l'aide d'Ethernet et TCP/IP.  Assurez-vous qu'une bande passante adéquate est disponible pour prendre en charge les taux de modification des données sur les machines virtuelles du site de production afin que toutes les modifications puissent être répliquées sur le site DR dans le délai de l'objectif de point de récupération (RPO).
+La récupération après sinistre prend en charge la réplication de site à site à l'aide d'Ethernet et de TCP/IP.  Assurez-vous qu'une bande passante adéquate est disponible pour prendre en charge les taux de modification des données sur les machines virtuelles du site de production afin que toutes les modifications puissent être répliquées sur le site DR dans le délai de l'objectif de point de récupération (RPO).
 
 
 
@@ -133,7 +133,7 @@ Assurez-vous que les exigences suivantes sont remplies avant de configurer NetAp
 * clusters vCenter
 +
 ** Assurez-vous que les machines virtuelles que vous souhaitez protéger sont hébergées sur des banques de données NFS (à l’aide de volumes ONTAP NFS) ou des banques de données VMFS (à l’aide de LUN iSCSI NetApp ).
-** Revoirlink:../reference/vcenter-privileges.html["privilèges vCenter"] requis pour la reprise après sinistre NetApp .
+** Revoirlink:../reference/vcenter-privileges.html["privilèges vCenter"] requis pour la NetApp Disaster Recovery.
 ** Créez un compte d’utilisateur de récupération après sinistre (pas le compte d’administrateur vCenter par défaut) et attribuez les privilèges vCenter au compte.
 
 
@@ -143,10 +143,10 @@ Assurez-vous que les exigences suivantes sont remplies avant de configurer NetAp
 
 === Prise en charge de proxy intelligent
 
-L'agent de console NetApp prend en charge le proxy intelligent.  Le proxy intelligent est un moyen léger, sécurisé et efficace de connecter votre environnement local à la console NetApp .  Il fournit une connexion sécurisée entre votre système et le service Console sans nécessiter de VPN ou d'accès Internet direct.  Cette implémentation de proxy optimisée décharge le trafic API au sein du réseau local.
+L'agent de NetApp Console prend en charge le proxy intelligent.  Le proxy intelligent est un moyen léger, sécurisé et efficace de connecter votre environnement local à la NetApp Console.  Il fournit une connexion sécurisée entre votre système et le service Console sans nécessiter de VPN ou d'accès Internet direct.  Cette implémentation de proxy optimisée décharge le trafic API au sein du réseau local.
 
 Lorsqu'un proxy est configuré, NetApp Disaster Recovery tente de communiquer directement avec VMware ou ONTAP et utilise le proxy configuré si la communication directe échoue.
 
 L'implémentation du proxy NetApp Disaster Recovery nécessite une communication sur le port 443 entre l'agent de console et tous les serveurs vCenter et baies ONTAP utilisant un protocole HTTPS.  L'agent NetApp Disaster Recovery au sein de l'agent de console communique directement avec VMware vSphere, VC ou ONTAP lors de l'exécution de toute action.
 
-Pour plus d'informations sur la configuration générale du proxy dans la console NetApp , consultez https://docs.netapp.com/us-en/bluexp-setup-admin/task-configuring-proxy.html["Configurer l'agent de console pour utiliser un serveur proxy"^] .
+Pour plus d'informations sur la configuration générale du proxy dans la NetApp Console, consultez https://docs.netapp.com/us-en/bluexp-setup-admin/task-configuring-proxy.html["Configurer l'agent de console pour utiliser un serveur proxy"^] .

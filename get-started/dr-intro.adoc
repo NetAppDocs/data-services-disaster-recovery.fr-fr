@@ -28,15 +28,15 @@ image:../use/evs-bluexp-architecture.png["Diagramme montrant les composants de N
 
 
 
-== Console NetApp
+== NetApp Console
 
-NetApp Disaster Recovery est accessible via la console NetApp .
+NetApp Disaster Recovery est accessible via la NetApp Console.
 
-La console NetApp fournit une gestion centralisée des services de stockage et de données NetApp dans les environnements sur site et cloud à l'échelle de l'entreprise. La console est requise pour accéder aux services de données NetApp et les utiliser. En tant qu'interface de gestion, il vous permet de gérer de nombreuses ressources de stockage à partir d'une seule interface. Les administrateurs de console peuvent contrôler l’accès au stockage et aux services pour tous les systèmes de l’entreprise.
+La NetApp Console fournit une gestion centralisée des services de stockage et de données NetApp dans les environnements sur site et cloud à l'échelle de l'entreprise. La console est requise pour accéder aux services de données NetApp et les utiliser. En tant qu'interface de gestion, il vous permet de gérer de nombreuses ressources de stockage à partir d'une seule interface. Les administrateurs de console peuvent contrôler l’accès au stockage et aux services pour tous les systèmes de l’entreprise.
 
 Vous n'avez pas besoin de licence ni d'abonnement pour commencer à utiliser NetApp Console et vous n'encourez des frais que lorsque vous devez déployer des agents de console dans votre cloud pour garantir la connectivité à vos systèmes de stockage ou à vos services de données NetApp . Cependant, certains services de données NetApp accessibles depuis la console sont sous licence ou basés sur un abonnement.
 
-En savoir plus sur le https://docs.netapp.com/us-en/bluexp-setup-admin/concept-overview.html["Console NetApp"] .
+En savoir plus sur le https://docs.netapp.com/us-en/bluexp-setup-admin/concept-overview.html["NetApp Console"] .
 
 
 
@@ -47,7 +47,7 @@ NetApp Disaster Recovery offre les avantages suivants :
 * Expérience utilisateur simplifiée pour la découverte et la récupération d'applications vCenter avec plusieurs opérations de récupération à un instant donné. 
 * Coût total de possession réduit avec un coût d'exploitation réduit et la possibilité de créer et d'ajuster des plans de reprise après sinistre avec des ressources minimales.
 * Préparation continue à la reprise après sinistre avec des tests de basculement virtuel qui ne perturbent pas les opérations.  Vous pouvez tester régulièrement vos plans de basculement DR sans impacter les charges de travail de production.
-* Rentabilisation plus rapide grâce à des changements dynamiques dans votre environnement informatique et à la possibilité de les prendre en compte dans vos plans de reprise après sinistre.
+* Rentabilisation plus rapide grâce à des changements dynamiques dans votre environnement informatique et capacité à les prendre en compte dans vos plans de reprise après sinistre.
 * Capacité à gérer à la fois les couches de stockage et virtuelles via l'orchestration back-end d' ONTAP et de VMware en même temps sans avoir besoin d'appliances de serveur virtuel (VSA) qui doivent être déployées et maintenues.
 * Les solutions DR pour VMware peuvent nécessiter beaucoup de ressources.  De nombreuses solutions DR répliquent les machines virtuelles au niveau de la couche virtuelle VMware à l’aide de VSA, ce qui peut consommer davantage de ressources de calcul et faire perdre les précieuses efficacités de stockage d’ ONTAP.  Étant donné que Disaster Recovery utilise la technologie ONTAP SnapMirror , il peut répliquer les données des banques de données de production vers le site DR à l'aide de notre modèle de réplication incrémentielle permanente avec toutes les efficacités natives de compression et de déduplication des données d' ONTAP.
 
@@ -90,17 +90,17 @@ Vous pouvez utiliser les types de licences suivants :
 
 * Inscrivez-vous pour un essai gratuit de 30 jours.
 * Achetez un abonnement à la carte (PAYGO) avec Amazon Web Services (AWS) Marketplace ou Microsoft Azure Marketplace.  Cette licence vous permet d'acheter une licence à capacité protégée fixe sans aucun engagement à long terme.
-* Apportez votre propre licence (BYOL), qui est un fichier de licence NetApp (NLF) que vous obtenez auprès de votre représentant commercial NetApp .  Vous pouvez utiliser le numéro de série de la licence pour activer le BYOL dans la console NetApp .
+* Apportez votre propre licence (BYOL), qui est un fichier de licence NetApp (NLF) que vous obtenez auprès de votre représentant commercial NetApp . Vous pouvez utiliser le numéro de série de la licence pour activer le BYOL dans la NetApp Console.
 
 
-Les licences pour tous les services de données NetApp sont gérées via des abonnements dans la console NetApp .  Après avoir configuré votre BYOL, vous pouvez voir une licence active pour le service dans la console.
+Les licences pour tous les services de données NetApp sont gérées via des abonnements dans la NetApp Console.  Après avoir configuré votre BYOL, vous pouvez voir une licence active pour le service dans la console.
 
 Le service est concédé sous licence en fonction de la quantité de données hébergées sur des volumes ONTAP protégés.  Le service détermine quels volumes doivent être pris en compte à des fins de licence en mappant les machines virtuelles protégées à leurs banques de données vCenter.  Chaque banque de données est hébergée sur un volume ONTAP ou LUN.  La capacité utilisée signalée par ONTAP pour ce volume ou LUN est utilisée pour les déterminations de licence.
 
-Les volumes protégés peuvent héberger de nombreuses machines virtuelles.  Certains peuvent ne pas faire partie d’un groupe de ressources NetApp Disaster Recovery.  Quoi qu’il en soit, le stockage consommé par toutes les machines virtuelles sur ce volume ou LUN est utilisé par rapport à la capacité maximale de la licence.
+Les volumes protégés peuvent héberger de nombreuses machines virtuelles.  Certains peuvent ne pas faire partie d’un groupe de ressources NetApp Disaster Recovery .  Quoi qu’il en soit, le stockage consommé par toutes les machines virtuelles sur ce volume ou LUN est utilisé par rapport à la capacité maximale de la licence.
 
 
-NOTE: Les frais de reprise après sinistre NetApp sont basés sur la capacité utilisée des banques de données sur le site source lorsqu'il existe au moins une machine virtuelle dotée d'un plan de réplication.  La capacité d'une banque de données basculée n'est pas incluse dans la capacité allouée.  Pour un BYOL, si les données dépassent la capacité autorisée, les opérations dans le service sont limitées jusqu'à ce que vous obteniez une licence de capacité supplémentaire ou que vous mettiez à niveau la licence dans la console NetApp .
+NOTE: Les frais de NetApp Disaster Recovery sont basés sur la capacité utilisée des banques de données sur le site source lorsqu'il existe au moins une machine virtuelle dotée d'un plan de réplication.  La capacité d'une banque de données basculée n'est pas incluse dans la capacité allouée.  Pour un BYOL, si les données dépassent la capacité autorisée, les opérations dans le service sont limitées jusqu'à ce que vous obteniez une licence de capacité supplémentaire ou que vous mettiez à niveau la licence dans la NetApp Console.
 
 Pour plus de détails sur la configuration des licences pour NetApp Disaster Recovery, reportez-vous àlink:../get-started/dr-licensing.html["Configurer les licences NetApp Disaster Recovery"] .
 
@@ -116,9 +116,9 @@ Vous pouvez acheter une licence à tout moment et vous ne serez pas facturé ava
 
 
 
-== Comment fonctionne la reprise après sinistre de NetApp
+== Comment fonctionne la NetApp Disaster Recovery
 
-NetApp Disaster Recovery est un service hébergé dans l'environnement logiciel en tant que service (SaaS) de la console NetApp .  La reprise après sinistre peut récupérer les charges de travail répliquées à partir d’un site local vers Amazon FSx for ONTAP ou vers un autre site local.  Ce service automatise la récupération depuis SnapMirror , via l'enregistrement des machines virtuelles dans VMware Cloud sur AWS et les mappages réseau directement sur NSX-T, la plateforme de virtualisation et de sécurité réseau VMware. Cette fonctionnalité est incluse dans tous les environnements Virtual Machine Cloud.
+NetApp Disaster Recovery est un service hébergé dans l'environnement logiciel en tant que service (SaaS) de la NetApp Console .  La reprise après sinistre peut récupérer les charges de travail répliquées à partir d’un site local vers Amazon FSx for ONTAP ou vers un autre site local.  Ce service automatise la récupération depuis SnapMirror , via l'enregistrement des machines virtuelles dans VMware Cloud sur AWS et les mappages réseau directement sur NSX-T, la plateforme de virtualisation et de sécurité réseau VMware. Cette fonctionnalité est incluse dans tous les environnements Virtual Machine Cloud.
 
 NetApp Disaster Recovery utilise la technologie ONTAP SnapMirror , qui fournit une réplication hautement efficace et préserve l'efficacité des snapshots incrémentiels permanents ONTAP .  La réplication SnapMirror garantit que les copies de snapshots cohérentes avec les applications sont toujours synchronisées et que les données sont utilisables immédiatement après un basculement.
 
@@ -135,8 +135,8 @@ En cas de sinistre, ce service vous aide à récupérer des machines virtuelles 
 
 La reprise après sinistre utilise les composants suivants pour assurer la reprise après sinistre des charges de travail VMware :
 
-* * Console NetApp * : l'interface utilisateur pour la gestion de vos plans de reprise après sinistre.  Vous pouvez utiliser la console NetApp pour créer et gérer des plans de réplication, des groupes de ressources et des opérations de basculement dans vos environnements locaux et cloud.
-* *Agent de console* : un composant logiciel léger qui s'exécute sur votre réseau hébergé dans le cloud ou dans votre environnement VMware sur site.  Il communique avec la console NetApp et gère la réplication des données entre votre environnement sur site et le site de reprise après sinistre.  L'agent de console est installé sur une machine virtuelle dans votre environnement VMware.
+* * NetApp Console* : L'interface utilisateur pour la gestion de vos plans de reprise après sinistre.  Vous pouvez utiliser la NetApp Console pour créer et gérer des plans de réplication, des groupes de ressources et des opérations de basculement dans vos environnements locaux et cloud.
+* *Agent de console* : un composant logiciel léger qui s'exécute sur votre réseau hébergé dans le cloud ou dans votre environnement VMware sur site.  Il communique avec la NetApp Console et gère la réplication des données entre votre environnement sur site et le site de reprise après sinistre.  L'agent de console est installé sur une machine virtuelle dans votre environnement VMware.
 * * Clusters de stockage ONTAP * : les clusters de stockage ONTAP sont les principaux systèmes de stockage qui hébergent vos charges de travail VMware.  Les clusters de stockage ONTAP fournissent l’infrastructure de stockage sous-jacente pour vos plans de reprise après sinistre.  La reprise après sinistre utilise les API de stockage ONTAP pour gérer les clusters de stockage ONTAP tels que les baies sur site et les solutions basées sur le cloud, telles qu'Amazon Amazon FSx for NetApp ONTAP.
 * *Serveurs vCenter* : VMware vCenter est le serveur de gestion de votre environnement VMware.  Il gère les hôtes ESXi et leurs banques de données associées.  L'agent de console communique avec VMware vCenter pour gérer la réplication des données entre votre environnement local et le site de reprise après sinistre.  Cela inclut l’enregistrement des LUN et des volumes ONTAP en tant que banques de données, la reconfiguration des machines virtuelles et le démarrage et l’arrêt des machines virtuelles.
 
