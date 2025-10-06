@@ -1,0 +1,16 @@
+---
+section: get-started
+title: Commencer
+entries:
+- title: En savoir plus sur la reprise après sinistre NetApp
+  url: "/get-started/dr-intro.html"
+- title: Prérequis
+  url: "/get-started/dr-prerequisites.html"
+- title: Démarrage rapide
+  url: "/get-started/dr-quick-start.html"
+- title: Configurez votre infrastructure pour la reprise après sinistre NetApp
+  url: "/get-started/dr-setup.html"
+- title: Accéder à la reprise après sinistre de NetApp
+  url: "/get-started/dr-login.html"
+- title: Configurer les licences
+  url: "/get-started/dr-licensing.html"

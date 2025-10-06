@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: get-started/dr-quick-start.html 
+keywords: how to get started with bluexp disaster recovery, disaster recovery quick start, failover, failback 
+summary: Démarrez avec le service NetApp Disaster Recovery en quelques étapes. 
+---
+= Démarrage rapide pour la reprise après sinistre NetApp
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/get-started/
+
+
+[role="lead"]
+Voici un aperçu des étapes nécessaires pour démarrer avec NetApp Disaster Recovery. Les liens à l’intérieur de chaque étape vous mènent à une page qui fournit plus de détails.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Un"]Réviser les prérequis
+[role="quick-margin-para"]
+link:../get-started/dr-prerequisites.html["Assurez-vous que votre système répond à ces exigences"] .
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Deux"]Configurer la reprise après sinistre NetApp
+[role="quick-margin-list"]
+* link:../get-started/dr-setup.html["Mettre en place l'infrastructure du service"] .
+* link:../get-started/dr-licensing.html["Configurer les licences"] .
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Trois"]Quelle est la prochaine étape ?
+[role="quick-margin-para"]
+Après avoir configuré le service, voici ce que vous pouvez faire ensuite.
+
+[role="quick-margin-list"]
+* link:../use/sites-add.html["Ajoutez vos sites vCenter à NetApp Disaster Recovery"] .
+* link:../use/manage.html#manage-resource-groups["Créez votre premier groupe de ressources"] .
+* link:../use/drplan-create.html["Créez votre premier plan de réplication"] .
+* link:../use/replicate.html["Répliquer des applications sur un autre site"] .
+* link:../use/failover.html["Basculer les applications vers un site distant"] .
+* link:../use/failback.html["Rétablir les applications vers le site source d'origine"] .
+* link:../use/manage.html["Gérer les sites, les groupes de ressources et les plans de réplication"] .
+* link:../use/monitor-jobs.html["Surveiller les opérations de reprise après sinistre"] .
+

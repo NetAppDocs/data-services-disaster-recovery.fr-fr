@@ -1,0 +1,39 @@
+= Découverte planifiée pour les machines virtuelles
+:allow-uri-read: 
+
+
+
+
+=== Découverte planifiée pour les machines virtuelles
+
+NetApp Disaster Recovery effectue la découverte une fois toutes les 24 heures.  Avec cette version, vous pouvez désormais personnaliser le calendrier de découverte pour répondre à vos besoins et réduire l'impact sur les performances lorsque vous en avez besoin.  Par exemple, si vous disposez d’un grand nombre de machines virtuelles, vous pouvez définir la planification de découverte pour qu’elle s’exécute toutes les 48 heures.  Si vous disposez d'un petit nombre de machines virtuelles, vous pouvez définir la planification de découverte pour qu'elle s'exécute toutes les 12 heures.
+
+Si vous ne souhaitez pas planifier la découverte, vous pouvez désactiver l'option de découverte planifiée et actualiser la découverte manuellement à tout moment.
+
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/sites-add.html["Ajouter des sites de serveur vCenter"] .
+
+
+
+=== Prise en charge du magasin de données du groupe de ressources
+
+Auparavant, vous ne pouviez créer des groupes de ressources que par machines virtuelles.  Avec cette version, vous pouvez créer un groupe de ressources par magasins de données.  Lorsque vous créez un plan de réplication et créez un groupe de ressources pour ce plan, toutes les machines virtuelles d'une banque de données sont répertoriées.  Ceci est utile si vous disposez d’un grand nombre de machines virtuelles et que vous souhaitez les regrouper par banque de données.
+
+Vous pouvez créer un groupe de ressources avec une banque de données des manières suivantes :
+
+* Lorsque vous ajoutez un groupe de ressources à l’aide de magasins de données, vous pouvez voir une liste de magasins de données.  Vous pouvez sélectionner un ou plusieurs magasins de données pour créer un groupe de ressources.
+* Lorsque vous créez un plan de réplication et créez un groupe de ressources dans le plan, vous pouvez voir les machines virtuelles dans les banques de données.
+
+
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+
+
+
+=== Notifications d'essai gratuit ou d'expiration de licence
+
+Cette version fournit des notifications indiquant que l'essai gratuit expirera dans 60 jours pour vous assurer d'avoir le temps d'obtenir une licence.  Cette version fournit également des notifications le jour où la licence expire.
+
+
+
+=== Notification des mises à jour du service
+
+Avec cette version, une bannière apparaît en haut pour indiquer que les services sont en cours de mise à niveau et que le service est placé en mode maintenance.  La bannière apparaît lorsque le service est en cours de mise à niveau et disparaît lorsque la mise à niveau est terminée.  Bien que vous puissiez continuer à travailler dans l'interface utilisateur pendant que la mise à niveau est en cours, vous ne pouvez pas soumettre de nouvelles tâches.  Les tâches planifiées s'exécuteront une fois la mise à jour terminée et le service reviendra en mode production.

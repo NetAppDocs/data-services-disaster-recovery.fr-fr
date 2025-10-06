@@ -1,0 +1,227 @@
+---
+sidebar: sidebar 
+permalink: use/sites-add.html 
+keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter 
+summary: Avant de pouvoir créer un plan de reprise après sinistre, vous devez ajouter un site vCenter principal et un site de reprise après sinistre vCenter cible dans NetApp Disaster Recovery. 
+---
+= Ajouter des vCenters à un site dans NetApp Disaster Recovery
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+[role="lead"]
+Avant de pouvoir créer un plan de reprise après sinistre, vous devez ajouter un serveur vCenter principal à un site et un site de reprise après sinistre vCenter cible dans la console NetApp .
+
+
+TIP: Assurez-vous que les vCenters source et de destination utilisent le même agent de console NetApp .
+
+Une fois les vCenter ajoutés, NetApp Disaster Recovery effectue une découverte approfondie des environnements vCenter, notamment les clusters vCenter, les hôtes ESXi, les banques de données, l'empreinte de stockage, les détails des machines virtuelles, les répliques SnapMirror et les réseaux de machines virtuelles.
+
+*Rôle de console NetApp requis* Administrateur d'organisation, administrateur de dossier ou de projet ou administrateur de reprise après sinistre.
+
+link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la console NetApp pour tous les services"^] .
+
+*À propos de cette tâche*
+
+Si vous avez ajouté des vCenters dans les versions précédentes et que vous souhaitez personnaliser la planification de la découverte, vous devez modifier le site du serveur vCenter et définir la planification.
+
+
+TIP: NetApp Disaster Recovery effectue la découverte une fois toutes les 24 heures.  Après avoir configuré un site, vous pouvez ultérieurement modifier le vCenter pour personnaliser le calendrier de découverte qui répond à vos besoins.  Par exemple, si vous disposez d’un grand nombre de machines virtuelles, vous pouvez définir la planification de découverte pour qu’elle s’exécute toutes les 23 heures et 59 minutes.  Si vous disposez d'un petit nombre de machines virtuelles, vous pouvez définir la planification de découverte pour qu'elle s'exécute toutes les 12 heures.  L'intervalle minimum est de 30 minutes et le maximum est de 24 heures.
+
+Vous devez d’abord effectuer quelques découvertes manuelles pour obtenir les informations les plus récentes sur votre environnement.  Après cela, vous pouvez définir le calendrier pour qu'il s'exécute automatiquement.
+
+Si vous disposez de vCenters de versions antérieures et que vous souhaitez modifier le moment d'exécution de la découverte, modifiez le site du serveur vCenter et définissez la planification.
+
+Les machines virtuelles nouvellement ajoutées ou supprimées sont reconnues lors de la prochaine découverte planifiée ou lors d'une découverte manuelle immédiate.
+
+Les machines virtuelles ne peuvent être protégées que si le plan de réplication est dans l’un des états suivants :
+
+* Prêt
+* Failback validé
+* Test de basculement validé
+
+
+*Clusters vCenter dans un site* Chaque site contient un ou plusieurs vCenter.  Ces vCenters utilisent un ou plusieurs clusters de stockage ONTAP pour héberger des banques de données NFS ou VMFS.
+
+Un cluster vCenter ne peut résider que sur un seul site.  Vous avez besoin des informations suivantes pour ajouter un cluster vCenter à un site :
+
+* L'adresse IP de gestion vCenter ou FQDN
+* Informations d’identification pour un compte vCenter avec les privilèges requis pour effectuer des opérations. Voir link:vcenter--privileges.html["privilèges vCenter requis"] pour plus d'informations.
+* Pour les sites VMware hébergés dans le cloud, les clés d'accès au cloud requises
+* Un certificat de sécurité pour accéder à votre vCenter.
++
+
+NOTE: Le service prend en charge les certificats de sécurité auto-signés ou les certificats provenant d'une autorité de certification centrale (CA).
+
+
+
+.Étapes
+. Connectez-vous à la https://console.netapp.com/["Console NetApp"^] .
+. Dans la navigation de gauche de la console NetApp , sélectionnez *Protection* > *Reprise après sinistre*.
++
+Vous atterrirez sur la page du tableau de bord de reprise après sinistre de NetApp .  Lorsque vous démarrez le service pour la première fois, vous devez ajouter des informations vCenter.  Plus tard, le tableau de bord affiche des données sur vos sites et vos plans de réplication.
+
++
+
+NOTE: Différents champs apparaissent en fonction du type de site que vous ajoutez.
+
+. Si certains sites vCenter existent déjà et que vous souhaitez en ajouter d'autres, dans le menu, sélectionnez *Sites* puis sélectionnez *Ajouter*.
+. Dans la page Sites, sélectionnez le site, puis sélectionnez *Ajouter vCenter*.
+. *Source* : sélectionnez *Découvrir les serveurs vCenter* pour saisir des informations sur le site vCenter source.
++
+
+TIP: Si certains sites vCenter existent déjà et que vous souhaitez en ajouter d'autres, dans le menu supérieur, sélectionnez *Sites* puis sélectionnez *Ajouter*.
+
++
+image:vcenter-add.png["Ajouter une capture d'écran du serveur vCenter"]
+
++
+** Sélectionnez un site, sélectionnez l’agent de la console NetApp et fournissez les informations d’identification vCenter.
+** (S'applique uniquement aux sites locaux) Pour accepter les certificats auto-signés pour le vCenter source, cochez la case.
++
+
+NOTE: Les certificats auto-signés ne sont pas aussi sécurisés que les autres certificats.  Si votre vCenter n'est *PAS* configuré avec des certificats d'autorité de certification (CA), vous devez cocher cette case ; sinon, la connexion au vCenter ne fonctionnera pas.
+
+
+
+. Sélectionnez *Ajouter*.
++
+Ensuite, vous ajouterez un vCenter cible.
+
+. Ajoutez à nouveau un site pour le vCenter cible.
+. Sélectionnez à nouveau *Ajouter vCenter* et ajoutez les informations du vCenter cible.
+. *Cible*:
++
+.. Choisissez le site cible et l'emplacement.  Si la cible est le cloud, sélectionnez *AWS*.
++
+*** (S'applique uniquement aux sites cloud) *Jeton API* : saisissez le jeton API pour autoriser l'accès au service pour votre organisation.  Créez le jeton API en fournissant des rôles d’organisation et de service spécifiques.
+*** (S'applique uniquement aux sites cloud) *ID d'organisation long* : saisissez l'ID unique de l'organisation.  Vous pouvez identifier cet ID en cliquant sur le nom d’utilisateur dans la section Compte de la console NetApp .
+
+
+.. Sélectionnez *Ajouter*.
++
+Les vCenters source et cible apparaissent dans la liste des sites.
+
++
+image:sites-list2.png["Capture d'écran de la page Sites"]
+
+
+
+. Pour voir la progression de l'opération, dans le menu, sélectionnez *Suivi des tâches*.
+
+
+
+
+== Ajouter un mappage de sous-réseau pour un site vCenter
+
+Vous pouvez gérer les adresses IP lors des opérations de basculement à l'aide du mappage de sous-réseaux, qui vous permet d'ajouter des sous-réseaux pour chaque vCenter.  Lorsque vous faites cela, vous définissez le CIDR IPv4, la passerelle par défaut et le DNS pour chaque réseau virtuel.
+
+En cas de basculement, NetApp Disaster Recovery utilise le CIDR du réseau mappé pour attribuer à chaque vNIC une nouvelle adresse IP.
+
+Par exemple:
+
+* RéseauA = 10.1.1.0/24
+* RéseauB = 192.168.1.0/24
+
+
+VM1 dispose d'une vNIC (10.1.1.50) connectée à NetworkA.  NetworkA est mappé à NetworkB dans les paramètres du plan de réplication.
+
+En cas de basculement, NetApp Disaster Recovery remplace la partie réseau de l'adresse IP d'origine (10.1.1) et conserve l'adresse hôte (.50) de l'adresse IP d'origine (10.1.1.50).  Pour VM1, NetApp Disaster Recovery examine les paramètres CIDR pour NetworkB et utilise la partie réseau NetworkB 192.168.1 tout en conservant la partie hôte (.50) pour créer la nouvelle adresse IP pour VM1.  La nouvelle IP devient 192.168.1.50.
+
+En résumé, l’adresse de l’hôte reste la même, tandis que l’adresse réseau est remplacée par celle configurée dans le mappage de sous-réseau du site.  Cela vous permet de gérer plus facilement la réaffectation des adresses IP lors du basculement, en particulier si vous avez des centaines de réseaux et des milliers de machines virtuelles à gérer.
+
+L'utilisation du mappage de sous-réseau est un processus facultatif en deux étapes :
+
+* Tout d’abord, ajoutez le mappage de sous-réseau pour chaque site vCenter.
+* Deuxièmement, dans le plan de réplication, indiquez que vous souhaitez utiliser le mappage de sous-réseau dans l’onglet Machines virtuelles et le champ IP cible.
+
+
+.Étapes
+. Dans le menu NetApp Disaster Recovery, sélectionnez *Sites*.
+. Des actionsimage:icon-vertical-dots.png["Icône Actions"] icône sur la droite, sélectionnez *Ajouter un sous-réseau*.
++
+image:dr-sites-subnet-menu.png["Capture d'écran du menu Ajouter un sous-réseau"]
+
++
+La page Configurer le sous-réseau s’affiche :
+
++
+image:sites-subnet-add.png["Capture d'écran de l'ajout d'un mappage de sous-réseau"]
+
+. Dans la page Configurer le sous-réseau, saisissez les informations suivantes :
++
+.. Sous-réseau : saisissez le CIDR IPv4 pour le sous-réseau jusqu'à /32.
++
+
+TIP: La notation CIDR est une méthode de spécification des adresses IP et de leurs masques de réseau.  Le /24 désigne le masque de réseau.  Le numéro se compose d'une adresse IP avec le numéro après le « / » indiquant combien de bits de l'adresse IP désignent le réseau.  Par exemple, 192.168.0.50/24, l'adresse IP est 192.168.0.50 et le nombre total de bits dans l'adresse réseau est 24.  192.168.0.50 255.255.255.0 devient 192.168.0.0/24.
+
+.. Passerelle : saisissez la passerelle par défaut pour le sous-réseau.
+.. DNS : saisissez le DNS du sous-réseau.
+
+
+. Sélectionnez *Ajouter un mappage de sous-réseau*.
+
+
+
+
+=== Sélectionner le mappage de sous-réseau pour un plan de réplication
+
+Lorsque vous créez un plan de réplication, vous pouvez sélectionner le mappage de sous-réseau pour le plan de réplication.
+
+L'utilisation du mappage de sous-réseau est un processus facultatif en deux étapes :
+
+* Tout d’abord, ajoutez le mappage de sous-réseau pour chaque site vCenter.
+* Deuxièmement, dans le plan de réplication, indiquez que vous souhaitez utiliser le mappage de sous-réseau.
+
+
+.Étapes
+. Dans le menu NetApp Disaster Recovery, sélectionnez *Plans de réplication*.
+. Sélectionnez *Ajouter* pour ajouter un plan de réplication.
+. Remplissez les champs de la manière habituelle en ajoutant les serveurs vCenter, en sélectionnant les groupes de ressources ou les applications et en complétant les mappages.
+. Dans la page Plan de réplication > Mappage des ressources, sélectionnez la section *Machines virtuelles*.
++
+image:dr-plan-vm-subnet-option.png["Capture d'écran de la sélection du mappage de sous-réseau"]
+
+. Dans le champ *IP cible*, sélectionnez *Utiliser le mappage de sous-réseau* dans la liste déroulante.
++
+
+NOTE: S'il existe deux machines virtuelles (par exemple, l'une est Linux et l'autre est Windows), les informations d'identification ne sont nécessaires que pour Windows.
+
+. Continuez avec la création du plan de réplication.
+
+
+
+
+== Modifier le site du serveur vCenter et personnaliser le calendrier de découverte
+
+Vous pouvez modifier le site du serveur vCenter pour personnaliser la planification de la découverte.  Par exemple, si vous disposez d’un grand nombre de machines virtuelles, vous pouvez définir la planification de découverte pour qu’elle s’exécute toutes les 23 heures et 59 minutes.  Si vous disposez d'un petit nombre de machines virtuelles, vous pouvez définir la planification de découverte pour qu'elle s'exécute toutes les 12 heures.
+
+Si vous disposez de vCenters de versions antérieures et que vous souhaitez modifier le moment d'exécution de la découverte, modifiez le site du serveur vCenter et définissez la planification.
+
+Si vous ne souhaitez pas planifier la découverte, vous pouvez désactiver l'option de découverte planifiée et actualiser la découverte manuellement à tout moment.
+
+.Étapes
+. Dans le menu NetApp Disaster Recovery, sélectionnez *Sites*.
+. Sélectionnez le site que vous souhaitez modifier.
+. Sélectionnez les actionsimage:icon-vertical-dots.png["Icône Actions"] icône sur la droite et sélectionnez *Modifier*.
+. Dans la page Modifier le serveur vCenter, modifiez les champs selon vos besoins.
+. Pour personnaliser le calendrier de découverte, cochez la case *Activer la découverte planifiée* et sélectionnez l'intervalle de date et d'heure souhaité.
++
+image:sites-edit-schedule.png["Capture d'écran de la modification du calendrier de découverte"]
+
+. Sélectionnez *Enregistrer*.
+
+
+
+
+== Actualiser la découverte manuellement
+
+Vous pouvez actualiser la découverte manuellement à tout moment.  Ceci est utile si vous avez ajouté ou supprimé des machines virtuelles et que vous souhaitez mettre à jour les informations dans NetApp Disaster Recovery.
+
+.Étapes
+. Dans le menu NetApp Disaster Recovery, sélectionnez *Sites*.
+. Sélectionnez le site que vous souhaitez actualiser.
+. Sélectionnez les actionsimage:icon-vertical-dots.png["Icône Actions"] icône sur la droite et sélectionnez *Actualiser*.
+

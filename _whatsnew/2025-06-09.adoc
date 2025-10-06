@@ -1,0 +1,13 @@
+= Prise en charge de la solution de mot de passe d'administrateur local Windows (LAPS)
+:allow-uri-read: 
+
+
+
+
+=== Prise en charge de la solution de mot de passe d'administrateur local Windows (LAPS)
+
+Windows Local Administrator Password Solution (Windows LAPS) est une fonctionnalité Windows qui gère et sauvegarde automatiquement le mot de passe d'un compte d'administrateur local sur Active Directory.
+
+Vous pouvez désormais sélectionner les options de mappage de sous-réseau et vérifier l’option LAPS en fournissant les détails du contrôleur de domaine.  En utilisant cette option, vous n’avez pas besoin de fournir un mot de passe pour chacune de vos machines virtuelles.
+
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .

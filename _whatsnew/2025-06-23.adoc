@@ -1,0 +1,9 @@
+= Améliorations du mappage des sous-réseaux
+:allow-uri-read: 
+
+
+
+
+=== Améliorations du mappage des sous-réseaux
+
+Cette mise à jour améliore la boîte de dialogue Ajouter et modifier le mappage de sous-réseau avec une nouvelle fonctionnalité de recherche.  Vous pouvez désormais trouver rapidement des sous-réseaux spécifiques en saisissant des termes de recherche, ce qui facilite la gestion des mappages de sous-réseaux.

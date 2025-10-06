@@ -1,0 +1,127 @@
+---
+sidebar: sidebar 
+permalink: use/failover.html 
+keywords: disaster recovery, bluexp disaster recovery, failover, replicate, fail over, vmware, vcenter 
+summary: NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les flux de travail de reprise après sinistre. 
+---
+= Basculez les applications vers un site distant avec NetApp Disaster Recovery
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+[role="lead"]
+En cas de sinistre, basculez votre site VMware principal sur site vers un autre site VMware sur site ou VMware Cloud sur AWS.  Vous pouvez tester le processus de basculement pour garantir sa réussite lorsque vous en avez besoin.
+
+*Rôle de console NetApp requis* Rôle d'administrateur d'organisation, d'administrateur de dossier ou de projet, d'administrateur de reprise après sinistre ou d'administrateur de basculement de reprise après sinistre.
+
+link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la console NetApp pour tous les services"^] .
+
+*À propos de cette tâche*
+
+Lors d’un basculement, Disaster Recovery utilise la copie instantanée SnapMirror la plus récente.  Ou, vous pouvez sélectionner un instantané spécifique à partir d'un instantané ponctuel (conformément à la politique de conservation de SnapMirror).
+
+Utilisez l’option ponctuelle si les répliques les plus récentes sont compromises, par exemple lors d’une attaque de ransomware.  La BlueXP disaster recovery affiche tous les points disponibles dans le temps.
+
+Ce processus diffère selon que le site de production est sain ou non et que vous effectuez un basculement vers le site de reprise après sinistre pour des raisons autres qu'une défaillance critique de l'infrastructure :
+
+* Panne critique du site de production où le cluster vCenter ou ONTAP source n'est pas accessible : NetApp Disaster Recovery vous permet de sélectionner n'importe quel snapshot disponible à partir duquel effectuer la restauration.
+* L'environnement de production est sain : vous pouvez soit « Prendre un instantané maintenant » ou sélectionner un instantané précédemment créé.
+
+
+Cette procédure rompt la relation de réplication, place les machines virtuelles sources vCenter hors ligne, enregistre les volumes en tant que banques de données dans le vCenter de récupération après sinistre, redémarre les machines virtuelles protégées à l'aide des règles de basculement du plan et active la lecture/écriture sur le site cible.
+
+
+
+== Tester le processus de basculement
+
+Avant de démarrer le basculement, vous pouvez tester le processus.  Le test ne met pas les machines virtuelles hors ligne.
+
+Lors d'un test de basculement, la BlueXP disaster recovery crée temporairement des machines virtuelles.  La BlueXP disaster recovery mappe une banque de données temporaire sauvegardant le volume FlexClone sur les hôtes ESXi.
+
+Ce processus ne consomme pas de capacité physique supplémentaire sur le stockage ONTAP sur site ou sur le stockage FSx pour NetApp ONTAP dans AWS.  Le volume source d'origine n'est pas modifié et les tâches de réplication peuvent continuer même pendant la reprise après sinistre.
+
+Une fois le test terminé, vous devez réinitialiser les machines virtuelles avec l'option *Nettoyer le test*.  Bien que cela soit recommandé, ce n’est pas obligatoire.
+
+Une opération de basculement de test n'a _pas_ d'impact sur les charges de travail de production, la relation SnapMirror utilisée sur le site de test et les charges de travail protégées qui doivent continuer à fonctionner normalement.
+
+Pour un test de basculement, Disaster Recovery effectue les opérations suivantes :
+
+* Effectuez des vérifications préalables sur le cluster de destination et la relation SnapMirror .
+* Créez un nouveau volume FlexClone à partir du snapshot sélectionné pour chaque volume ONTAP protégé sur le cluster ONTAP du site cible.
+* Si des banques de données sont VMFS, créez et mappez un iGroup à chaque LUN.
+* Enregistrez les machines virtuelles cibles dans vCenter en tant que nouvelles banques de données.
+* Mettez sous tension les machines virtuelles cibles en fonction de l’ordre de démarrage capturé dans la page Groupes de ressources.
+* Désactivez toutes les applications de base de données prises en charge dans les machines virtuelles indiquées comme « cohérentes avec les applications ».
+* Si les clusters vCenter et ONTAP sources sont toujours actifs, créez une relation SnapMirror en sens inverse pour répliquer toutes les modifications lors de l'état de basculement vers le site source d'origine.
+
+
+.Étapes
+. Connectez-vous à la https://console.netapp.com/["Console NetApp"^] .
+. Dans la navigation de gauche de la console NetApp , sélectionnez *Protection* > *Reprise après sinistre*.
+. Dans le menu NetApp Disaster Recovery, sélectionnez *Plans de réplication*.
+. Sélectionnez le plan de réplication.
+. Sur la droite, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] et sélectionnez *Tester le basculement*.
+. Dans la page Test de basculement, saisissez « Test de basculement » et sélectionnez *Test de basculement*.
+. Une fois le test terminé, nettoyez l’environnement de test.
+
+
+
+
+== Nettoyer l'environnement de test après un test de basculement
+
+Une fois le test de basculement terminé, vous devez nettoyer l’environnement de test.  Ce processus supprime les machines virtuelles temporaires de l’emplacement de test, les FlexClones et les magasins de données temporaires.
+
+.Étapes
+. Dans le menu NetApp Disaster Recovery, sélectionnez *Plans de réplication*.
+. Sélectionnez le plan de réplication.
+. Sur la droite, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] et sélectionnez *Nettoyer le test de basculement*.
+. Dans la page Test de basculement, saisissez « Nettoyer le basculement » et sélectionnez *Nettoyer le test de basculement*.
+
+
+
+
+== Basculer le site source vers un site de reprise après sinistre
+
+En cas de sinistre, basculez à la demande votre site VMware principal sur site vers un autre site VMware sur site ou VMware Cloud sur AWS avec FSx pour NetApp ONTAP.
+
+Le processus de basculement implique les opérations suivantes :
+
+* Disaster Recovery effectue des vérifications préalables sur le cluster de destination et la relation SnapMirror .
+* Si vous avez sélectionné le dernier instantané, la mise à jour de SnapMirror est effectuée pour répliquer les dernières modifications.
+* Les machines virtuelles sources sont hors tension.
+* La relation SnapMirror est rompue et le volume cible est en lecture/écriture.
+* En fonction de la sélection de l'instantané, le système de fichiers actif est restauré sur l'instantané spécifié (le plus récent ou sélectionné).
+* Les banques de données sont créées et montées sur le cluster ou l’hôte VMware ou VMC en fonction des informations capturées dans le plan de réplication.  Si des banques de données sont VMFS, créez et mappez un iGroup à chaque LUN.
+* Les machines virtuelles cibles sont enregistrées dans vCenter en tant que nouvelles banques de données.
+* Les machines virtuelles cibles sont mises sous tension en fonction de l’ordre de démarrage capturé dans la page Groupes de ressources.
+* Si le vCenter source est toujours actif, mettez hors tension toutes les machines virtuelles côté source qui sont en cours de basculement.
+* Désactivez toutes les applications de base de données prises en charge dans les machines virtuelles indiquées comme « cohérentes avec les applications ».
+* Si les clusters vCenter et ONTAP sources sont toujours actifs, créez une relation SnapMirror en sens inverse pour répliquer toutes les modifications lors de l'état de basculement vers le site source d'origine.  La relation SnapMirror est inversée de la machine virtuelle cible à la machine virtuelle source.
+
+
+
+TIP: Une fois le basculement démarré, vous pouvez voir les machines virtuelles récupérées dans le vCenter du site de reprise après sinistre (machines virtuelles, réseaux et banques de données).  Par défaut, les machines virtuelles sont récupérées dans le dossier Charge de travail.
+
+.Étapes
+. Dans le menu NetApp Disaster Recovery, sélectionnez *Plans de réplication*.
+. Sélectionnez le plan de réplication.
+. Sur la droite, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] et sélectionnez *Fail over*.
++
+image:dr-plan-failover3.png["Page de basculement"]
+
+. Dans la page Basculement, lancez un instantané maintenant ou choisissez l'instantané de la banque de données à partir de laquelle récupérer.  La valeur par défaut est la plus récente.
++
+Un instantané de la source actuelle sera pris et répliqué vers la destination actuelle avant que le basculement ne se produise.
+
+. Vous pouvez également sélectionner *Forcer le basculement* si vous souhaitez que le basculement se produise même si une erreur est détectée qui empêcherait normalement le basculement de se produire.
+. Vous pouvez également sélectionner *Ignorer la protection* si vous souhaitez que le service ne crée pas automatiquement une relation de protection SnapMirror inversée après un basculement de plan de réplication.  Cela est utile si vous souhaitez effectuer des opérations supplémentaires sur le site restauré avant de le remettre en ligne dans NetApp Disaster Recovery.
++
+
+TIP: Vous pouvez établir une protection inverse en sélectionnant *Protéger les ressources* dans le menu Actions du plan de réplication.  Cela tente de créer une relation de réplication inverse pour chaque volume du plan.  Vous pouvez exécuter cette tâche à plusieurs reprises jusqu'à ce que la protection soit restaurée.  Une fois la protection restaurée, vous pouvez lancer une restauration automatique de la manière habituelle.
+
+. Tapez « failover » dans la case.
+. Sélectionnez *Fail over*.
+. Pour vérifier la progression, dans le menu, sélectionnez *Suivi des tâches*.
+

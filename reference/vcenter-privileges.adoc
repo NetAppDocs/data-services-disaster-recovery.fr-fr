@@ -1,0 +1,153 @@
+---
+sidebar: sidebar 
+permalink: reference/vcenter-privileges.html 
+keywords: disaster recovery, bluexp, vcenter, 
+summary: 'Le compte vCenter doit disposer d"un ensemble minimal de privilèges vCenter pour permettre à NetApp Disaster Recovery d"exécuter ses services, tels que l"enregistrement et la désinscription des banques de données, le démarrage et l"arrêt des machines virtuelles et la reconfiguration des machines virtuelles (VM).  Le tableau suivant répertorie tous les privilèges requis pour que NetApp Disaster Recovery puisse s"interfacer avec un cluster vCenter.' 
+---
+= Privilèges vCenter nécessaires pour la reprise après sinistre NetApp
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+[role="lead"]
+Le compte vCenter doit disposer d'un ensemble minimal de privilèges vCenter pour permettre à NetApp Disaster Recovery d'exécuter ses services, tels que l'enregistrement et la désinscription des banques de données, le démarrage et l'arrêt des machines virtuelles et la reconfiguration des machines virtuelles (VM).  Le tableau suivant répertorie tous les privilèges requis pour que NetApp Disaster Recovery puisse s'interfacer avec un cluster vCenter.
+
+[cols="25,35a,40a"]
+|===
+| Type | Nom du privilège | Description 
+
+
+| *Magasin de données*  a| 
+Magasin de données.Configurer le magasin de données
+ a| 
+Utiliser pour configurer une banque de données.
+
+
+
+|   a| 
+Magasin de données.Supprimer le magasin de données
+ a| 
+Utiliser pour supprimer une banque de données.
+
+
+
+| *Machine virtuelle*  a| 
+Machine virtuelle.Configuration.Modifier les paramètres
+ a| 
+Utiliser pour modifier les paramètres généraux de la machine virtuelle.
+
+
+
+|   a| 
+Machine virtuelle.Configuration.Modifier les paramètres du périphérique
+ a| 
+Permet de modifier les propriétés d'un périphérique existant.
+
+
+
+|   a| 
+Machine virtuelle.Configuration.Recharger à partir du chemin
+ a| 
+Permet de modifier un correctif de configuration de machine virtuelle tout en préservant l'identité de la machine virtuelle.  Des solutions telles que VMware vCenter Site Recovery Manager utilisent cette opération pour conserver l’identité de la machine virtuelle pendant le basculement et la restauration.
+
+
+
+|   a| 
+Machine virtuelle.Configuration.Renommer
+ a| 
+Permet de renommer une machine virtuelle ou de modifier les nœuds associés d'une machine virtuelle.
+
+
+
+|   a| 
+Machine virtuelle.Configuration.Réinitialiser les informations de l'invité
+ a| 
+Permet de modifier les informations du système d'exploitation invité pour une machine virtuelle.
+
+
+
+|   a| 
+Machine virtuelle.Configuration.Modifier la mémoire
+ a| 
+Permet de modifier la quantité de mémoire allouée à la machine virtuelle.
+
+
+
+|   a| 
+Machine virtuelle.Configuration.Modifier le nombre de CPU
+ a| 
+Permet de modifier le nombre de processeurs virtuels.
+
+
+
+| *Invité de machine virtuelle*  a| 
+Machine virtuelle.Opérations invité.Modifications des opérations invité
+ a| 
+Active les opérations invitées de machine virtuelle qui impliquent des modifications apportées à un système d'exploitation invité dans une machine virtuelle, comme le transfert d'un fichier vers la machine virtuelle.
+
+
+
+| *Interaction avec la machine virtuelle*  a| 
+Machine virtuelle.Interaction.Mise hors tension
+ a| 
+Permet de mettre hors tension une machine virtuelle sous tension.  Cette opération met hors tension le système d’exploitation invité.
+
+
+
+|   a| 
+Machine virtuelle.Interaction.Mise sous tension
+ a| 
+Permet d'allumer une machine virtuelle hors tension et de reprendre une machine virtuelle suspendue.
+
+
+
+|   a| 
+Machine virtuelle.Interaction.Installation des outils VMware
+ a| 
+Permet de monter et de démonter le programme d'installation du CD VMware Tools en tant que CD-ROM pour le système d'exploitation invité.
+
+
+
+| *Inventaire des machines virtuelles*  a| 
+Machine virtuelle.Inventaire.Créer un nouveau
+ a| 
+Permet de créer une machine virtuelle et d'allouer des ressources pour son exécution.
+
+
+
+|   a| 
+Machine virtuelle.Inventaire.Enregistrement
+ a| 
+Permet d'ajouter une machine virtuelle existante à un serveur vCenter ou à un inventaire d'hôtes.
+
+
+
+|   a| 
+Machine virtuelle.Inventaire.Désinscription
+ a| 
+Permet de désinscrire une machine virtuelle d'un serveur vCenter ou d'un inventaire d'hôte.
+
+
+
+| *État de la machine virtuelle*  a| 
+Machine virtuelle. Gestion des snapshots. Créer un snapshot
+ a| 
+Permet de créer un instantané de l'état actuel de la machine virtuelle.
+
+
+
+|   a| 
+Machine virtuelle. Gestion des snapshots. Supprimer un snapshot
+ a| 
+Permet de supprimer un instantané de l'historique des instantanés.
+
+
+
+|   a| 
+Machine virtuelle. Gestion des snapshots. Revenir au snapshot
+ a| 
+Permet de définir la machine virtuelle sur l’état dans lequel elle se trouvait lors d’un instantané donné.
+
+|===

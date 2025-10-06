@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: use/monitor-jobs.html 
+keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter, monitor, bluexp 
+summary: NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les flux de travail de reprise après sinistre.  Vous pouvez surveiller toutes les tâches de récupération après sinistre et déterminer leur progression. 
+---
+= Surveiller les tâches de reprise après sinistre NetApp
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+[role="lead"]
+Vous pouvez surveiller toutes les tâches de récupération après sinistre NetApp et déterminer leur progression.
+
+
+
+== Voir les offres d'emploi
+
+*Rôle de console NetApp requis* Administrateur d'organisation, Administrateur de dossier ou de projet, Administrateur de reprise après sinistre, Administrateur d'application de reprise après sinistre ou Rôle d'observateur de reprise après sinistre.
+
+link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la console NetApp pour tous les services"^] .
+
+.Étapes
+. Connectez-vous à la https://console.netapp.com/["Console NetApp"^] .
+. Dans la navigation de gauche de la console NetApp , sélectionnez *Protection* > *Reprise après sinistre*.
+. Dans le menu, sélectionnez *Surveillance des tâches*.
+. Explorez tous les travaux liés aux opérations et examinez leurs horodatages et leur statut.
+. Pour afficher les détails d’une tâche particulière, sélectionnez cette ligne.
+. Pour actualiser les informations, sélectionnez *Actualiser*.
+
+
+
+
+== Annuler un travail
+
+Si une tâche est en cours ou dans un état en file d'attente et que vous ne souhaitez pas qu'elle continue, vous pouvez l'annuler.  Vous souhaiterez peut-être annuler une tâche si elle est bloquée dans le même état et que vous souhaitez libérer l'opération suivante dans la file d'attente.  Vous souhaiterez peut-être annuler une tâche avant qu'elle n'expire.
+
+*Rôle de console NetApp requis* Administrateur d'organisation, Administrateur de dossier ou de projet, Administrateur de reprise après sinistre, Administrateur de basculement de reprise après sinistre ou Administrateur d'application de reprise après sinistre.
+
+link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la console NetApp pour tous les services"^] .
+
+.Étapes
+. Dans la barre de navigation de gauche de la console NetApp , sélectionnez *Protection* > *Reprise après sinistre*.
+. Dans le menu, sélectionnez *Surveillance des tâches*.
+. Dans la page du moniteur de tâches, notez l’ID de la tâche que vous souhaitez annuler.
++
+Le travail doit être dans un état « En cours » ou « En file d'attente ».
+
+. Dans la colonne Actions, sélectionnez *Annuler le travail*.
+

@@ -1,0 +1,190 @@
+---
+sidebar: sidebar 
+permalink: use/manage.html 
+keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter, replication plans, resource groups 
+summary: Vous pouvez obtenir un aperçu rapide de toutes vos ressources NetApp Disaster Recovery et gérer les sites vCenter, les groupes de ressources et les plans de réplication. 
+---
+= Gérez les sites, les groupes de ressources, les plans de réplication, les banques de données et les informations sur les machines virtuelles avec NetApp Disaster Recovery
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+[role="lead"]
+Vous pouvez obtenir un aperçu rapide de toutes vos ressources de reprise après sinistre NetApp ou examiner chacune d'elles en détail :
+
+* Sites
+* Groupes de ressources
+* Plans de réplication
+* Magasins de données
+* Machines virtuelles
+
+
+Les tâches nécessitent différents rôles de console NetApp .  Pour plus de détails, consultez la section *Rôle de console NetApp requis* dans chaque tâche.
+
+link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la console NetApp pour tous les services"^] .
+
+
+
+== Gérer les sites vCenter
+
+Vous pouvez modifier le nom du site vCenter et le type de site (sur site ou AWS).
+
+*Rôle de console NetApp requis* Rôle d'administrateur d'organisation, d'administrateur de dossier ou de projet ou d'administrateur de reprise après sinistre.
+
+.Étapes
+. Dans le menu, sélectionnez *Sites*.
+. Sélectionnez l'option *Actions*image:../use/icon-vertical-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à droite du nom du vCenter et sélectionnez *Modifier*.
+. Modifiez le nom et l’emplacement du site vCenter.
+
+
+
+
+== Gérer les groupes de ressources
+
+Bien que vous puissiez ajouter un groupe de ressources dans le cadre de la création d'un plan de réplication, vous trouverez peut-être plus pratique d'ajouter les groupes séparément et d'utiliser ultérieurement ces groupes dans le plan.  Vous créez des groupes de ressources par machines virtuelles ou par magasins de données.
+
+*Rôle de console NetApp requis* Rôle d'administrateur d'organisation, d'administrateur de dossier ou de projet, d'administrateur de reprise après sinistre ou d'administrateur d'application de reprise après sinistre.
+
+Vous pouvez créer un groupe de ressources par magasins de données des manières suivantes :
+
+* Lorsque vous ajoutez un groupe de ressources à l’aide de magasins de données, vous pouvez voir une liste de magasins de données.  Vous pouvez sélectionner un ou plusieurs magasins de données pour créer un groupe de ressources.
+* Lorsque vous créez un plan de réplication et créez un groupe de ressources dans le plan, vous pouvez voir les machines virtuelles dans les banques de données.
+
+
+Vous pouvez effectuer les tâches suivantes avec les groupes de ressources :
+
+* Modifier le nom du groupe de ressources.
+* Ajoutez des machines virtuelles au groupe de ressources.
+* Supprimez les machines virtuelles du groupe de ressources.
+* Supprimer les groupes de ressources.
+
+
+Pour plus de détails sur la création d'un groupe de ressources, reportez-vous àlink:resource-group.html["Créer un groupe de ressources pour organiser les machines virtuelles ensemble"] .
+
+.Étapes
+. Dans le menu, sélectionnez *Groupes de ressources*.
+. Pour ajouter un groupe de ressources, sélectionnez *Ajouter un groupe*.
+. Pour effectuer des actions avec le groupe de ressources, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à droite et sélectionnez l'une des options, telles que *Modifier le groupe de ressources* ou *Supprimer le groupe de ressources*.
+
+
+
+
+== Gérer les plans de réplication
+
+Vous pouvez désactiver, activer et supprimer les plans de réplication.  Vous pouvez modifier les horaires.
+
+*Rôle de console NetApp requis* Administrateur d'organisation, Administrateur de dossier ou de projet, Administrateur de reprise après sinistre, Administrateur de basculement de reprise après sinistre ou Administrateur d'application de reprise après sinistre.
+
+* Si vous souhaitez suspendre temporairement un plan de réplication, vous pouvez le désactiver et le réactiver ultérieurement.
+* Si vous n’avez plus besoin du plan, vous pouvez le supprimer.
+
+
+.Étapes
+. Dans le menu, sélectionnez *Plans de réplication*.
++
+image:../use/dr-plan-list.png["Liste des plans de réplication"]
+
+. Pour afficher les détails du plan, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] et sélectionnez *Afficher les détails du plan*.
+. Effectuez l’une des opérations suivantes :
++
+** Pour modifier les détails du plan (modifier la récurrence), sélectionnez l'onglet *Détails du plan* et sélectionnez l'icône *Modifier* à droite.
+** Pour modifier les mappages de ressources, sélectionnez l'onglet *Mappage de basculement* et sélectionnez l'icône *Modifier*.
+** Pour ajouter ou modifier les machines virtuelles, sélectionnez l'onglet *Machines virtuelles* et sélectionnez l'option *Ajouter des machines virtuelles* ou l'icône *Modifier*.
+
+
+. Revenez à la liste des plans en sélectionnant « Plans de réplication » dans le fil d'Ariane à gauche.
+. Pour effectuer des actions avec le plan, dans la liste des plans de réplication, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à droite du plan et sélectionnez l'une des options, telles que *Modifier les planifications*, *Tester le basculement*, *Basculer*, *Retour en arrière*, *Migrer*, *Prendre un instantané maintenant*, *Nettoyer les anciens instantanés*, *Désactiver*, *Activer* ou *Supprimer*.
+. Pour définir ou modifier un calendrier de basculement de test ou définir la vérification de la fréquence de conformité, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à droite du plan et sélectionnez *Modifier les horaires*.
++
+.. Dans la page Modifier les planifications, entrez la fréquence en minutes à laquelle vous souhaitez que la vérification de conformité de basculement se produise.
+.. Cochez *Exécuter les tests de basculement selon un calendrier*.
+.. Dans l’option Répéter, sélectionnez le programme quotidien, hebdomadaire ou mensuel.
+.. Sélectionnez *Enregistrer*.
+
+
+
+
+
+
+=== Rapprocher les instantanés à la demande
+
+Vous pouvez réconcilier les instantanés qui ne sont pas synchronisés entre la source et la cible.  Cela peut se produire si des snapshots sont supprimés sur une cible en dehors de NetApp Disaster Recovery.  Le service supprime automatiquement l'instantané sur la source toutes les 24 heures.  Cependant, vous pouvez effectuer cette opération à la demande.  Cette fonctionnalité vous permet de garantir que les instantanés sont cohérents sur tous les sites.
+
+*Rôle de console NetApp requis* Administrateur d'organisation, Administrateur de dossier ou de projet, Administrateur de reprise après sinistre, Administrateur de basculement de reprise après sinistre ou Administrateur d'application de reprise après sinistre.
+
+.Étapes
+. Dans le menu, sélectionnez *Plans de réplication*.
++
+image:../use/dr-plan-list.png["Liste des plans de réplication"]
+
+. Dans la liste des plans de réplication, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à droite du plan et sélectionnez *Réconcilier les instantanés*.
+. Consultez les informations de rapprochement.
+. Sélectionnez *Réconcilier*.
+
+
+
+
+=== Supprimer un plan de réplication
+
+Vous pouvez supprimer un plan de réplication si vous n’en avez plus besoin.  Si vous supprimez un plan de réplication, vous pouvez également supprimer les snapshots principaux et secondaires créés par le plan.
+
+*Rôle de console NetApp requis* Administrateur d'organisation, Administrateur de dossier ou de projet, Administrateur de reprise après sinistre, Administrateur de basculement de reprise après sinistre ou Administrateur d'application de reprise après sinistre.
+
+.Étapes
+. Dans le menu, sélectionnez *Plans de réplication*.
+. Sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à droite du plan et sélectionnez *Supprimer*.
+. Sélectionnez si vous souhaitez supprimer les instantanés principaux, les instantanés secondaires ou simplement les métadonnées créées par le plan.
+. Tapez « supprimer » pour confirmer la suppression.
+. Sélectionnez *Supprimer*.
+
+
+
+
+=== Modifier le nombre de rétentions pour les planifications de basculement
+
+Vous pouvez modifier le nombre de magasins de données conservés.
+
+*Rôle de console NetApp requis* Administrateur d'organisation, Administrateur de dossier ou de projet, Administrateur de reprise après sinistre, Administrateur de basculement de reprise après sinistre ou Administrateur d'application de reprise après sinistre.
+
+.Étapes
+. Dans le menu, sélectionnez *Plans de réplication*.
+. Sélectionnez le plan de réplication, sélectionnez l'onglet *Mappage de basculement* et sélectionnez l'icône en forme de crayon *Modifier*.
+. Sélectionnez la flèche *Datastores* pour la développer.
++
+image:../use/dr-plan-failover-edit.png["Modifier la page des mappages de basculement"]
+
+. Modifiez la valeur du nombre de rétention dans le plan de réplication.
+. Une fois le plan de réplication sélectionné, sélectionnez le menu Actions, puis sélectionnez *Nettoyer les anciens snapshots* pour supprimer les anciens snapshots sur la cible afin qu'ils correspondent au nouveau nombre de rétention.
+
+
+
+
+== Afficher les informations sur les magasins de données
+
+Vous pouvez afficher des informations sur le nombre de magasins de données existants sur la source et sur la cible.
+
+*Rôle de console NetApp requis* Administrateur d'organisation, Administrateur de dossier ou de projet, Administrateur de reprise après sinistre, Administrateur de basculement de reprise après sinistre, Administrateur d'application de reprise après sinistre ou Rôle d'observateur de reprise après sinistre.
+
+.Étapes
+. Dans le menu, sélectionnez *Tableau de bord*.
+. Sélectionnez le vCenter dans la ligne du site.
+. Sélectionnez *Datastores*.
+. Afficher les informations des magasins de données.
+
+
+
+
+== Afficher les informations sur les machines virtuelles
+
+Vous pouvez afficher des informations sur le nombre de machines virtuelles existantes sur la source et sur la cible, ainsi que sur le processeur, la mémoire et la capacité disponible.
+
+*Rôle de console NetApp requis* Administrateur d'organisation, Administrateur de dossier ou de projet, Administrateur de reprise après sinistre, Administrateur de basculement de reprise après sinistre, Administrateur d'application de reprise après sinistre ou Rôle d'observateur de reprise après sinistre.
+
+.Étapes
+. Dans le menu, sélectionnez *Tableau de bord*.
+. Sélectionnez le vCenter dans la ligne du site.
+. Sélectionnez *Machines virtuelles*.
+. Afficher les informations des machines virtuelles.
+

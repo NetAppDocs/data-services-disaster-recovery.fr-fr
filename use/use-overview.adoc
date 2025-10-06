@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: use/use-overview.html 
+keywords: disaster recovery remediate, disaster recovery, failover, failback, replication 
+summary: NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les flux de travail de reprise après sinistre. 
+---
+= Présentation de NetApp Disaster Recovery
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+[role="lead"]
+Grâce à NetApp Disaster Recovery, vous pouvez atteindre les objectifs suivants :
+
+* link:../use/dashboard-view.html["Consultez l'état de vos plans de reprise après sinistre"] .
+* link:../use/sites-add.html["Ajouter des sites vCenter"] .
+* link:../use/resource-group.html["Créer des groupes de ressources pour organiser les machines virtuelles ensemble"]
+* link:../use/drplan-create.html["Créer un plan de reprise après sinistre"] .
+* link:../use/replicate.html["Répliquer les applications VMware"]sur votre site principal vers un site distant de reprise après sinistre dans le cloud à l'aide de la réplication SnapMirror .
+* link:../use/migrate.html["Migrer les applications VMware"]sur votre site principal vers un autre site.
+* link:../use/failover.html["Tester le fail over"]sans perturber les machines virtuelles d'origine.
+* En cas de catastrophe,link:../use/failover.html["basculer votre site principal"] vers VMware Cloud sur AWS avec FSx pour NetApp ONTAP.
+* Une fois la catastrophe résolue,link:../use/failback.html["retour en arrière"] du site de reprise après sinistre au site principal.
+* link:../use/monitor-jobs.html["Surveiller les opérations de reprise après sinistre"]sur la page Suivi des tâches.
+

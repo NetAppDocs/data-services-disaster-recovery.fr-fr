@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: use/dashboard-view.html 
+keywords: disaster recovery remediate, disaster recovery, failover, failback, replication, bluexp, netapp 
+summary: NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les flux de travail de reprise après sinistre. 
+---
+= Consultez l'état de vos plans de reprise après sinistre NetApp sur le tableau de bord
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+[role="lead"]
+À l’aide du tableau de bord de reprise après sinistre NetApp , vous pouvez déterminer l’état de vos sites de reprise après sinistre et vos plans de réplication.  Vous pouvez rapidement déterminer quels sites et quels plans sont sains, déconnectés ou dégradés.
+
+*Rôle de console NetApp requis* Administrateur d'organisation, Administrateur de dossier ou de projet, Administrateur de reprise après sinistre, Administrateur d'application de reprise après sinistre ou Rôle d'observateur de reprise après sinistre.
+
+link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la console NetApp pour tous les services"^] .
+
+.Étapes
+. Connectez-vous à la https://console.netapp.com/["Console NetApp"^] .
+. Dans la navigation de gauche de la console NetApp , sélectionnez *Protection* > *Reprise après sinistre*.
+. Dans le menu NetApp Disaster Recovery, sélectionnez *Tableau de bord*.
++
+image:dr-dashboard.png["Tableau de bord de reprise après sinistre NetApp"]
+
+. Consultez les informations suivantes sur le tableau de bord :
++
+** *Sites* : Consultez l'état de santé de vos sites.  Un site peut avoir l'un des statuts suivants :
++
+*** *En cours d'exécution* : le vCenter est connecté, sain et en cours d'exécution.
+*** *En panne* : Le vCenter n'est pas accessible ou rencontre des problèmes de connectivité.
+*** *Problème* : Le vCenter n'est pas accessible ou rencontre des problèmes de connectivité.
++
+Pour voir les détails du site, sélectionnez *Afficher tout* pour un statut ou *Afficher les sites* pour les voir tous.
+
+
+
+** *Plans de réplication* : affichez l'état de vos plans.  Un plan peut avoir l’un des statuts suivants :
++
+*** *Prêt*
+*** *Échoué*
++
+Pour consulter les détails du plan de réplication, sélectionnez *Afficher tout* pour un statut ou *Afficher les plans de réplication* pour les voir tous.
+
+
+
+** *Groupes de ressources* : Affichez l'état de vos groupes de ressources.  Un groupe de ressources peut avoir l’un des statuts suivants :
+** *VM protégées* : Les machines virtuelles font partie d'un groupe de ressources.
+** *VM non protégées* : Les machines virtuelles ne font pas partie d'un groupe de ressources.
++
+Pour consulter les détails, sélectionnez le lien *Afficher* sous chaque élément.
+
+** Le nombre de basculements, de basculements de test et de migrations.  Par exemple, si vous avez créé deux plans et migré vers les destinations, le nombre de migrations apparaît comme « 2 ».
+
+
+. Passez en revue toutes les opérations dans le volet Activité.  Pour afficher toutes les opérations sur le moniteur de tâches, sélectionnez *Afficher toutes les tâches*.
+

@@ -1,0 +1,16 @@
+= Prise en charge des banques de données VMware VMFS sur site vers sur site
+:allow-uri-read: 
+
+
+
+
+=== Prise en charge des banques de données VMware VMFS sur site vers sur site
+
+Cette version inclut la prise en charge des machines virtuelles montées sur des banques de données de système de fichiers de machines virtuelles VMware vSphere (VMFS) pour le stockage sur site protégé par iSCSI et FC.  Auparavant, le service fournissait un aperçu technologique prenant en charge les banques de données VMFS pour iSCSI et FC.
+
+Voici quelques considérations supplémentaires concernant les protocoles iSCSI et FC :
+
+* La prise en charge FC est destinée aux protocoles frontaux clients, pas à la réplication.
+* NetApp Disaster Recovery ne prend en charge qu'un seul LUN par volume ONTAP .  Le volume ne doit pas avoir plusieurs LUN.
+* Pour tout plan de réplication, le volume ONTAP de destination doit utiliser les mêmes protocoles que le volume ONTAP source hébergeant les machines virtuelles protégées.  Par exemple, si la source utilise un protocole FC, la destination doit également utiliser FC.
+

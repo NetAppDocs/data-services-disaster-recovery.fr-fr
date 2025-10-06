@@ -1,0 +1,232 @@
+---
+sidebar: sidebar 
+permalink: reference/evs-deploy-guide-rp-operations.html 
+keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter, netapp, ontap,amazon elastic vmware service 
+summary: 'Introduction à NetApp Disaster Recovery à l"aide d"Amazon EVS et Amazon FSx for NetApp ONTAP.  Utilisez NetApp Disaster Recovery avec Amazon EVS et Amazon FSx for NetApp ONTAP pour effectuer le basculement, tester le basculement, actualiser les ressources, migrer, prendre un instantané maintenant, désactiver ou activer les plans de réplication, nettoyer les anciens instantanés, rapprocher les instantanés, supprimer le plan de réplication et modifier les planifications.' 
+---
+= Exécuter des opérations de plan de réplication avec NetApp Disaster Recovery
+:allow-uri-read: 
+
+
+[role="lead"]
+Utilisez NetApp Disaster Recovery avec Amazon EVS et Amazon FSx for NetApp ONTAP pour effectuer les opérations suivantes : basculement, test de basculement, actualisation des ressources, migration, prise d'un instantané maintenant, désactivation/activation du plan de réplication, nettoyage des anciens instantanés, rapprochement des instantanés, suppression du plan de réplication et modification des planifications.
+
+
+
+== Basculement
+
+L’opération principale que vous devrez peut-être effectuer est celle que vous espérez ne jamais voir se produire : basculer vers le centre de données DR (destination) en cas de panne catastrophique sur le site de production sur site.
+
+Le basculement est un processus lancé manuellement.
+
+.Étapes pour accéder à l'opération de basculement
+. Dans la barre de navigation de gauche de la console NetApp , sélectionnez *Protection* > *Reprise après sinistre*.
+. Dans le menu NetApp Disaster Recovery, sélectionnez *Plans de réplication*.
+
+
+.Étapes pour effectuer un basculement
+. Depuis la page Plans de réplication, sélectionnez l'option Actions du plan de réplicationimage:icon-horizontal-dots.png["Points horizontaux pour le menu Actions"] .
+. Sélectionnez *Fail over*.
++
+image:evs-rp-menu-failover.png["Option de menu de basculement"]
+
+. Si le site de production (protégé) n’est pas accessible, sélectionnez un instantané précédemment créé comme image de récupération.  Pour ce faire, sélectionnez *Sélectionner*.
+. Sélectionnez la sauvegarde à utiliser pour la récupération.
+. (Facultatif) Sélectionnez si vous souhaitez que NetApp Disaster Recovery force le processus de basculement quel que soit l'état du plan de réplication.  Cela ne devrait être fait qu’en dernier recours.
+. (Facultatif) Sélectionnez si vous souhaitez que NetApp Disaster Recovery crée automatiquement une relation de protection inverse une fois le site de production récupéré.
+. Tapez le mot « Failover » pour vérifier que vous souhaitez continuer.
+. Sélectionnez *Failover*.
++
+image:evs-rp-failover-dialog.png["Boîte de dialogue de basculement"]
+
+
+
+
+
+== Test de basculement
+
+Un basculement de test est similaire à un basculement, à l’exception de deux différences.
+
+* Le site de production est toujours actif et toutes les machines virtuelles fonctionnent toujours comme prévu.
+* La protection NetApp Disaster Recovery des machines virtuelles de production se poursuit.
+
+
+Ceci est réalisé en utilisant des volumes ONTAP FlexClone natifs sur le site de destination.  Pour en savoir plus sur le basculement des tests, consultezlink:../use/failover.html["Basculer des applications vers un site distant | Documentation NetApp"] .
+
+Les étapes d'exécution d'un basculement de test sont identiques à celles utilisées pour exécuter un basculement réel, sauf que vous utilisez l'opération de basculement de test dans le menu contextuel du plan de réplication.
+
+.Étapes
+. Sélectionnez l'option Actions du plan de réplicationimage:icon-horizontal-dots.png["Points horizontaux pour le menu Actions"] .
+. Sélectionnez *Tester le basculement* dans le menu.
++
+image:evs-rp-menu-test-failover.png["Option de menu de test de basculement"]
+
+. Décidez si vous souhaitez obtenir le dernier état de l'environnement de production (Prendre un instantané maintenant) ou utiliser une sauvegarde de plan de réplication précédemment créée (Sélectionner)
+. Si vous avez choisi une sauvegarde créée précédemment, sélectionnez la sauvegarde à utiliser pour la récupération.
+. Tapez le mot « Test de basculement » pour vérifier que vous souhaitez continuer.
+. Sélectionnez *Tester le basculement*.
++
+image:evs-test-failover-dialog.png["Boîte de dialogue de test de basculement"]
+
+
+
+
+
+== Exécuter un contrôle de conformité
+
+Les contrôles de conformité sont exécutés toutes les trois heures, par défaut.  À tout moment, vous pouvez souhaiter exécuter manuellement une vérification de conformité.
+
+.Étapes
+. Sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à côté du plan de réplication.
+. Sélectionnez l'option *Exécuter la vérification de conformité* dans le menu Actions du plan de réplication :
++
+image:evs-rp-menu-compliance-check.png["Option de menu Exécuter la vérification de conformité"]
+
+. Pour modifier la fréquence à laquelle NetApp Disaster Recovery exécute automatiquement les contrôles de conformité, sélectionnez l'option *Modifier les planifications* dans le menu Actions du plan de réplication.
+
+
+
+
+== Actualiser les ressources
+
+Chaque fois que vous apportez des modifications à votre infrastructure virtuelle (par exemple, l'ajout ou la suppression de machines virtuelles, l'ajout ou la suppression de banques de données ou le déplacement de machines virtuelles entre des banques de données), vous devez effectuer une actualisation des clusters vCenter concernés dans le service NetApp Disaster Recovery.  Le service effectue cette opération automatiquement une fois toutes les 24 heures par défaut, mais une actualisation manuelle garantit que les dernières informations sur l'infrastructure virtuelle sont disponibles et prises en compte pour la protection DR.
+
+Il existe deux cas où une actualisation est nécessaire :
+
+* Actualisation de vCenter : effectuez une actualisation de vCenter à chaque fois que des machines virtuelles sont ajoutées, supprimées ou déplacées hors d’un cluster vCenter :
+* Actualisation du plan de réplication : effectuez une actualisation du plan de réplication chaque fois qu'une machine virtuelle est déplacée entre des banques de données dans le même cluster vCenter source.
+
+
+image::evs-rp-menu-refresh-resources.png[Option de menu Actualiser les ressources]
+
+
+
+== Émigrer
+
+Bien que NetApp Disaster Recovery soit principalement utilisé pour les cas d’utilisation de reprise après sinistre, il peut également permettre des déplacements ponctuels d’un ensemble de machines virtuelles du site source vers le site de destination.  Cela pourrait être destiné à un projet de migration concertée vers le cloud ou pourrait être utilisé pour éviter des catastrophes, telles que des intempéries, des conflits politiques ou d'autres événements catastrophiques temporaires potentiels.
+
+. Sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à côté du plan de réplication.
+. Pour déplacer les machines virtuelles d'un plan de réplication vers le cluster Amazon EVS de destination, sélectionnez *Migrer* dans le menu Actions du plan de réplication :
++
+image::evs-rp-menu-migrate.png[Option de menu Migrer]
+
+. Saisissez les informations dans la boîte de dialogue Migrer.
+
+
+
+
+== Prenez un instantané maintenant
+
+À tout moment, vous pouvez prendre un instantané immédiat du plan de réplication.  Cet instantané est inclus dans les considérations de récupération après sinistre NetApp définies par le nombre de rétentions d'instantanés du plan de réplication.
+
+. Sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à côté du plan de réplication.
+. Pour prendre un instantané immédiat des ressources du plan de réplication, sélectionnez *Prendre un instantané maintenant* dans le menu Actions du plan de réplication :
++
+image::evs-rp-menu-take-snapshot-now.png[Option de menu Prendre un instantané maintenant]
+
+
+
+
+
+== Désactiver ou activer le plan de réplication
+
+Vous devrez peut-être arrêter temporairement le plan de réplication pour effectuer une opération ou une maintenance susceptible d'avoir un impact sur le processus de réplication.  Le service fournit une méthode pour arrêter et démarrer la réplication.
+
+. Pour arrêter temporairement la réplication, sélectionnez *Désactiver* dans le menu Actions du plan de réplication.
+. Pour redémarrer la réplication, sélectionnez *Activer* dans le menu Actions du plan de réplication.
++
+Lorsque le plan de réplication est actif, la commande *Activer* est grisée.  Lorsque le plan de réplication est désactivé, la commande *Désactiver* est grisée.
+
++
+image::evs-rp-menu-disable-enable.png[Option de menu Désactiver/Activer]
+
+
+
+
+
+== Nettoyer les anciens instantanés
+
+Vous souhaiterez peut-être nettoyer les anciens instantanés qui ont été conservés sur les sites source et de destination.  Cela peut se produire si le nombre de rétentions d'instantanés du plan de réplication est modifié.
+
+. Sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à côté du plan de réplication.
+. Pour supprimer manuellement ces anciens snapshots, sélectionnez *Nettoyer les anciens snapshots* dans le menu Actions du plan de réplication.
++
+image::evs-rp-menu-cleanup-old-snapshots.png[Option de menu Nettoyer les anciens instantanés]
+
+
+
+
+
+== Réconcilier les instantanés
+
+Étant donné que le service orchestre les snapshots de volume ONTAP , il est possible pour un administrateur de stockage ONTAP de supprimer directement les snapshots à l'aide d' ONTAP System Manager, de l'interface de ligne de commande ONTAP ou des API REST ONTAP à l'insu du service.  Le service supprime automatiquement tous les snapshots sur la source qui ne se trouvent pas sur le cluster de destination toutes les 24 heures.  Cependant, vous pouvez effectuer cette opération à la demande.  Cette fonctionnalité vous permet de garantir que les instantanés sont cohérents sur tous les sites.
+
+. Sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à côté du plan de réplication.
+. Pour supprimer les snapshots du cluster source qui n'existent pas sur le cluster de destination, sélectionnez *Réconcilier les snapshots* dans le menu Actions du plan de réplication.
++
+image::evs-rp-menu-reconcile-snapshots.png[Option de menu Réconcilier les instantanés]
+
+
+
+
+
+== Supprimer le plan de réplication
+
+Si le plan de réplication n’est plus nécessaire, vous pouvez le supprimer.
+
+. Sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à côté du plan de réplication.
+. Pour supprimer le plan de réplication, sélectionnez *Supprimer* dans le menu contextuel du plan de réplication.
++
+image::evs-rp-menu-delete.png[Supprimer l'option de menu]
+
+
+
+
+
+== Modifier les horaires
+
+Deux opérations sont effectuées automatiquement selon un calendrier régulier : les tests de basculement et les contrôles de conformité.
+
+. Sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à côté du plan de réplication.
+. Pour modifier ces planifications pour l’une de ces deux opérations, sélectionnez *Modifier les planifications* pour le plan de réplication.
++
+image::evs-rp-menu-edit-schedules.png[Option de menu Modifier les horaires]
+
+
+
+
+
+=== Modifier l'intervalle de vérification de conformité
+
+Par défaut, les contrôles de conformité sont effectués toutes les trois heures.  Vous pouvez modifier cet intervalle à n'importe quel moment entre 30 minutes et 24 heures.
+
+Pour modifier cet intervalle, modifiez le champ Fréquence dans la boîte de dialogue Modifier les planifications :
+
+image::evs-rp-edit-compliance-check-schedule.png[Calendrier de contrôle de conformité]
+
+
+
+=== Planifier des basculements de tests automatisés
+
+Les basculements de test sont exécutés manuellement par défaut.  Vous pouvez planifier des basculements de test automatiques, ce qui permet de garantir que vos plans de réplication fonctionnent comme prévu.  Pour en savoir plus sur le processus de basculement des tests, consultezlink:../use/failover.html["Tester le processus de basculement"] .
+
+.Étapes pour planifier les basculements de test
+. Sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à côté du plan de réplication.
+. Sélectionnez *Exécuter le basculement*.
+. Cochez la case *Exécuter les tests de basculement selon un calendrier*.
+. (Facultatif) Cochez la case *Utiliser un instantané à la demande pour le basculement de test planifié*.
+. Sélectionnez un type d’intervalle dans la liste déroulante Répéter.
+. Sélectionnez quand effectuer le test de basculement
++
+.. Hebdomadaire : sélectionnez le jour de la semaine
+.. Mensuel : sélectionnez le jour du mois
+
+
+. Choisissez l'heure de la journée pour exécuter le test de basculement
+. Choisissez la date de début.
+. Décidez si vous souhaitez que le service nettoie automatiquement l’environnement de test et combien de temps vous souhaitez que l’environnement de test s’exécute avant que le processus de nettoyage ne démarre.
+. Sélectionnez *Enregistrer*.
++
+image::evs-rp-edit-schedule-test-failover.png[Modifier le basculement des tests planifiés]
+
+

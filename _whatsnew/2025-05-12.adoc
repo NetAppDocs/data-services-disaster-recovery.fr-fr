@@ -1,0 +1,53 @@
+= Cartographie des sous-réseaux
+:allow-uri-read: 
+
+
+
+
+=== Cartographie des sous-réseaux
+
+Avec cette version, vous pouvez gérer les adresses IP lors du basculement d'une nouvelle manière à l'aide du mappage de sous-réseaux, qui vous permet d'ajouter des sous-réseaux pour chaque vCenter.  Lorsque vous faites cela, vous définissez le CIDR IPv4, la passerelle par défaut et le DNS pour chaque réseau virtuel.
+
+Lors du basculement, NetApp Disaster Recovery détermine l'adresse IP appropriée de chaque vNIC en examinant le CIDR fourni pour le réseau virtuel mappé et l'utilise pour dériver la nouvelle adresse IP.
+
+Par exemple:
+
+* RéseauA = 10.1.1.0/24
+* RéseauB = 192.168.1.0/24
+
+
+VM1 dispose d'une vNIC (10.1.1.50) connectée à NetworkA.  NetworkA est mappé à NetworkB dans les paramètres du plan de réplication.
+
+En cas de basculement, NetApp Disaster Recovery remplace la partie réseau de l'adresse IP d'origine (10.1.1) et conserve l'adresse hôte (.50) de l'adresse IP d'origine (10.1.1.50).  Pour VM1, NetApp Disaster Recovery examine les paramètres CIDR pour NetworkB et utilise la partie réseau NetworkB 192.168.1 tout en conservant la partie hôte (.50) pour créer la nouvelle adresse IP pour VM1.  La nouvelle IP devient 192.168.1.50.
+
+En résumé, l’adresse de l’hôte reste la même, tandis que l’adresse réseau est remplacée par celle configurée dans le mappage de sous-réseau du site.  Cela vous permet de gérer plus facilement la réaffectation des adresses IP lors du basculement, en particulier si vous avez des centaines de réseaux et des milliers de machines virtuelles à gérer.
+
+Pour plus de détails sur l'inclusion du mappage de sous-réseau dans vos sites, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/sites-add.html["Ajouter des sites de serveur vCenter"] .
+
+
+
+=== Protection contre les sauts
+
+Vous pouvez désormais ignorer la protection afin que le service ne crée pas automatiquement une relation de protection inverse après un basculement de plan de réplication.  Cela est utile si vous souhaitez effectuer des opérations supplémentaires sur le site restauré avant de le remettre en ligne dans NetApp Disaster Recovery.
+
+Lorsque vous lancez un basculement, par défaut, le service crée automatiquement une relation de protection inverse pour chaque volume du plan de réplication, si le site source d'origine est en ligne.  Cela signifie que le service crée une relation SnapMirror du site cible vers le site source.  Le service inverse également automatiquement la relation SnapMirror lorsque vous lancez une restauration automatique.
+
+Lors du lancement d'un basculement, vous pouvez désormais choisir une option *Protection contre les sauts*.  Avec cela, le service n’inverse pas automatiquement la relation SnapMirror .  Au lieu de cela, il laisse le volume inscriptible des deux côtés du plan de réplication.
+
+Une fois le site source d'origine remis en ligne, vous pouvez établir une protection inverse en sélectionnant *Protéger les ressources* dans le menu Actions du plan de réplication.  Cela tente de créer une relation de réplication inverse pour chaque volume du plan.  Vous pouvez exécuter cette tâche à plusieurs reprises jusqu'à ce que la protection soit restaurée.  Une fois la protection restaurée, vous pouvez lancer une restauration automatique de la manière habituelle.
+
+Pour plus de détails sur la protection contre le saut, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/failover.html["Basculer les applications vers un site distant"] .
+
+
+
+=== Mises à jour planifiées de SnapMirror dans le plan de réplication
+
+NetApp Disaster Recovery prend désormais en charge l’utilisation de solutions de gestion de snapshots externes telles que le planificateur de politiques ONTAP SnapMirror natif ou les intégrations tierces avec ONTAP.  Si chaque banque de données (volume) du plan de réplication dispose déjà d'une relation SnapMirror gérée ailleurs, vous pouvez utiliser ces snapshots comme points de récupération dans NetApp Disaster Recovery.
+
+Pour configurer, dans la section Plan de réplication > Mappage des ressources, cochez la case *Utiliser les sauvegardes gérées par la plateforme et les planifications de conservation* lors de la configuration du mappage des banques de données.
+
+Lorsque l'option est sélectionnée, NetApp Disaster Recovery ne configure pas de planification de sauvegarde.  Cependant, vous devez toujours configurer un calendrier de conservation, car des instantanés peuvent toujours être pris pour des opérations de test, de basculement et de restauration automatique.
+
+Une fois cette configuration effectuée, le service ne prend aucun instantané planifié régulièrement, mais s'appuie plutôt sur l'entité externe pour prendre et mettre à jour ces instantanés.
+
+Pour plus de détails sur l'utilisation de solutions de snapshots externes dans le plan de réplication, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .

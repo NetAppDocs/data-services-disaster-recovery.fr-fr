@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: reference/evs-deploy-guide-create-rp-wiz-04.html 
+keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter, netapp, ontap,amazon elastic vmware service 
+summary: 'Introduction à NetApp Disaster Recovery à l"aide d"Amazon EVS et Amazon FSx for NetApp ONTAP.  Après avoir ajouté toutes les informations du plan de réplication dans NetApp Disaster Recovery, vérifiez que les informations que vous avez saisies sont correctes.' 
+---
+= Créer un plan de réplication : Étape 4 : Vérifier les paramètres dans NetApp Disaster Recovery
+:allow-uri-read: 
+
+
+[role="lead"]
+Après avoir ajouté les informations du plan de réplication dans NetApp Disaster Recovery, vérifiez que les informations que vous avez saisies sont correctes.
+
+.Étapes
+. Sélectionnez *Enregistrer* pour vérifier vos paramètres avant d'activer le plan de réplication.
++
+Vous pouvez sélectionner chaque onglet pour consulter les paramètres et apporter des modifications sur n'importe quel onglet en sélectionnant l'icône en forme de crayon.
+
++
+Examen des paramètres du plan de réplicationimage:evs-create-rp-wiz-c-verify.png["Examen des paramètres du plan de réplication"]
+
+. Lorsque vous êtes satisfait et que tous les paramètres sont corrects, sélectionnez *Ajouter un plan* en bas de l'écran.
+
+
+Continuer aveclink:evs-deploy-guide-verify-rp.html["Vérifier le plan de réplication"] .

@@ -1,0 +1,97 @@
+---
+sidebar: sidebar 
+permalink: use/resource-group.html 
+keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter, replication plan, protection, disaster, recovery, virtual machines, vm 
+summary: NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les flux de travail de reprise après sinistre.  Après avoir ajouté des sites vCenter, vous êtes prêt à créer un plan de reprise après sinistre ou de réplication. 
+---
+= Créer un groupe de ressources pour organiser les machines virtuelles ensemble dans NetApp Disaster Recovery
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+[role="lead"]
+Après avoir ajouté des sites vCenter, vous pouvez créer des groupes de ressources pour protéger les machines virtuelles par machine virtuelle ou par banque de données en tant qu'unité unique.  Les groupes de ressources vous permettent d'organiser un ensemble de machines virtuelles dépendantes en groupes logiques qui répondent à vos besoins.  Par exemple, vous pouvez regrouper les machines virtuelles associées à une application ou regrouper les applications ayant des niveaux similaires.  À titre d’exemple, les groupes peuvent contenir des ordres de démarrage différés qui peuvent être exécutés lors de la récupération.
+
+*Rôle de console NetApp requis* Rôle d'administrateur d'organisation, d'administrateur de dossier ou de projet, d'administrateur de reprise après sinistre ou d'administrateur d'application de reprise après sinistre.
+
+link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la console NetApp pour tous les services"^] .
+
+*À propos de cette tâche*
+
+Vous pouvez regrouper les machines virtuelles elles-mêmes ou les machines virtuelles dans des magasins de données.
+
+Vous pouvez créer des groupes de ressources à l’aide des méthodes suivantes :
+
+* À partir de l'option Groupes de ressources
+* Pendant que vous créez un plan de reprise après sinistre ou de réplication.  Si vous disposez d'un grand nombre de machines virtuelles hébergées par un cluster vCenter source, il peut être plus simple de créer les groupes de ressources pendant que vous créez le plan de réplication.  Pour obtenir des instructions sur la création de groupes de ressources lors de la création d'un plan de réplication, consultezlink:drplan-create.html["Créer un plan de réplication"] .
+
+
+
+TIP: Chaque groupe de ressources peut inclure une ou plusieurs machines virtuelles ou banques de données.  Les machines virtuelles s’allumeront en fonction de la séquence dans laquelle vous les incluez dans le plan de réplication.  Vous pouvez modifier l'ordre en faisant glisser les machines virtuelles ou les banques de données vers le haut ou vers le bas de la liste des groupes de ressources.
+
+.À propos des groupes de ressources
+Les groupes de ressources vous permettent de combiner des machines virtuelles ou des banques de données en une seule unité.
+
+Par exemple, une application de point de vente peut utiliser plusieurs machines virtuelles pour les bases de données, la logique métier et les vitrines.  Vous pouvez gérer toutes ces machines virtuelles avec un seul groupe de ressources.  Configurez des groupes de ressources pour appliquer les règles du plan de réplication pour l’ordre de démarrage des machines virtuelles, la connexion réseau et la récupération de toutes les machines virtuelles nécessaires à l’application.
+
+.Comment ça marche ?
+NetApp Disaster Recovery protège les machines virtuelles en répliquant les volumes ONTAP sous-jacents et les LUN hébergeant les machines virtuelles dans le groupe de ressources.  Pour ce faire, le système interroge vCenter pour connaître le nom de chaque magasin de données hébergeant des machines virtuelles dans un groupe de ressources.  NetApp Disaster Recovery identifie ensuite le volume ONTAP source ou le LUN hébergeant ce magasin de données.  Toute la protection est effectuée au niveau du volume ONTAP à l’aide de la réplication SnapMirror .
+
+Si les machines virtuelles du groupe de ressources sont hébergées sur différents magasins de données, NetApp Disaster Recovery utilise l'une des méthodes suivantes pour créer un instantané cohérent avec les données des volumes ONTAP ou des LUN.
+
+[cols="30,65a"]
+|===
+| Emplacement relatif des volumes FlexVol | Processus de réplication d'instantanés 
+
+
+| Plusieurs magasins de données - Volumes FlexVol dans le *même SVM*  a| 
+* Groupe de cohérence ONTAP créé
+* Instantanés du groupe de cohérence pris
+* Réplication SnapMirror à l'échelle du volume effectuée
+
+
+
+
+| Plusieurs magasins de données - Volumes FlexVol dans *plusieurs SVM*  a| 
+* API ONTAP : `cg_start` .  Met en veille tous les volumes afin que des instantanés puissent être pris et lance des instantanés à l'échelle du volume de tous les volumes du groupe de ressources.
+* API ONTAP : `cg_end` .  Reprend les E/S sur tous les volumes et active la réplication SnapMirror au niveau du volume après la prise des snapshots.
+
+
+|===
+Lorsque vous créez des groupes de ressources, tenez compte des points suivants :
+
+* Avant d’ajouter des banques de données à des groupes de ressources, démarrez d’abord une découverte manuelle ou une découverte planifiée des machines virtuelles.  Cela garantit que les machines virtuelles sont découvertes et répertoriées dans le groupe de ressources.  Si vous ne démarrez pas une découverte manuelle, les machines virtuelles risquent de ne pas être répertoriées dans le groupe de ressources.
+* Assurez-vous qu’il existe au moins une machine virtuelle dans le magasin de données.  S’il n’y a aucune machine virtuelle dans le magasin de données, Disaster Recovery ne découvre pas le magasin de données.
+* Un seul magasin de données ne doit pas héberger de machines virtuelles protégées par plusieurs plans de réplication.
+* N'hébergez pas de machines virtuelles protégées et non protégées sur le même magasin de données.  Si des machines virtuelles protégées et non protégées sont hébergées sur le même magasin de données, les problèmes suivants peuvent survenir :
++
+** Étant donné que NetApp Disaster Recovery utilise SnapMirror et que le système réplique l'intégralité des volumes ONTAP , la capacité utilisée de ce volume est utilisée pour les considérations de licence.  Dans ce cas, l’espace de volume consommé par les machines virtuelles protégées et non protégées serait inclus dans ce calcul.
+** Si le groupe de ressources et ses banques de données associées doivent être basculés vers le site de reprise après sinistre, toutes les machines virtuelles non protégées (machines virtuelles ne faisant pas partie du groupe de ressources, mais hébergées sur le volume ONTAP ) n'existeront plus sur le site source à partir du processus de basculement, ce qui entraînera l'échec des machines virtuelles non protégées sur le site source.  De plus, NetApp Disaster Recovery ne démarrera pas ces machines virtuelles non protégées sur le site vCenter de basculement.
+
+
+* Pour qu'une machine virtuelle soit protégée, elle doit être incluse dans un groupe de ressources.
+
+
+*MEILLEURE PRATIQUE* : Organisez vos machines virtuelles avant de déployer NetApp Disaster Recovery afin de minimiser la « prolifération des banques de données ».  Placez les machines virtuelles qui ont besoin d’être protégées sur un sous-ensemble de banques de données et placez les machines virtuelles qui ne seront pas protégées sur un autre sous-ensemble de banques de données.  Assurez-vous que les machines virtuelles d’un magasin de données donné ne sont pas protégées par des plans de réplication différents.
+
+.Étapes
+. Connectez-vous à la https://console.netapp.com/["Console NetApp"^] .
+. Dans la navigation de gauche de la console NetApp , sélectionnez *Protection* > *Reprise après sinistre*.
+. Dans le menu NetApp Disaster Recovery, sélectionnez *Groupes de ressources*.
+. Sélectionnez *Ajouter*.
+. Saisissez un nom pour le groupe de ressources.
+. Sélectionnez le cluster vCenter source où se trouvent les machines virtuelles.
+. Sélectionnez *Machines virtuelles* ou *Magasins de données* selon la manière dont vous souhaitez effectuer la recherche.
+. Sélectionnez l’onglet *Ajouter des groupes de ressources*.  Le système répertorie tous les magasins de données ou machines virtuelles du cluster vCenter sélectionné.  Si vous avez sélectionné *Datastores*, le système répertorie tous les magasins de données du cluster vCenter sélectionné.  Si vous avez sélectionné *Machines virtuelles*, le système répertorie toutes les machines virtuelles du cluster vCenter sélectionné.
+. Sur le côté gauche de la page Ajouter des groupes de ressources, sélectionnez les machines virtuelles que vous souhaitez protéger.
++
+image:dr-resource-groups-add.png["Capture d'écran montrant la page Ajouter des groupes de ressources"]
+
++
+image:dr-resource-groups-datastores-add.png["Capture d'écran montrant la page Ajouter des groupes de ressources"]
+
+. Vous pouvez également modifier l’ordre des machines virtuelles sur la droite en faisant glisser chaque machine virtuelle vers le haut ou vers le bas de la liste.  Les machines virtuelles s'allumeront en fonction de la séquence dans laquelle vous les incluez.
+. Sélectionnez *Ajouter*.
+

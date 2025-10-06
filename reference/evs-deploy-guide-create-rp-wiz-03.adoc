@@ -1,0 +1,177 @@
+---
+sidebar: sidebar 
+permalink: reference/evs-deploy-guide-create-rp-wiz-03.html 
+keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter, netapp, ontap,amazon elastic vmware service 
+summary: 'Introduction à NetApp Disaster Recovery à l"aide d"Amazon EVS et Amazon FSx for NetApp ONTAP.  Une fois que vous disposez d"une liste de machines virtuelles à protéger, NetApp Disaster Recovery exige que vous fournissiez un mappage de basculement et des informations de configuration de machine virtuelle à utiliser lors d"un basculement.' 
+---
+= Créer un plan de réplication : Étape 3 : Mapper les ressources dans NetApp Disaster Recovery
+:allow-uri-read: 
+
+
+[role="lead"]
+Une fois que vous disposez d'une liste de machines virtuelles que vous souhaitez protéger à l'aide de NetApp Disaster Recovery, fournissez le mappage de basculement et les informations de configuration de machine virtuelle à utiliser lors d'un basculement.
+
+Vous devez cartographier quatre principaux types d’informations :
+
+* Ressources de calcul
+* Réseaux virtuels
+* Reconfiguration de la machine virtuelle
+* Cartographie des banques de données
+
+
+Chaque machine virtuelle nécessite les trois premiers types d’informations.  Le mappage de banque de données est requis pour chaque banque de données hébergeant des machines virtuelles à protéger.
+
+* Les sections avec l'icône d'avertissement (image:evs-caution-icon.png["25,25"] ) exigent que vous fournissiez des informations de cartographie.
+* La section marquée avec l'icône de coche (image:evs-check-icon.png["25,25"] ) ont été mappés ou ont des mappages par défaut.  Passez-les en revue pour vous assurer que la configuration actuelle répond à vos besoins.
+
+
+.Étapes pour accéder à cette page
+. À partir de la page *Plan de réplication*, passez à la section *Mappage des ressources*.
+. Consultez les informations sur la page *Cartographie des ressources* qui s’ouvre.
++
+image:evs-create-rp-wiz-c0.png["Créer un plan de réplication, une page de mappage des ressources"]
+
+. Pour ouvrir chaque catégorie de mappages requis, sélectionnez la flèche vers le bas (*v*) à côté de la section.
+
+
+
+
+== Cartographie des ressources de calcul
+
+Étant donné qu’un site peut héberger plusieurs centres de données virtuels et plusieurs clusters vCenter, vous devez identifier le cluster vCenter sur lequel récupérer les machines virtuelles en cas de basculement.
+
+.Étapes pour cartographier les ressources de calcul
+. Sélectionnez le centre de données virtuel dans la liste des centres de données situés sur le site DR.
+. Sélectionnez le cluster qui hébergera les banques de données et les machines virtuelles dans la liste des clusters au sein du centre de données virtuel sélectionné.
+. (Facultatif) Sélectionnez un hôte cible dans le cluster cible.
++
+Cette étape n’est pas requise car NetApp Disaster Recovery sélectionne le premier hôte ajouté au cluster dans vCenter.  À ce stade, les machines virtuelles continuent de s’exécuter sur cet hôte ESXi ou VMware DRS déplace la machine virtuelle vers un autre hôte ESXi selon les besoins en fonction des règles DRS configurées.
+
+. (Facultatif) Indiquez le nom d’un dossier vCenter de niveau supérieur dans lequel placer les enregistrements de machines virtuelles.
++
+Ceci est pour vos besoins organisationnels et n'est pas obligatoire.
+
++
+image:evs-create-rp-wiz-c-compute-resources-1-4.png["Créer un plan de réplication, calculer les ressources"]
+
+
+
+
+
+== Cartographier les ressources du réseau virtuel
+
+Chaque machine virtuelle peut avoir une ou plusieurs cartes réseau virtuelles connectées à des réseaux virtuels au sein de l’infrastructure réseau vCenter.  Pour garantir que chaque machine virtuelle est correctement connectée aux réseaux souhaités lors du redémarrage sur le site DR, identifiez les réseaux virtuels du site DR auxquels connecter ces machines virtuelles.  Pour ce faire, mappez chaque réseau virtuel du site local à un réseau associé sur le site DR.
+
+.Sélectionnez le réseau virtuel de destination auquel mapper chaque réseau virtuel source
+. Sélectionnez le segment cible dans la liste déroulante.
+. Répétez l’étape précédente pour chaque réseau virtuel source répertorié.
++
+image:evs-create-rp-wiz-c-network-resources-1-2.png["Créer un plan de réplication, des ressources réseau"]
+
+
+
+
+
+== Définir les options de reconfiguration de la machine virtuelle lors du basculement
+
+Chaque machine virtuelle peut nécessiter des modifications pour fonctionner correctement sur le site DR vCenter.  La section Machines virtuelles vous permet d'apporter les modifications nécessaires.
+
+Par défaut, NetApp Disaster Recovery utilise les mêmes paramètres pour chaque machine virtuelle que ceux utilisés sur le site source sur site.  Cela suppose que les machines virtuelles utiliseront la même adresse IP, le même processeur virtuel et la même configuration DRAM virtuelle.
+
+
+
+=== Reconfiguration du réseau
+
+Les types d'adresses IP pris en charge sont statiques et DHCP.  Pour les adresses IP statiques, vous disposez des paramètres IP cible suivants :
+
+* *Identique à la source* : Comme son nom l’indique, le service utilise la même adresse IP sur la machine virtuelle de destination que celle utilisée sur la machine virtuelle du site source.  Cela nécessite que vous configuriez les réseaux virtuels qui ont été mappés à l’étape précédente pour les mêmes paramètres de sous-réseau.
+* *Différent de la source* : Le service fournit un ensemble de champs d'adresse IP pour chaque machine virtuelle qui doit être configuré pour le sous-réseau approprié utilisé sur le réseau virtuel de destination, que vous avez mappé dans la section précédente.  Pour chaque machine virtuelle, vous devez fournir une adresse IP, un masque de sous-réseau, un DNS et des valeurs de passerelle par défaut.  Vous pouvez également utiliser les mêmes paramètres de masque de sous-réseau, DNS et passerelle pour toutes les machines virtuelles afin de simplifier le processus lorsque toutes les machines virtuelles se connectent au même sous-réseau.
+* *Mappage de sous-réseau* : cette option reconfigure l'adresse IP de chaque machine virtuelle en fonction de la configuration CIDR du réseau virtuel de destination.  Pour utiliser cette fonctionnalité, assurez-vous que chaque réseau virtuel de vCenter dispose d'un paramètre CIDR défini au sein du service, tel que modifié dans les informations vCenter sur la page Sites.
+
+
+Une fois les sous-réseaux configurés, le mappage de sous-réseaux utilise le même composant d'unité de l'adresse IP pour la configuration de la machine virtuelle source et de destination, mais remplace le composant de sous-réseau de l'adresse IP en fonction des informations CIDR fournies.  Cette fonctionnalité nécessite également que les réseaux virtuels source et de destination aient la même classe d'adresse IP (la `/xx` composant du CIDR).  Cela garantit qu'il y a suffisamment d'adresses IP disponibles sur le site de destination pour héberger toutes les machines virtuelles protégées.
+
+Pour cette configuration EVS, nous supposons que les configurations IP source et de destination sont les mêmes et ne nécessitent aucune reconfiguration supplémentaire.
+
+.Apporter des modifications à la reconfiguration des paramètres réseau
+. Sélectionnez le type d’adressage IP à utiliser pour les machines virtuelles basculées.
+. (Facultatif) Fournissez un schéma de renommage de machine virtuelle pour les machines virtuelles redémarrées en fournissant une valeur de préfixe et de suffixe facultative.
++
+image:evs-create-rp-wiz-c-vm-resources-network-1-2.png["Créer un plan de réplication, des ressources réseau"]
+
+
+
+
+
+=== Reconfiguration des ressources de calcul de la machine virtuelle
+
+Il existe plusieurs options pour reconfigurer les ressources de calcul de la machine virtuelle.  NetApp Disaster Recovery prend en charge la modification du nombre de processeurs virtuels, de la quantité de DRAM virtuelle et du nom de la machine virtuelle.
+
+.Spécifier les modifications de configuration de la machine virtuelle
+. (Facultatif) Modifiez le nombre de processeurs virtuels que chaque machine virtuelle doit utiliser.  Cela peut être nécessaire si vos hôtes de cluster DR vCenter ne disposent pas d'autant de cœurs de processeur que le cluster vCenter source.
+. (Facultatif) Modifiez la quantité de DRAM virtuelle que chaque machine virtuelle doit utiliser.  Cela peut être nécessaire si vos hôtes de cluster DR vCenter ne disposent pas d'autant de DRAM physique que les hôtes de cluster vCenter source.
++
+image:evs-create-rp-wiz-c-vm-resources-cpu-mem-1-2.png["Créer un plan de réplication, des ressources de machine virtuelle"]
+
+
+
+
+
+=== Ordre de démarrage
+
+NetApp Disaster Recovery prend en charge un redémarrage ordonné des machines virtuelles en fonction d'un champ d'ordre de démarrage.  Le champ Ordre de démarrage indique comment les machines virtuelles de chaque groupe de ressources démarrent.  Les machines virtuelles avec la même valeur dans le champ Ordre de démarrage démarrent en parallèle.
+
+.Modifier les paramètres de l'ordre de démarrage
+. (Facultatif) Modifiez l’ordre dans lequel vous souhaitez que vos machines virtuelles soient redémarrées.  Ce champ prend n'importe quelle valeur numérique.  NetApp Disaster Recovery tente de redémarrer les machines virtuelles qui ont la même valeur numérique en parallèle.
+. (Facultatif) Fournissez un délai à utiliser entre chaque redémarrage de la machine virtuelle.  Le temps est injecté après la fin du redémarrage de cette machine virtuelle et avant la ou les machines virtuelles avec le numéro d'ordre de démarrage supérieur suivant.  Ce nombre est en minutes.
++
+image:evs-create-rp-wiz-c-vm-resources-boot-delay-1-2.png["Créer un plan de réplication, un ordre de démarrage"]
+
+
+
+
+
+=== Opérations personnalisées du système d'exploitation invité
+
+NetApp Disaster Recovery prend en charge l'exécution de certaines opérations du système d'exploitation invité pour chaque machine virtuelle :
+
+* NetApp Disaster Recovery peut effectuer des sauvegardes cohérentes avec les applications des machines virtuelles exécutant des bases de données Oracle et des bases de données Microsoft SQL Server.
+* NetApp Disaster Recovery peut exécuter des scripts personnalisés définis adaptés au système d'exploitation invité pour chaque machine virtuelle.  L’exécution de tels scripts nécessite des informations d’identification utilisateur acceptables pour le système d’exploitation invité avec des privilèges suffisants pour exécuter les opérations répertoriées dans le script.
+
+
+.Modifier les opérations personnalisées du système d'exploitation invité de chaque machine virtuelle
+. (Facultatif) Cochez la case *Créer des répliques cohérentes avec les applications* si la machine virtuelle héberge une base de données Oracle ou SQL Server.
+. (Facultatif) Pour effectuer des actions personnalisées au sein du système d'exploitation invité dans le cadre du processus de démarrage, téléchargez un script pour toutes les machines virtuelles.  Pour exécuter un seul script sur toutes les machines virtuelles, utilisez la case à cocher en surbrillance et remplissez les champs.
+. Certaines modifications de configuration nécessitent des informations d’identification utilisateur avec des autorisations adéquates pour effectuer les opérations.  Fournir des informations d’identification dans les cas suivants :
++
+** Un script sera exécuté dans la VM par le système d'exploitation invité.
+** Un instantané cohérent avec l’application doit être effectué.
+
+
+
+
+image:evs-create-rp-wiz-c-vm-resources-ac-scripts-creds-1-2.png["Créer un plan de réplication et des opérations personnalisées sur le système d'exploitation invité"]
+
+
+
+== Cartographier les magasins de données
+
+La dernière étape de la création d’un plan de réplication consiste à identifier comment ONTAP doit protéger les banques de données.  Ces paramètres définissent l'objectif de point de récupération (RPO) des plans de réplication, le nombre de sauvegardes à conserver et l'emplacement où répliquer les volumes ONTAP d'hébergement de chaque banque de données vCenter.
+
+Par défaut, NetApp Disaster Recovery gère sa propre planification de réplication de snapshots. Toutefois, vous pouvez éventuellement spécifier que vous souhaitez utiliser la planification de stratégie de réplication SnapMirror existante pour la protection de la banque de données.
+
+De plus, vous pouvez éventuellement personnaliser les LIF de données (interfaces logiques) et la politique d'exportation à utiliser.  Si vous ne fournissez pas ces paramètres, NetApp Disaster Recovery utilise tous les LIF de données associés au protocole approprié (NFS, iSCSI ou FC) et utilise la stratégie d'exportation par défaut pour les volumes NFS.
+
+.Pour configurer le mappage de la banque de données (volume)
+. (Facultatif) Décidez si vous souhaitez utiliser une planification de réplication ONTAP SnapMirror existante ou laisser NetApp Disaster Recovery gérer la protection de vos machines virtuelles (par défaut).
+. Fournissez un point de départ pour le moment où le service doit commencer à effectuer des sauvegardes.
+. Spécifiez la fréquence à laquelle le service doit effectuer une sauvegarde et la répliquer vers le cluster Amazon FSx for NetApp ONTAP de destination DR.
+. Spécifiez le nombre de sauvegardes historiques à conserver.  Le service conserve le même nombre de sauvegardes sur le cluster de stockage source et de destination.
+. (Facultatif) Sélectionnez une interface logique par défaut (LIF de données) pour chaque volume.  Si aucun n'est sélectionné, tous les LIF de données dans la SVM de destination qui prennent en charge le protocole d'accès au volume sont configurés.
+. (Facultatif) Sélectionnez une politique d’exportation pour tous les volumes NFS.  Si cette option n'est pas sélectionnée, la politique d'exportation par défaut est utilisée
++
+image:evs-create-rp-wiz-c-datastore-mapping.png["Créer un plan de réplication et un mappage de banque de données"]
+
+
+
+Continuer aveclink:evs-deploy-guide-create-rp-wiz-04.html["Assistant de création de plan de réplication Étape 4"] .

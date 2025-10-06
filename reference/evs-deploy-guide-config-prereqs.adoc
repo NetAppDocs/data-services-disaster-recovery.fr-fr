@@ -1,0 +1,28 @@
+---
+sidebar: sidebar 
+permalink: reference/evs-deploy-guide-config-prereqs.html 
+keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter 
+summary: Vous devez vous assurer que plusieurs conditions préalables sont remplies avant de continuer à configurer Amazon EVS avec NetApp Disaster Recovery. 
+---
+= Conditions préalables pour Amazon EVS avec NetApp Disaster Recovery
+:allow-uri-read: 
+
+
+[role="lead"]
+Vous devez vous assurer que plusieurs conditions préalables sont remplies avant de continuer à configurer Amazon EVS avec NetApp Disaster Recovery.
+
+Plus précisément, procédez comme suit :
+
+* Créez un compte utilisateur vCenter avec les privilèges VMware spécifiques requis pour NetApp Disaster Recovery pour effectuer les opérations nécessaires.
++
+
+NOTE: Nous ne recommandons pas d'utiliser le compte administrateur par défaut « \administrator@vsphere.com ».  Au lieu de cela, vous devez créer un compte d’utilisateur spécifique à NetApp Disaster Recovery sur tous les clusters vCenter qui participeront au processus DR.  Pour une liste des privilèges spécifiques requis, voirlink:vcenter-privileges.html["Privilèges vCenter nécessaires pour la reprise après sinistre NetApp"] .
+
+* Assurez-vous que tous les magasins de données vCenter qui hébergeront les machines virtuelles protégées par NetApp Disaster Recovery sont situés sur des ressources de stockage NetApp ONTAP .
++
+Le service prend en charge NFS et VMFS sur iSCSI (et non FC) lors de l'utilisation Amazon FSx sur NetApp ONTAP.  Bien que le service prenne en charge FC, Amazon FSx for NetApp ONTAP ne le fait pas.
+
+* Assurez-vous que votre Amazon EVS vCenter est connecté à un cluster de stockage Amazon FSx for NetApp ONTAP .
+* Assurez-vous que les outils VMware sont installés sur toutes les machines virtuelles protégées.
+* Assurez-vous que votre réseau local est connecté à votre réseau AWS VPC à l’aide d’une méthode de connexion approuvée par Amazon.  Nous vous recommandons d'utiliser AWS Direct Connect, AWS Private Link ou un VPN site à site AWS.
+

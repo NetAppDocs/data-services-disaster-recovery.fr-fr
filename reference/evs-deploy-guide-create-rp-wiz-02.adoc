@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: reference/evs-deploy-guide-create-rp-wiz-02.html 
+keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter, netapp, ontap,amazon elastic vmware service 
+summary: 'Introduction à NetApp Disaster Recovery à l"aide d"Amazon EVS et Amazon FSx for NetApp ONTAP.  Sélectionnez les machines virtuelles à protéger à l’aide de NetApp Disaster Recovery.' 
+---
+= Créer un plan de réplication : Étape 2 : Sélectionner les ressources de la machine virtuelle dans NetApp Disaster Recovery
+:allow-uri-read: 
+
+
+[role="lead"]
+Sélectionnez les machines virtuelles à protéger à l’aide de NetApp Disaster Recovery.
+
+Il existe plusieurs façons de sélectionner les machines virtuelles à protéger :
+
+* *Sélectionner des machines virtuelles individuelles* : Cliquer sur le bouton *Machines virtuelles* vous permet de sélectionner des machines virtuelles individuelles à protéger.  Lorsque vous sélectionnez chaque machine virtuelle, le service l’ajoute à un groupe de ressources par défaut situé sur le côté droit de l’écran.
+* *Sélectionnez les groupes de ressources créés précédemment* : vous pouvez créer des groupes de ressources personnalisés au préalable à l'aide de l'option Groupe de ressources du menu NetApp Disaster Recovery.  Il ne s’agit pas d’une exigence, car vous pouvez utiliser les deux autres méthodes pour créer un groupe de ressources dans le cadre du processus de plan de réplication. Pour plus de détails, consultez la section link:../use/drplan-create.html["Créer un plan de réplication"] .
+* *Sélectionnez des banques de données vCenter entières* : si vous avez beaucoup de machines virtuelles à protéger avec ce plan de réplication, il peut ne pas être aussi efficace de sélectionner des machines virtuelles individuelles.  Étant donné que NetApp Disaster Recovery utilise la réplication SnapMirror basée sur le volume pour protéger les machines virtuelles, toutes les machines virtuelles résidant sur une banque de données seront répliquées dans le cadre du volume.  Dans la plupart des cas, vous devez demander à NetApp Disaster Recovery de protéger et de redémarrer toutes les machines virtuelles situées sur le magasin de données.  Utilisez cette option pour indiquer au service d’ajouter toutes les machines virtuelles hébergées sur une banque de données sélectionnée à la liste des machines virtuelles protégées.
+
+
+Pour cette instruction guidée, nous sélectionnons l’intégralité de la banque de données vCenter.
+
+.Étapes pour accéder à cette page
+. À partir de la page *Plan de réplication*, passez à la section *Applications*.
+. Consultez les informations dans la page *Applications* qui s'ouvre.
++
+image:evs-create-rp-wiz-b-1-4.png["Plan de réplication, page Applications"]
+
+
+
+.Étapes pour sélectionner le ou les magasins de données :
+. Sélectionnez *Datastores*.
+. Cochez les cases à côté de chaque banque de données que vous souhaitez protéger.
+. (Facultatif) Renommez le groupe de ressources avec un nom approprié en sélectionnant l'icône en forme de crayon à côté du nom du groupe de ressources.
+. Sélectionnez *Suivant*.
+
+
+Continuer aveclink:evs-deploy-guide-create-rp-wiz-03.html["Assistant de création de plan de réplication Étape 3"] .

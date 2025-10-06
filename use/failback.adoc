@@ -1,0 +1,42 @@
+---
+sidebar: sidebar 
+permalink: use/failback.html 
+keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter 
+summary: NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les flux de travail de reprise après sinistre. 
+---
+= Restaurez les applications à la source d'origine avec NetApp Disaster Recovery
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+[role="lead"]
+Une fois une catastrophe résolue, revenez du site de reprise après sinistre au site source pour revenir aux opérations normales.  Vous pouvez sélectionner l'instantané à partir duquel effectuer la récupération.
+
+*Rôle de console NetApp requis* Rôle d'administrateur d'organisation, d'administrateur de dossier ou de projet, d'administrateur de reprise après sinistre ou d'administrateur de basculement de reprise après sinistre.
+
+link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la console NetApp pour tous les services"^] .
+
+*À propos de cette tâche*
+
+Dans ce flux de travail, NetApp Disaster Recovery réplique (resynchronise) toutes les modifications apportées à la machine virtuelle source d'origine avant d'inverser le sens de réplication. Ce processus part d’une relation qui a terminé son basculement vers une cible et implique les étapes suivantes :
+
+* Effectuer un contrôle de conformité sur le site récupéré.
+* Actualisez les informations vCenter pour chaque cluster vCenter identifié comme situé sur le site récupéré.
+* Sur le site cible, mettez hors tension et désenregistrez les machines virtuelles, puis démontez les volumes.
+* Rompre la relation SnapMirror sur la source d'origine pour la rendre en lecture/écriture.
+* Resynchronisez la relation SnapMirror pour inverser la réplication.
+* Mettez sous tension et enregistrez les machines virtuelles sources, puis montez les volumes sur la source.
+
+
+.Étapes
+. Connectez-vous à la https://console.netapp.com/["Console NetApp"^] .
+. Dans la navigation de gauche de la console NetApp , sélectionnez *Protection* > *Reprise après sinistre*.
+. Dans le menu NetApp Disaster Recovery, sélectionnez *Plans de réplication*.
+. Sélectionnez le plan de réplication.
+. Sur la droite, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] et sélectionnez *Retour en arrière*.
+. Saisissez le nom du plan de réplication pour confirmer et démarrer la restauration automatique.
+. Choisissez l’instantané du magasin de données à partir duquel effectuer la récupération.  La valeur par défaut est la plus récente.
+. Pour vérifier la progression, dans le menu, sélectionnez *Suivi des tâches*.
+

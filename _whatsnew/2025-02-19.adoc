@@ -1,0 +1,19 @@
+= Prise en charge ASA r2 pour les machines virtuelles et les banques de données sur le stockage VMFS
+:allow-uri-read: 
+
+
+
+
+=== Prise en charge ASA r2 pour les machines virtuelles et les banques de données sur le stockage VMFS
+
+Cette version de NetApp Disaster Recovery prend en charge ASA r2 pour les machines virtuelles et les banques de données sur le stockage VMFS.  Sur un système ASA r2, le logiciel ONTAP prend en charge les fonctionnalités SAN essentielles tout en supprimant les fonctionnalités non prises en charge dans les environnements SAN.
+
+Cette version prend en charge les fonctionnalités suivantes pour ASA r2 :
+
+* Provisionnement de groupe de cohérence pour le stockage principal (groupe de cohérence plat uniquement, ce qui signifie un seul niveau sans structure hiérarchique)
+* Opérations de sauvegarde (groupe de cohérence), y compris l'automatisation de SnapMirror
+
+
+La prise en charge d' ASA r2 dans NetApp Disaster Recovery utilise ONTAP 9.16.1.
+
+Bien que les banques de données puissent être montées sur un volume ONTAP ou une unité de stockage ASA r2, un groupe de ressources dans NetApp Disaster Recovery ne peut pas inclure à la fois une banque de données d' ONTAP et une autre d' ASA r2.  Vous pouvez sélectionner une banque de données d' ONTAP ou une banque de données d' ASA r2 dans un groupe de ressources.

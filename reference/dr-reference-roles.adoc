@@ -1,0 +1,264 @@
+---
+sidebar: sidebar 
+permalink: reference/dr-reference-roles.html 
+keywords: how bluexp disaster recovery works, what is disaster recovery, bluexp, vmware, vcenter, draas, replicate, failover, failback, fail over, fail back, vmware cloud, netapp intelligent services 
+summary: NetApp Disaster Recovery utilise des rôles pour gérer l’accès de chaque utilisateur à des fonctionnalités et actions spécifiques. 
+---
+= Accès aux fonctionnalités de NetApp Disaster Recovery basé sur les rôles
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use
+
+
+[role="lead"]
+NetApp Disaster Recovery utilise des rôles pour gérer l’accès de chaque utilisateur à des fonctionnalités et actions spécifiques.
+
+Le service utilise les rôles suivants qui sont spécifiques à NetApp Disaster Recovery.
+
+* *Administrateur de récupération après sinistre* : effectuez toutes les actions dans NetApp Disaster Recovery.
+* *Administrateur de basculement de reprise après sinistre* : effectuez des actions de basculement et de migration dans NetApp Disaster Recovery.
+* *Administrateur d'application de récupération après sinistre* : Créez et modifiez des plans de réplication et démarrez des tests de basculement.
+* *Visionneuse de récupération après sinistre* : affichez les informations dans NetApp Disaster Recovery, mais ne pouvez effectuer aucune action.
+
+
+Ces rôles sont spécifiques à NetApp Disaster Recovery et ne sont pas les mêmes que les rôles de plateforme utilisés dans la console NetApp .  Pour plus de détails sur tous les rôles de la plateforme NetApp Console, consultez https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["la documentation de configuration et d'administration de la console NetApp"^] .
+
+Le tableau suivant indique les actions que chaque rôle NetApp Disaster Recovery peut effectuer.
+
+[cols="30,20a,20a,20a,20a"]
+|===
+| Fonctionnalité et action | Administrateur de reprise après sinistre | Administrateur de basculement de reprise après sinistre | Administrateur d'application de reprise après sinistre | Visionneuse de reprise après sinistre 
+
+
+| Afficher le tableau de bord et tous les onglets  a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+
+
+
+| Démarrer un essai gratuit  a| 
+Oui
+ a| 
+Non
+ a| 
+Non
+ a| 
+Non
+
+
+
+| Lancer la découverte des charges de travail  a| 
+Oui
+ a| 
+Non
+ a| 
+Non
+ a| 
+Non
+
+
+
+| Afficher les informations de licence  a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+
+
+
+| Activer la licence  a| 
+Oui
+ a| 
+Non
+ a| 
+Oui
+ a| 
+Non
+
+
+
+5+| *Sur l'option Sites* : 
+
+
+| Voir les sites  a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+
+
+
+| Ajouter, modifier ou supprimer des sites  a| 
+Oui
+ a| 
+Non
+ a| 
+Non
+ a| 
+Non
+
+
+
+5+| *Sur l'option Plans de réplication* : 
+
+
+| Afficher les plans de réplication  a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+
+
+
+| Afficher les détails du plan de réplication  a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+
+
+
+| Créer ou modifier des plans de réplication  a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+ a| 
+Non
+
+
+
+| Créer des rapports  a| 
+Oui
+ a| 
+Non
+ a| 
+Non
+ a| 
+Non
+
+
+
+| Voir les instantanés  a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+
+
+
+| Effectuer des tests de basculement  a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+ a| 
+Non
+
+
+
+| Effectuer des basculements  a| 
+Oui
+ a| 
+Oui
+ a| 
+Non
+ a| 
+Non
+
+
+
+| Effectuer des restaurations automatiques  a| 
+Oui
+ a| 
+Oui
+ a| 
+Non
+ a| 
+Non
+
+
+
+| Effectuer des migrations  a| 
+Oui
+ a| 
+Oui
+ a| 
+Non
+ a| 
+Non
+
+
+
+5+| *Sur l'option Groupes de ressources* : 
+
+
+| Afficher les groupes de ressources  a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+
+
+
+| Créer, modifier ou supprimer des groupes de ressources  a| 
+Oui
+ a| 
+Non
+ a| 
+Oui
+ a| 
+Non
+
+
+
+5+| *Option de surveillance sur le terrain* : 
+
+
+| Voir les offres d'emploi  a| 
+Oui
+ a| 
+Non
+ a| 
+Oui
+ a| 
+Oui
+
+
+
+| Annuler les emplois  a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+ a| 
+Non
+
+|===
