@@ -12,7 +12,7 @@ summary: Vous pouvez obtenir un aperçu rapide de toutes vos ressources NetApp D
 
 
 [role="lead"]
-Vous pouvez obtenir un aperçu rapide de toutes vos ressources de NetApp Disaster Recovery ou examiner chacune d'elles en détail :
+NetApp Disaster Recovery offre des aperçus et des perspectives plus détaillées sur toutes vos ressources :
 
 * Sites
 * Groupes de ressources
@@ -43,7 +43,7 @@ Vous pouvez modifier le nom du site vCenter et le type de site (sur site ou AWS)
 
 == Gérer les groupes de ressources
 
-Bien que vous puissiez ajouter un groupe de ressources dans le cadre de la création d'un plan de réplication, vous trouverez peut-être plus pratique d'ajouter les groupes séparément et d'utiliser ultérieurement ces groupes dans le plan.  Vous créez des groupes de ressources par machines virtuelles ou par magasins de données.
+Vous pouvez créer des groupes de ressources par machines virtuelles ou par banques de données.  Ils peuvent être ajoutés lors de la création du plan de réplication ou ultérieurement.
 
 *Rôle de NetApp Console requis* Rôle d'administrateur d'organisation, d'administrateur de dossier ou de projet, d'administrateur de reprise après sinistre ou d'administrateur d'application de reprise après sinistre.
 
@@ -66,7 +66,7 @@ Pour plus de détails sur la création d'un groupe de ressources, reportez-vous 
 .Étapes
 . Dans le menu, sélectionnez *Groupes de ressources*.
 . Pour ajouter un groupe de ressources, sélectionnez *Ajouter un groupe*.
-. Pour effectuer des actions avec le groupe de ressources, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à droite et sélectionnez l'une des options, telles que *Modifier le groupe de ressources* ou *Supprimer le groupe de ressources*.
+. Vous pouvez modifier ou supprimer le groupe de ressources en sélectionnant l'option *Actions*.image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] .
 
 
 
@@ -110,7 +110,7 @@ image:../use/dr-plan-list.png["Liste des plans de réplication"]
 
 === Rapprocher les instantanés à la demande
 
-Vous pouvez réconcilier les instantanés qui ne sont pas synchronisés entre la source et la cible.  Cela peut se produire si des snapshots sont supprimés sur une cible en dehors de NetApp Disaster Recovery.  Le service supprime automatiquement l'instantané sur la source toutes les 24 heures.  Cependant, vous pouvez effectuer cette opération à la demande.  Cette fonctionnalité vous permet de garantir que les instantanés sont cohérents sur tous les sites.
+La reprise après sinistre supprime automatiquement les instantanés de la source toutes les 24 heures.  Si vous constatez que les instantanés ne sont pas synchronisés entre la source et la destination, vous devez résoudre cette incohérence afin de garantir la cohérence entre les sites.
 
 *Rôle de NetApp Console requis* Administrateur d'organisation, Administrateur de dossier ou de projet, Administrateur de reprise après sinistre, Administrateur de basculement de reprise après sinistre ou Administrateur d'application de reprise après sinistre.
 
@@ -119,7 +119,7 @@ Vous pouvez réconcilier les instantanés qui ne sont pas synchronisés entre la
 +
 image:../use/dr-plan-list.png["Liste des plans de réplication"]
 
-. Dans la liste des plans de réplication, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à droite du plan et sélectionnez *Réconcilier les instantanés*.
+. Dans la liste des plans de réplication, sélectionnez l'option *Actions*.image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] puis *Réconcilier les instantanés*.
 . Consultez les informations de rapprochement.
 . Sélectionnez *Réconcilier*.
 
@@ -128,15 +128,15 @@ image:../use/dr-plan-list.png["Liste des plans de réplication"]
 
 === Supprimer un plan de réplication
 
-Vous pouvez supprimer un plan de réplication si vous n’en avez plus besoin.  Si vous supprimez un plan de réplication, vous pouvez également supprimer les snapshots principaux et secondaires créés par le plan.
+Si vous supprimez un plan de réplication, vous pouvez également supprimer les snapshots principaux et secondaires créés par le plan.
 
 *Rôle de NetApp Console requis* Administrateur d'organisation, Administrateur de dossier ou de projet, Administrateur de reprise après sinistre, Administrateur de basculement de reprise après sinistre ou Administrateur d'application de reprise après sinistre.
 
 .Étapes
 . Dans le menu, sélectionnez *Plans de réplication*.
 . Sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à droite du plan et sélectionnez *Supprimer*.
-. Sélectionnez si vous souhaitez supprimer les instantanés principaux, les instantanés secondaires ou simplement les métadonnées créées par le plan.
-. Tapez « supprimer » pour confirmer la suppression.
+. Choisissez si vous souhaitez supprimer les instantanés principaux, les instantanés secondaires ou uniquement les métadonnées créées par le plan.
+. Saisissez « supprimer » pour confirmer la suppression.
 . Sélectionnez *Supprimer*.
 
 
@@ -144,18 +144,18 @@ Vous pouvez supprimer un plan de réplication si vous n’en avez plus besoin.  
 
 === Modifier le nombre de rétentions pour les planifications de basculement
 
-Vous pouvez modifier le nombre de magasins de données conservés.
+Modifier le nombre de données conservées vous permet d'augmenter ou de diminuer le nombre de bases de données enregistrées.
 
 *Rôle de NetApp Console requis* Administrateur d'organisation, Administrateur de dossier ou de projet, Administrateur de reprise après sinistre, Administrateur de basculement de reprise après sinistre ou Administrateur d'application de reprise après sinistre.
 
 .Étapes
 . Dans le menu, sélectionnez *Plans de réplication*.
-. Sélectionnez le plan de réplication, sélectionnez l'onglet *Mappage de basculement* et sélectionnez l'icône en forme de crayon *Modifier*.
-. Sélectionnez la flèche *Datastores* pour la développer.
+. Sélectionnez le plan de réplication, puis l'onglet *Mappage de basculement*. Sélectionnez l'icône en forme de crayon *Modifier*.
+. Sélectionnez la flèche vers le bas dans la ligne *Datastores* pour la développer.
 +
 image:../use/dr-plan-failover-edit.png["Modifier la page des mappages de basculement"]
 
-. Modifiez la valeur du nombre de rétention dans le plan de réplication.
+. Modifiez la valeur du **Nombre de rétentions pour tous les magasins de données**.
 . Une fois le plan de réplication sélectionné, sélectionnez le menu Actions, puis sélectionnez *Nettoyer les anciens snapshots* pour supprimer les anciens snapshots sur la cible afin qu'ils correspondent au nouveau nombre de rétention.
 
 

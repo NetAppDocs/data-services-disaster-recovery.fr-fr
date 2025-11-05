@@ -12,7 +12,7 @@ summary: 'NetApp Disaster Recovery est un service de reprise après sinistre bas
 
 
 [role="lead"]
-Découvrez les nouveautés de NetApp Disaster Recovery.
+Découvrez les nouveautés en matière de NetApp Disaster Recovery.
 
 
 
@@ -461,11 +461,11 @@ Cette version inclut des mises à jour des données du plan de réplication, ce 
 Voici comment :
 
 . Dans le menu, sélectionnez *Plans de réplication*.
-. Sélectionnez le plan de réplication, cliquez sur l'onglet *Mappage de basculement*, puis cliquez sur l'icône en forme de crayon *Modifier*.
-. Cliquez sur la flèche *Datastores* pour la développer.
-. Notez la valeur du nombre de rétention dans le plan de réplication.  Vous devrez rétablir cette valeur d'origine lorsque vous aurez terminé ces étapes.
+. Sélectionnez le plan de réplication, sélectionnez l'onglet *Mappage de basculement* et sélectionnez l'icône en forme de crayon *Modifier*.
+. Sélectionnez la flèche *Datastores* pour la développer.
+. Notez la valeur du nombre de rétention dans le plan de réplication. Vous devez rétablir cette valeur d'origine une fois ces étapes terminées.
 . Réduisez le compte à 1.
-. Lancer un instantané à la demande.  Pour ce faire, sur la page Plan de réplication, sélectionnez le plan, cliquez sur l’icône Actions et sélectionnez *Prendre un instantané maintenant*.
+. Lancer un instantané à la demande. Pour ce faire, sur la page du plan de réplication, sélectionnez le plan, sélectionnez l'icône Actions, puis sélectionnez *Prendre un instantané maintenant*.
 . Une fois la tâche de capture instantanée terminée avec succès, augmentez le nombre dans le plan de réplication à sa valeur d'origine que vous avez notée à la première étape.
 . Répétez ces étapes pour tous les plans de réplication existants.
 
@@ -682,7 +682,7 @@ Cette version préliminaire de NetApp Disaster Recovery inclut les mises à jour
 
 === Mises à jour du tableau de bord
 
-Vous pouvez désormais cliquer sur les options du tableau de bord, ce qui vous permet de consulter plus facilement et plus rapidement les informations. De plus, le tableau de bord affiche désormais l’état des basculements et des migrations.
+Vous pouvez désormais sélectionner les options sur le tableau de bord, ce qui vous permet de consulter plus rapidement les informations. De plus, le tableau de bord affiche désormais l’état des basculements et des migrations.
 
 Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/dashboard-view.html["Consultez l'état de vos plans de reprise après sinistre sur le tableau de bord"] .
 
