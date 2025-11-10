@@ -1,0 +1,31 @@
+= Prise en charge du basculement en cascade
+:allow-uri-read: 
+
+
+
+
+=== Prise en charge du basculement en cascade
+
+Vous pouvez désormais configurer une relation en cascade dans ONTAP et utiliser n'importe quel segment de cette relation de réplication pour la reprise après sinistre.
+
+
+
+=== Rétrograder la prise en charge matérielle VMware lors de l'enregistrement
+
+La solution de reprise après sinistre prend désormais en charge la rétrogradation du matériel VMware vers une version antérieure de vSphere lors de l'enregistrement. Cela s'avère utile lorsque l'hôte ESX source exécute une version plus récente que le site de reprise après sinistre.
+
+Pour plus d'informations, voir xref:drplan-create.html#map-resources-virtual-machines-section[Créer un plan de réplication dans NetApp Disaster Recovery].
+
+
+
+=== Arrêt en douceur
+
+La reprise après sinistre arrête désormais les machines virtuelles en douceur au lieu de les éteindre brutalement. Si une machine virtuelle donnée met plus de dix minutes à s'éteindre, la procédure de reprise après sinistre l'éteint.
+
+
+
+=== Assistance à la création de scripts avant sauvegarde
+
+Vous pouvez désormais injecter des scripts personnalisés dans le flux de travail de basculement pour qu'ils s'exécutent avant la création d'une sauvegarde. Les scripts de pré-sauvegarde vous permettent de contrôler l'état de la machine virtuelle avant la réplication d'un instantané et de préparer une machine virtuelle à une transition. Par exemple, vous pouvez injecter un script qui démonte un montage NFS qui sera remonté à l'aide d'un script différent après le basculement.
+
+Pour plus d'informations, voir xref:drplan-create.html#map-resources-virtual-machines-section[Créer un plan de réplication dans NetApp Disaster Recovery].

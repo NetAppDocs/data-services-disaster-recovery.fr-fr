@@ -275,6 +275,7 @@ Pour activer l'exécution de script avec le système d'exploitation invité de l
 
 
 
+* *Rétrograder la version matérielle de la VM et l'enregistrer* : Sélectionnez cette option si la version de l'hôte ESX de destination est antérieure à celle de la source afin qu'elles correspondent lors de l'enregistrement.
 * *Préfixe et suffixe de la machine virtuelle cible* : sous les détails des machines virtuelles, vous pouvez éventuellement ajouter un préfixe et un suffixe à chaque nom de machine virtuelle basculée.  Cela peut être utile pour différencier les machines virtuelles basculées des machines virtuelles de production exécutées sur le même cluster vCenter.  Par exemple, vous pouvez ajouter un préfixe « DR- » et un suffixe « -failover » au nom de la machine virtuelle.  Certaines personnes ajoutent un deuxième vCenter de production pour héberger temporairement des machines virtuelles sur un site différent en cas de sinistre.  L'ajout d'un préfixe ou d'un suffixe peut vous aider à identifier rapidement les machines virtuelles ayant échoué.  Vous pouvez également utiliser le préfixe ou le suffixe dans les scripts personnalisés.
 +
 Vous pouvez utiliser la méthode alternative de définition du dossier de la machine virtuelle cible dans la section Ressources de calcul.
@@ -399,7 +400,8 @@ Pour un contrôle supplémentaire sur la sécurité d'accès aux données NAS, l
 
 
 
-*MEILLEURE PRATIQUE* : Nous vous recommandons fortement de créer une stratégie d'exportation dédiée qui limite l'accès au volume uniquement aux hôtes vCenter ESXi source et de destination qui hébergeront les machines virtuelles protégées.  Cela permet de garantir que les entités externes ne peuvent pas accéder à l'exportation NFS.
+
+TIP: Il est recommandé de créer une politique d'exportation dédiée qui limite l'accès au volume aux seuls hôtes vCenter ESXi source et de destination qui hébergeront les machines virtuelles protégées. Cela garantit que les entités externes ne peuvent pas accéder à l'exportation NFS.
 
 
 
