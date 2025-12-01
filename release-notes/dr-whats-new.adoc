@@ -16,6 +16,18 @@ Découvrez les nouveautés en matière de NetApp Disaster Recovery.
 
 
 
+== 1er décembre 2025
+
+
+
+=== Prise en charge de Google Cloud VMware Engine à l'aide de Google Cloud NetApp Volumes
+
+NetApp Disaster Recovery prend désormais en charge Google Cloud VMware Engine utilisant Google Cloud NetApp Volumes pour les opérations de migration, de basculement, de restauration et de test.  Cette intégration permet des flux de travail de reprise après sinistre transparents entre les environnements sur site et Google Cloud.
+
+Assurez-vous de consulter lelink:https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/dr-prerequisites.html["prérequis"] etlink:https://docs.netapp.com/us-en/data-services-disaster-recovery/release-notes/dr-limitations.adoc["limites"] pour Google Cloud.
+
+
+
 == 10 novembre 2025
 
 
@@ -62,7 +74,7 @@ La BlueXP disaster recovery a été renommée NetApp Disaster Recovery.
 
 La NetApp Console, construite sur la base BlueXP améliorée et restructurée, fournit une gestion centralisée du stockage NetApp et des NetApp Data Services dans les environnements sur site et cloud à l'échelle de l'entreprise, offrant des informations en temps réel, des flux de travail plus rapides et une administration simplifiée, hautement sécurisée et conforme.
 
-Pour plus de détails sur ce qui a changé, consultez lelink:https://docs.netapp.com/us-en/bluexp-relnotes/index.html["Notes de version de la NetApp Console"] .
+Pour plus de détails sur les changements, consultez le link:https://docs.netapp.com/us-en/console-relnotes/index.html["Notes de version de la NetApp Console"].
 
 
 
@@ -93,7 +105,7 @@ Cette version inclut les mises à jour suivantes :
 * Suppression d'une restriction empêchant le volume de destination d'être identique au volume source lors de la création du volume dans le cadre de la création du plan de réplication.
 * Ajout de la prise en charge d’un abonnement à la carte (PAYGO) aux services intelligents NetApp dans Azure Marketplace et ajout d’un lien vers Azure Marketplace dans la boîte de dialogue d’essai gratuit.
 +
-Pour plus de détails, voir https://docs.netapp.com/us-en/bluexp-disaster-recovery/get-started/dr-intro.html#licensing["Licences de NetApp Disaster Recovery"] et https://docs.netapp.com/us-en/bluexp-disaster-recovery/get-started/dr-licensing.html["Configurer les licences pour NetApp Disaster Recovery"] .
+Pour plus de détails, voir https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/dr-intro.html#licensing["Licences de NetApp Disaster Recovery"] et https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/dr-licensing.html["Configurer les licences pour NetApp Disaster Recovery"] .
 
 
 
@@ -119,9 +131,9 @@ Le service utilise les rôles suivants qui sont spécifiques à NetApp Disaster 
 
 Si vous cliquez sur le service NetApp Disaster Recovery et le configurez pour la première fois, vous devez disposer de l'autorisation *SnapCenterAdmin* ou du rôle *Organization Admin*.
 
-Pour plus de détails, consultez la section  https://docs.netapp.com/us-en/bluexp-disaster-recovery/reference/dr-reference-roles.html["Rôles et autorisations des utilisateurs dans NetApp Disaster Recovery"] .
+Pour plus de détails, voirlink:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["Rôles et autorisations des utilisateurs dans NetApp Disaster Recovery"] .
 
-https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès pour tous les services"^] .
+https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès pour tous les services"^].
 
 
 
@@ -188,7 +200,7 @@ Windows Local Administrator Password Solution (Windows LAPS) est une fonctionnal
 
 Vous pouvez désormais sélectionner les options de mappage de sous-réseau et vérifier l’option LAPS en fournissant les détails du contrôleur de domaine.  En utilisant cette option, vous n’avez pas besoin de fournir un mot de passe pour chacune de vos machines virtuelles.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
@@ -216,7 +228,7 @@ Lors du basculement, NetApp Disaster Recovery remplace la partie réseau de l'ad
 
 En résumé, l’adresse de l’hôte reste la même, tandis que l’adresse réseau est remplacée par celle configurée dans le mappage de sous-réseau du site.  Cela vous permet de gérer plus facilement la réaffectation des adresses IP lors du basculement, en particulier si vous avez des centaines de réseaux et des milliers de machines virtuelles à gérer.
 
-Pour plus de détails sur l'inclusion du mappage de sous-réseau dans vos sites, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/sites-add.html["Ajouter des sites de serveur vCenter"] .
+Pour plus d'informations sur l'intégration du mappage de sous-réseaux dans vos sites, veuillez consulter la documentation. https://docs.netapp.com/us-en/data-services-disaster-recovery/use/sites-add.html["Ajouter des sites de serveur vCenter"] .
 
 
 
@@ -230,7 +242,7 @@ Lors du lancement d'un basculement, vous pouvez désormais choisir une option *P
 
 Une fois le site source d'origine de nouveau en ligne, vous pouvez établir une protection inverse en sélectionnant *Protéger les ressources* dans le menu Actions du plan de réplication.  Cela tente de créer une relation de réplication inverse pour chaque volume du plan.  Vous pouvez exécuter cette tâche à plusieurs reprises jusqu'à ce que la protection soit restaurée.  Une fois la protection restaurée, vous pouvez lancer une restauration automatique de la manière habituelle.
 
-Pour plus de détails sur la protection contre le saut, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/failover.html["Basculer les applications vers un site distant"] .
+Pour plus de détails sur la protection contre le contournement, veuillez consulter https://docs.netapp.com/us-en/data-services-disaster-recovery/use/failover.html["Basculer les applications vers un site distant"] .
 
 
 
@@ -244,7 +256,7 @@ Lorsque l'option est sélectionnée, NetApp Disaster Recovery ne configure pas d
 
 Une fois cette configuration effectuée, le service ne prend aucun instantané planifié régulièrement, mais s'appuie plutôt sur l'entité externe pour prendre et mettre à jour ces instantanés.
 
-Pour plus de détails sur l'utilisation de solutions de snapshots externes dans le plan de réplication, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails sur l'utilisation de solutions de snapshots externes dans le plan de réplication, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
@@ -260,7 +272,7 @@ NetApp Disaster Recovery effectue la découverte une fois toutes les 24 heures. 
 
 Si vous ne souhaitez pas planifier la découverte, vous pouvez désactiver l'option de découverte planifiée et actualiser la découverte manuellement à tout moment.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/sites-add.html["Ajouter des sites de serveur vCenter"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/sites-add.html["Ajouter des sites de serveur vCenter"] .
 
 
 
@@ -274,7 +286,7 @@ Vous pouvez créer un groupe de ressources avec une banque de données des mani�
 * Lorsque vous créez un plan de réplication et créez un groupe de ressources dans le plan, vous pouvez voir les machines virtuelles dans les banques de données.
 
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
@@ -304,9 +316,9 @@ Lorsqu'un proxy est configuré, NetApp Disaster Recovery tente de communiquer di
 
 L'implémentation du proxy NetApp Disaster Recovery nécessite une communication sur le port 443 entre l'agent de console et tous les serveurs vCenter et baies ONTAP utilisant un protocole HTTPS.  L'agent NetApp Disaster Recovery au sein de l'agent de console communique directement avec VMware vSphere, VC ou ONTAP lors de l'exécution de toute action.
 
-Pour plus d'informations sur le proxy intelligent pour NetApp Disaster Recovery, consultez https://docs.netapp.com/us-en/bluexp-disaster-recovery/get-started/dr-setup.html["Configurez votre infrastructure pour la NetApp Disaster Recovery"] .
+Pour plus d'informations sur le proxy intelligent pour NetApp Disaster Recovery, consultez https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/dr-setup.html["Configurez votre infrastructure pour la NetApp Disaster Recovery"] .
 
-Pour plus d'informations sur la configuration générale du proxy dans la NetApp Console, consultez https://docs.netapp.com/us-en/bluexp-setup-admin/task-configuring-proxy.html["Configurer l'agent de console pour utiliser un serveur proxy"^] .
+Pour plus d'informations sur la configuration générale du proxy dans la NetApp Console, consultez https://docs.netapp.com/us-en/console-setup-admin/task-configuring-proxy.html["Configurer l'agent de console pour utiliser un serveur proxy"^] .
 
 
 
@@ -314,7 +326,7 @@ Pour plus d'informations sur la configuration générale du proxy dans la NetApp
 
 Vous pouvez arrêter l'essai gratuit à tout moment ou attendre son expiration.
 
-Voir https://docs.netapp.com/us-en/bluexp-disaster-recovery/get-started/dr-licensing.html#end-the-free-trial["Mettre fin à l'essai gratuit"] .
+Voir https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/dr-licensing.html#end-the-free-trial["Mettre fin à l'essai gratuit"] .
 
 
 
@@ -348,7 +360,7 @@ Bien que les banques de données puissent être montées sur un volume ONTAP ou 
 
 Vous pouvez désormais générer et télécharger des rapports pour vous aider à analyser votre paysage.  Les rapports prédéfinis résument les basculements et les restaurations, affichent les détails de la réplication sur tous les sites et affichent les détails des tâches pour les sept derniers jours.
 
-Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/reports.html["Créer des rapports de reprise après sinistre"] .
+Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/reports.html["Créer des rapports de reprise après sinistre"] .
 
 
 
@@ -356,7 +368,7 @@ Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/repor
 
 Vous pouvez désormais vous inscrire pour un essai gratuit de 30 jours de NetApp Disaster Recovery.  Auparavant, les essais gratuits duraient 90 jours.
 
-Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/get-started/dr-licensing.html["Configurer les licences"] .
+Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/dr-licensing.html["Configurer les licences"] .
 
 
 
@@ -378,7 +390,7 @@ Voici comment :
 
 Lorsque vous créez un plan de réplication et mappez des ressources de calcul, vous pouvez désormais mapper des dossiers afin que les machines virtuelles soient récupérées dans un dossier que vous spécifiez pour le centre de données, le cluster et l'hôte.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
@@ -386,7 +398,7 @@ Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-dis
 
 Lorsqu'une panne se produit et que vous démarrez un basculement, effectuez une restauration ou testez le basculement, vous pouvez désormais voir les détails des machines virtuelles et identifier celles qui n'ont pas redémarré.
 
-Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/failover.html["Basculer les applications vers un site distant"] .
+Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/failover.html["Basculer les applications vers un site distant"] .
 
 
 
@@ -394,7 +406,7 @@ Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/failo
 
 Lorsque vous créez un plan de réplication, vous pouvez désormais définir un délai de démarrage pour chaque machine virtuelle du plan.  Cela vous permet de définir une séquence de démarrage des machines virtuelles afin de garantir que toutes vos machines virtuelles de priorité 1 s'exécutent avant le démarrage des machines virtuelles de priorité suivante.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
@@ -402,7 +414,7 @@ Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-dis
 
 Lorsque vous créez un plan de réplication, vous pouvez désormais voir le système d’exploitation de chaque machine virtuelle du plan.  Cela est utile pour décider comment regrouper les machines virtuelles dans un groupe de ressources.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
@@ -410,7 +422,7 @@ Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-dis
 
 Lorsque vous créez un plan de réplication, vous pouvez désormais ajouter un préfixe et un suffixe aux noms de machines virtuelles sur le site de reprise après sinistre.  Cela vous permet d’utiliser un nom plus descriptif pour les machines virtuelles du plan.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
@@ -418,7 +430,7 @@ Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-dis
 
 Vous pouvez supprimer tous les instantanés qui ne sont plus nécessaires au-delà du nombre de rétention spécifié.  Les instantanés peuvent s'accumuler au fil du temps lorsque vous réduisez votre nombre de rétention d'instantanés, et vous pouvez désormais les supprimer pour libérer de l'espace.  Vous pouvez le faire à tout moment à la demande ou lorsque vous supprimez un plan de réplication.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/manage.html["Gérer les sites, les groupes de ressources, les plans de réplication, les banques de données et les informations sur les machines virtuelles"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/manage.html["Gérer les sites, les groupes de ressources, les plans de réplication, les banques de données et les informations sur les machines virtuelles"] .
 
 
 
@@ -426,7 +438,7 @@ Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-dis
 
 Vous pouvez désormais réconcilier les instantanés qui ne sont pas synchronisés entre la source et la cible.  Cela peut se produire si des snapshots sont supprimés sur une cible en dehors de NetApp Disaster Recovery.  Le service supprime automatiquement l'instantané sur la source toutes les 24 heures.  Cependant, vous pouvez effectuer cette opération à la demande.  Cette fonctionnalité vous permet de garantir que les instantanés sont cohérents sur tous les sites.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/manage.html["Gérer les plans de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/manage.html["Gérer les plans de réplication"] .
 
 
 
@@ -464,7 +476,7 @@ NOTE: NetApp ne vous facture aucune capacité de charge de travail prévisualis�
 
 Avec cette version, vous pouvez désormais annuler une tâche dans l'interface utilisateur de Job Monitor.
 
-Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/monitor-jobs.html["Surveiller les emplois"] .
+Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/monitor-jobs.html["Surveiller les emplois"] .
 
 
 
@@ -527,7 +539,7 @@ NOTE: NetApp ne vous facture aucune capacité de charge de travail prévisualis�
 
 === Mises à jour du plan de réplication
 
-Vous pouvez ajouter un plan de réplication plus facilement en filtrant les machines virtuelles par banque de données sur la page Applications et en sélectionnant plus de détails sur la cible sur la page Mappage des ressources. Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Vous pouvez ajouter un plan de réplication plus facilement en filtrant les machines virtuelles par banque de données sur la page Applications et en sélectionnant plus de détails sur la cible sur la page Mappage des ressources. Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
@@ -535,7 +547,7 @@ Vous pouvez ajouter un plan de réplication plus facilement en filtrant les mach
 
 Avec cette version, la page des mappages de basculement a été améliorée pour une meilleure clarté.
 
-Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/manage.html["Gérer les plans"] .
+Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/manage.html["Gérer les plans"] .
 
 
 
@@ -543,7 +555,7 @@ Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/manag
 
 Avec cette version, le processus de modification des machines virtuelles dans le plan inclut quelques améliorations mineures de l'interface utilisateur.
 
-Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/manage.html["Gérer les machines virtuelles"] .
+Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/manage.html["Gérer les machines virtuelles"] .
 
 
 
@@ -551,7 +563,7 @@ Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/manag
 
 Avant de lancer un basculement, vous pouvez désormais déterminer l’état des machines virtuelles et si elles sont sous tension ou hors tension.  Le processus de basculement vous permet désormais de prendre un instantané maintenant ou de choisir les instantanés.
 
-Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/failover.html["Basculer les applications vers un site distant"] .
+Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/failover.html["Basculer les applications vers un site distant"] .
 
 
 
@@ -559,7 +571,7 @@ Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/failo
 
 Vous pouvez désormais modifier les tests de basculement et définir des planifications quotidiennes, hebdomadaires et mensuelles pour le test de basculement.
 
-Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/manage.html["Gérer les plans"] .
+Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/manage.html["Gérer les plans"] .
 
 
 
@@ -567,7 +579,7 @@ Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/manag
 
 Les informations sur les conditions préalables à NetApp Disaster Recovery ont été mises à jour.
 
-Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/get-started/dr-prerequisites.html["Conditions préalables à la NetApp Disaster Recovery"] .
+Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/dr-prerequisites.html["Conditions préalables à la NetApp Disaster Recovery"] .
 
 
 
@@ -589,7 +601,7 @@ Avec NetApp Disaster Recovery, vous pouvez vous inscrire à un essai gratuit de 
 
 Pour plus de détails sur la configuration des licences pour NetApp Disaster Recovery, reportez-vous àlink:../get-started/dr-licensing.html["Configurer les licences"] .
 
-https://docs.netapp.com/us-en/bluexp-disaster-recovery/get-started/dr-intro.html["En savoir plus sur la NetApp Disaster Recovery"] .
+https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/dr-intro.html["En savoir plus sur la NetApp Disaster Recovery"].
 
 
 
@@ -603,9 +615,9 @@ Il s'agit de la version de disponibilité générale de NetApp Disaster Recovery
 
 Avec NetApp Disaster Recovery, vous pouvez vous inscrire à un essai gratuit de 90 jours ou à Bring Your Own License (BYOL), qui est un fichier de licence NetApp (NLF) que vous obtenez auprès de votre représentant commercial NetApp .  Vous pouvez utiliser le numéro de série de la licence pour activer le BYOL dans les abonnements à la NetApp Console .  Les frais de NetApp Disaster Recovery sont basés sur la capacité provisionnée des magasins de données.
 
-Pour plus de détails sur la configuration des licences pour NetApp Disaster Recovery, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/get-started/dr-licensing.html["Configurer les licences"] .
+Pour plus d'informations sur la configuration des licences pour NetApp Disaster Recovery, veuillez consulter la documentation. https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/dr-licensing.html["Configurer les licences"] .
 
-Pour plus de détails sur la gestion des licences pour *tous* les services de données de la NetApp Console , reportez-vous à https://docs.netapp.com/us-en/bluexp-digital-wallet/task-manage-data-services-licenses.html["Gérer les licences pour tous les services de données de la NetApp Console"^] .
+Pour plus d'informations sur la gestion des licences pour *tous* les services de données de la NetApp Console , veuillez consulter https://docs.netapp.com/us-en/console-licenses-subscriptions/task-manage-data-services-licenses.html["Gérer les licences pour tous les services de données de la NetApp Console"^] .
 
 
 
@@ -613,7 +625,7 @@ Pour plus de détails sur la gestion des licences pour *tous* les services de do
 
 Avec cette version, vous pouvez désormais configurer des planifications pour tester les tests de conformité et de basculement afin de garantir qu'ils fonctionneront correctement si vous en avez besoin.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer le plan de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer le plan de réplication"] .
 
 
 
@@ -631,7 +643,7 @@ Avec cette version, vous pouvez désormais redimensionner les valeurs du process
 * IP statique : vous pouvez sélectionner les mêmes informations ou des informations différentes de la machine virtuelle source.  Si vous choisissez la même chose que la source, vous n'avez pas besoin de saisir d'informations d'identification.  D'autre part, si vous choisissez d'utiliser des informations différentes de la source, vous pouvez fournir les informations d'identification, l'adresse IP, le masque de sous-réseau, le DNS et les informations de passerelle.
 
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
@@ -639,7 +651,7 @@ Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-dis
 
 Peut désormais être inclus en tant que processus post-basculement.  Avec des scripts personnalisés, vous pouvez demander à NetApp Disaster Recovery d'exécuter votre script après un processus de basculement.  Par exemple, vous pouvez utiliser un script personnalisé pour reprendre toutes les transactions de base de données une fois le basculement terminé.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/failover.html["Basculer vers un site distant"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/failover.html["Basculer vers un site distant"] .
 
 
 
@@ -647,7 +659,7 @@ Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-dis
 
 Vous pouvez désormais créer une relation SnapMirror lors du développement du plan de réplication.  Auparavant, vous deviez créer la relation en dehors de NetApp Disaster Recovery.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
@@ -655,7 +667,7 @@ Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-dis
 
 Lorsque vous créez un plan de réplication, vous pouvez inclure des machines virtuelles provenant de différents volumes et de différentes SVM.  NetApp Disaster Recovery crée un snapshot de groupe de cohérence en incluant tous les volumes et met à jour tous les emplacements secondaires.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
@@ -663,7 +675,7 @@ Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-dis
 
 Lorsque vous créez un plan de réplication, vous pouvez ajouter des machines virtuelles à un groupe de ressources.  Avec les groupes de ressources, vous pouvez définir un délai sur chaque machine virtuelle afin qu'elles s'allument selon une séquence retardée.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
@@ -671,7 +683,7 @@ Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-dis
 
 Vous pouvez spécifier de créer des copies Snapshot cohérentes avec l'application.  Le service mettra l'application en veille, puis prendra un instantané pour obtenir un état cohérent de l'application.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
@@ -685,7 +697,7 @@ Cette version préliminaire de NetApp Disaster Recovery inclut les mises à jour
 
 Avec cette version, vous pouvez accéder plus rapidement aux informations sur d’autres pages du tableau de bord.
 
-https://docs.netapp.com/us-en/bluexp-disaster-recovery/get-started/dr-intro.html["En savoir plus sur la NetApp Disaster Recovery"] .
+https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/dr-intro.html["En savoir plus sur la NetApp Disaster Recovery"].
 
 
 
@@ -702,7 +714,7 @@ Désormais, avec NetApp Disaster Recovery, vous pouvez protéger vos charges de 
 
 NOTE: Avec cette offre préliminaire, NetApp se réserve le droit de modifier les détails, le contenu et le calendrier de l'offre avant la disponibilité générale.
 
-https://docs.netapp.com/us-en/bluexp-disaster-recovery/get-started/dr-intro.html["En savoir plus sur la NetApp Disaster Recovery"] .
+https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/dr-intro.html["En savoir plus sur la NetApp Disaster Recovery"].
 
 
 
@@ -716,7 +728,7 @@ Cette version préliminaire de NetApp Disaster Recovery inclut les mises à jour
 
 Vous pouvez désormais sélectionner les options sur le tableau de bord, ce qui vous permet de consulter plus rapidement les informations. De plus, le tableau de bord affiche désormais l’état des basculements et des migrations.
 
-Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/dashboard-view.html["Consultez l'état de vos plans de reprise après sinistre sur le tableau de bord"] .
+Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/dashboard-view.html["Consultez l'état de vos plans de reprise après sinistre sur le tableau de bord"] .
 
 
 
@@ -724,15 +736,15 @@ Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/dashb
 
 * *RPO* : vous pouvez désormais saisir l’objectif de point de récupération (RPO) et le nombre de rétentions dans la section Banques de données du plan de réplication. Cela indique la quantité de données qui doivent exister et qui ne sont pas plus anciennes que l'heure définie. Si, par exemple, vous le définissez à 5 minutes, le système peut perdre jusqu'à 5 minutes de données en cas de sinistre sans impacter les besoins critiques de l'entreprise.
 +
-Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 * *Améliorations de la mise en réseau* : lorsque vous mappez la mise en réseau entre les emplacements source et cible dans la section des machines virtuelles du plan de réplication, NetApp Disaster Recovery propose désormais deux options : DHCP ou IP statique. Auparavant, seul DHCP était pris en charge. Pour les adresses IP statiques, vous configurez le sous-réseau, la passerelle et les serveurs DNS. De plus, vous pouvez désormais saisir des informations d’identification pour les machines virtuelles.
 +
-Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 * *Modifier les planifications* : Vous pouvez désormais mettre à jour les planifications des plans de réplication.
 +
-Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/manage.html["Gérer les ressources"] .
+Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/manage.html["Gérer les ressources"] .
 
 * * Automatisation SnapMirror * : lorsque vous créez le plan de réplication dans cette version, vous pouvez définir la relation SnapMirror entre les volumes source et cible dans l'une des configurations suivantes :
 +
@@ -741,7 +753,7 @@ Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/manag
 ** Plusieurs à 1 comme groupe de cohérence
 ** Plusieurs à plusieurs
 +
-Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
@@ -760,7 +772,7 @@ NetApp Disaster Recovery Preview est un service de reprise après sinistre basé
 
 NOTE: Avec cette offre préliminaire, NetApp se réserve le droit de modifier les détails, le contenu et le calendrier de l'offre avant la disponibilité générale.
 
-https://docs.netapp.com/us-en/bluexp-disaster-recovery/get-started/dr-intro.html["En savoir plus sur la NetApp Disaster Recovery"] .
+https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/dr-intro.html["En savoir plus sur la NetApp Disaster Recovery"].
 
 Cette version inclut les mises à jour suivantes :
 
@@ -768,25 +780,25 @@ Cette version inclut les mises à jour suivantes :
 
 === Mise à jour des groupes de ressources pour l'ordre de démarrage
 
-Lorsque vous créez un plan de reprise après sinistre ou de réplication, vous pouvez ajouter des machines virtuelles dans des groupes de ressources fonctionnels. Les groupes de ressources vous permettent de placer un ensemble de machines virtuelles dépendantes dans des groupes logiques qui répondent à vos besoins. Par exemple, les groupes peuvent contenir un ordre de démarrage qui peut être exécuté lors de la récupération. Avec cette version, chaque groupe de ressources peut inclure une ou plusieurs machines virtuelles. Les machines virtuelles s'allumeront en fonction de la séquence dans laquelle vous les incluez dans le plan. Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html#select-applications-to-replicate-and-assign-resource-groups["Sélectionnez les applications à répliquer et attribuez des groupes de ressources"] .
+Lorsque vous créez un plan de reprise après sinistre ou de réplication, vous pouvez ajouter des machines virtuelles dans des groupes de ressources fonctionnels. Les groupes de ressources vous permettent de placer un ensemble de machines virtuelles dépendantes dans des groupes logiques qui répondent à vos besoins. Par exemple, les groupes peuvent contenir un ordre de démarrage qui peut être exécuté lors de la récupération. Avec cette version, chaque groupe de ressources peut inclure une ou plusieurs machines virtuelles. Les machines virtuelles s'allumeront en fonction de la séquence dans laquelle vous les incluez dans le plan. Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html#select-applications-to-replicate-and-assign-resource-groups["Sélectionnez les applications à répliquer et attribuez des groupes de ressources"] .
 
 
 
 === Vérification de la réplication
 
-Une fois que vous avez créé le plan de reprise après sinistre ou de réplication, identifié la récurrence dans l'assistant et lancé une réplication vers un site de reprise après sinistre, toutes les 30 minutes, NetApp Disaster Recovery vérifie que la réplication se déroule réellement conformément au plan. Vous pouvez suivre la progression dans la page Job Monitor.  https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/replicate.html["Répliquer des applications sur un autre site"] .
+Une fois que vous avez créé le plan de reprise après sinistre ou de réplication, identifié la récurrence dans l'assistant et lancé une réplication vers un site de reprise après sinistre, toutes les 30 minutes, NetApp Disaster Recovery vérifie que la réplication se déroule réellement conformément au plan. Vous pouvez suivre la progression dans la page Job Monitor. Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/replicate.html["Répliquer des applications sur un autre site"] .
 
 
 
 === Le plan de réplication affiche les planifications de transfert des objectifs de point de récupération (RPO)
 
-Lorsque vous créez un plan de reprise après sinistre ou de réplication, vous sélectionnez les machines virtuelles. Dans cette version, vous pouvez désormais afficher le SnapMirror associé à chacun des volumes associés à la banque de données ou à la machine virtuelle. Vous pouvez également voir les planifications de transfert RPO associées à la planification SnapMirror . RPO vous aide à déterminer si votre planification de sauvegarde est suffisante pour assurer la récupération après une catastrophe. Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Lorsque vous créez un plan de reprise après sinistre ou de réplication, vous sélectionnez les machines virtuelles. Dans cette version, vous pouvez désormais afficher le SnapMirror associé à chacun des volumes associés à la banque de données ou à la machine virtuelle. Vous pouvez également voir les planifications de transfert RPO associées à la planification SnapMirror . RPO vous aide à déterminer si votre planification de sauvegarde est suffisante pour assurer la récupération après une catastrophe. Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
 === Mise à jour du Job Monitor
 
-La page Job Monitor inclut désormais une option Actualiser afin que vous puissiez obtenir un état à jour des opérations.  https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/monitor-jobs.html["Surveiller les tâches de reprise après sinistre"] .
+La page Job Monitor inclut désormais une option Actualiser afin que vous puissiez obtenir un état à jour des opérations. Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/monitor-jobs.html["Surveiller les tâches de reprise après sinistre"] .
 
 
 
@@ -800,4 +812,4 @@ Il s'agit de la version initiale de NetApp Disaster Recovery.
 
 NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les flux de travail de reprise après sinistre.  Dans un premier temps, avec l'aperçu NetApp Disaster Recovery , vous pouvez protéger vos charges de travail VMware sur site, basées sur NFS, exécutant le stockage NetApp sur VMware Cloud (VMC) sur AWS avec Amazon FSx for ONTAP.
 
-link:https://docs.netapp.com/us-en/bluexp-disaster-recovery/get-started/dr-intro.html["En savoir plus sur la NetApp Disaster Recovery"] .
+link:https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/dr-intro.html["En savoir plus sur la NetApp Disaster Recovery"].

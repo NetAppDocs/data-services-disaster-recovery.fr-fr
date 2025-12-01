@@ -16,9 +16,10 @@ La reprise après sinistre dans le cloud est un moyen résilient et rentable de 
 
 NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les flux de travail de reprise après sinistre.  Avec NetApp Disaster Recovery, vous pouvez protéger vos charges de travail locales basées sur NFS et vos banques de données VMware vSphere Virtual Machine File System (VMFS) pour le stockage NetApp exécutant iSCSI et FC sur l'un des éléments suivants :
 
-* VMware Cloud (VMC) sur AWS avec Amazon FSx for NetApp ONTAP
 * Amazon Elastic VMware Service (EVS) avec Amazon FSx for NetApp ONTAP Pour plus de détails, reportez-vous àlink:../reference/evs-deploy-guide-introduction.html["Présentation de NetApp Disaster Recovery à l'aide d'Amazon Elastic VMware Service et Amazon FSx for NetApp ONTAP"] .
+* VMware Cloud (VMC) sur AWS avec Amazon FSx for NetApp ONTAP
 * Solution Azure VMware (AVS) avec NetApp Cloud Volumes ONTAP (iSCSI) (version préliminaire privée)
+* Google Cloud VMware Engine (GCVE) avec Google Cloud NetApp Volumes
 * Un autre environnement VMware sur site basé sur NFS et/ou VMFS (iSCSI/FC) avec stockage ONTAP
 
 
@@ -36,7 +37,7 @@ La NetApp Console fournit une gestion centralisée des services de stockage et d
 
 Vous n'avez pas besoin de licence ni d'abonnement pour commencer à utiliser NetApp Console et vous n'encourez des frais que lorsque vous devez déployer des agents de console dans votre cloud pour garantir la connectivité à vos systèmes de stockage ou à vos services de données NetApp . Cependant, certains services de données NetApp accessibles depuis la console sont sous licence ou basés sur un abonnement.
 
-En savoir plus sur le https://docs.netapp.com/us-en/bluexp-setup-admin/concept-overview.html["NetApp Console"] .
+Apprenez-en davantage sur le https://docs.netapp.com/us-en/console-setup-admin/concept-overview.html["NetApp Console"] .
 
 
 
@@ -44,7 +45,7 @@ En savoir plus sur le https://docs.netapp.com/us-en/bluexp-setup-admin/concept-o
 
 NetApp Disaster Recovery offre les avantages suivants :
 
-* Expérience utilisateur simplifiée pour la découverte et la récupération d'applications vCenter avec plusieurs opérations de récupération à un instant donné. 
+* Expérience utilisateur simplifiée pour la découverte et la récupération d'applications vCenter avec plusieurs opérations de récupération à un instant donné.
 * Coût total de possession réduit avec un coût d'exploitation réduit et la possibilité de créer et d'ajuster des plans de reprise après sinistre avec des ressources minimales.
 * Préparation continue à la reprise après sinistre avec des tests de basculement virtuel qui ne perturbent pas les opérations.  Vous pouvez tester régulièrement vos plans de basculement DR sans impacter les charges de travail de production.
 * Rentabilisation plus rapide grâce à des changements dynamiques dans votre environnement informatique et capacité à les prendre en compte dans vos plans de reprise après sinistre.
@@ -181,6 +182,7 @@ Une fois que Disaster Recovery a créé et initialisé toutes les relations, à 
 * Un autre environnement VMware sur site basé sur NFS avec stockage ONTAP ou un VMSF FC/iSCSI sur site
 * Service VMware élastique Amazon
 * Solution Azure VMware (AVS) avec NetApp Cloud Volumes ONTAP (iSCSI) (version préliminaire privée)
+* Google Cloud VMware Engine (GCVE) avec Google Cloud NetApp Volumes
 
 
 

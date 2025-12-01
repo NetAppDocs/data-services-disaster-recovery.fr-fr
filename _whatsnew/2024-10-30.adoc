@@ -8,7 +8,7 @@
 
 Vous pouvez désormais générer et télécharger des rapports pour vous aider à analyser votre paysage.  Les rapports prédéfinis résument les basculements et les restaurations, affichent les détails de la réplication sur tous les sites et affichent les détails des tâches pour les sept derniers jours.
 
-Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/reports.html["Créer des rapports de reprise après sinistre"] .
+Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/reports.html["Créer des rapports de reprise après sinistre"] .
 
 
 
@@ -16,7 +16,7 @@ Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/repor
 
 Vous pouvez désormais vous inscrire pour un essai gratuit de 30 jours de NetApp Disaster Recovery.  Auparavant, les essais gratuits duraient 90 jours.
 
-Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/get-started/dr-licensing.html["Configurer les licences"] .
+Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/dr-licensing.html["Configurer les licences"] .
 
 
 
@@ -38,7 +38,7 @@ Voici comment :
 
 Lorsque vous créez un plan de réplication et mappez des ressources de calcul, vous pouvez désormais mapper des dossiers afin que les machines virtuelles soient récupérées dans un dossier que vous spécifiez pour le centre de données, le cluster et l'hôte.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
@@ -46,7 +46,7 @@ Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-dis
 
 Lorsqu'une panne se produit et que vous démarrez un basculement, effectuez une restauration ou testez le basculement, vous pouvez désormais voir les détails des machines virtuelles et identifier celles qui n'ont pas redémarré.
 
-Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/failover.html["Basculer les applications vers un site distant"] .
+Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/failover.html["Basculer les applications vers un site distant"] .
 
 
 
@@ -54,7 +54,7 @@ Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/failo
 
 Lorsque vous créez un plan de réplication, vous pouvez désormais définir un délai de démarrage pour chaque machine virtuelle du plan.  Cela vous permet de définir une séquence de démarrage des machines virtuelles afin de garantir que toutes vos machines virtuelles de priorité 1 s'exécutent avant le démarrage des machines virtuelles de priorité suivante.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
@@ -62,7 +62,7 @@ Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-dis
 
 Lorsque vous créez un plan de réplication, vous pouvez désormais voir le système d’exploitation de chaque machine virtuelle du plan.  Cela est utile pour décider comment regrouper les machines virtuelles dans un groupe de ressources.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
@@ -70,7 +70,7 @@ Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-dis
 
 Lorsque vous créez un plan de réplication, vous pouvez désormais ajouter un préfixe et un suffixe aux noms de machines virtuelles sur le site de reprise après sinistre.  Cela vous permet d’utiliser un nom plus descriptif pour les machines virtuelles du plan.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 
@@ -78,7 +78,7 @@ Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-dis
 
 Vous pouvez supprimer tous les instantanés qui ne sont plus nécessaires au-delà du nombre de rétention spécifié.  Les instantanés peuvent s'accumuler au fil du temps lorsque vous réduisez votre nombre de rétention d'instantanés, et vous pouvez désormais les supprimer pour libérer de l'espace.  Vous pouvez le faire à tout moment à la demande ou lorsque vous supprimez un plan de réplication.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/manage.html["Gérer les sites, les groupes de ressources, les plans de réplication, les banques de données et les informations sur les machines virtuelles"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/manage.html["Gérer les sites, les groupes de ressources, les plans de réplication, les banques de données et les informations sur les machines virtuelles"] .
 
 
 
@@ -86,4 +86,4 @@ Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-dis
 
 Vous pouvez désormais réconcilier les instantanés qui ne sont pas synchronisés entre la source et la cible.  Cela peut se produire si des snapshots sont supprimés sur une cible en dehors de NetApp Disaster Recovery.  Le service supprime automatiquement l'instantané sur la source toutes les 24 heures.  Cependant, vous pouvez effectuer cette opération à la demande.  Cette fonctionnalité vous permet de garantir que les instantanés sont cohérents sur tous les sites.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/manage.html["Gérer les plans de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/manage.html["Gérer les plans de réplication"] .

@@ -16,7 +16,7 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 
 *Rôle de NetApp Console requis* Administrateur d'organisation, Administrateur de dossier ou de projet, Administrateur de reprise après sinistre, Administrateur d'application de reprise après sinistre ou Rôle d'observateur de reprise après sinistre.
 
-link:../reference/dr-reference-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"] . https://docs.netapp.com/us-en/bluexp-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^] .
+link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"]. https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
 .Étapes
 . Connectez-vous à la https://console.netapp.com/["NetApp Console"^] .

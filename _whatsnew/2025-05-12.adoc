@@ -22,7 +22,7 @@ Lors du basculement, NetApp Disaster Recovery remplace la partie réseau de l'ad
 
 En résumé, l’adresse de l’hôte reste la même, tandis que l’adresse réseau est remplacée par celle configurée dans le mappage de sous-réseau du site.  Cela vous permet de gérer plus facilement la réaffectation des adresses IP lors du basculement, en particulier si vous avez des centaines de réseaux et des milliers de machines virtuelles à gérer.
 
-Pour plus de détails sur l'inclusion du mappage de sous-réseau dans vos sites, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/sites-add.html["Ajouter des sites de serveur vCenter"] .
+Pour plus d'informations sur l'intégration du mappage de sous-réseaux dans vos sites, veuillez consulter la documentation. https://docs.netapp.com/us-en/data-services-disaster-recovery/use/sites-add.html["Ajouter des sites de serveur vCenter"] .
 
 
 
@@ -36,7 +36,7 @@ Lors du lancement d'un basculement, vous pouvez désormais choisir une option *P
 
 Une fois le site source d'origine de nouveau en ligne, vous pouvez établir une protection inverse en sélectionnant *Protéger les ressources* dans le menu Actions du plan de réplication.  Cela tente de créer une relation de réplication inverse pour chaque volume du plan.  Vous pouvez exécuter cette tâche à plusieurs reprises jusqu'à ce que la protection soit restaurée.  Une fois la protection restaurée, vous pouvez lancer une restauration automatique de la manière habituelle.
 
-Pour plus de détails sur la protection contre le saut, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/failover.html["Basculer les applications vers un site distant"] .
+Pour plus de détails sur la protection contre le contournement, veuillez consulter https://docs.netapp.com/us-en/data-services-disaster-recovery/use/failover.html["Basculer les applications vers un site distant"] .
 
 
 
@@ -50,4 +50,4 @@ Lorsque l'option est sélectionnée, NetApp Disaster Recovery ne configure pas d
 
 Une fois cette configuration effectuée, le service ne prend aucun instantané planifié régulièrement, mais s'appuie plutôt sur l'entité externe pour prendre et mettre à jour ces instantanés.
 
-Pour plus de détails sur l'utilisation de solutions de snapshots externes dans le plan de réplication, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails sur l'utilisation de solutions de snapshots externes dans le plan de réplication, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .

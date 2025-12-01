@@ -10,7 +10,7 @@ NetApp Disaster Recovery effectue la découverte une fois toutes les 24 heures. 
 
 Si vous ne souhaitez pas planifier la découverte, vous pouvez désactiver l'option de découverte planifiée et actualiser la découverte manuellement à tout moment.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/sites-add.html["Ajouter des sites de serveur vCenter"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/sites-add.html["Ajouter des sites de serveur vCenter"] .
 
 
 
@@ -24,7 +24,7 @@ Vous pouvez créer un groupe de ressources avec une banque de données des mani�
 * Lorsque vous créez un plan de réplication et créez un groupe de ressources dans le plan, vous pouvez voir les machines virtuelles dans les banques de données.
 
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 
 
 

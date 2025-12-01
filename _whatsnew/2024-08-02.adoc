@@ -17,4 +17,4 @@ NOTE: NetApp ne vous facture aucune capacité de charge de travail prévisualis�
 
 Avec cette version, vous pouvez désormais annuler une tâche dans l'interface utilisateur de Job Monitor.
 
-Se référer à https://docs.netapp.com/us-en/bluexp-disaster-recovery/use/monitor-jobs.html["Surveiller les emplois"] .
+Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/monitor-jobs.html["Surveiller les emplois"] .
