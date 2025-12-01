@@ -24,7 +24,7 @@ Découvrez les nouveautés en matière de NetApp Disaster Recovery.
 
 NetApp Disaster Recovery prend désormais en charge Google Cloud VMware Engine utilisant Google Cloud NetApp Volumes pour les opérations de migration, de basculement, de restauration et de test.  Cette intégration permet des flux de travail de reprise après sinistre transparents entre les environnements sur site et Google Cloud.
 
-Assurez-vous de consulter lelink:https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/dr-prerequisites.html["prérequis"] etlink:https://docs.netapp.com/us-en/data-services-disaster-recovery/release-notes/dr-limitations.adoc["limites"] pour Google Cloud.
+Assurez-vous de consulter lelink:https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/dr-prerequisites.html["prérequis"] etlink:https://docs.netapp.com/us-en/data-services-disaster-recovery/release-notes/dr-limitations.html["limites"] pour Google Cloud.
 
 
 
