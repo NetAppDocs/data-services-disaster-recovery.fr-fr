@@ -10,7 +10,7 @@ Par défaut, la reprise après sinistre conserve la hiérarchie d'inventaire des
 
 Vous pouvez désormais modifier ce paramètre en désignant un nouveau dossier parent pour la machine virtuelle ou en décochant l'option **Conserver la hiérarchie de dossiers d'origine**.
 
-Pour plus d'informations, voir link:../use/drplan-create.adoc["Créer un plan de réplication"].
+Pour plus d'informations, voir link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.adoc["Créer un plan de réplication"].
 
 
 
@@ -18,4 +18,4 @@ Pour plus d'informations, voir link:../use/drplan-create.adoc["Créer un plan de
 
 La reprise après sinistre prend désormais en charge un processus simplifié pour l'utilisation de plusieurs agents Console dans un environnement de travail.  Pour changer d'agent de console, vous devez modifier la configuration de votre vCenter, redécouvrir les informations d'identification et actualiser les plans de réplication pour utiliser le nouvel agent de console.
 
-Pour plus d'informations, voir link:../reference/switch-console-agent.html["Agents de la console de commutation"].
+Pour plus d'informations, voir link:https://docs.netapp.com/us-en/data-services-disaster-recovery/reference/switch-console-agents.html["Agents de la console de commutation"].

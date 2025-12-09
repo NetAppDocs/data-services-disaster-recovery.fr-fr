@@ -1927,11 +1927,9 @@
   <block id="b706122b5735a672dec906da7d14b15c" category="doc">conservation de la hiérarchie des dossiers</block>
   <block id="c8d94434feabcd9486a228e1a7a02882" category="paragraph">Par défaut, la reprise après sinistre conserve la hiérarchie d'inventaire des machines virtuelles (structure des dossiers) lors d'un basculement.  Si le dossier requis n'est pas présent sur la cible de récupération, la fonction de récupération après sinistre le crée.</block>
   <block id="5a54761f5d99470c8137218395b65ca5" category="paragraph">Vous pouvez désormais modifier ce paramètre en désignant un nouveau dossier parent pour la machine virtuelle ou en décochant l'option **Conserver la hiérarchie de dossiers d'origine**.</block>
-  <block id="4b4839446c123b0f7cbb37cc05973b41" category="paragraph">Pour plus d'informations, voir <block ref="8ed6b1ab912526d5ffcc717e1a39851e" category="inline-link-macro-rx"></block>.</block>
   <block id="c1bacabdbdc0d5e57b5ead85a617b4b0" category="section-title">Mise à jour simplifiée de l'agent de console</block>
   <block id="1220fc49240c9d2c58d7490c6c40ac65" category="paragraph">La reprise après sinistre prend désormais en charge un processus simplifié pour l'utilisation de plusieurs agents Console dans un environnement de travail.  Pour changer d'agent de console, vous devez modifier la configuration de votre vCenter, redécouvrir les informations d'identification et actualiser les plans de réplication pour utiliser le nouvel agent de console.</block>
   <block id="d6155caa68c59478855dfa8342f87d18" category="inline-link-macro">Agents de la console de commutation</block>
-  <block id="8c3cfaa540744075b83a947ed57c6f60" category="paragraph">Pour plus d'informations, voir <block ref="0905281a07a8919c4c92242f0cf75d65" category="inline-link-macro-rx"></block>.</block>
   <block id="5fbf922c777310b5aadba9b1dab4f7b0" category="summary">Découvrez les exigences relatives à l'utilisation de plusieurs agents Console avec NetApp Disaster Recovery.</block>
   <block id="ac340102b6e26791143e3212d85bb1dd" category="doc">Changer d'agent de console lors de l'utilisation de NetApp Disaster Recovery</block>
   <block id="5784bc747a9795446f48f40111e7bf58" category="paragraph">La NetApp Console prend en charge l'utilisation de plusieurs agents de console dans un seul environnement de travail.  L'utilisation de plusieurs agents Console peut s'avérer utile pour maintenir l'accès aux ressources pendant la maintenance d'un autre agent Console ou en cas de défaillance d'un agent Console.  Chaque agent Console possédant un identifiant unique, un changement incorrect d'agent Console peut compromettre la disponibilité des ressources dans un environnement de travail.</block>
@@ -1965,4 +1963,6 @@
   <block id="ed5adefa93ed81ded190826eed4455dd" category="paragraph">Décochez cette case pour ignorer l'arborescence des dossiers d'origine.</block>
   <block id="06596d9f3a6cac6c36599f4c1598f756" category="sidebar">Privilèges vCenter requis pour la reprise après sinistre</block>
   <block id="2b1806d17c0606f8caa4232aa6a3c113" category="sidebar">Agent de console de commutation</block>
+  <block id="98ade846ffa73dc9c6bcd3e3e84c38b7" category="paragraph">Pour plus d'informations, voir <block ref="1762f821178ef43810c03e86465a946d" category="inline-link-macro-rx"></block>.</block>
+  <block id="1df351797bd2540f3ec41bc24e67bf1f" category="paragraph">Pour plus d'informations, voir <block ref="2631c62a2ac2ec2e6a0ebc0352319a2c" category="inline-link-macro-rx"></block>.</block>
 </blocks>
