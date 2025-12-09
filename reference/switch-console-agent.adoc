@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: reference/switch-console-agent.html 
+keywords: disaster recovery, console agent, high availability 
+summary: 'Découvrez les exigences relatives à l"utilisation de plusieurs agents Console avec NetApp Disaster Recovery.' 
+---
+= Changer d'agent de console lors de l'utilisation de NetApp Disaster Recovery
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+[role="lead"]
+La NetApp Console prend en charge l'utilisation de plusieurs agents de console dans un seul environnement de travail.  L'utilisation de plusieurs agents Console peut s'avérer utile pour maintenir l'accès aux ressources pendant la maintenance d'un autre agent Console ou en cas de défaillance d'un agent Console.  Chaque agent Console possédant un identifiant unique, un changement incorrect d'agent Console peut compromettre la disponibilité des ressources dans un environnement de travail.
+
+
+
+== Avant de commencer
+
+* Vous devez avoirxref:../get-started/dr-prerequisites.html#create-the-netapp-console-agent[Au moins deux agents Console ont été ajoutés à votre environnement de travail.] .
+* Les deux agents de console doivent contenir les mêmes clusters ONTAP .
+
+
+
+
+== Étapes
+
+. Dans la section Reprise après sinistre, sélectionnez **Sites**.
+. Vous devez modifier l'agent de la console pour les vCenters source et de destination.  Identifiez les vCenters que vous souhaitez modifier.  Sélectionnez le menu d'actions du vCenter, puis **Modifier**.
++
+image:dr-sites-subnet-menu.png["Capture d'écran du tableau de bord Sites"]
+
+. Sélectionnez l'agent Console que vous souhaitez utiliser dans le menu déroulant et saisissez à nouveau votre nom d'utilisateur et votre mot de passe vCenter. Sélectionnez **Enregistrer**.
++
+image:edit-vcenter.png["Capture d'écran modifiant l'agent de la console"]
+
+. Répétez les étapes 2 et 3 pour chaque vCenter supplémentaire que vous souhaitez modifier.
+. Dans le vCenter que vous avez modifié, actualisez-le pour détecter le nouvel agent de console.  Répétez cette étape pour chaque vCenter que vous avez modifié.
+. Dans la section Reprise après sinistre, accédez à **Plans de réplication**.
+. Identifiez les plans de réplication que vous souhaitez utiliser pour reprendre les flux de travail.  Sélectionnez le menu d'actions `...` puis **Actualiser les ressources**.  Vous pouvez suivre l'état des tâches dans la section **Suivi des tâches**.
+
+
+
+
+== Plus d'informations
+
+* link:https://docs.netapp.com/us-en/console-setup-admin/task-install-agent-on-prem.html["En savoir plus sur les agents de console"^]
+

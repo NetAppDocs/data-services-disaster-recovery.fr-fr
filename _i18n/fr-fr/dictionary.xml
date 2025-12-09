@@ -1207,7 +1207,6 @@
   <block id="3f1d340403a26ed0ad46982a91385d32" category="paragraph">Le service effectue des contrôles de symétrie des instantanés toutes les 24 heures.</block>
   <block id="17e2d63e3b45ecbfe13bcc32fec929d0" category="paragraph">*Avant de commencer*</block>
   <block id="1059d7b16ffe2236c36ae0e8c15872ca" category="paragraph">Avant de créer une relation SnapMirror , configurez le cluster et le peering SVM en dehors de Disaster Recovery.</block>
-  <block id="fe7160dc47052a598ef389064fd41684" category="paragraph">*MEILLEURE PRATIQUE* : Organisez vos machines virtuelles avant de déployer NetApp Disaster Recovery afin de minimiser la « prolifération des banques de données ».  Placez les machines virtuelles qui ont besoin d’être protégées sur un sous-ensemble de banques de données et placez les machines virtuelles qui ne seront pas protégées sur un autre sous-ensemble de banques de données.  Utilisez une protection basée sur le magasin de données pour garantir que les machines virtuelles d’un magasin de données donné sont protégées.</block>
   <block id="89dd75b1f79276c7e30e794e1c739f04" category="section-title">Créer le plan</block>
   <block id="4f27ef77939e5393adc6b44aec83a6b7" category="paragraph">Un assistant vous guide à travers ces étapes :</block>
   <block id="3baff38a392d31950fc8d4d62ea2adc0" category="list-text">Sélectionnez les serveurs vCenter.</block>
@@ -1237,7 +1236,6 @@
   <block id="84c62302deac0be1dd475a0a0a91a4fa" category="list-text">Étant donné que NetApp Disaster Recovery utilise SnapMirror et que le système réplique l'intégralité des volumes ONTAP , la capacité utilisée de ce volume est utilisée pour les considérations de licence.  Dans ce cas, l’espace de volume consommé par les machines virtuelles protégées et non protégées serait inclus dans ce calcul.</block>
   <block id="4e7a12dab0e91d1fb0221d782eacf1e5" category="list-text">Si le groupe de ressources et ses banques de données associées doivent être basculés vers le site de reprise après sinistre, toutes les machines virtuelles non protégées (machines virtuelles ne faisant pas partie du groupe de ressources, mais hébergées sur le volume ONTAP ) n'existeront plus sur le site source à partir du processus de basculement, ce qui entraînera l'échec des machines virtuelles non protégées sur le site source.  De plus, NetApp Disaster Recovery ne démarrera pas ces machines virtuelles non protégées sur le site vCenter de basculement.</block>
   <block id="8a63c65b056310ba2a8c9f7b25cb1011" category="list-text">Pour qu'une machine virtuelle soit protégée, elle doit être incluse dans un groupe de ressources.</block>
-  <block id="26526a6314d437ebb8252ace8e7cfae2" category="paragraph">*MEILLEURE PRATIQUE* : Créez un ensemble de mappages dédié distinct pour vos tests de basculement afin d'empêcher les VMS d'être connectés aux réseaux de production utilisant les mêmes adresses IP.</block>
   <block id="6f9c40e36ae73e33332b46ebad53611b" category="list-text">Sélectionnez *Machines virtuelles* ou *Magasins de données*.</block>
   <block id="1e37304672f6f6f473c93804e891eacb" category="list-text">Recherchez éventuellement une machine virtuelle ou un magasin de données spécifique par nom.</block>
   <block id="b3736de6232ff120d2109e988d051825" category="list-text">Sur le côté gauche de la page Applications, sélectionnez les machines virtuelles ou les banques de données que vous souhaitez protéger et affecter au groupe sélectionné.</block>
@@ -1278,7 +1276,6 @@
   <block id="d757ba122f1f3d62b9a13da2a3e1b64c" category="admonition">Vous pouvez affecter plusieurs réseaux virtuels sources au même réseau virtuel cible.  Cela pourrait cependant créer des conflits de configuration du réseau IP.  Vous pouvez mapper plusieurs réseaux sources à un seul réseau cible pour garantir que tous les réseaux sources ont la même configuration.</block>
   <block id="21538d8465027f7c4a2d65593552875c" category="paragraph">Dans l’onglet Mappages de basculement, sélectionnez la flèche vers le bas à côté de *Réseaux virtuels*.  Sélectionnez le LAN virtuel source et le LAN virtuel cible.</block>
   <block id="02453bc953d0b6e10f85235da7a8cca7" category="paragraph">Sélectionnez le mappage réseau vers le LAN virtuel approprié.  Les réseaux locaux virtuels doivent déjà être provisionnés, sélectionnez donc le réseau local virtuel approprié pour mapper la machine virtuelle.</block>
-  <block id="d43d5aee258367a26705d2e855068453" category="section-title">Ressources cartographiques &gt; Section Machines virtuelles</block>
   <block id="3cbcb190466412c589fc07714ba6d7fe" category="paragraph">Vous pouvez configurer chaque machine virtuelle du groupe de ressources protégé par le plan de réplication en fonction de l'environnement virtuel vCenter de destination en définissant l'une des options suivantes :</block>
   <block id="c3c89c355c8b33e18be16af1cb387f5a" category="list-text">Le nombre de CPU virtuels</block>
   <block id="2d875765c22020c9ffe5b3d219578aa0" category="list-text">La quantité de DRAM virtuelle</block>
@@ -1705,7 +1702,6 @@
   <block id="554cfab3938e21d9270bd6b75931f96f" category="sidebar">Vidéos</block>
   <block id="07aa9d3d6d093cd998a453815b1b718f" category="sidebar">Documentation sur la NetApp Disaster Recovery</block>
   <block id="63d5049791d9d79d86e9a108b0a999ca" category="sidebar">Référence</block>
-  <block id="0ac57782b45d2b5a287308d71b382a58" category="sidebar">Privilèges vCenter requis pour la NetApp Disaster Recovery</block>
   <block id="58d06f6d0c071d1a9211629997a6fb0d" category="sidebar">Utiliser NetApp Disaster Recovery avec Amazon EVS</block>
   <block id="bd599b695632fefb842a7a4afc918840" category="sidebar">Présentation de NetApp Disaster Recovery avec Amazon EVS</block>
   <block id="c0c4b60d27032c028c91440e9d3be949" category="sidebar">Présentation de la solution</block>
@@ -1927,6 +1923,46 @@
   <block id="e6a35b0cc097a073b142d2f77dd698c4" category="paragraph"><block ref="5b01ddd771a87fa6b71f782d09b9b7b3" category="inline-link-macro-rx"></block>.</block>
   <block id="bae7a0a97273516d5296fb983700a411" category="paragraph"><block ref="31accac3325320cbdf81ca4694a5591c" category="inline-link-macro-rx"></block>. <block ref="e704c98551e5f8acdbf19af28a86dcf3" category="inline-link-rx"></block>.</block>
   <block id="a805fee248bed5144adc2fef83e46569" category="paragraph">Une fois les sites vCenter ajoutés, vous êtes prêt à créer un plan de reprise après sinistre ou un plan de réplication. Les plans de réplication gèrent la protection des données de l’infrastructure VMware. Sélectionnez les vCenters source et de destination, choisissez les groupes de ressources et déterminez la manière dont les applications doivent être restaurées et mises sous tension. Par exemple, vous pouvez regrouper des machines virtuelles (VM) associées à une application ou regrouper des applications ayant des niveaux similaires. De tels plans sont parfois appelés _plans_.</block>
-  <block id="3cd914b858fef92fe1881cac0800b73b" category="paragraph">&gt;[!IMPORTANT] &gt;Avec Google Cloud, vous ne pouvez ajouter qu'un seul volume ou datastore à un plan de réplication.</block>
   <block id="8497094e0d678632f29aeaad49708682" category="paragraph">Assurez-vous de consulter le<block ref="0b97dbd151642cb26d83aa16e8ffd9ce" category="inline-link-macro-rx"></block> et<block ref="9bbaf1e88d2981b5294528496eff27bf" category="inline-link-macro-rx"></block> pour Google Cloud.</block>
+  <block id="b706122b5735a672dec906da7d14b15c" category="doc">conservation de la hiérarchie des dossiers</block>
+  <block id="c8d94434feabcd9486a228e1a7a02882" category="paragraph">Par défaut, la reprise après sinistre conserve la hiérarchie d'inventaire des machines virtuelles (structure des dossiers) lors d'un basculement.  Si le dossier requis n'est pas présent sur la cible de récupération, la fonction de récupération après sinistre le crée.</block>
+  <block id="5a54761f5d99470c8137218395b65ca5" category="paragraph">Vous pouvez désormais modifier ce paramètre en désignant un nouveau dossier parent pour la machine virtuelle ou en décochant l'option **Conserver la hiérarchie de dossiers d'origine**.</block>
+  <block id="4b4839446c123b0f7cbb37cc05973b41" category="paragraph">Pour plus d'informations, voir <block ref="8ed6b1ab912526d5ffcc717e1a39851e" category="inline-link-macro-rx"></block>.</block>
+  <block id="c1bacabdbdc0d5e57b5ead85a617b4b0" category="section-title">Mise à jour simplifiée de l'agent de console</block>
+  <block id="1220fc49240c9d2c58d7490c6c40ac65" category="paragraph">La reprise après sinistre prend désormais en charge un processus simplifié pour l'utilisation de plusieurs agents Console dans un environnement de travail.  Pour changer d'agent de console, vous devez modifier la configuration de votre vCenter, redécouvrir les informations d'identification et actualiser les plans de réplication pour utiliser le nouvel agent de console.</block>
+  <block id="d6155caa68c59478855dfa8342f87d18" category="inline-link-macro">Agents de la console de commutation</block>
+  <block id="8c3cfaa540744075b83a947ed57c6f60" category="paragraph">Pour plus d'informations, voir <block ref="0905281a07a8919c4c92242f0cf75d65" category="inline-link-macro-rx"></block>.</block>
+  <block id="5fbf922c777310b5aadba9b1dab4f7b0" category="summary">Découvrez les exigences relatives à l'utilisation de plusieurs agents Console avec NetApp Disaster Recovery.</block>
+  <block id="ac340102b6e26791143e3212d85bb1dd" category="doc">Changer d'agent de console lors de l'utilisation de NetApp Disaster Recovery</block>
+  <block id="5784bc747a9795446f48f40111e7bf58" category="paragraph">La NetApp Console prend en charge l'utilisation de plusieurs agents de console dans un seul environnement de travail.  L'utilisation de plusieurs agents Console peut s'avérer utile pour maintenir l'accès aux ressources pendant la maintenance d'un autre agent Console ou en cas de défaillance d'un agent Console.  Chaque agent Console possédant un identifiant unique, un changement incorrect d'agent Console peut compromettre la disponibilité des ressources dans un environnement de travail.</block>
+  <block id="720fb781851276f1358a93dbc817200d" category="inline-xref-macro">Au moins deux agents Console ont été ajoutés à votre environnement de travail.</block>
+  <block id="6d613207623cb9199ad352b842c97bcd" category="list-text">Vous devez avoir<block ref="bc735134c90837f767229ea1b8bbf2c3" category="inline-xref-macro-rx"></block> .</block>
+  <block id="6ebe2ade347022cced0a6fb1bf51ffb4" category="list-text">Les deux agents de console doivent contenir les mêmes clusters ONTAP .</block>
+  <block id="ee5201e4e74c61b1beba380375a392ab" category="list-text">Dans la section Reprise après sinistre, sélectionnez **Sites**.</block>
+  <block id="d243adb79d3252d485c45562065a5417" category="list-text">Vous devez modifier l'agent de la console pour les vCenters source et de destination.  Identifiez les vCenters que vous souhaitez modifier.  Sélectionnez le menu d'actions du vCenter, puis **Modifier**.</block>
+  <block id="557291156806ac78d1840e0a1109c3f3" category="inline-image-macro">Capture d'écran du tableau de bord Sites</block>
+  <block id="0eb2b03d598ded205002b08ff16d9ea4" category="paragraph"><block ref="0eb2b03d598ded205002b08ff16d9ea4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7698485e50825aa3ec524842cc227dfe" category="list-text">Sélectionnez l'agent Console que vous souhaitez utiliser dans le menu déroulant et saisissez à nouveau votre nom d'utilisateur et votre mot de passe vCenter. Sélectionnez **Enregistrer**.</block>
+  <block id="3bcc41ee94f9d50e4374c5373843e87e" category="inline-image-macro">Capture d'écran modifiant l'agent de la console</block>
+  <block id="a29fa4d94902b37aebbea627c2c55fa5" category="paragraph"><block ref="a29fa4d94902b37aebbea627c2c55fa5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="34a30f0f719fac45eaea5f31159f891b" category="list-text">Répétez les étapes 2 et 3 pour chaque vCenter supplémentaire que vous souhaitez modifier.</block>
+  <block id="c3312349cbeff9b56ba101dc64315752" category="list-text">Dans le vCenter que vous avez modifié, actualisez-le pour détecter le nouvel agent de console.  Répétez cette étape pour chaque vCenter que vous avez modifié.</block>
+  <block id="26d11d84caca20471693664a43c829a5" category="list-text">Dans la section Reprise après sinistre, accédez à **Plans de réplication**.</block>
+  <block id="b437a657c0ffd8681513d509df38583d" category="list-text">Identifiez les plans de réplication que vous souhaitez utiliser pour reprendre les flux de travail.  Sélectionnez le menu d'actions<block ref="2f43b42fd833d1e77420a8dae7419000" prefix=" " category="inline-code"></block> puis **Actualiser les ressources**.  Vous pouvez suivre l'état des tâches dans la section **Suivi des tâches**.</block>
+  <block id="ab066b3292d8ab61ef3b5c77169cdd19" category="section-title">Plus d'informations</block>
+  <block id="d9ab6978cb4a1c1731a97d34b17a23a0" category="list-text"><block ref="d9ab6978cb4a1c1731a97d34b17a23a0" category="inline-link-macro-rx"></block></block>
+  <block id="b4d49b16355d04fa21a29a82f9f163eb" category="section-title">9 décembre 2025</block>
+  <block id="0a88174dbc895a0c67db18fd90d7e3f3" category="paragraph">Version 4.2.8P1</block>
+  <block id="59986822ba53de21bd3edbd9b45712cc" category="paragraph">Version 4.2.8</block>
+  <block id="4706c904f2e5382dbbf1ff2e2aa98487" category="paragraph">Version 4.2.7</block>
+  <block id="3f66961d19507ff05406ca74e41b4060" category="paragraph">Version 4.2.6</block>
+  <block id="c608ea51d7dfe4fc155f5ac91d002818" category="summary">NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les flux de travail de reprise après sinistre. Une fois les sites vCenter ajoutés, vous êtes prêt à créer un plan de reprise après sinistre ou de réplication.</block>
+  <block id="c0655d6a3a66f2180cdf2e00c1930e7c" category="list-text">Avec Google Cloud, vous ne pouvez ajouter qu'un seul volume ou datastore à un plan de réplication.</block>
+  <block id="7bcd913022459926bf1a00069a8fb8f6" category="admonition">Organisez vos machines virtuelles avant de déployer NetApp Disaster Recovery afin de minimiser la prolifération des datastores. Placez les machines virtuelles qui ont besoin d’être protégées sur un sous-ensemble de banques de données et placez les machines virtuelles qui ne seront pas protégées sur un autre sous-ensemble de banques de données. Utilisez une protection basée sur le magasin de données pour garantir que les machines virtuelles d’un magasin de données donné sont protégées.</block>
+  <block id="705a20699e1039fa52632f889e10a673" category="admonition">Créez un ensemble de mappages dédié et distinct pour vos tests de basculement afin d'empêcher que les machines virtuelles soient connectées aux réseaux de production en utilisant les mêmes adresses IP.</block>
+  <block id="5f4825a97c910dc2ee0d9eb1107f19d9" category="section-title">Ressources cartographiques &gt; section machines virtuelles</block>
+  <block id="782a5bda639e031f83212ac3e8bdb777" category="list-text">*Conserver la hiérarchie des dossiers d'origine* : Si cette option est sélectionnée, la récupération après sinistre conserve la hiérarchie de l'inventaire des machines virtuelles (structure des dossiers) en cas de basculement.  Si la cible de récupération ne possède pas l'arborescence de dossiers d'origine, la récupération après sinistre la crée.</block>
+  <block id="ed5adefa93ed81ded190826eed4455dd" category="paragraph">Décochez cette case pour ignorer l'arborescence des dossiers d'origine.</block>
+  <block id="06596d9f3a6cac6c36599f4c1598f756" category="sidebar">Privilèges vCenter requis pour la reprise après sinistre</block>
+  <block id="2b1806d17c0606f8caa4232aa6a3c113" category="sidebar">Agent de console de commutation</block>
 </blocks>
