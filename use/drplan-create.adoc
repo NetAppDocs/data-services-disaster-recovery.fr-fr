@@ -280,10 +280,7 @@ Pour activer l'exécution de script avec le système d'exploitation invité de l
 
 
 * *Rétrograder la version matérielle de la VM et l'enregistrer* : Sélectionnez cette option si la version de l'hôte ESX de destination est antérieure à celle de la source afin qu'elles correspondent lors de l'enregistrement.
-* *Conserver la hiérarchie des dossiers d'origine* : Si cette option est sélectionnée, la récupération après sinistre conserve la hiérarchie de l'inventaire des machines virtuelles (structure des dossiers) en cas de basculement.  Si la cible de récupération ne possède pas l'arborescence de dossiers d'origine, la récupération après sinistre la crée.
-+
-Décochez cette case pour ignorer l'arborescence des dossiers d'origine.
-
+* *Conserver la hiérarchie des dossiers d'origine* : Si cette option est sélectionnée, la récupération après sinistre conserve la hiérarchie de l'inventaire des machines virtuelles (structure des dossiers) en cas de basculement. Si la cible de récupération ne possède pas l'arborescence de dossiers d'origine, la récupération après sinistre la crée. Cochez la case pour conserver l'arborescence des dossiers ; décochez-la pour ignorer l'arborescence d'origine.
 * *Préfixe et suffixe de la machine virtuelle cible* : sous les détails des machines virtuelles, vous pouvez éventuellement ajouter un préfixe et un suffixe à chaque nom de machine virtuelle basculée.  Cela peut être utile pour différencier les machines virtuelles basculées des machines virtuelles de production exécutées sur le même cluster vCenter.  Par exemple, vous pouvez ajouter un préfixe « DR- » et un suffixe « -failover » au nom de la machine virtuelle.  Certaines personnes ajoutent un deuxième vCenter de production pour héberger temporairement des machines virtuelles sur un site différent en cas de sinistre.  L'ajout d'un préfixe ou d'un suffixe peut vous aider à identifier rapidement les machines virtuelles ayant échoué.  Vous pouvez également utiliser le préfixe ou le suffixe dans les scripts personnalisés.
 +
 Vous pouvez utiliser la méthode alternative de définition du dossier de la machine virtuelle cible dans la section Ressources de calcul.
