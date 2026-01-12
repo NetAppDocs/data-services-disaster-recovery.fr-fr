@@ -20,9 +20,7 @@ link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-re
 
 *À propos de cette tâche*
 
-Lors d’un basculement, Disaster Recovery utilise la copie instantanée SnapMirror la plus récente.  Ou, vous pouvez sélectionner un instantané spécifique à partir d'un instantané ponctuel (conformément à la politique de conservation de SnapMirror).
-
-Utilisez l’option ponctuelle si les répliques les plus récentes sont compromises, par exemple lors d’une attaque de ransomware.  La BlueXP disaster recovery affiche tous les points disponibles dans le temps.
+Lors d’un basculement, la reprise après sinistre utilise par défaut la copie instantanée SnapMirror la plus récente, bien que vous puissiez sélectionner une instantanée spécifique à partir d’une instantanée à un instant donné (conformément à la politique de rétention de SnapMirror). Utilisez l'option de point dans le temps si les répliques les plus récentes sont compromises, par exemple lors d'une attaque de ransomware.
 
 Ce processus diffère selon que le site de production est sain ou non et que vous effectuez un basculement vers le site de reprise après sinistre pour des raisons autres qu'une défaillance critique de l'infrastructure :
 
@@ -38,9 +36,9 @@ Cette procédure rompt la relation de réplication, place les machines virtuelle
 
 Avant de démarrer le basculement, vous pouvez tester le processus.  Le test ne met pas les machines virtuelles hors ligne.
 
-Lors d'un test de basculement, la BlueXP disaster recovery crée temporairement des machines virtuelles.  La BlueXP disaster recovery mappe une banque de données temporaire sauvegardant le volume FlexClone sur les hôtes ESXi.
+Lors d'un test de basculement, la reprise après sinistre crée temporairement des machines virtuelles. Risaster Recovery mappe un datastore temporaire soutenant le volume FlexClone sur les hôtes ESXi.
 
-Ce processus ne consomme pas de capacité physique supplémentaire sur le stockage ONTAP sur site ou sur le stockage FSx pour NetApp ONTAP dans AWS.  Le volume source d'origine n'est pas modifié et les tâches de réplication peuvent continuer même pendant la reprise après sinistre.
+Ce processus ne consomme pas de capacité physique supplémentaire sur le stockage ONTAP sur site ou sur le stockage FSx pour NetApp ONTAP dans AWS. Le volume source d'origine n'est pas modifié et les tâches de réplication peuvent se poursuivre même pendant une reprise après sinistre.
 
 Une fois le test terminé, vous devez réinitialiser les machines virtuelles avec l'option *Nettoyer le test*.  Bien que cela soit recommandé, ce n’est pas obligatoire.
 
@@ -76,8 +74,8 @@ Une fois le test de basculement terminé, vous devez nettoyer l’environnement 
 .Étapes
 . Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
 . Sélectionnez le plan de réplication.
-. Sur la droite, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] et sélectionnez *Nettoyer le test de basculement*.
-. Dans la page Test de basculement, saisissez « Nettoyer le basculement » et sélectionnez *Nettoyer le test de basculement*.
+. À droite, sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] puis *Nettoyer le test de basculement*.
+. Sur la page de test de basculement, saisissez « Nettoyage du basculement », puis sélectionnez *Test de nettoyage du basculement*.
 
 
 
@@ -102,6 +100,9 @@ Le processus de basculement implique les opérations suivantes :
 
 
 
+NOTE: Pour les plans de réplication basés sur un datastore, si vous avez ajouté et découvert des machines virtuelles mais n'avez pas fourni de détails de mappage, ces machines virtuelles sont incluses dans le basculement. Le basculement échouera et une notification sera affichée dans les tâches. Vous devez fournir les détails de mappage pour que le basculement réussisse.
+
+
 TIP: Une fois le basculement démarré, vous pouvez voir les machines virtuelles récupérées dans le vCenter du site de reprise après sinistre (machines virtuelles, réseaux et banques de données).  Par défaut, les machines virtuelles sont récupérées dans le dossier Charge de travail.
 
 .Étapes
@@ -111,7 +112,7 @@ TIP: Une fois le basculement démarré, vous pouvez voir les machines virtuelles
 +
 image:dr-plan-failover3.png["Page de basculement"]
 
-. Dans la page Basculement, lancez un instantané maintenant ou choisissez l'instantané de la banque de données à partir de laquelle récupérer.  La valeur par défaut est la plus récente.
+. Sur la page de basculement, créez un nouvel instantané maintenant ou choisissez un instantané existant que la banque de données utilisera comme base de récupération. La valeur par défaut est la plus récente.
 +
 Un instantané de la source actuelle sera pris et répliqué vers la destination actuelle avant que le basculement ne se produise.
 

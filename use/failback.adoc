@@ -18,9 +18,11 @@ Une fois une catastrophe résolue, revenez du site de reprise après sinistre au
 
 link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"]. https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
-*À propos de cette tâche*
 
-Dans ce flux de travail, NetApp Disaster Recovery réplique (resynchronise) toutes les modifications apportées à la machine virtuelle source d'origine avant d'inverser le sens de réplication. Ce processus part d’une relation qui a terminé son basculement vers une cible et implique les étapes suivantes :
+
+== À propos du failback
+
+En cas de retour en arrière, NetApp Disaster Recovery réplique (resynchronise) toutes les modifications vers la machine virtuelle source d'origine avant d'inverser le sens de la réplication. Ce processus débute à partir d'une relation qui a basculé vers une cible et comprend les étapes suivantes :
 
 * Effectuer un contrôle de conformité sur le site récupéré.
 * Actualisez les informations vCenter pour chaque cluster vCenter identifié comme situé sur le site récupéré.
@@ -30,13 +32,21 @@ Dans ce flux de travail, NetApp Disaster Recovery réplique (resynchronise) tout
 * Mettez sous tension et enregistrez les machines virtuelles sources, puis montez les volumes sur la source.
 
 
-.Étapes
-. Connectez-vous à la https://console.netapp.com/["NetApp Console"^] .
+
+
+== Avant de commencer
+
+Si vous utilisez une protection basée sur un datastore, les machines virtuelles ajoutées au datastore peuvent être ajoutées à ce dernier lors du processus de basculement. Si cela s'est produit, assurez-vous de fournir les informations de mappage supplémentaires pour ces machines virtuelles avant de lancer le basculement. Pour modifier le mappage des ressources, consultez link:manage.html#manage-replication-plans["Gérer les plans de réplication"].
+
+
+
+== Étapes
+
 . Dans la navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
 . Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
 . Sélectionnez le plan de réplication.
 . Sur la droite, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] et sélectionnez *Retour en arrière*.
-. Saisissez le nom du plan de réplication pour confirmer et démarrer la restauration automatique.
-. Choisissez l’instantané du magasin de données à partir duquel effectuer la récupération.  La valeur par défaut est la plus récente.
-. Pour vérifier la progression, dans le menu, sélectionnez *Suivi des tâches*.
+. Saisissez le nom du plan de réplication pour démarrer le basculement.
+. Choisissez l’instantané du magasin de données à partir duquel effectuer la récupération. La valeur par défaut est la plus récente.
+. Pour suivre l'avancement de la tâche, sélectionnez *Suivi des tâches* dans le menu Reprise après sinistre.
 

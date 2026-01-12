@@ -130,7 +130,7 @@ TIP: Créez un ensemble de mappages dédié et distinct pour vos tests de bascul
 . Recherchez éventuellement une machine virtuelle ou un magasin de données spécifique par nom.
 . Sur le côté gauche de la page Applications, sélectionnez les machines virtuelles ou les banques de données que vous souhaitez protéger et affecter au groupe sélectionné.
 +
-Le vCenter source doit résider sur le vCenter local.  Le vCenter cible peut être un deuxième vCenter sur site sur le même site ou un site distant, ou un centre de données défini par logiciel (SDDC) basé sur le cloud tel que VMware Cloud sur AWS.  Les deux vCenters doivent déjà être ajoutés à votre environnement de travail de BlueXP disaster recovery .
+Le vCenter source doit résider sur le vCenter local. Le vCenter cible peut être un deuxième vCenter sur site, situé sur le même site ou sur un site distant, ou un centre de données défini par logiciel (SDDC) basé sur le cloud, tel que VMware Cloud on AWS. Les deux vCenters devraient déjà avoir été ajoutés à votre environnement de travail de reprise après sinistre.
 
 +
 La ressource sélectionnée est automatiquement ajoutée au groupe 1 et un nouveau groupe 2 est démarré.  Chaque fois que vous ajoutez une ressource au dernier groupe, un autre groupe est ajouté.
@@ -170,7 +170,7 @@ Si vous prévoyez d'effectuer des tests de basculement dans le cadre de votre pl
 Si vous souhaitez créer une relation SnapMirror dans ce service, le cluster et son peering SVM doivent déjà avoir été configurés en dehors de NetApp Disaster Recovery.
 
 .Étapes
-. Dans la page Mappage des ressources, pour utiliser les mêmes mappages pour les opérations de basculement et de test, cochez la case.
+. Sur la page de mappage des ressources, cochez la case pour utiliser les mêmes mappages pour les opérations de basculement et de test.
 +
 image:dr-plan-resource-mapping2.png["Plan de réplication, onglet Mappage des ressources"]
 
@@ -263,7 +263,7 @@ image:dr-plan-vm-subnet-option2.png["Capture d'écran montrant Ajouter un plan d
 
 
 
-* *Scripts* : vous pouvez inclure des scripts hébergés sur un système d'exploitation invité personnalisé au format .sh, .bat ou .ps1 en tant que processus de post-traitement.  Avec des scripts personnalisés, la BlueXP disaster recovery peut exécuter votre script après un basculement, une restauration automatique et des processus de migration.  Par exemple, vous pouvez utiliser un script personnalisé pour reprendre toutes les transactions de base de données une fois le basculement terminé.  Le service peut exécuter des scripts dans des machines virtuelles exécutant Microsoft Windows ou toute variante Linux prise en charge avec des paramètres de ligne de commande pris en charge.  Vous pouvez attribuer un script à des machines virtuelles individuelles ou à toutes les machines virtuelles du plan de réplication.
+* *Scripts* : Vous pouvez inclure des scripts personnalisés hébergés par le système d’exploitation invité au format .sh, .bat ou .ps1 en tant que post-processus. Grâce aux scripts personnalisés, la reprise après sinistre peut exécuter votre script après un basculement, un retour en arrière et une migration de processus. Par exemple, vous pouvez utiliser un script personnalisé pour reprendre toutes les transactions de la base de données une fois le basculement terminé. Ce service peut exécuter des scripts au sein de machines virtuelles fonctionnant sous Microsoft Windows ou toute variante Linux prise en charge avec des paramètres de ligne de commande. Vous pouvez attribuer un script à des machines virtuelles individuelles ou à toutes les machines virtuelles du plan de réplication.
 +
 Pour activer l'exécution de script avec le système d'exploitation invité de la machine virtuelle, les conditions suivantes doivent être remplies :
 
@@ -280,7 +280,10 @@ Pour activer l'exécution de script avec le système d'exploitation invité de l
 
 
 * *Rétrograder la version matérielle de la VM et l'enregistrer* : Sélectionnez cette option si la version de l'hôte ESX de destination est antérieure à celle de la source afin qu'elles correspondent lors de l'enregistrement.
-* *Conserver la hiérarchie des dossiers d'origine* : Si cette option est sélectionnée, la récupération après sinistre conserve la hiérarchie de l'inventaire des machines virtuelles (structure des dossiers) en cas de basculement. Si la cible de récupération ne possède pas l'arborescence de dossiers d'origine, la récupération après sinistre la crée. Cochez la case pour conserver l'arborescence des dossiers ; décochez-la pour ignorer l'arborescence d'origine.
+* *Conserver la hiérarchie des dossiers d'origine* : Par défaut, la reprise après sinistre conserve la hiérarchie de l'inventaire des machines virtuelles (structure des dossiers) en cas de basculement. Si le répertoire cible de récupération ne possède pas l'arborescence de dossiers d'origine, la fonction de récupération après sinistre la crée.
++
+Décochez cette case pour ignorer l'arborescence des dossiers d'origine.
+
 * *Préfixe et suffixe de la machine virtuelle cible* : sous les détails des machines virtuelles, vous pouvez éventuellement ajouter un préfixe et un suffixe à chaque nom de machine virtuelle basculée.  Cela peut être utile pour différencier les machines virtuelles basculées des machines virtuelles de production exécutées sur le même cluster vCenter.  Par exemple, vous pouvez ajouter un préfixe « DR- » et un suffixe « -failover » au nom de la machine virtuelle.  Certaines personnes ajoutent un deuxième vCenter de production pour héberger temporairement des machines virtuelles sur un site différent en cas de sinistre.  L'ajout d'un préfixe ou d'un suffixe peut vous aider à identifier rapidement les machines virtuelles ayant échoué.  Vous pouvez également utiliser le préfixe ou le suffixe dans les scripts personnalisés.
 +
 Vous pouvez utiliser la méthode alternative de définition du dossier de la machine virtuelle cible dans la section Ressources de calcul.
@@ -295,7 +298,7 @@ image:dr-plan-resource-mapping-vm-boot-order.png["Capture d'écran montrant Ajou
 
 * *Ordre de démarrage* : vous pouvez modifier l’ordre de démarrage après un basculement pour toutes les machines virtuelles sélectionnées dans les groupes de ressources.  Par défaut, toutes les machines virtuelles démarrent ensemble en parallèle ; toutefois, vous pouvez apporter des modifications à ce stade.  Cela est utile pour garantir que toutes vos machines virtuelles de priorité 1 sont en cours d'exécution avant le démarrage des machines virtuelles de priorité suivantes.
 +
-La BlueXP disaster recovery démarre toutes les machines virtuelles avec le même numéro d'ordre de démarrage en parallèle.
+La reprise après sinistre démarre en parallèle toutes les machines virtuelles ayant le même numéro d'ordre de démarrage.
 
 +
 ** Démarrage séquentiel : attribuez à chaque machine virtuelle un numéro unique pour démarrer dans l'ordre attribué, par exemple, 1, 2, 3, 4, 5.

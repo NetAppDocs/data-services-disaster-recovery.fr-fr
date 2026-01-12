@@ -174,6 +174,9 @@ Un agent de console doit être configuré dans la NetApp Console.  Lorsque vous 
 * Type d'agent de console requis :
 +
 ** *Reprise après sinistre sur site vers sur site* : installez l’agent de la console sur site sur le site de reprise après sinistre. En utilisant cette méthode, une défaillance du site principal n’empêche pas le service de redémarrer vos ressources virtuelles sur le site DR. Se référer à https://docs.netapp.com/us-en/console-setup-admin/task-install-connector-on-prem.html["Installer et configurer l'agent de console sur site"^] .
++
+La reprise après sinistre prend également en charge l'utilisation de plusieurs agents de console avec des configurations sur site. Dans ce scénario, les agents de la console dirigent les actions vers les vCenters et les clusters de baies ONTAP , et la source et la cible auraient chacune leur propre agent de console. L'utilisation de plusieurs agents Console est recommandée pour réduire la latence et améliorer le temps de récupération en cas de défaillance d'un agent Console ou d'un site.
+
 ** *Sur site sur AWS* : installez l’agent de console pour AWS dans votre AWS VPC. Se référer à https://docs.netapp.com/us-en/console-setup-admin/concept-install-options-aws.html["Options d'installation de l'agent de console dans AWS"^] .
 +
 
