@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: reference/vcenter-privileges.html 
 keywords: disaster recovery, bluexp, vcenter, 
-summary: 'Le compte vCenter doit disposer d"un ensemble minimal de privilèges vCenter pour permettre à NetApp Disaster Recovery d"exécuter ses services, tels que l"enregistrement et la désinscription des banques de données, le démarrage et l"arrêt des machines virtuelles et la reconfiguration des machines virtuelles (VM).  Le tableau suivant répertorie tous les privilèges requis pour que NetApp Disaster Recovery puisse s"interfacer avec un cluster vCenter.' 
+summary: 'Le compte vCenter doit disposer d"un ensemble minimal de privilèges vCenter pour que NetApp Disaster Recovery fonctionne correctement.' 
 ---
-= Privilèges vCenter nécessaires pour la NetApp Disaster Recovery
+= Privilèges requis vCenter pour NetApp Disaster Recovery
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
@@ -12,142 +12,134 @@ summary: 'Le compte vCenter doit disposer d"un ensemble minimal de privilèges v
 
 
 [role="lead"]
-Le compte vCenter doit disposer d'un ensemble minimal de privilèges vCenter pour permettre à NetApp Disaster Recovery d'exécuter ses services, tels que l'enregistrement et la désinscription des banques de données, le démarrage et l'arrêt des machines virtuelles et la reconfiguration des machines virtuelles (VM).  Le tableau suivant répertorie tous les privilèges requis pour que NetApp Disaster Recovery puisse s'interfacer avec un cluster vCenter.
+Pour que NetApp Disaster Recovery puisse fournir ses services, le compte vCenter doit disposer d'un ensemble minimal de privilèges vCenter. Ces privilèges incluent l'enregistrement et la désinscription des banques de données, le démarrage et l'arrêt des machines virtuelles (VM), ainsi que leur reconfiguration.
 
-[cols="25,35a,40a"]
+Le tableau suivant répertorie tous les privilèges requis pour que la reprise après sinistre puisse interagir avec un cluster vCenter.
+
+[cols="1,2,2,3"]
 |===
-| Type | Nom du privilège | Description 
+| Type | Nom du privilège (vSphere client) | Nom du privilège (API) | Description 
 
 
-| *Magasin de données*  a| 
-Magasin de données.Configurer le magasin de données
- a| 
-Utiliser pour configurer une banque de données.
+.3+| Magasin de données | Datastore.Config | Configurer le datastore | Permet de configurer un datastore. 
 
 
-
-|   a| 
-Magasin de données.Supprimer le magasin de données
- a| 
-Utiliser pour supprimer une banque de données.
+| Datastore.Delete | Supprimer le datastore | Autorise la suppression d'un datastore. 
 
 
-
-| *Machine virtuelle*  a| 
-Machine virtuelle.Configuration.Modifier les paramètres
- a| 
-Utiliser pour modifier les paramètres généraux de la machine virtuelle.
+| Datastore.Rename | Renommer le datastore | Permet de renommer un datastore. 
 
 
-
-|   a| 
-Machine virtuelle.Configuration.Modifier les paramètres du périphérique
- a| 
-Permet de modifier les propriétés d'un périphérique existant.
+.3+| Dossier | Folder.Create | Créer un dossier | Autorise la création d'un nouveau dossier. 
 
 
-
-|   a| 
-Machine virtuelle.Configuration.Recharger à partir du chemin
- a| 
-Permet de modifier un correctif de configuration de machine virtuelle tout en préservant l'identité de la machine virtuelle.  Des solutions telles que VMware vCenter Site Recovery Manager utilisent cette opération pour conserver l’identité de la machine virtuelle pendant le basculement et la restauration.
+| Folder.Delete | Supprimer le dossier | Permet de supprimer un dossier. Nécessite un privilège sur l'objet et son parent. 
 
 
-
-|   a| 
-Machine virtuelle.Configuration.Renommer
- a| 
-Permet de renommer une machine virtuelle ou de modifier les nœuds associés d'une machine virtuelle.
+| Folder.Rename | Renommer le dossier | Autorise la modification du nom d'un dossier. 
 
 
-
-|   a| 
-Machine virtuelle.Configuration.Réinitialiser les informations de l'invité
- a| 
-Permet de modifier les informations du système d'exploitation invité pour une machine virtuelle.
+.2+| Réseau | Network.Assign | Attribuer un réseau | Autorise l'attribution d'un réseau à une machine virtuelle. 
 
 
-
-|   a| 
-Machine virtuelle.Configuration.Modifier la mémoire
- a| 
-Permet de modifier la quantité de mémoire allouée à la machine virtuelle.
+| Network.Config | Configurer | Permet de configurer un réseau. 
 
 
-
-|   a| 
-Machine virtuelle.Configuration.Modifier le nombre de CPU
- a| 
-Permet de modifier le nombre de processeurs virtuels.
+.9+| Configuration de la machine virtuelle | VirtualMachine.Config.AdvancedConfig | Configuration avancée | Permet d'ajouter ou de modifier des paramètres avancés dans le fichier de configuration de la VM. 
 
 
-
-| *Invité de machine virtuelle*  a| 
-Machine virtuelle.Opérations invité.Modifications des opérations invité
- a| 
-Active les opérations invitées de machine virtuelle qui impliquent des modifications apportées à un système d'exploitation invité dans une machine virtuelle, comme le transfert d'un fichier vers la machine virtuelle.
+| VirtualMachine.Config.Settings | Modifier les paramètres | Permet de modifier les paramètres généraux de la machine virtuelle. 
 
 
-
-| *Interaction avec la machine virtuelle*  a| 
-Machine virtuelle.Interaction.Mise hors tension
- a| 
-Permet de mettre hors tension une machine virtuelle sous tension.  Cette opération met hors tension le système d’exploitation invité.
+| VirtualMachine.Config.CPUCount | Modifier le nombre de CPU | Permet de modifier le nombre de processeurs virtuels. 
 
 
-
-|   a| 
-Machine virtuelle.Interaction.Mise sous tension
- a| 
-Permet d'allumer une machine virtuelle hors tension et de reprendre une machine virtuelle suspendue.
+| VirtualMachine.Config.Memory | Changer la mémoire | Permet de modifier la quantité de mémoire allouée à la VM. 
 
 
-
-|   a| 
-Machine virtuelle.Interaction.Installation des outils VMware
- a| 
-Permet de monter et de démonter le programme d'installation du CD VMware Tools en tant que CD-ROM pour le système d'exploitation invité.
+| VirtualMachine.Config.Resource | Modifier la ressource | Permet de modifier la configuration des ressources des nœuds de VM dans un pool de ressources. 
 
 
-
-| *Inventaire des machines virtuelles*  a| 
-Machine virtuelle.Inventaire.Créer un nouveau
- a| 
-Permet de créer une machine virtuelle et d'allouer des ressources pour son exécution.
+| VirtualMachine.Config.Rename | Renommer | Permet de renommer une VM ou de modifier ses notes. 
 
 
-
-|   a| 
-Machine virtuelle.Inventaire.Enregistrement
- a| 
-Permet d'ajouter une machine virtuelle existante à un serveur vCenter ou à un inventaire d'hôtes.
+| VirtualMachine.Config.EditDevice | Modifier les paramètres de l'appareil | Permet de modifier les propriétés d'un appareil existant. 
 
 
-
-|   a| 
-Machine virtuelle.Inventaire.Désinscription
- a| 
-Permet de désinscrire une machine virtuelle d'un serveur vCenter ou d'un inventaire d'hôte.
+| VirtualMachine.Config.ReloadFromPath | Recharger depuis le chemin | Permet de modifier le chemin de configuration d'une machine virtuelle tout en préservant son identité. 
 
 
-
-| *État de la machine virtuelle*  a| 
-Machine virtuelle. Gestion des snapshots. Créer un snapshot
- a| 
-Permet de créer un instantané de l'état actuel de la machine virtuelle.
+| VirtualMachine.Config.ResetGuestInfo | Réinitialiser les informations invité | Permet de modifier les informations du système d'exploitation invité pour une VM. 
 
 
-
-|   a| 
-Machine virtuelle. Gestion des snapshots. Supprimer un snapshot
- a| 
-Permet de supprimer un instantané de l'historique des instantanés.
+.5+| Machine virtuelle invitée | VirtualMachine.GuestOperations.ModifyAliases | Modification de l'alias de l'opération invité | Autorise la modification de l'alias pour la machine virtuelle. 
 
 
+| VirtualMachine.GuestOperations.QueryAliases | Requête d'alias d'opération invité | Autorise l'interrogation de l'alias d'une VM. 
 
-|   a| 
-Machine virtuelle. Gestion des snapshots. Revenir au snapshot
- a| 
-Permet de définir la machine virtuelle sur l’état dans lequel elle se trouvait lors d’un instantané donné.
 
+| VirtualMachine.GuestOperations.Modify | Modifications des opérations invité | Permet les opérations de modification, y compris le transfert d'un fichier vers la VM. 
+
+
+| VirtualMachine.GuestOperations.Execute | Exécution du programme d'opérations invité | Permet d'exécuter une application à l'intérieur de la VM. 
+
+
+| VirtualMachine.GuestOperations.Query | Requêtes d'opérations des invités | Permet d'interroger le système d'exploitation invité. Les opérations incluent la liste des fichiers. 
+
+
+.9+| Interaction avec une machine virtuelle | VirtualMachine.Interact.AnswerQuestion | Répondre à la question | Permet de résoudre les problèmes lors des transitions d'état de la VM ou des erreurs d'exécution. 
+
+
+| VirtualMachine.Interact.PowerOff | Mise hors tension | Permet d'éteindre une machine virtuelle allumée. 
+
+
+| VirtualMachine.Interact.PowerOn | Mise sous tension | Permet de mettre sous tension ou de reprendre une VM. 
+
+
+| VirtualMachine.Interact.ToolsInstall | Installation de VMware Tools | Permet de monter/démonter le programme d'installation de VMware Tools. 
+
+
+| VirtualMachine.Inventory.CreateFromExisting | Créer à partir de l'existant | Permet de cloner ou de déployer une VM à partir d'un template. 
+
+
+| VirtualMachine.Inventory.Create | Créer nouveau | Permet de créer une VM et d'allouer des ressources. 
+
+
+| VirtualMachine.Inventory.Register | S'inscrire | Permet d'ajouter une machine virtuelle existante à un inventaire. 
+
+
+| VirtualMachine.Inventory.Delete | Retirer | Permet de supprimer une machine virtuelle et ses fichiers. Nécessite des privilèges sur l'objet et son parent. 
+
+
+| VirtualMachine.Inventory.Unregister | Annuler l’enregistrement | Permet de désenregistrer une machine virtuelle. Cette autorisation requiert des privilèges sur l'objet et son parent. 
+
+
+.4+| Provisionnement de machines virtuelles | VirtualMachine.Provisioning.Clone | Cloner la machine virtuelle | Permet de cloner une machine virtuelle et d'allouer des ressources. 
+
+
+| VirtualMachine.Provisioning.Customize | Personnaliser l'invité | Permet de personnaliser le système d'exploitation invité de la VM. 
+
+
+| VirtualMachine.Provisioning.ModifyCustSpecs | Modifier la spécification de personnalisation | Permet de créer, de modifier ou de supprimer des spécifications de personnalisation. 
+
+
+| VirtualMachine.Provisioning.ReadCustSpecs | Lire les spécifications de personnalisation | Permet de lire une spécification de personnalisation pour une VM. 
+
+
+.2+| Configuration du service de machine virtuelle | VirtualMachine.Namespace.Query | Configurations du service de requête | Autorise la récupération d'une liste de services de VM. 
+
+
+| VirtualMachine.Namespace.ReadContent | Lire la configuration du service | Autorise la récupération de la configuration de service VM existante. 
+
+
+.4+| Instantané de machine virtuelle | VirtualMachine.State.CreateSnapshot | Créer un instantané | Permet de créer un instantané à partir de l'état actuel de la machine virtuelle. 
+
+
+| VirtualMachine.State.RemoveSnapshot | Supprimer l'instantané | Autorise la suppression d'un instantané. 
+
+
+| VirtualMachine.State.RenameSnapshot | Renommer le snapshot | Permet de renommer un instantané ou de mettre à jour sa description. 
+
+
+| VirtualMachine.State.RevertToSnapshot | Rétablir l’instantané | Permet de rétablir la machine virtuelle à l’état d’un instantané donné. 
 |===
