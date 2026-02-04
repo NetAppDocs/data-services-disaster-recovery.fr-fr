@@ -67,7 +67,7 @@ Lors de la reprise après sinistre sur Google Cloud VMware Engine utilisant Goog
 
 **Considérations relatives au basculement**
 
-* Le basculement n'est pris en charge qu'avec la dernière version instantanée.  Si nécessaire, vous pouvez créer un nouvel instantané pendant la prise de cliché (c'est-à-dire que l'option d'instantané sélectif doit être désactivée).
+* Le basculement n'est pris en charge qu'avec le dernier instantané. Si nécessaire, vous pouvez créer un nouvel instantané pendant le basculement (c'est-à-dire que l'option d'instantané sélectif doit être désactivée).
 * Il est impossible de créer un nouvel instantané après un basculement.
 * Il est impossible de conserver et de réconcilier les instantanés après un basculement.
 
@@ -170,10 +170,10 @@ L'agent de console est un composant logiciel qui permet à la console de communi
 Un agent de console doit être configuré dans la NetApp Console.  Lorsque vous utilisez l’agent, il inclura les fonctionnalités appropriées pour le service de reprise après sinistre.
 
 * NetApp Disaster Recovery fonctionne uniquement avec le déploiement d’agent en mode standard. Voir https://docs.netapp.com/us-en/console-setup-admin/task-quick-start-standard-mode.html["Prise en main de la NetApp Console en mode standard"^] .
-* Assurez-vous que les vCenters source et de destination utilisent le même agent de console.
+* Assurez-vous que les clusters vCenter source et de destination utilisent le même agent Console.
 * Type d'agent de console requis :
 +
-** *Reprise après sinistre sur site vers sur site* : installez l’agent de la console sur site sur le site de reprise après sinistre. En utilisant cette méthode, une défaillance du site principal n’empêche pas le service de redémarrer vos ressources virtuelles sur le site DR. Se référer à https://docs.netapp.com/us-en/console-setup-admin/task-install-connector-on-prem.html["Installer et configurer l'agent de console sur site"^] .
+** *Reprise après sinistre sur site à site* : Installez l’agent Console local sur le site de reprise après sinistre. Grâce à cette méthode, une panne du site principal n’empêche pas le service de redémarrer vos ressources virtuelles sur le site de reprise après sinistre. Reportez-vous à https://docs.netapp.com/us-en/console-setup-admin/task-install-connector-on-prem.html["Installer et configurer l'agent de console sur site"^].
 +
 La reprise après sinistre prend également en charge l'utilisation de plusieurs agents de console avec des configurations sur site. Dans ce scénario, les agents de la console dirigent les actions vers les vCenters et les clusters de baies ONTAP , et la source et la cible auraient chacune leur propre agent de console. L'utilisation de plusieurs agents Console est recommandée pour réduire la latence et améliorer le temps de récupération en cas de défaillance d'un agent Console ou d'un site.
 
@@ -201,4 +201,12 @@ Pour garantir la réussite des processus de cohérence des applications, appliqu
 * Assurez-vous que les outils VMware (ou les outils Open VM) sont en cours d’exécution sur les machines virtuelles qui seront protégées.
 * Pour les machines virtuelles Windows exécutant Microsoft SQL Server, Oracle Database ou les deux, les bases de données doivent avoir leurs rédacteurs VSS activés.
 * Les bases de données Oracle exécutées sur un système d'exploitation Linux doivent avoir l'authentification utilisateur du système d'exploitation activée pour le rôle SYSDBA de la base de données Oracle.
+
+
+
+
+== Plus d'informations
+
+* xref:../reference/vcenter-privileges.html[Privilèges requis vCenter]
+* xref:../reference/evs-deploy-guide-config-prereqs.html[Conditions préalables pour Amazon EVS avec NetApp Disaster Recovery]
 

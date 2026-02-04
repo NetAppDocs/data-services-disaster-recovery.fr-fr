@@ -4,7 +4,7 @@ title: Référence
 entries:
 - title: Privilèges vCenter requis pour la reprise après sinistre
   url: "/reference/vcenter-privileges.html"
-- title: Agent de console de commutation
+- title: Agents de la console de commutation
   url: "/reference/switch-console-agent.html"
 - title: Utiliser NetApp Disaster Recovery avec Amazon EVS
   entries:
