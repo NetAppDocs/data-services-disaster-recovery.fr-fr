@@ -1,0 +1,15 @@
+= Interface utilisateur améliorée
+:allow-uri-read: 
+
+
+
+
+=== Interface utilisateur améliorée
+
+L'interface utilisateur de Disaster Recovery a été mise à jour afin d'améliorer les performances et l'expérience utilisateur, en fonction des commentaires reçus.
+
+
+
+=== Documentation Swagger de l'API
+
+La documentation Swagger de l'API de reprise après sinistre est désormais accessible depuis un navigateur classique ; le mode navigation privée n'est plus nécessaire. Pour accéder à la documentation de l'API, accédez au tableau de bord de reprise après sinistre, sélectionnez le menu contextuel en haut à droite image:../media/use/icon-vertical-dots.png["Icône d'action"] puis **API Documentation** pour ouvrir la documentation Swagger. Vous pouvez également link:https://api.bluexp.netapp.com/v1/services/draas/api/api-doc/draas["Ajoutez l'URL à vos favoris"^].
