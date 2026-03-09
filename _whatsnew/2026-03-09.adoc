@@ -1,0 +1,33 @@
+= Exclure un datastore des plans de réplication
+:allow-uri-read: 
+
+
+
+
+=== Exclure un datastore des plans de réplication
+
+Lorsque vous créez un plan de réplication dans Disaster, vous pouvez désormais exclure des datastores spécifiques de la réplication. Pour les situations où une machine virtuelle est configurée pour utiliser plusieurs datastores, cela vous permet de limiter ceux qui sont répliqués.
+
+Pour plus de détails, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.adoc["Créer un plan de réplication"^].
+
+
+
+=== Suppression de la validation du mot de passe vCenter
+
+La reprise après sinistre a supprimé les restrictions sur les mots de passe vCenter afin d'autoriser les mots de passe contenant des espaces.
+
+Pour plus d'informations, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/reference/evs-deploy-guide-add-vcenters.html["Ajoutez des clusters vCenter sur site et Amazon EVS dans NetApp Disaster Recovery"^].
+
+
+
+=== Nouveau sous-menu du plan de réplication
+
+La fonction de reprise après sinistre inclut désormais de nouvelles options de menu permettant de déclencher des actualisations vCenter depuis le tableau de bord du plan de réplication. Vous pouvez accéder au sous-menu depuis le menu d’actions du tableau de bord du plan de réplication : sélectionnez **Plan Health** puis **Refresh Source vCenter / Refresh Target vCenter**.
+
+Pour plus d'informations, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html#modify-a-replication-plan["Modifier un plan de réplication"^].
+
+
+
+=== Amélioration de la découverte du réseau
+
+La reprise après sinistre inclut désormais une découverte réseau améliorée pour prendre en charge un plus large éventail de configurations réseau.

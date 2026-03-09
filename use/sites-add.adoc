@@ -61,7 +61,7 @@ NOTE: Le service prend en charge les certificats de sécurité auto-signés ou l
 . Connectez-vous à la https://console.netapp.com/["NetApp Console"^] .
 . Dans la navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
 +
-Si vous utilisez NetApp Disaster Recovery pour la première fois, vous devez ajouter les informations vCenter.  Si vous avez déjà ajouté des informations vCenter, vous verrez le tableau de bord.
+Si c'est la première fois que vous utilisez NetApp Disaster recovery, vous devez ajouter les informations vCenter. Si vous avez déjà ajouté les informations vCenter, vous voyez le tableau de bord.
 
 +
 

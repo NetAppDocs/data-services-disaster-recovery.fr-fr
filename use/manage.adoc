@@ -95,7 +95,7 @@ image:../use/dr-plan-list.png["Liste des plans de réplication"]
 
 
 . Revenez à la liste des plans en sélectionnant « Plans de réplication » dans le fil d'Ariane à gauche.
-. Pour effectuer des actions avec le plan, dans la liste des plans de réplication, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à droite du plan et sélectionnez l'une des options, telles que *Modifier les planifications*, *Tester le basculement*, *Basculer*, *Retour en arrière*, *Migrer*, *Prendre un instantané maintenant*, *Nettoyer les anciens instantanés*, *Désactiver*, *Activer* ou *Supprimer*.
+. Pour effectuer des actions sur le plan, dans la liste des plans de réplication, sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à droite du plan puis choisissez une action : *Modifier les planifications*, *Tester le basculement*, *Basculer*, *Rétablir*, *Migrer*, *Prendre un instantané maintenant*, *Nettoyer les anciens instantanés*, *Désactiver*, *Activer* ou *Supprimer*.
 . Pour définir ou modifier un calendrier de basculement de test ou définir la vérification de la fréquence de conformité, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à droite du plan et sélectionnez *Modifier les horaires*.
 +
 .. Dans la page Modifier les planifications, entrez la fréquence en minutes à laquelle vous souhaitez que la vérification de conformité de basculement se produise.

@@ -208,7 +208,7 @@ TIP: Si un vCenter dispose d'un planificateur de ressources distribuées (DRS) c
 
 === Ressources cartographiques > Section Réseaux virtuels
 
-Les machines virtuelles utilisent des cartes réseau virtuelles connectées à des réseaux virtuels.  Dans le processus de basculement, le service connecte ces cartes réseau virtuelles aux réseaux virtuels définis dans l’environnement VMware de destination.  Pour chaque réseau virtuel source utilisé par les machines virtuelles du groupe de ressources, le service nécessite une attribution de réseau virtuel de destination.
+Les machines virtuelles utilisent des cartes réseau virtuelles connectées à des réseaux virtuels. Dans le processus de basculement, le service connecte ces cartes réseau virtuelles à des réseaux virtuels définis dans l'environnement VMware de destination. Pour chaque réseau virtuel source utilisé par les machines virtuelles du groupe de ressources, le service requiert une attribution de réseau virtuel de destination.
 
 
 NOTE: Vous pouvez affecter plusieurs réseaux virtuels sources au même réseau virtuel cible.  Cela pourrait cependant créer des conflits de configuration du réseau IP.  Vous pouvez mapper plusieurs réseaux sources à un seul réseau cible pour garantir que tous les réseaux sources ont la même configuration.
@@ -446,9 +446,9 @@ Le plan est ajouté à la liste des plans.
 
 
 
-== Modifier les plannings pour tester la conformité et garantir le fonctionnement des tests de basculement
+== Modifier un plan de réplication
 
-Vous souhaiterez peut-être configurer des calendriers pour tester les tests de conformité et de basculement afin de garantir qu'ils fonctionneront correctement si vous en avez besoin.
+Vous pouvez modifier la planification d'un plan de réplication pour tester la conformité et vous assurer que les tests de basculement se terminent avec succès.
 
 * *Impact sur le temps de conformité* : Lorsqu'un plan de réplication est créé, le service crée un calendrier de conformité par défaut.  Le temps de conformité par défaut est de 30 minutes.  Pour modifier cette heure, vous pouvez utiliser la fonction Modifier la planification dans le plan de réplication.
 * *Test d'impact du basculement* : Vous pouvez tester un processus de basculement à la demande ou selon une planification.  Cela vous permet de tester le basculement des machines virtuelles vers une destination spécifiée dans un plan de réplication.

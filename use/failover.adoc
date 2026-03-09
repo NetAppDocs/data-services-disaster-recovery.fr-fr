@@ -36,7 +36,7 @@ Cette procédure rompt la relation de réplication, place les machines virtuelle
 
 Avant de démarrer le basculement, vous pouvez tester le processus.  Le test ne met pas les machines virtuelles hors ligne.
 
-Lors d'un test de basculement, la reprise après sinistre crée temporairement des machines virtuelles. Risaster Recovery mappe un datastore temporaire soutenant le volume FlexClone sur les hôtes ESXi.
+Lors d'un test de basculement, la reprise après sinistre crée temporairement des machines virtuelles. La reprise après sinistre mappe un datastore temporaire servant de support au volume FlexClone aux hôtes ESXi.
 
 Ce processus ne consomme pas de capacité physique supplémentaire sur le stockage ONTAP sur site ou sur le stockage FSx pour NetApp ONTAP dans AWS. Le volume source d'origine n'est pas modifié et les tâches de réplication peuvent se poursuivre même pendant une reprise après sinistre.
 

@@ -12,7 +12,7 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 
 
 [role="lead"]
-Après avoir ajouté des sites vCenter, vous pouvez créer des groupes de ressources pour protéger les machines virtuelles par machine virtuelle ou par banque de données en tant qu'unité unique.  Les groupes de ressources vous permettent d'organiser un ensemble de machines virtuelles dépendantes en groupes logiques qui répondent à vos besoins.  Par exemple, vous pouvez regrouper les machines virtuelles associées à une application ou regrouper les applications ayant des niveaux similaires.  À titre d’exemple, les groupes peuvent contenir des ordres de démarrage différés qui peuvent être exécutés lors de la récupération.
+Après avoir ajouté des sites vCenter, vous pouvez créer des groupes de ressources pour regrouper des groupes de machines virtuelles ou de banques de données en une seule unité. Les groupes de ressources vous permettent d'organiser un ensemble de machines virtuelles dépendantes en groupes logiques répondant à vos besoins. Par exemple, vous pouvez regrouper des machines virtuelles associées à une application ou regrouper des applications ayant des niveaux similaires. Autre exemple, les groupes peuvent contenir des ordres de démarrage différé pouvant être exécutés lors de la récupération.
 
 *Rôle de NetApp Console requis* Rôle d'administrateur d'organisation, d'administrateur de dossier ou de projet, d'administrateur de reprise après sinistre ou d'administrateur d'application de reprise après sinistre.
 
@@ -32,7 +32,7 @@ Vous pouvez créer des groupes de ressources à l’aide des méthodes suivantes
 TIP: Chaque groupe de ressources peut inclure une ou plusieurs machines virtuelles ou banques de données.  Les machines virtuelles s’allumeront en fonction de la séquence dans laquelle vous les incluez dans le plan de réplication.  Vous pouvez modifier l'ordre en faisant glisser les machines virtuelles ou les banques de données vers le haut ou vers le bas de la liste des groupes de ressources.
 
 .À propos des groupes de ressources
-Les groupes de ressources vous permettent de combiner des machines virtuelles ou des banques de données en une seule unité.
+Les groupes de ressources vous permettent de combiner des VMs ou des datastores en une seule unité.
 
 Par exemple, une application de point de vente peut utiliser plusieurs machines virtuelles pour les bases de données, la logique métier et les vitrines.  Vous pouvez gérer toutes ces machines virtuelles avec un seul groupe de ressources.  Configurez des groupes de ressources pour appliquer les règles du plan de réplication pour l’ordre de démarrage des machines virtuelles, la connexion réseau et la récupération de toutes les machines virtuelles nécessaires à l’application.
 
