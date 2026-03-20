@@ -72,7 +72,7 @@ Un assistant vous guide à travers ces étapes :
 * Revoyez le plan.
 
 
-Lorsque vous créez le plan, vous devez suivre ces directives :
+Lorsque vous créez le plan, suivez ces directives :
 
 * Utilisez les mêmes informations d’identification pour toutes les machines virtuelles du plan.
 * Utilisez le même script pour toutes les machines virtuelles du plan.
@@ -86,14 +86,13 @@ Lorsque vous créez le plan, vous devez suivre ces directives :
 Tout d’abord, vous sélectionnez le vCenter source, puis sélectionnez le vCenter de destination.
 
 .Étapes
-. Connectez-vous à la https://console.netapp.com/["NetApp Console"^] .
 . Dans la navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
-. Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication* et sélectionnez *Ajouter*.  Ou, si vous commencez tout juste à utiliser le service, depuis le tableau de bord, sélectionnez *Ajouter un plan de réplication*.
+. Dans le menu NetApp Disaster Recovery, sélectionnez *Replication plans* puis sélectionnez *Add*. Si c'est la première fois que vous créez un plan de réplication, depuis le Dashboard, sélectionnez *Add replication plan*.
+. Saisissez un nom pour le plan de réplication.
+. Sous *Source vCenter*, sélectionnez le vCenter où se trouvent les données dans le menu déroulant. Sous *Cible vCenter*, sélectionnez le vCenter vers lequel répliquer les données dans le menu déroulant.
 +
-image:dr-plan-create-name2.png["Capture d'écran montrant la page Ajouter un plan de réplication > Ajouter un plan"]
+image:dr-plan-create-name2.png["Capture d'écran montrant la page du serveur vCenter"]
 
-. Créez un nom pour le plan de réplication.
-. Sélectionnez les vCenters source et cible dans les listes vCenter source et cible.
 . Sélectionnez *Suivant*.
 
 
@@ -103,19 +102,17 @@ image:dr-plan-create-name2.png["Capture d'écran montrant la page Ajouter un pla
 
 L’étape suivante consiste à regrouper les machines virtuelles ou les banques de données requises dans des groupes de ressources fonctionnels.  Les groupes de ressources vous permettent de protéger un ensemble de machines virtuelles ou de banques de données avec un instantané commun.
 
-Lorsque vous sélectionnez des applications dans le plan de réplication, vous pouvez voir le système d’exploitation de chaque machine virtuelle ou banque de données dans le plan.  Cela est utile pour décider comment regrouper les machines virtuelles ou les banques de données dans un groupe de ressources.
-
 
 TIP: Chaque groupe de ressources peut inclure une ou plusieurs machines virtuelles ou banques de données.
 
 Lorsque vous créez des groupes de ressources, tenez compte des points suivants :
 
 * Avant d’ajouter des banques de données à des groupes de ressources, démarrez d’abord une découverte manuelle ou une découverte planifiée des machines virtuelles.  Cela garantit que les machines virtuelles sont découvertes et répertoriées dans le groupe de ressources.  Si vous ne déclenchez pas de découverte manuelle, les machines virtuelles risquent de ne pas être répertoriées dans le groupe de ressources.
-* Assurez-vous qu’il existe au moins une machine virtuelle dans le magasin de données.  S'il n'y a pas de machines virtuelles dans le magasin de données, le magasin de données ne sera pas découvert.
+* Assurez-vous qu'au moins une machine virtuelle est présente dans la banque de données. S'il n'y a aucune machine virtuelle dans la banque de données, la banque de données ne sera pas détectée.
 * Un seul magasin de données ne doit pas héberger de machines virtuelles protégées par plusieurs plans de réplication.
-* N'hébergez pas de machines virtuelles protégées et non protégées sur le même magasin de données.  Si des machines virtuelles protégées et non protégées sont hébergées sur le même magasin de données, les problèmes suivants peuvent survenir :
+* N’hébergez pas de machines virtuelles protégées et non protégées sur le même datastore. Si des machines virtuelles protégées et non protégées sont hébergées sur le même datastore, vous pouvez rencontrer les problèmes suivants :
 +
-** Étant donné que NetApp Disaster Recovery utilise SnapMirror et que le système réplique l'intégralité des volumes ONTAP , la capacité utilisée de ce volume est utilisée pour les considérations de licence.  Dans ce cas, l’espace de volume consommé par les machines virtuelles protégées et non protégées serait inclus dans ce calcul.
+** La capacité utilisée de ce volume peut contribuer au calcul de la licence car Disaster Recovery utilise SnapMirror, ce qui signifie que le système réplique des volumes ONTAP entiers. Dans ce cas, l’espace de volume consommé par les machines virtuelles protégées et non protégées serait inclus dans ce calcul.
 ** Si le groupe de ressources et ses banques de données associées doivent être basculés vers le site de reprise après sinistre, toutes les machines virtuelles non protégées (machines virtuelles ne faisant pas partie du groupe de ressources, mais hébergées sur le volume ONTAP ) n'existeront plus sur le site source à partir du processus de basculement, ce qui entraînera l'échec des machines virtuelles non protégées sur le site source.  De plus, NetApp Disaster Recovery ne démarrera pas ces machines virtuelles non protégées sur le site vCenter de basculement.
 
 
@@ -126,32 +123,20 @@ Lorsque vous créez des groupes de ressources, tenez compte des points suivants�
 TIP: Créez un ensemble de mappages dédié et distinct pour vos tests de basculement afin d'empêcher que les machines virtuelles soient connectées aux réseaux de production en utilisant les mêmes adresses IP.
 
 .Étapes
-. Sélectionnez *Machines virtuelles* ou *Magasins de données*.
-. Recherchez éventuellement une machine virtuelle ou un magasin de données spécifique par nom.
-. Sur le côté gauche de la page Applications, sélectionnez les machines virtuelles ou les banques de données que vous souhaitez protéger et affecter au groupe sélectionné.
+. Si vous avez des groupes de ressources existants, sélectionnez **Resource groups**, choisissez le groupe de ressources puis **Next**.
 +
-Le vCenter source doit résider sur le vCenter local. Le vCenter cible peut être un deuxième vCenter sur site, situé sur le même site ou sur un site distant, ou un centre de données défini par logiciel (SDDC) basé sur le cloud, tel que VMware Cloud on AWS. Les deux vCenters devraient déjà avoir été ajoutés à votre environnement de travail de reprise après sinistre.
+Si vous n'avez pas de groupes de ressources existants ou si vous devez ajouter des ressources à un groupe, sélectionnez *Machines virtuelles* ou *Banques de données*.
 
-+
-La ressource sélectionnée est automatiquement ajoutée au groupe 1 et un nouveau groupe 2 est démarré.  Chaque fois que vous ajoutez une ressource au dernier groupe, un autre groupe est ajouté.
-
+. Sélectionnez les machines virtuelles ou les banques de données que vous souhaitez ajouter au plan de réplication dans la liste générée automatiquement. Pour les machines virtuelles, vous pouvez filtrer par banque de données. Lorsque vous sélectionnez une banque de données ou une machine virtuelle, elle est automatiquement ajoutée à un groupe de ressources.
 +
 image:dr-plan-create-apps-vms6.png["Capture d'écran montrant la page Ajouter un plan de réplication > Applications à répliquer"]
 
+. Sur la moitié droite de la page, examinez les machines virtuelles ou les datastores sélectionnés.
 +
-Ou, pour les magasins de données :
-
+** Pour supprimer une VM ou une banque de données, survolez le nom de la source de données, puis sélectionnez *X*.
+** Pour organiser les ressources en plusieurs groupes de ressources, sélectionnez *Cliquez pour ajouter un autre groupe de ressources*. Après avoir ajouté le groupe de ressources, vous pouvez glisser-déposer des ressources entre les groupes. Sélectionnez l'icône en forme de crayon* pour modifier le nom du groupe de ressources.
 +
 image:dr-plan-create-apps-datastores.png["Capture d'écran montrant la page Ajouter un plan de réplication > Applications à répliquer"]
-
-. Vous pouvez également effectuer l’une des opérations suivantes :
-+
-** Pour modifier le nom du groupe, cliquez sur le groupe *Modifier*image:icon-pencil.png["Icône en forme de crayon"] icône.
-** Pour supprimer une ressource d’un groupe, sélectionnez *X* à côté de la ressource.
-** Pour déplacer une ressource vers un autre groupe, faites-la glisser et déposez-la dans le nouveau groupe.
-+
-
-TIP: Pour déplacer une banque de données vers un autre groupe de ressources, désélectionnez la banque de données indésirable et soumettez le plan de réplication.  Ensuite, créez ou modifiez l’autre plan de réplication et resélectionnez le magasin de données.
 
 
 
@@ -186,7 +171,7 @@ image:dr-plan-resource-mapping2.png["Plan de réplication, onglet Mappage des re
 
 
 
-=== Ressources cartographiques > Section Ressources de calcul
+==== Section des ressources de calcul
 
 La section Ressources de calcul définit où les machines virtuelles seront restaurées après un basculement.  Mappez le centre de données et le cluster vCenter source vers un centre de données et un cluster cibles.
 
@@ -199,6 +184,7 @@ Sélectionnez la flèche vers le bas à côté de *Ressources de calcul*.
 * *Centres de données source et cible*
 * *Groupe cible*
 * *Hôte cible* (facultatif) : après avoir sélectionné le cluster, vous pouvez définir ces informations.
+* *Dossier* (facultatif)
 
 
 
@@ -206,7 +192,7 @@ TIP: Si un vCenter dispose d'un planificateur de ressources distribuées (DRS) c
 
 
 
-=== Ressources cartographiques > Section Réseaux virtuels
+==== Réseaux virtuels
 
 Les machines virtuelles utilisent des cartes réseau virtuelles connectées à des réseaux virtuels. Dans le processus de basculement, le service connecte ces cartes réseau virtuelles à des réseaux virtuels définis dans l'environnement VMware de destination. Pour chaque réseau virtuel source utilisé par les machines virtuelles du groupe de ressources, le service requiert une attribution de réseau virtuel de destination.
 
@@ -219,7 +205,7 @@ Sélectionnez le mappage réseau vers le LAN virtuel approprié.  Les réseaux l
 
 
 
-=== Ressources cartographiques > section machines virtuelles
+==== Machines virtuelles
 
 Vous pouvez configurer chaque machine virtuelle du groupe de ressources protégé par le plan de réplication en fonction de l'environnement virtuel vCenter de destination en définissant l'une des options suivantes :
 
@@ -243,6 +229,9 @@ NOTE: Si vous modifiez les paramètres sur « Différent de la source », vous
 Cette section peut afficher des champs différents en fonction de votre sélection.
 
 Vous pouvez augmenter ou diminuer le nombre de processeurs virtuels attribués à chaque machine virtuelle basculée.  Cependant, chaque machine virtuelle nécessite au moins un processeur virtuel.  Vous pouvez modifier le nombre de processeurs virtuels et de DRAM virtuelle attribués à chaque machine virtuelle.  La raison la plus courante pour laquelle vous souhaiterez peut-être modifier les paramètres par défaut du processeur virtuel et de la DRAM virtuelle est si les nœuds du cluster vCenter cible ne disposent pas d'autant de ressources disponibles que le cluster vCenter source.
+
+
+NOTE: Activez les paramètres avancés pour ajouter les paramètres *Scripts* et *cohérent au niveau des applications*.
 
 *Paramètres réseau* Disaster Recovery prend en charge un vaste ensemble d'options de configuration pour les réseaux de machines virtuelles.  Leur modification peut être nécessaire si le site cible dispose de réseaux virtuels qui utilisent des paramètres TCP/IP différents de ceux des réseaux virtuels de production sur le site source.
 
@@ -288,13 +277,10 @@ Décochez cette case pour ignorer l'arborescence des dossiers d'origine.
 +
 Vous pouvez utiliser la méthode alternative de définition du dossier de la machine virtuelle cible dans la section Ressources de calcul.
 
-* *Source VM CPU et RAM* : Sous les détails des machines virtuelles, vous pouvez éventuellement redimensionner les paramètres VM CPU et RAM.
+* *Processeur* et *Mémoire (Go)* : Dans les détails des machines virtuelles, vous pouvez éventuellement redimensionner le processeur et la mémoire de la machine virtuelle.
 +
 
 NOTE: Vous pouvez configurer la DRAM en gigaoctets (Gio) ou en mégaoctets (Mio).  Bien que chaque machine virtuelle nécessite au moins un Mio de RAM, la quantité réelle doit garantir que le système d'exploitation invité de la machine virtuelle et toutes les applications en cours d'exécution peuvent fonctionner efficacement.
-
-+
-image:dr-plan-resource-mapping-vm-boot-order.png["Capture d'écran montrant Ajouter un plan de réplication > Mappage des ressources > machines virtuelles"]
 
 * *Ordre de démarrage* : vous pouvez modifier l’ordre de démarrage après un basculement pour toutes les machines virtuelles sélectionnées dans les groupes de ressources.  Par défaut, toutes les machines virtuelles démarrent ensemble en parallèle ; toutefois, vous pouvez apporter des modifications à ce stade.  Cela est utile pour garantir que toutes vos machines virtuelles de priorité 1 sont en cours d'exécution avant le démarrage des machines virtuelles de priorité suivantes.
 +
@@ -306,19 +292,13 @@ La reprise après sinistre démarre en parallèle toutes les machines virtuelles
 
 
 * *Délai de démarrage* : ajustez le délai en minutes de l'action de démarrage, indiquant la durée pendant laquelle la machine virtuelle attendra avant de démarrer le processus de mise sous tension.  Entrez une valeur comprise entre 0 et 10 minutes.
+* *Cohérent au niveau des applications* : Indiquez s'il faut créer des copies d'instantané cohérentes au niveau des applications. Le service mettra l'application en veille, puis prendra un instantané pour obtenir un état cohérent de l'application. Cette fonctionnalité est prise en charge avec Oracle exécuté sous Windows et Linux et SQL Server exécuté sous Windows. Voir plus de détails ci-dessous.
 +
-
-TIP: Pour réinitialiser l'ordre de démarrage aux valeurs par défaut, sélectionnez *Réinitialiser les paramètres de la machine virtuelle aux valeurs par défaut*, puis choisissez les paramètres que vous souhaitez rétablir aux valeurs par défaut.
-
-* *Créer des répliques cohérentes avec l'application* : indiquez s'il faut créer des copies instantanées cohérentes avec l'application.  Le service mettra l'application en veille, puis prendra un instantané pour obtenir un état cohérent de l'application.  Cette fonctionnalité est prise en charge avec Oracle exécuté sur Windows et Linux et SQL Server exécuté sur Windows.  Voir plus de détails ensuite.
-* *Utiliser Windows LAPS* : si vous utilisez la solution de mot de passe administrateur local Windows (Windows LAPS), cochez cette case.  Cette option n'est disponible que si vous avez sélectionné l'option *IP statique*.  Lorsque vous cochez cette case, vous n’avez pas besoin de fournir un mot de passe pour chacune de vos machines virtuelles.  Au lieu de cela, vous fournissez les détails du contrôleur de domaine.
-+
-Si vous n’utilisez pas Windows LAPS, la machine virtuelle est une machine virtuelle Windows et l’option d’informations d’identification sur la ligne de la machine virtuelle est activée.  Vous pouvez fournir les informations d’identification de la machine virtuelle.
-
-+
-image:dr-plan-resource-mapping-vm-boot-order.png["Capture d'écran montrant Ajouter un plan de réplication > Mappage des ressources > machines virtuelles"]
+Vous devez activer le bouton *Paramètres avancés* pour cette option. Si vous activez la cohérence au niveau des applications, vous devez fournir des identifiants sous la forme d'un nom d'utilisateur et d'un mot de passe.
 
 
+
+image:dr-plan-resource-mapping-vm-boot-order.png["Capture d'écran montrant la section des machines virtuelles des mappages de ressources"]
 
 
 
@@ -363,7 +343,7 @@ Pour activer les répliques cohérentes avec les applications des machines virtu
 
 
 
-=== Ressources cartographiques > Section Magasins de données
+==== Section Datastores
 
 Les banques de données VMware sont hébergées sur des volumes ONTAP FlexVol ou des LUN ONTAP iSCSI ou FC à l'aide de VMware VMFS.  Utilisez la section Banques de données pour définir le cluster ONTAP cible, la machine virtuelle de stockage (SVM) et le volume ou LUN pour répliquer les données sur disque vers la destination.
 
@@ -380,9 +360,9 @@ Lorsque cette option est sélectionnée, NetApp Disaster Recovery ne configure p
 +
 Une fois cette configuration effectuée, le service ne prend aucun instantané planifié régulièrement, mais s'appuie plutôt sur l'entité externe pour prendre et mettre à jour ces instantanés.
 
-* *Heure de début* : saisissez la date et l'heure auxquelles vous souhaitez que les sauvegardes et la conservation commencent à s'exécuter.
-* *Intervalle d'exécution* : saisissez l'intervalle de temps en heures et minutes.  Par exemple, si vous entrez 1 heure, le service prendra un instantané toutes les heures.
-* *Nombre de rétention* : saisissez le nombre d'instantanés que vous souhaitez conserver.
+* *Heure de début des sauvegardes et de la conservation* : Saisissez la date et l’heure auxquelles vous souhaitez que les sauvegardes et la conservation commencent à s’exécuter.
+* *Fréquence des sauvegardes et de leur conservation* : Indiquez l’intervalle de temps en heures et minutes. Par exemple, si vous indiquez 1 heure, le service prendra un snapshot chaque heure.
+* *Retention count for all datastores* : Saisissez le nombre de snapshots que vous souhaitez conserver.
 +
 
 TIP: Le nombre d'instantanés conservés ainsi que le taux de modification des données entre chaque instantané déterminent la quantité d'espace de stockage consommée sur la source et la destination.  Plus vous conservez d'instantanés, plus l'espace de stockage consommé est important.
@@ -399,17 +379,7 @@ NOTE: Si vous souhaitez créer une relation SnapMirror dans ce service, le clust
 ** Pendant le basculement, vous pouvez sélectionner n’importe quel instantané.  Si vous sélectionnez le dernier instantané, le service crée une sauvegarde à la demande, met à jour la destination et utilise cet instantané pour le basculement.
 
 
-* *LIF NFS préféré* et *Politique d'exportation* : en règle générale, laissez le service sélectionner le LIF NFS préféré et la politique d'exportation.  Si vous souhaitez utiliser une politique NFS LIF ou d’exportation spécifique, sélectionnez la flèche vers le bas à côté de chaque champ et sélectionnez l’option appropriée.
-+
-Vous pouvez éventuellement utiliser des interfaces de données spécifiques (LIF) pour un volume après un événement de basculement.  Ceci est utile pour équilibrer le trafic de données si le SVM cible possède plusieurs LIF.
 
-+
-Pour un contrôle supplémentaire sur la sécurité d'accès aux données NAS, le service peut attribuer des politiques d'exportation NAS spécifiques à différents volumes de banque de données.  Les politiques d’exportation définissent les règles de contrôle d’accès pour les clients NFS qui accèdent aux volumes de la banque de données.  Si vous ne spécifiez pas de politique d’exportation, le service utilise la politique d’exportation par défaut pour le SVM.
-
-
-
-
-TIP: Il est recommandé de créer une politique d'exportation dédiée qui limite l'accès au volume aux seuls hôtes vCenter ESXi source et de destination qui hébergeront les machines virtuelles protégées. Cela garantit que les entités externes ne peuvent pas accéder à l'exportation NFS.
 
 
 
