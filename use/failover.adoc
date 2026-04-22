@@ -108,7 +108,7 @@ TIP: Une fois le basculement démarré, vous pouvez voir les machines virtuelles
 .Étapes
 . Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
 . Sélectionnez le plan de réplication.
-. Sur la droite, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] et sélectionnez *Fail over*.
+. À droite, sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"], survolez *Récupérer* puis sélectionnez *Basculement*.
 +
 image:dr-plan-failover3.png["Page de basculement"]
 

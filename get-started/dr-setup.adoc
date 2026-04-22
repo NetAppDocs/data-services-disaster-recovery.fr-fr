@@ -12,15 +12,21 @@ summary: Pour utiliser NetApp Disaster Recovery, effectuez quelques étapes pour
 
 
 [role="lead"]
-Pour utiliser NetApp Disaster Recovery, effectuez quelques étapes pour le configurer à la fois dans Amazon Web Services (AWS) et dans la NetApp Console.
+Pour utiliser NetApp Disaster Recovery, effectuez quelques étapes pour la configurer à la fois dans la NetApp Console et dans l'environnement de reprise après sinistre pris en charge.
 
 
 TIP: Revoirlink:../get-started/dr-prerequisites.html["prérequis"] pour vous assurer que votre système est prêt.
 
+
+
+== Infrastructures prises en charge
+
 Vous pouvez utiliser NetApp Disaster Recovery dans les infrastructures suivantes :
 
-* DR cloud hybride qui réplique un centre de données VMware plus ONTAP sur site vers une infrastructure DR AWS basée sur VMware Cloud on AWS et Amazon FSx for NetApp ONTAP.
+* Reprise après sinistre dans le cloud hybride qui réplique un centre de données VMware plus ONTAP sur site vers une infrastructure de reprise après sinistre AWS basée sur VMware Cloud on AWS ou Elastic VMware Service (EVS) et Amazon FSx for NetApp ONTAP.
 * Cloud privé DR qui réplique un VMware plus ONTAP vCenter sur site vers un autre VMware plus ONTAP vCenter sur site.
+* Reprise après sinistre dans le cloud qui réplique une infrastructure de reprise après sinistre AWS basée sur VMware Cloud on AWS ou EVS vers une autre infrastructure de reprise après sinistre basée sur AWS utilisant FSx pour NetApp ONTAP.
+* Reprise après sinistre dans le cloud hybride qui réplique un centre de données VMware plus ONTAP sur site vers une infrastructure de reprise après sinistre Google basée sur Google Cloud VMware Engine et Google Cloud NetApp Volumes.
 
 
 
@@ -29,7 +35,7 @@ Vous pouvez utiliser NetApp Disaster Recovery dans les infrastructures suivantes
 
 Cette méthode consiste en une infrastructure vCenter de production sur site utilisant des banques de données hébergées sur des volumes ONTAP FlexVol à l’aide d’un protocole NFS.  Le site DR se compose d'une ou plusieurs instances VMware Cloud SDDC utilisant des banques de données hébergées sur des volumes FlexVol fournis par une ou plusieurs instances FSx for ONTAP à l'aide d'un protocole NFS.
 
-Les sites de production et de reprise après sinistre sont reliés par une connexion sécurisée compatible AWS.  Les types de connexion courants sont un VPN sécurisé (privé ou fourni par AWS), AWS Direct Connect ou d'autres méthodes d'interconnexion approuvées.
+Les sites de production et de reprise après sinistre sont reliés par une connexion sécurisée compatible avec AWS. Les types de connexion courants incluent un VPN sécurisé (privé ou fourni par AWS), AWS Direct Connect ou d'autres méthodes d'interconnexion approuvées.
 
 Pour la reprise après sinistre impliquant l’infrastructure cloud AWS, vous devez utiliser l’agent de console pour AWS.  L'agent doit être installé dans le même VPC que l'instance FSx for ONTAP .  Si des instances FSx for ONTAP supplémentaires ont été déployées dans d'autres VPC, le VPC hébergeant l'agent doit avoir accès aux autres VPC.
 
@@ -51,9 +57,9 @@ AWS prend en charge le déploiement de solutions dans une ou plusieurs zones de 
 
 AWS fournit les méthodes suivantes pour connecter des centres de données privés au cloud AWS.  Chaque solution a ses avantages et ses coûts.
 
-* *AWS Direct Connect* : il s’agit d’une interconnexion cloud AWS située dans la même zone géographique que votre centre de données privé et fournie par un partenaire AWS.  Cette solution fournit une connexion sécurisée et privée entre votre centre de données local et le cloud AWS sans avoir besoin d'une connexion Internet publique.  Il s'agit de la méthode de connexion la plus directe et la plus efficace proposée par AWS.
+* *AWS Direct Connect* : Il s’agit d’une interconnexion avec le cloud AWS située dans la même zone géographique que votre centre de données privé et fournie par un partenaire AWS. Cette solution offre une connexion sécurisée et privée entre votre centre de données local et le cloud AWS sans nécessiter de connexion Internet publique. C’est la méthode de connexion la plus directe et la plus efficace proposée par AWS.
 * *AWS Internet Gateway* : cela fournit une connectivité publique entre les ressources cloud AWS et les ressources de calcul externes.  Ce type de connexion est généralement utilisé pour fournir des offres de services à des clients externes, tels que le service HTTP/HTTPS où la sécurité n'est pas une exigence.  Il n’y a aucun contrôle de qualité de service, de sécurité ou de garantie de connectivité.  Pour cette raison, cette méthode de connexion n'est pas recommandée pour connecter un centre de données de production au cloud.
-* *AWS Site-Site VPN* : Cette connexion de réseau privé virtuel peut être utilisée pour fournir des connexions d'accès sécurisées avec un fournisseur de services Internet public.  Le VPN crypte et décrypte toutes les données circulant vers et depuis le cloud AWS.  Les VPN peuvent être basés sur des logiciels ou du matériel.  Pour les applications d'entreprise, le fournisseur d'accès Internet public (FAI) doit offrir des garanties de qualité de service pour garantir qu'une bande passante et une latence adéquates sont fournies pour la réplication DR.
+* *VPN site à site AWS* : Cette connexion de réseau privé virtuel peut être utilisée pour fournir des connexions d'accès sécurisées ainsi qu'un service de fournisseur d'accès Internet public. Le VPN chiffre et déchiffre toutes les données transitant vers et depuis le cloud AWS. Les VPN peuvent être basés sur des logiciels ou du matériel. Pour les applications d’entreprise, le fournisseur d’accès Internet (ISP) doit offrir des garanties de qualité de service afin d’assurer une bande passante et une latence adéquates pour la réplication DR.
 
 
 *MEILLEURE PRATIQUE* : Pour la configuration du site AWS DR, NetApp recommande d'utiliser AWS Direct Connect.  Cette solution offre les meilleures performances et sécurité pour les applications d'entreprise.  Si ce n'est pas disponible, une connexion FAI publique haute performance ainsi qu'un VPN doivent être utilisés.  Assurez-vous que le FAI propose des niveaux de service QoS commerciaux pour garantir des performances réseau adéquates.

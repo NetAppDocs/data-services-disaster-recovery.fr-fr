@@ -16,6 +16,26 @@ Découvrez les nouveautés en matière de NetApp Disaster Recovery.
 
 
 
+== 13 avril 2026
+
+Version 4.3.2
+
+
+
+=== La prise en charge de Google Cloud VMware Engine (GCVE) est désormais généralement disponible (GA)
+
+NetApp Disaster Recovery pour GCVE est désormais disponible en disponibilité générale (GA). Avec la prise en charge GA, Disaster Recovery pour GCVE prend désormais en charge :
+
+* *Instantanés gérés par la plateforme :* Gérez les sauvegardes et les politiques de rétention de manière transparente via ONTAP ou Google Cloud Platform (GCP).
+* *Plusieurs banques de données par plan de réplication :* Simplifiez vos plans de reprise après sinistre en consolidant plusieurs banques de données dans une seule stratégie de réplication.
+* *Forcer le basculement en cas d'indisponibilité du site source :* Basculer vers un site de reprise après sinistre si la source est indisponible.
+* *Différer la resynchronisation SnapMirror et restaurer la réplication à la demande :* Différez les resynchronisations SnapMirror pour éviter tout impact sur les charges de travail de production pendant les périodes de pointe grâce à l’option « skip protect », puis restaurez la réplication à la demande ultérieurement avec l’option « re-protect ».
+
+
+Pour plus d'informations sur la prise en charge de GCVE, découvrez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/release-notes/dr-limitations.html["Configurations prises en charge pour NetApp Disaster Recovery"^].
+
+
+
 == 09 mars 2026
 
 Version 4.3.1
