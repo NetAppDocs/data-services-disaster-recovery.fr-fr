@@ -2,7 +2,9 @@
 section: reference
 title: Référence
 entries:
-- title: Privilèges vCenter requis pour la reprise après sinistre
+- title: Autorisations ONTAP requises
+  url: "/reference/ontap-permissions.html"
+- title: Privilèges requis vCenter
   url: "/reference/vcenter-privileges.html"
 - title: Agents de la console de commutation
   url: "/reference/switch-console-agent.html"
