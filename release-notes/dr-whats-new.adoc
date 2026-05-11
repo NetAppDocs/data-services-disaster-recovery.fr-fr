@@ -16,7 +16,7 @@ Découvrez les nouveautés en matière de NetApp Disaster Recovery.
 
 
 
-== 15 mai 2026
+== 11 mai 2026
 
 Version 4.3.3
 
