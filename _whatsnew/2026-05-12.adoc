@@ -15,4 +15,4 @@ Principales caractéristiques de la prise en charge des charges de travail basé
 * **Orchestration simplifiée** : La reprise après sinistre offre des flux de travail intuitifs pour automatiser la sauvegarde et la réplication des charges de travail Kubernetes, en tirant parti de la même technologie efficace SnapMirror utilisée pour les environnements VMware.
 
 
-La prise en charge des charges de travail basées sur Kubernetes est actuellement en préversion. Pour commencer à protéger les charges de travail basées sur Kubernetes, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/task-kubernetes-requirements.html["Exigences de Kubernetes pour NetApp Disaster Recovery"^].
+La prise en charge des charges de travail basées sur Kubernetes est actuellement en préversion. Pour commencer à protéger les charges de travail basées sur Kubernetes, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/task-kubernetes-requirements.html["Exigences de Kubernetes pour NetApp Disaster Recovery"^].
