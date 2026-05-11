@@ -5,7 +5,13 @@ entries:
 - title: En savoir plus sur la NetApp Disaster Recovery
   url: "/get-started/dr-intro.html"
 - title: Prérequis
-  url: "/get-started/dr-prerequisites.html"
+  entries:
+  - title: Configuration système requise
+    url: "/get-started/dr-prerequisites.html"
+  - title: Prérequis VMware
+    url: "/get-started/reference-vmware-prerequisites.html"
+  - title: Prérequis de Kubernetes
+    url: "/get-started/task-kubernetes-requirements.html"
 - title: Démarrage rapide
   url: "/get-started/dr-quick-start.html"
 - title: Configurez votre infrastructure pour la NetApp Disaster Recovery

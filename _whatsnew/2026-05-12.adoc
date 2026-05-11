@@ -1,0 +1,18 @@
+= Prise en charge des charges de travail basées sur Kubernetes (aperçu)
+:allow-uri-read: 
+
+
+
+
+=== Prise en charge des charges de travail basées sur Kubernetes (aperçu)
+
+NetApp Disaster Recovery inclut désormais la prise en charge des charges de travail basées sur Kubernetes. Avec la prise en charge de Kubernetes, vous pouvez protéger les applications exécutées sur des clusters Kubernetes, y compris les environnements de virtualisation OpenShift. Disaster Recovery prend en charge link:https://docs.netapp.com/us-en/trident/trident-protect/trident-protect-requirements.html["toute version de Kubernetes actuellement prise en charge par Trident Protect"^], assurant une intégration transparente et des capacités de reprise après sinistre robustes pour les applications conteneurisées.
+
+Principales caractéristiques de la prise en charge des charges de travail basées sur Kubernetes :
+
+* **Large compatibilité** : La reprise après sinistre prend en charge toutes les versions de Kubernetes compatibles avec Trident Protect, y compris Red Hat OpenShift Virtualization.
+* **Protection centrée sur l'application** : Vous pouvez désormais protéger les charges de travail Kubernetes au niveau de l'application, garantissant ainsi la reprise des services critiques lors des basculements.
+* **Orchestration simplifiée** : La reprise après sinistre offre des flux de travail intuitifs pour automatiser la sauvegarde et la réplication des charges de travail Kubernetes, en tirant parti de la même technologie efficace SnapMirror utilisée pour les environnements VMware.
+
+
+La prise en charge des charges de travail basées sur Kubernetes est actuellement en préversion. Pour commencer à protéger les charges de travail basées sur Kubernetes, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/task-kubernetes-requirements.html["Exigences de Kubernetes pour NetApp Disaster Recovery"^].

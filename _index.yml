@@ -1,18 +1,17 @@
 ---
 indexpage:
   title: Documentation sur la NetApp Disaster Recovery
-  summary: Avec NetApp Disaster Recovery pour VMware, vous pouvez répliquer vos charges
-    de travail VMware sur site exécutant le stockage ONTAP vers un centre de données
-    défini par logiciel VMware dans un cloud public en tant que site de reprise après
-    sinistre à l'aide du stockage cloud NetApp .
+  summary: Avec NetApp Disaster Recovery, vous pouvez répliquer vos charges de travail
+    VMware sur site exécutant le stockage ONTAP vers un centre de données VMware défini
+    par logiciel dans un cloud public en tant que site de reprise après sinistre utilisant
+    le stockage cloud NetApp.
   keywords: disaster, disaster recovery, bluexp, replicate, replication, cloud storage
-  lead: La reprise après sinistre dans le cloud est un moyen résilient et rentable
-    de protéger les charges de travail contre les pannes de site et les événements
-    de corruption de données (par exemple, les ransomwares).  Avec NetApp Disaster
-    Recovery pour VMware, vous pouvez répliquer vos charges de travail VMware sur
-    site exécutant le stockage ONTAP vers un centre de données défini par logiciel
-    VMware dans un cloud public ou vers un autre site sur site en tant que site de
-    reprise après sinistre.
+  lead: La reprise après sinistre dans le cloud est une solution robuste et économique
+    pour protéger les charges de travail contre les pannes de site et les événements
+    de corruption des données (par exemple, les ransomwares). Avec NetApp Disaster
+    Recovery, vous pouvez répliquer vos charges de travail VMware sur site exécutant
+    un stockage ONTAP vers un centre de données VMware défini par logiciel dans un
+    cloud public ou vers un autre site sur site servant de site de reprise après sinistre.
   tiles:
   - title: Commencer
     links:

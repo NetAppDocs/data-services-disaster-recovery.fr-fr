@@ -34,13 +34,13 @@ Cette procédure rompt la relation de réplication, place les machines virtuelle
 
 == Tester le processus de basculement
 
-Avant de démarrer le basculement, vous pouvez tester le processus.  Le test ne met pas les machines virtuelles hors ligne.
+Avant de lancer le basculement, vous pouvez tester le processus. Ce test ne met pas les machines virtuelles hors ligne.
 
-Lors d'un test de basculement, la reprise après sinistre crée temporairement des machines virtuelles. La reprise après sinistre mappe un datastore temporaire servant de support au volume FlexClone aux hôtes ESXi.
+Lors d'un test de basculement, NetApp Disaster Recovery crée temporairement des machines virtuelles. NetApp Disaster Recovery mappe un datastore temporaire, qui sert de support au volume FlexClone, aux hôtes ESXi.
 
 Ce processus ne consomme pas de capacité physique supplémentaire sur le stockage ONTAP sur site ou sur le stockage FSx pour NetApp ONTAP dans AWS. Le volume source d'origine n'est pas modifié et les tâches de réplication peuvent se poursuivre même pendant une reprise après sinistre.
 
-Une fois le test terminé, vous devez réinitialiser les machines virtuelles avec l'option *Nettoyer le test*.  Bien que cela soit recommandé, ce n’est pas obligatoire.
+Une fois le test terminé, vous devez réinitialiser les machines virtuelles à l'aide de l'option *Nettoyer le test*. Bien que cela soit recommandé, ce n'est pas obligatoire.
 
 Une opération de basculement de test n'a _pas_ d'impact sur les charges de travail de production, la relation SnapMirror utilisée sur le site de test et les charges de travail protégées qui doivent continuer à fonctionner normalement.
 
@@ -49,8 +49,8 @@ Pour un test de basculement, Disaster Recovery effectue les opérations suivante
 * Effectuez des vérifications préalables sur le cluster de destination et la relation SnapMirror .
 * Créez un nouveau volume FlexClone à partir du snapshot sélectionné pour chaque volume ONTAP protégé sur le cluster ONTAP du site cible.
 * Si des banques de données sont VMFS, créez et mappez un iGroup à chaque LUN.
-* Enregistrez les machines virtuelles cibles dans vCenter en tant que nouvelles banques de données.
-* Mettez sous tension les machines virtuelles cibles en fonction de l’ordre de démarrage capturé dans la page Groupes de ressources.
+* Enregistrez les machines virtuelles cibles dans vCenter en tant que nouveaux datastores.
+* Mettez sous tension les machines virtuelles cibles en fonction de l'ordre de démarrage indiqué sur la page Groupes de ressources.
 * Désactivez toutes les applications de base de données prises en charge dans les machines virtuelles indiquées comme « cohérentes avec les applications ».
 * Si les clusters vCenter et ONTAP sources sont toujours actifs, créez une relation SnapMirror en sens inverse pour répliquer toutes les modifications lors de l'état de basculement vers le site source d'origine.
 
@@ -89,24 +89,31 @@ Le processus de basculement implique les opérations suivantes :
 * Disaster Recovery effectue des vérifications préalables sur le cluster de destination et la relation SnapMirror .
 * Si vous avez sélectionné le dernier instantané, la mise à jour de SnapMirror est effectuée pour répliquer les dernières modifications.
 * Les machines virtuelles sources sont hors tension.
-* La relation SnapMirror est rompue et le volume cible est en lecture/écriture.
+* La relation SnapMirror est rompue et le volume cible est rendu accessible en lecture/écriture.
 * En fonction de la sélection de l'instantané, le système de fichiers actif est restauré sur l'instantané spécifié (le plus récent ou sélectionné).
 * Les banques de données sont créées et montées sur le cluster ou l’hôte VMware ou VMC en fonction des informations capturées dans le plan de réplication.  Si des banques de données sont VMFS, créez et mappez un iGroup à chaque LUN.
-* Les machines virtuelles cibles sont enregistrées dans vCenter en tant que nouvelles banques de données.
-* Les machines virtuelles cibles sont mises sous tension en fonction de l’ordre de démarrage capturé dans la page Groupes de ressources.
+* Les machines virtuelles cibles sont enregistrées dans vCenter en tant que nouveaux datastores.
+* Les machines virtuelles cibles sont mises sous tension en fonction de l'ordre de démarrage indiqué sur la page Groupes de ressources.
 * Si le vCenter source est toujours actif, mettez hors tension toutes les machines virtuelles côté source qui sont en cours de basculement.
 * Désactivez toutes les applications de base de données prises en charge dans les machines virtuelles indiquées comme « cohérentes avec les applications ».
 * Si les clusters vCenter et ONTAP sources sont toujours actifs, créez une relation SnapMirror en sens inverse pour répliquer toutes les modifications lors de l'état de basculement vers le site source d'origine.  La relation SnapMirror est inversée de la machine virtuelle cible à la machine virtuelle source.
 
 
 
-NOTE: Pour les plans de réplication basés sur un datastore, si vous avez ajouté et découvert des machines virtuelles mais n'avez pas fourni de détails de mappage, ces machines virtuelles sont incluses dans le basculement. Le basculement échouera et une notification sera affichée dans les tâches. Vous devez fournir les détails de mappage pour que le basculement réussisse.
+TIP: Une fois le basculement amorcé, vous pouvez voir les machines virtuelles récupérées dans le vCenter du site de reprise après sinistre (machines virtuelles, réseaux et banques de données). Par défaut, les machines virtuelles sont restaurées dans le dossier Workload.
 
-
-TIP: Une fois le basculement démarré, vous pouvez voir les machines virtuelles récupérées dans le vCenter du site de reprise après sinistre (machines virtuelles, réseaux et banques de données).  Par défaut, les machines virtuelles sont récupérées dans le dossier Charge de travail.
+[role="tabbed-block"]
+====
+.vCenter
+--
+Pour les plans de réplication basés sur un datastore, si vous avez ajouté et découvert des machines virtuelles mais n'avez pas fourni de détails de mappage, ces machines virtuelles sont incluses dans le basculement. Le basculement échouera et une notification sera affichée dans les tâches. Vous devez fournir les détails de mappage pour que le basculement réussisse.
 
 .Étapes
 . Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
+. Dans le menu déroulant, filtrez sur les plans de réplication *vCenter*.
++
+image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]
+
 . Sélectionnez le plan de réplication.
 . À droite, sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"], survolez *Récupérer* puis sélectionnez *Basculement*.
 +
@@ -116,8 +123,8 @@ image:dr-plan-failover3.png["Page de basculement"]
 +
 Un instantané de la source actuelle sera pris et répliqué vers la destination actuelle avant que le basculement ne se produise.
 
-. Vous pouvez également sélectionner *Forcer le basculement* si vous souhaitez que le basculement se produise même si une erreur est détectée qui empêcherait normalement le basculement de se produire.
-. Vous pouvez également sélectionner *Ignorer la protection* si vous souhaitez que le service ne crée pas automatiquement une relation de protection SnapMirror inversée après un basculement de plan de réplication.  Cela est utile si vous souhaitez effectuer des opérations supplémentaires sur le site restauré avant de le remettre en ligne dans NetApp Disaster Recovery.
+. Sélectionnez *Forcer le basculement* si vous souhaitez que le basculement se produise même si une erreur est détectée qui empêcherait normalement le basculement de se produire.
+. Sélectionnez *Ignorer la protection* si vous souhaitez que le service ne crée pas automatiquement une relation de protection inverse SnapMirror après un basculement du plan de réplication. Cette option est utile si vous souhaitez effectuer des opérations supplémentaires sur le site restauré avant de le remettre en ligne dans NetApp Disaster Recovery.
 +
 
 TIP: Vous pouvez établir une protection inverse en sélectionnant *Protéger les ressources* dans le menu Actions du plan de réplication.  Cela tente de créer une relation de réplication inverse pour chaque volume du plan.  Vous pouvez exécuter cette tâche à plusieurs reprises jusqu'à ce que la protection soit restaurée.  Une fois la protection restaurée, vous pouvez lancer une restauration automatique de la manière habituelle.
@@ -126,3 +133,22 @@ TIP: Vous pouvez établir une protection inverse en sélectionnant *Protéger le
 . Sélectionnez *Fail over*.
 . Pour vérifier la progression, dans le menu, sélectionnez *Suivi des tâches*.
 
+
+--
+.Kubernetes
+--
+. Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
+. Dans le menu déroulant, filtrez sur les plans de réplication *Kubernetes*.
++
+image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]
+
+. Sélectionnez le plan de réplication.
+. À droite, sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"], survolez *Récupérer* puis sélectionnez *Basculement*.
+. Choisissez la copie instantanée que vous souhaitez utiliser pour le basculement. Vous pouvez *Créer un instantané maintenant* pour créer un tout nouvel instantané qui sera copié sur le cluster de destination ou *Utiliser le dernier instantané* pour utiliser l’instantané le plus récent disponible sur le cluster de destination.
+. Saisissez « Basculement » pour confirmer l'action, puis sélectionnez *Basculement*.
+
+
+Vous pouvez suivre l'état de la tâche dans *Suivi des tâches* ou *Plans de réplication*.
+
+--
+====

@@ -7,7 +7,7 @@ entries:
 - title: Consultez l'état de vos plans de reprise après sinistre sur le tableau de
     bord
   url: "/use/dashboard-view.html"
-- title: Ajouter des vCenters à un site
+- title: Ajouter des ressources à un site
   url: "/use/sites-add.html"
 - title: Créer un groupe de ressources
   url: "/use/resource-group.html"

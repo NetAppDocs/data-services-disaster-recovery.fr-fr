@@ -42,11 +42,40 @@ Si vous utilisez une protection basée sur un datastore, les machines virtuelles
 
 == Étapes
 
-. Dans la navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
+[role="tabbed-block"]
+====
+.vCenter
+--
+.Étapes
 . Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
-. Sélectionnez le plan de réplication.
-. Sur la droite, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] et sélectionnez *Retour en arrière*.
-. Saisissez le nom du plan de réplication pour démarrer le basculement.
-. Choisissez l’instantané du magasin de données à partir duquel effectuer la récupération. La valeur par défaut est la plus récente.
-. Pour suivre l'avancement de la tâche, sélectionnez *Suivi des tâches* dans le menu Reprise après sinistre.
+. Dans le menu déroulant, définissez le filtre sur les plans de réplication *vCenter*.
++
+image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]
 
+. Identifiez le plan de réplication que vous souhaitez effectuer un retour arrière. Sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"], survolez *Récupérer* puis sélectionnez *Retour arrière*.
+. Choisissez l'instantané de la banque de données à partir duquel effectuer la restauration. Sélectionnez *Créer un instantané maintenant* pour lancer un nouvel instantané ou *Sélectionner* pour choisir parmi les instantanés disponibles.
++
+image:failback.png["Capture d'écran de la boîte de dialogue de restauration"]
+
+. Saisissez « Failback » pour confirmer l'opération, puis sélectionnez *Failback*.
+
+
+Pour suivre l'avancement de la tâche, sélectionnez *Suivi des tâches* dans le menu Reprise après sinistre.
+
+--
+.Kubernetes
+--
+. Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
+. Dans le menu déroulant, filtrez sur les plans de réplication *Kubernetes*.
++
+image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]
+
+. Identifiez le plan de réplication que vous souhaitez effectuer un retour arrière. Sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"], survolez *Récupérer* puis sélectionnez *Retour arrière*.
+. Choisissez l'instantané de la banque de données à partir duquel effectuer la restauration. Sélectionnez *Prendre un instantané maintenant* pour lancer un nouvel instantané ou *Utiliser le dernier instantané* pour utiliser l'instantané le plus récent et réussi.
+. Saisissez « Failback » pour confirmer l'opération, puis sélectionnez *Failback*.
+
+
+Pour suivre l'avancement de la tâche, sélectionnez *Suivi des tâches* dans le menu Reprise après sinistre.
+
+--
+====

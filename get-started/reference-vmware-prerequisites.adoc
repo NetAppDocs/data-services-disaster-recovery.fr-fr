@@ -1,0 +1,42 @@
+---
+sidebar: sidebar 
+permalink: get-started/reference-vmware-prerequisites.html 
+keywords: vmware cluster prerequisites, vmware 
+summary: 'Avant d"utiliser NetApp Disaster Recovery, assurez-vous que votre environnement répond aux exigences du cluster VMware vCenter.' 
+---
+= Prérequis des clusters VMware vCenter pour NetApp Disaster Recovery
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/get-started/
+
+
+[role="lead"]
+Avant d'utiliser NetApp Disaster Recovery, assurez-vous que votre environnement répond aux exigences du cluster VMware vCenter.
+
+
+
+== Prérequis généraux
+
+Ces conditions préalables s’appliquent à la fois aux clusters vCenter sur site et au centre de données défini par logiciel (SDDC) VMware Cloud for AWS.
+
+* Revoirlink:../reference/vcenter-privileges.html["privilèges vCenter"] requis pour la NetApp Disaster Recovery.
+* Tous les clusters VMware que vous souhaitez que NetApp Disaster Recovery gère utilisent les volumes ONTAP pour héberger toutes les machines virtuelles que vous souhaitez protéger.
+* Toutes les banques de données VMware à gérer par NetApp Disaster Recovery doivent utiliser l'un des protocoles suivants :
++
+** NFS
+** VMFS utilisant le protocole iSCSI ou FC
+
+
+* VMware vSphere version 7.0 Update 3 (7.0v3) ou ultérieure
+
+
+
+
+== Prérequis VMware Cloud SDDC
+
+Si vous utilisez VMware Cloud SDDC, les prérequis supplémentaires suivants s'appliquent :
+
+* Dans la console VMware Cloud, utilisez les rôles de service Administrateur et Administrateur NSX Cloud.  Utilisez également le propriétaire de l’organisation pour le rôle Organisation. Se référer à https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/vmware-cloud-ontap.html["Utilisation de VMware Cloud Foundations avec la documentation AWS FSx pour NetApp ONTAP"^] .
+* Liez le SDDC VMware Cloud à l’instance Amazon FSx for NetApp ONTAP . Se référer à https://vmc.techzone.vmware.com/fsx-guide#overview["Informations sur le déploiement de l'intégration de VMware Cloud sur AWS avec Amazon FSx for NetApp ONTAP"^] .
+
