@@ -48,7 +48,7 @@ Si vous utilisez une protection basée sur un datastore, les machines virtuelles
 --
 .Étapes
 . Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
-. Dans le menu déroulant, définissez le filtre sur les plans de réplication *vCenter*.
+. Dans le menu déroulant, définissez le filtre sur *VMware*.
 +
 image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]
 
@@ -71,7 +71,7 @@ Pour suivre l'avancement de la tâche, sélectionnez *Suivi des tâches* dans le
 image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]
 
 . Identifiez le plan de réplication que vous souhaitez effectuer un retour arrière. Sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"], survolez *Récupérer* puis sélectionnez *Retour arrière*.
-. Choisissez l'instantané de la banque de données à partir duquel effectuer la restauration. Sélectionnez *Prendre un instantané maintenant* pour lancer un nouvel instantané ou *Utiliser le dernier instantané* pour utiliser l'instantané le plus récent et réussi.
+. Choisissez l'instantané du cluster à partir duquel effectuer la restauration. Sélectionnez *Créer un instantané maintenant* pour lancer un nouvel instantané ou *Utiliser le dernier instantané* pour utiliser l'instantané le plus récent et réussi.
 . Saisissez « Failback » pour confirmer l'opération, puis sélectionnez *Failback*.
 
 

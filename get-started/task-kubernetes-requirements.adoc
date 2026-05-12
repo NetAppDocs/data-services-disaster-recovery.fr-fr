@@ -181,18 +181,18 @@ Vous pouvez éventuellement désigner la classe d'instantané de volume comme cl
 
 | API de capture d'instantanés | `kubectl get volumesnapshotclass` | Des CRD existent ; liste le pilote Trident 
 |===
-Après avoir vérifié l'état de toutes les ressources, déployez ou link:https://docs.netapp.com/us-en/trident/trident-protect/trident-protect-migrate-apps.html#migrate-applications-from-one-storage-class-to-another-storage-class["migrer"^] vos charges de travail à l'aide de votre Trident StorageClass. Lorsque vous link:../use/sites-add.adoc["ajouter des clusters Kubernetes à un site"] le faites, NetApp Disaster Recovery fournit des instructions pour installer Trident Protect sur un cluster et l'enregistrer auprès de votre environnement NetApp Disaster Recovery.
+Après avoir vérifié l'état de toutes les ressources, déployez ou link:https://docs.netapp.com/us-en/trident/trident-protect/trident-protect-migrate-apps.html#migrate-applications-from-one-storage-class-to-another-storage-class["migrer"^] vos charges de travail à l'aide de votre Trident StorageClass. Lorsque vous link:../use/sites-add.html["ajouter des clusters Kubernetes à un site"] le faites, NetApp Disaster Recovery fournit des instructions pour installer Trident Protect sur un cluster et l'enregistrer auprès de votre environnement NetApp Disaster Recovery.
 
 .Consultez les instructions pour installer Trident Protect.
 [%collapsible]
 ====
-. Créer un espace de noms protégé Trident :
+. Créer un espace de noms de protection Trident :
 +
 `kubectl create namespace trident-protect`
 
 . Créez un secret Kubernetes en utilisant l'ID client et le secret client pour créer les paramètres d'authentification OCCM.
 +
-`kubectl create secret generic occmauthcreds --namespace=trident-protect --from-literal=client_id=<clidentID> --from-literal=<clientSecret>`
+`kubectl create secret generic occmauthcreds --namespace=trident-protect --from-literal=client_id=<clientID> --from-literal=<clientSecret>`
 
 . Ajouter ou mettre à jour le dépôt Helm :
 +
@@ -209,5 +209,5 @@ Après avoir vérifié l'état de toutes les ressources, déployez ou link:https
 == Plus d'informations
 
 * link:https://docs.netapp.com/us-en/trident/trident-protect/learn-about-trident-protect.html["Découvrez Trident Protect"^]
-* link:../use/sites-add.adoc["Ajouter un site dans la reprise après sinistre"]
+* link:../use/sites-add.html["Ajouter un site dans la reprise après sinistre"]
 

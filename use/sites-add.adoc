@@ -17,8 +17,6 @@ Avant de pouvoir créer un plan de reprise d'activité, vous devez ajouter des s
 
 TIP: Assurez-vous que la source et la destination utilisent le même agent NetApp Console.
 
-Une fois les vCenter ajoutés, NetApp Disaster Recovery effectue une découverte approfondie des environnements vCenter, notamment les clusters vCenter, les hôtes ESXi, les banques de données, l'empreinte de stockage, les détails des machines virtuelles, les répliques SnapMirror et les réseaux de machines virtuelles.
-
 *Rôle de NetApp Console requis* Administrateur d'organisation, administrateur de dossier ou de projet ou administrateur de reprise après sinistre.
 
 link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"]. https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
@@ -31,7 +29,7 @@ Lors de l'ajout d'un site à Disaster Recovery, vous devez distinguer selon le t
 
 .Étapes
 . Dans la section Disaster Recovery, sélectionnez **Sites** dans la barre latérale.
-. Dans le menu déroulant, sélectionnez le type de site : **vCenter** ou **Kubernetes**.
+. Dans le menu déroulant, sélectionnez le type de site : **VMware** ou **Kubernetes**.
 +
 image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]
 
@@ -84,7 +82,7 @@ NOTE: Le service prend en charge les certificats de sécurité auto-signés ou l
 
 .Étapes
 . Dans la section Disaster Recovery, sélectionnez **Sites** dans la barre latérale.
-. Dans le menu déroulant, définissez le filtre sur *Kubernetes*.
+. Dans le menu déroulant, définissez le filtre sur *VMware*.
 +
 image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]
 
@@ -126,6 +124,8 @@ image:sites-list2.png["Capture d'écran de la page Sites"]
 
 
 
+
+Une fois les vCenter ajoutés, NetApp Disaster Recovery effectue une découverte approfondie des environnements vCenter, notamment les clusters vCenter, les hôtes ESXi, les banques de données, l'empreinte de stockage, les détails des machines virtuelles, les répliques SnapMirror et les réseaux de machines virtuelles.
 
 --
 .Kubernetes

@@ -145,6 +145,7 @@ image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de
 . Sélectionnez le plan de réplication.
 . À droite, sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"], survolez *Récupérer* puis sélectionnez *Basculement*.
 . Choisissez la copie instantanée que vous souhaitez utiliser pour le basculement. Vous pouvez *Créer un instantané maintenant* pour créer un tout nouvel instantané qui sera copié sur le cluster de destination ou *Utiliser le dernier instantané* pour utiliser l’instantané le plus récent disponible sur le cluster de destination.
+. Sélectionnez *Ignorer la protection* si vous souhaitez que le service ne crée pas automatiquement une relation de protection inverse SnapMirror après un basculement du plan de réplication. Cette option est utile si vous souhaitez effectuer des opérations supplémentaires sur le site restauré avant de le remettre en ligne dans NetApp Disaster Recovery.
 . Saisissez « Basculement » pour confirmer l'action, puis sélectionnez *Basculement*.
 
 

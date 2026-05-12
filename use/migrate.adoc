@@ -17,6 +17,9 @@ summary: À l’aide de NetApp Disaster Recovery, vous pouvez migrer les applica
 
 TIP: Une fois le plan de réplication créé, la récurrence identifiée dans l'assistant et la migration lancée, NetApp Disaster Recovery vérifie toutes les 30 minutes que la migration se déroule réellement conformément au plan. Vous pouvez suivre la progression dans la page Job Monitor.
 
+
+NOTE: La migration n'est actuellement pas prise en charge pour les charges de travail basées sur Kubernetes.
+
 .Avant de commencer
 Avant de lancer la migration, vous devez avoir créé un plan de réplication et choisi de migrer les applications.  Ensuite, l’option *Migrer* apparaît dans le menu Actions.
 
@@ -25,5 +28,7 @@ Avant de lancer la migration, vous devez avoir créé un plan de réplication et
 . Dans la navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
 . Dans le menu, sélectionnez *Plans de réplication*.
 . Sélectionnez le plan de réplication.
-. Sur la droite, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] et sélectionnez *Migrer*.
+. À droite, sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"], survolez *Récupérer* puis sélectionnez *Migrer*.
+. Dans la boîte de dialogue, choisissez *Prendre un instantané maintenant* pour créer un nouvel instantané pour la migration ou *Sélectionner* pour choisir un instantané existant pour la migration.
+. Saisissez « Migrate » dans la zone de texte pour confirmer l'opération, puis sélectionnez *Migrate*.
 

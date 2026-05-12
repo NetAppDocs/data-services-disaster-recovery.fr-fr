@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: use/resource-group.html 
 keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter, replication plan, protection, disaster, recovery, virtual machines, vm 
-summary: NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les flux de travail de reprise après sinistre. Une fois les sites vCenter ajoutés, vous êtes prêt à créer un plan de reprise après sinistre ou de réplication. 
+summary: 'Les groupes de ressources vous permettent d"organiser un ensemble de ressources dépendantes en groupes logiques répondant à vos besoins.' 
 ---
 = Créer un groupe de ressources pour organiser les machines virtuelles ensemble dans NetApp Disaster Recovery
 :hardbreaks:
@@ -12,7 +12,7 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 
 
 [role="lead"]
-Une fois les sites de ressources ajoutés, vous pouvez créer des groupes de ressources pour regrouper des machines virtuelles, des banques de données ou des clusters Kubernetes en une seule unité. Les groupes de ressources vous permettent d'organiser un ensemble de ressources dépendantes en groupes logiques répondant à vos besoins. Par exemple, vous pouvez regrouper les machines virtuelles associées à une même application ou regrouper des applications ayant des niveaux similaires. Autre exemple : les groupes peuvent contenir des ordres de démarrage différé qui peuvent être exécutés lors d'une reprise.
+Une fois que vous avez ajouté des ressources aux sites, vous pouvez créer des groupes de ressources pour organiser les machines virtuelles, les banques de données ou les clusters Kubernetes comme une seule unité. Les groupes de ressources vous permettent d'organiser un ensemble de ressources dépendantes en groupes logiques répondant à vos besoins. Par exemple, vous pouvez regrouper les machines virtuelles associées à une application ou regrouper des applications ayant des niveaux similaires. Autre exemple, les groupes peuvent contenir des ordres de démarrage différé qui peuvent être exécutés lors de la reprise.
 
 *Rôle de NetApp Console requis* Rôle d'administrateur d'organisation, d'administrateur de dossier ou de projet, d'administrateur de reprise après sinistre ou d'administrateur d'application de reprise après sinistre.
 
@@ -25,7 +25,7 @@ Vous pouvez regrouper les machines virtuelles elles-mêmes ou les machines virtu
 Vous pouvez créer des groupes de ressources à l’aide des méthodes suivantes :
 
 * À partir de l'option Groupes de ressources
-* Lors de la création d'un plan de reprise après sinistre ou de réplication. Si vous avez de nombreuses machines virtuelles hébergées par un cluster vCenter source, il peut être plus simple de créer les groupes de ressources pendant la création du plan de réplication. Pour obtenir des instructions sur la création de groupes de ressources lors de la création d'un plan de réplication, consultez link:drplan-create.html["Créer un plan de réplication"].
+* Lors de la création d'un plan de reprise après sinistre ou de réplication. Si vous avez de nombreuses machines virtuelles hébergées par un cluster vCenter source, il peut être plus simple de créer les groupes de ressources lors de la création du plan de réplication. Pour obtenir des instructions sur la création de groupes de ressources lors de la création d'un plan de réplication, consultez link:drplan-create.html["Créer un plan de réplication"].
 
 
 
@@ -82,7 +82,7 @@ Lorsque vous créez des groupes de ressources, tenez compte des points suivants�
 --
 .Étapes
 . Dans la section Disaster Recovery, sélectionnez **Groupes de ressources** dans la barre latérale.
-. Dans le menu déroulant, filtrez par groupes de ressources *vCenter*.
+. Dans le menu déroulant, filtrez par *VMware*.
 +
 image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]
 
@@ -108,18 +108,22 @@ image:dr-resource-groups-datastores-add.png["Capture d'écran montrant la page A
 --
 .Étapes
 . Dans la section Disaster Recovery, sélectionnez **Groupes de ressources** dans la barre latérale.
-. Dans le menu déroulant, filtrez par sites *Kubernetes*.
+. Dans le menu déroulant, filtrez par *Kubernetes*.
 +
 image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]
 
 . Sélectionnez *Ajouter*.
 . Saisissez un **nom** pour le groupe de ressources et sélectionnez le **cluster** Kubernetes dans le menu déroulant.
 . Sélectionnez les *espaces de noms* à ajouter au groupe de ressources.
+. Classifiez les *types de ressources*. Par défaut, la sélection est « Tout inclure », ce qui désigne plusieurs types de ressources
 . Vous pouvez éventuellement inclure des *sélecteurs d'étiquettes*.
 +
-image:kubernetes-resource-group.png["Ajouter un groupe de ressources Kubernetes"]
+image:kubernetes-resource-group.png["Capture d'écran de l'ajout d'un groupe de ressources Kubernetes"]
 
 . Vous pouvez également sélectionner *+ Ressources à portée de cluster* pour ajouter des ressources qui ne sont pas limitées à un espace de noms. Si vous choisissez cette option, sélectionnez le *Groupe*, la *Version*, le *Type* et ajoutez éventuellement des sélecteurs d'étiquettes. Sélectionnez **Ajouter une ressource**.
++
+image:kubernetes-cluster-scoped.png["Capture d'écran de l'ajout de ressources Kubernetes à portée de cluster"]
+
 . Sélectionnez **Ajouter**.
 
 

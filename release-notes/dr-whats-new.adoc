@@ -149,7 +149,7 @@ Le service de reprise après sinistre envoie désormais des notifications par e-
 
 === Améliorations de Swagger
 
-Vous pouvez désormais accéder à la documentation Swagger directement depuis le système de reprise après sinistre. Dans la section Reprise après sinistre, sélectionnez **Paramètres** puis **Documentation API** pour accéder à Swagger, ou consultez cette URL en mode navigation privée/incognito de votre navigateur : link:https://snapcenter.cloudmanager.cloud.netapp.com/api/api-doc/draas["https://snapcenter.cloudmanager.cloud.netapp.com/api/api-doc/draas"^].
+Vous pouvez désormais accéder à la documentation Swagger directement depuis Disaster Recovery. Dans Disaster Recovery, sélectionnez **Paramètres** puis **Documentation API**. Vous devez être en mode privé ou navigation privée pour accéder à link:https://api.bluexp.netapp.com/v1/services/draas/api/api-doc/draas["le lien"^].
 
 
 

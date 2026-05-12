@@ -12,9 +12,7 @@ summary: La reprise après sinistre dans le cloud est une solution robuste et é
 
 
 [role="lead"]
-La reprise après sinistre dans le cloud est une solution résiliente et économique pour protéger les charges de travail contre les pannes de site et les événements de corruption des données. Avec NetApp Disaster Recovery, vous pouvez répliquer vos charges de travail VMware VM ou datastore sur site exécutant un stockage ONTAP vers un centre de données VMware défini par logiciel dans un cloud public en utilisant le stockage cloud NetApp ou vers un autre environnement VMware sur site avec stockage ONTAP en tant que site de reprise après sinistre. Vous pouvez également utiliser Disaster Recovery pour migrer des charges de travail de machines virtuelles d’un site à un autre.
-
-NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les workflows de reprise après sinistre. Avec NetApp Disaster Recovery, vous pouvez protéger vos clusters Kubernetes sur site, vos charges de travail basées sur NFS et les datastores VMware vSphere système de fichiers de machines virtuelles (VMFS) pour iSCSI et FC utilisant le stockage NetApp vers l'une des options suivantes :
+La reprise après sinistre dans le cloud est une solution résiliente et économique pour protéger les charges de travail contre les pannes de site et les événements de corruption des données. NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les workflows de reprise après sinistre. Avec NetApp Disaster Recovery, vous pouvez protéger vos clusters Kubernetes sur site, vos charges de travail basées sur NFS et les datastores VMware vSphere système de fichiers de machines virtuelles (VMFS) pour iSCSI et FC utilisant le stockage NetApp vers l'une des options suivantes :
 
 * Amazon Elastic VMware Service (EVS) avec Amazon FSx for NetApp ONTAP Pour plus de détails, reportez-vous àlink:../reference/evs-deploy-guide-introduction.html["Présentation de NetApp Disaster Recovery à l'aide d'Amazon Elastic VMware Service et Amazon FSx for NetApp ONTAP"] .
 * VMware Cloud (VMC) sur AWS avec Amazon FSx for NetApp ONTAP
@@ -134,7 +132,7 @@ En cas de sinistre, ce service vous aide à récupérer des machines virtuelles 
 
 *Composants de la reprise après sinistre*
 
-La reprise après sinistre utilise les composants suivants pour assurer les charges de travail de reprise après sinistre :
+La reprise après sinistre utilise les composants suivants :
 
 * * NetApp Console* : L'interface utilisateur pour la gestion de vos plans de reprise après sinistre.  Vous pouvez utiliser la NetApp Console pour créer et gérer des plans de réplication, des groupes de ressources et des opérations de basculement dans vos environnements locaux et cloud.
 * *Agent de console* : un composant logiciel léger qui s'exécute sur votre réseau hébergé dans le cloud ou dans votre environnement VMware sur site.  Il communique avec la NetApp Console et gère la réplication des données entre votre environnement sur site et le site de reprise après sinistre.  L'agent de console est installé sur une machine virtuelle dans votre environnement VMware.
