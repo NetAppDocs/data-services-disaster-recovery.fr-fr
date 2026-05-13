@@ -140,6 +140,9 @@ Pour obtenir la liste des privilèges vCenter nécessaires, reportez-vous àlink
 
 
 
+TIP: Pour utiliser la reprise après sinistre avec Amazon Elastic VMware Service (EVS), consultez le link:../reference/evs-deploy-guide-config-prereqs.html["prérequis supplémentaires et instructions de configuration"^].
+
+
 
 === Créer l'agent de la NetApp Console
 
