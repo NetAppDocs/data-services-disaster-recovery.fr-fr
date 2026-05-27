@@ -17,9 +17,7 @@ Avant de pouvoir créer un plan de reprise d'activité, vous devez ajouter des s
 
 TIP: Assurez-vous que la source et la destination utilisent le même agent NetApp Console.
 
-*Rôle de NetApp Console requis* Administrateur d'organisation, administrateur de dossier ou de projet ou administrateur de reprise après sinistre.
-
-link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"]. https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
+*Rôle NetApp Console requis* Le Super admin ou l'administrateur de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"]. https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
 
 

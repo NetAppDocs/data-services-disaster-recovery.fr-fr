@@ -14,7 +14,7 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 [role="lead"]
 Une fois que vous avez ajouté des ressources et des sites, vous êtes prêt à créer un _plan de réplication_. Les plans de réplication gèrent la protection des données. La création de la réplication implique de désigner les sites source et de destination, de sélectionner les groupes de ressources et de choisir comment les applications doivent être restaurées et mises sous tension. Par exemple, vous pouvez regrouper des machines virtuelles (VM) associées à une application ou regrouper des applications ayant des niveaux similaires.
 
-*Rôle de NetApp Console requis* Administrateur d'organisation, Administrateur de dossier ou de projet, Administrateur de reprise après sinistre, Administrateur de basculement de reprise après sinistre ou Administrateur d'application de reprise après sinistre.
+*Rôle NetApp Console requis* Rôle Super admin, Disaster recovery admin, Disaster recovery failover admin ou Disaster recovery application admin.
 
 link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"]. https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
