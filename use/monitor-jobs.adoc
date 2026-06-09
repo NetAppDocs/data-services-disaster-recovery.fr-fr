@@ -18,9 +18,7 @@ Vous pouvez surveiller toutes les tâches de NetApp Disaster Recovery et déterm
 
 == Voir les offres d'emploi
 
-*Rôle requis dans la NetApp Console* Super administrateur, administrateur de reprise après sinistre, administrateur d'application de reprise après sinistre ou rôle de visionneur de reprise après sinistre.
-
-link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"]. https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
+*Rôle requis de la NetApp Console* Le rôle de super administrateur, d’administrateur de reprise après sinistre, d’administrateur d’application de reprise après sinistre ou de visionneur de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
 .Étapes
 . Connectez-vous à la https://console.netapp.com/["NetApp Console"^] .
@@ -35,11 +33,9 @@ link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-re
 
 == Annuler un travail
 
-Si une tâche est en cours ou dans un état en file d'attente et que vous ne souhaitez pas qu'elle continue, vous pouvez l'annuler.  Vous souhaiterez peut-être annuler une tâche si elle est bloquée dans le même état et que vous souhaitez libérer l'opération suivante dans la file d'attente.  Vous souhaiterez peut-être annuler une tâche avant qu'elle n'expire.
+Vous pouvez annuler une tâche en cours ou en attente si elle est bloquée ou pour donner la priorité à une opération en attente.
 
-*Rôle NetApp Console requis* Rôle Super admin, Disaster recovery admin, Disaster recovery failover admin ou Disaster recovery application admin.
-
-link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"]. https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
+*Rôle requis de la console NetApp* Le rôle de super administrateur, d'administrateur de reprise après sinistre, d'administrateur de basculement de reprise après sinistre ou d'administrateur d'application de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
 .Étapes
 . Dans la barre de navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.

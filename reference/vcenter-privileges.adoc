@@ -30,6 +30,15 @@ Le tableau suivant répertorie tous les privilèges requis pour que la reprise a
 | Datastore.Rename | Renommer le datastore | Permet de renommer un datastore. 
 
 
+.2+| Hôte | Host.Config.AdvancedConfig | Paramètres avancés | Permet de définir des options avancées de configuration de l'hôte. 
+
+
+| Host.Config.Stockage | Configuration de la partition de stockage | Permet la numérisation des nouveaux périphériques de stockage et la gestion de l’iSCSI. 
+
+
+| Ressource | Resource.AssignVMToPool | Pools de ressources | Permet l'affectation de machines virtuelles à un pool de ressources 
+
+
 .3+| Dossier | Folder.Create | Créer un dossier | Autorise la création d'un nouveau dossier. 
 
 
@@ -45,7 +54,16 @@ Le tableau suivant répertorie tous les privilèges requis pour que la reprise a
 | Network.Config | Configurer | Permet de configurer un réseau. 
 
 
-.9+| Configuration de la machine virtuelle | VirtualMachine.Config.AdvancedConfig | Configuration avancée | Permet d'ajouter ou de modifier des paramètres avancés dans le fichier de configuration de la VM. 
+.12+| Configuration de la machine virtuelle | VirtualMachine.Config.AdvancedConfig | Configuration avancée | Permet d'ajouter ou de modifier des paramètres avancés dans le fichier de configuration de la VM. 
+
+
+| VirtualMachine.Config.AddExistingDisk | Ajouter un disque existant | Permet d'ajouter un disque virtuel existant à une VM. 
+
+
+| VirtualMachine.Config.AddNewDisk | Ajouter un nouveau disque | Permet de créer un nouveau disque virtuel à ajouter à une machine virtuelle. 
+
+
+| VirtualMachine.Config.RemoveDisk | Retirer le disque | Permet la suppression d'un périphérique de disque virtuel. 
 
 
 | VirtualMachine.Config.Settings | Modifier les paramètres | Permet de modifier les paramètres généraux de la machine virtuelle. 

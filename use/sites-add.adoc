@@ -17,7 +17,7 @@ Avant de pouvoir créer un plan de reprise d'activité, vous devez ajouter des s
 
 TIP: Assurez-vous que la source et la destination utilisent le même agent NetApp Console.
 
-*Rôle NetApp Console requis* Le Super admin ou l'administrateur de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"]. https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
+*Rôle requis de NetApp Console* Le rôle de super administrateur ou d'administrateur de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
 
 
@@ -129,7 +129,7 @@ Une fois les vCenter ajoutés, NetApp Disaster Recovery effectue une découverte
 .Kubernetes
 --
 . Dans la section Disaster Recovery, sélectionnez **Sites** dans la barre latérale.
-. Dans le menu déroulant, définissez le filtre sur *Kubernetes*.
+. Dans le menu déroulant de la charge de travail, définissez le filtre sur *Kubernetes*.
 +
 image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]
 
@@ -245,6 +245,8 @@ Si vous ne souhaitez pas planifier la découverte, vous pouvez désactiver l'opt
 . Dans le menu NetApp Disaster Recovery , sélectionnez *Sites*.
 . Sélectionnez le site que vous souhaitez modifier.
 . Sélectionnez les actionsimage:icon-vertical-dots.png["Icône Actions"] icône sur la droite et sélectionnez *Modifier*.
+. Dans la fenêtre Paramètres, modifiez les champs selon vos besoins.
+. Pour personnaliser la planification de la découverte, cochez la case *Activer la découverte planifiée*. Sélectionnez la date de début de la découverte et l’intervalle de découverte en heures et minutes.
 . Dans la page Modifier le serveur vCenter, modifiez les champs selon vos besoins.
 . Pour personnaliser le calendrier de découverte, cochez la case *Activer la découverte planifiée* et sélectionnez l'intervalle de date et d'heure souhaité.
 +

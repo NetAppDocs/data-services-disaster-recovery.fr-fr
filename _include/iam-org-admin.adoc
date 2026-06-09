@@ -1,0 +1,5 @@
+= 
+:allow-uri-read: 
+
+
+*Rôle requis de NetApp Console* Le rôle d'administrateur d'organisation, d'administrateur de dossier ou de projet, ou d'administrateur de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].

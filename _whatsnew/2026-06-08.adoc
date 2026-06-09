@@ -1,0 +1,61 @@
+= Mises à jour Kubernetes
+:allow-uri-read: 
+
+
+
+
+=== Mises à jour Kubernetes
+
+La reprise après sinistre a introduit les modifications suivantes pour les charges de travail basées sur Kubernetes :
+
+
+
+==== Testez la prise en charge du basculement pour les charges de travail Kubernetes
+
+La solution de reprise après sinistre prend désormais en charge le test du basculement pour les charges de travail Kubernetes. Le test du basculement vous permet de valider les plans de reprise après sinistre. Lorsque vous terminez le test, vous pouvez nettoyer le basculement de test afin que le système nettoie automatiquement les ressources de test pour réduire la charge et garantir la cohérence de votre environnement.
+
+Pour plus d'informations, voir link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/failover.html#test-the-failover-process["Tester le processus de basculement"^].
+
+
+
+==== Basculements de tests planifiés
+
+Vous pouvez désormais automatiser les tests de reprise après sinistre en planifiant des basculements de test. Vous pouvez définir des calendriers de basculements de test récurrents afin de valider en continu les plans de reprise sans intervention manuelle, ce qui contribue à maintenir la confiance dans les objectifs de reprise et à respecter les exigences de conformité.
+
+Pour plus d'informations, voir link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/manage.html#manage-replication-plans["Gérer les plans de réplication"^].
+
+
+
+==== Découverte planifiée des charges de travail Kubernetes
+
+Grâce à la découverte planifiée, vous pouvez contrôler la fréquence à laquelle Disaster Recovery recherche de nouvelles charges de travail Kubernetes. Vous pouvez configurer les intervalles de découverte pour les aligner avec votre cadence opérationnelle, réduisant la charge système inutile tout en garantissant que les nouvelles charges de travail sont détectées et protégées en temps opportun.
+
+Pour plus d'informations, voir link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/sites-add.html#edit-the-site-and-customize-the-discovery-schedule["Personnaliser le calendrier de découverte"^].
+
+
+
+=== Mises à jour VMware
+
+
+
+==== Protection des datastores vides
+
+La solution de reprise après sinistre permet désormais de configurer la protection des banques de données ne contenant aucune machine virtuelle (VM). Toute VM ajoutée ultérieurement à la banque de données est automatiquement détectée par la solution de reprise après sinistre, moment auquel vous devrez fournir link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/sites-add.html#add-subnet-mapping-for-a-vcenter-site["informations de mappage"^].
+
+Lorsque vous ajoutez une banque de données vide à un plan de protection, vous devez soit la supprimer du plan de protection avant d'effectuer un basculement, soit effectuer un basculement forcé. Pour plus d'informations, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/failover.html["Basculement vers un site distant"^].
+
+
+
+==== Réintégrer les banques de données précédemment exclues dans un plan de protection
+
+Les banques de données précédemment exclues de la protection peuvent désormais y être réintégrées. Cette amélioration offre une plus grande flexibilité lors de la gestion et de la mise à jour de vos configurations de reprise après sinistre au fil du temps.
+
+Pour plus d'informations, voir link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/manage.html["Gérer les sites, les groupes de ressources et les plans de réplication"^].
+
+
+
+==== Basculement plus rapide pour les banques de données basées sur VMFS
+
+La reprise après sinistre a amélioré les performances de basculement des banques de données VMFS. Les opérations de réanalyse de l'adaptateur de bus hôte (HBA) et de montage de la banque de données sont désormais exécutées en parallèle, ce qui réduit les temps de basculement globaux et minimise l'interruption pendant les opérations de récupération.
+
+Pour plus d'informations sur les basculements, voir link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/failover.html["Basculement avec reprise après sinistre"^].

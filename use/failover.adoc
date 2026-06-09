@@ -32,7 +32,7 @@ Cette procédure rompt la relation de réplication, place les machines virtuelle
 
 == Tester le processus de basculement
 
-Avant de lancer le basculement, vous pouvez tester le processus. Ce test ne met pas les machines virtuelles hors ligne.
+Avant de procéder à un basculement en direct, vous pouvez effectuer un test pour vérifier votre préparation. Les charges de travail restent en ligne pendant le processus de test.
 
 Lors d'un test de basculement, NetApp Disaster Recovery crée temporairement des machines virtuelles. NetApp Disaster Recovery mappe un datastore temporaire, qui sert de support au volume FlexClone, aux hôtes ESXi.
 
@@ -59,7 +59,10 @@ Pour un test de basculement, Disaster Recovery effectue les opérations suivante
 . Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
 . Sélectionnez le plan de réplication.
 . Sur la droite, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] et sélectionnez *Tester le basculement*.
-. Dans la page Test de basculement, saisissez « Test de basculement » et sélectionnez *Test de basculement*.
+. Sur la page de test de basculement, choisissez l’instantané pour le test de basculement : sélectionnez **Créer un instantané maintenant** ou **Sélectionner** pour choisir un instantané existant. Si vous choisissez **Sélectionner**, choisissez l’instantané existant.
++
+Saisissez ensuite « Test failover » et sélectionnez *Test fail over*.
+
 . Une fois le test terminé, nettoyez l’environnement de test.
 
 
@@ -105,6 +108,9 @@ TIP: Une fois le basculement amorcé, vous pouvez voir les machines virtuelles r
 .vCenter
 --
 Pour les plans de réplication basés sur un datastore, si vous avez ajouté et découvert des machines virtuelles mais n'avez pas fourni de détails de mappage, ces machines virtuelles sont incluses dans le basculement. Le basculement échouera et une notification sera affichée dans les tâches. Vous devez fournir les détails de mappage pour que le basculement réussisse.
+
+
+IMPORTANT: Si le plan de réplication inclut une banque de données vide, vous devez d'abord supprimer la banque de données vide du plan ou utiliser l'option **Forcer le basculement**, qui ignore les banques de données vides.
 
 .Étapes
 . Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.

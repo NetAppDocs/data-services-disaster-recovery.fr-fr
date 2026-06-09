@@ -31,7 +31,7 @@ link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-re
 
 Vous pouvez modifier le nom du site vCenter et le type de site (sur site ou AWS).
 
-*Rôle de NetApp Console requis* Rôle d'administrateur d'organisation, d'administrateur de dossier ou de projet ou d'administrateur de reprise après sinistre.
+*Rôle requis de NetApp Console* Le rôle d'administrateur d'organisation, d'administrateur de dossier ou de projet, ou d'administrateur de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
 .Étapes
 . Dans le menu, sélectionnez *Sites*.
@@ -45,7 +45,7 @@ Vous pouvez modifier le nom du site vCenter et le type de site (sur site ou AWS)
 
 Vous pouvez créer des groupes de ressources par machines virtuelles ou par banques de données.  Ils peuvent être ajoutés lors de la création du plan de réplication ou ultérieurement.
 
-*Rôle NetApp Console requis* Le rôle Super admin, Disaster recovery admin ou Disaster recovery application admin est requis pour effectuer cette tâche.
+*Rôle requis de la NetApp Console* Le rôle de super administrateur, d’administrateur de reprise après sinistre ou d’administrateur d’application de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
 Vous pouvez créer un groupe de ressources par magasins de données des manières suivantes :
 
@@ -75,7 +75,7 @@ Pour plus de détails sur la création d'un groupe de ressources, reportez-vous 
 
 Vous pouvez désactiver, activer et supprimer les plans de réplication.  Vous pouvez modifier les horaires.
 
-*Rôle NetApp Console requis* Rôle Super admin, Disaster recovery admin, Disaster recovery failover admin ou Disaster recovery application admin.
+*Rôle requis de la console NetApp* Le rôle de super administrateur, d'administrateur de reprise après sinistre, d'administrateur de basculement de reprise après sinistre ou d'administrateur d'application de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
 * Si vous souhaitez suspendre temporairement un plan de réplication, vous pouvez le désactiver et le réactiver ultérieurement.
 * Si vous n’avez plus besoin du plan, vous pouvez le supprimer.
@@ -112,7 +112,7 @@ image:../use/dr-plan-list.png["Liste des plans de réplication"]
 
 La reprise après sinistre supprime automatiquement les instantanés de la source toutes les 24 heures.  Si vous constatez que les instantanés ne sont pas synchronisés entre la source et la destination, vous devez résoudre cette incohérence afin de garantir la cohérence entre les sites.
 
-*Rôle NetApp Console requis* Rôle Super admin, Disaster recovery admin, Disaster recovery failover admin ou Disaster recovery application admin.
+*Rôle requis de la console NetApp* Le rôle de super administrateur, d'administrateur de reprise après sinistre, d'administrateur de basculement de reprise après sinistre ou d'administrateur d'application de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
 .Étapes
 . Dans le menu, sélectionnez *Plans de réplication*.
@@ -130,7 +130,7 @@ image:../use/dr-plan-list.png["Liste des plans de réplication"]
 
 Si vous supprimez un plan de réplication, vous pouvez également supprimer les snapshots principaux et secondaires créés par le plan.
 
-*Rôle NetApp Console requis* Rôle Super admin, Disaster recovery admin, Disaster recovery failover admin ou Disaster recovery application admin.
+*Rôle requis de la console NetApp* Le rôle de super administrateur, d'administrateur de reprise après sinistre, d'administrateur de basculement de reprise après sinistre ou d'administrateur d'application de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
 .Étapes
 . Dans le menu, sélectionnez *Plans de réplication*.
@@ -144,9 +144,9 @@ Si vous supprimez un plan de réplication, vous pouvez également supprimer les 
 
 === Modifier le nombre de rétentions pour les planifications de basculement
 
-Modifier le nombre de données conservées vous permet d'augmenter ou de diminuer le nombre de bases de données enregistrées.
+Modifier le nombre de rétentions vous permet d'augmenter ou de diminuer le nombre de snapshots enregistrés.
 
-*Rôle requis de la console NetApp* Le rôle de super administrateur, d'administrateur de reprise après sinistre, d'administrateur de basculement de reprise après sinistre ou d'administrateur d'application de reprise après sinistre est requis pour effectuer cette tâche.
+*Rôle requis de la console NetApp* Le rôle de super administrateur, d'administrateur de reprise après sinistre, d'administrateur de basculement de reprise après sinistre ou d'administrateur d'application de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
 .Étapes
 . Dans le menu, sélectionnez *Plans de réplication*.
@@ -165,7 +165,7 @@ image:../use/dr-plan-failover-edit.png["Modifier la page des mappages de bascule
 
 Vous pouvez afficher des informations sur le nombre de magasins de données existants sur la source et sur la cible.
 
-*Rôle requis de la NetApp Console* Super administrateur, administrateur de reprise après sinistre, administrateur de basculement de reprise après sinistre, administrateur d'application de reprise après sinistre ou rôle de visualiseur de reprise après sinistre.
+*Rôle requis de la NetApp Console* Le rôle de super administrateur, d'administrateur de reprise après sinistre, d'administrateur de basculement de reprise après sinistre, d'administrateur d'application de reprise après sinistre ou de visualiseur de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
 .Étapes
 . Dans le menu, sélectionnez *Tableau de bord*.
@@ -180,7 +180,7 @@ Vous pouvez afficher des informations sur le nombre de magasins de données exis
 
 Vous pouvez afficher des informations sur le nombre de machines virtuelles existantes sur la source et sur la cible, ainsi que sur le processeur, la mémoire et la capacité disponible.
 
-*Rôle requis de la NetApp Console* Super administrateur, administrateur de reprise après sinistre, administrateur de basculement de reprise après sinistre, administrateur d'application de reprise après sinistre ou rôle de visualiseur de reprise après sinistre.
+*Rôle requis de la NetApp Console* Le rôle de super administrateur, d'administrateur de reprise après sinistre, d'administrateur de basculement de reprise après sinistre, d'administrateur d'application de reprise après sinistre ou de visualiseur de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
 .Étapes
 . Dans le menu, sélectionnez *Tableau de bord*.
