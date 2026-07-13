@@ -4,6 +4,7 @@
 
 
 
+[[support-for-on-premises-to-on-premises-vmware-vmfs-datastores-for-fc]]
 === Prise en charge des banques de données VMware VMFS sur site pour FC
 
 Cette version inclut un aperçu technologique de la prise en charge des machines virtuelles montées sur des banques de données de système de fichiers de machines virtuelles VMware vSphere (VMFS) pour le stockage sur site protégé par FC.  Auparavant, le service fournissait un aperçu technologique prenant en charge les magasins de données VMFS pour iSCSI.
@@ -13,6 +14,7 @@ NOTE: NetApp ne vous facture aucune capacité de charge de travail prévisualis�
 
 
 
+[[job-cancel]]
 === Annulation de travail
 
 Avec cette version, vous pouvez désormais annuler une tâche dans l'interface utilisateur de Job Monitor.

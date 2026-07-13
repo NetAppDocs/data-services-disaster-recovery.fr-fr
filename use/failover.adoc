@@ -30,6 +30,7 @@ Cette procédure rompt la relation de réplication, place les machines virtuelle
 
 
 
+[[test-the-failover-process]]
 == Tester le processus de basculement
 
 Avant de procéder à un basculement en direct, vous pouvez effectuer un test pour vérifier votre préparation. Les charges de travail restent en ligne pendant le processus de test.
@@ -68,6 +69,7 @@ Saisissez ensuite « Test failover » et sélectionnez *Test fail over*.
 
 
 
+[[clean-up-the-test-environment-after-a-failover-test]]
 == Nettoyer l'environnement de test après un test de basculement
 
 Une fois le test de basculement terminé, vous devez nettoyer l’environnement de test.  Ce processus supprime les machines virtuelles temporaires de l’emplacement de test, les FlexClones et les magasins de données temporaires.
@@ -81,6 +83,7 @@ Une fois le test de basculement terminé, vous devez nettoyer l’environnement 
 
 
 
+[[fail-over-the-source-site-to-a-disaster-recovery-site]]
 == Basculer le site source vers un site de reprise après sinistre
 
 En cas de sinistre, basculez à la demande votre site VMware principal sur site vers un autre site VMware sur site ou VMware Cloud sur AWS avec FSx pour NetApp ONTAP.
@@ -108,9 +111,6 @@ TIP: Une fois le basculement amorcé, vous pouvez voir les machines virtuelles r
 .vCenter
 --
 Pour les plans de réplication basés sur un datastore, si vous avez ajouté et découvert des machines virtuelles mais n'avez pas fourni de détails de mappage, ces machines virtuelles sont incluses dans le basculement. Le basculement échouera et une notification sera affichée dans les tâches. Vous devez fournir les détails de mappage pour que le basculement réussisse.
-
-
-IMPORTANT: Si le plan de réplication inclut une banque de données vide, vous devez d'abord supprimer la banque de données vide du plan ou utiliser l'option **Forcer le basculement**, qui ignore les banques de données vides.
 
 .Étapes
 . Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.

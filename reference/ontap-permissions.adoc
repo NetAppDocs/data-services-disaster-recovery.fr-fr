@@ -16,6 +16,7 @@ Lors de l'utilisation de NetApp Disaster Recovery, assurez-vous de disposer des 
 
 
 
+[[minimum-ontap-permissions]]
 == Autorisations minimales ONTAP
 
 Les autorisations ONTAP suivantes sont requises pour la reprise après sinistre :
@@ -107,6 +108,7 @@ Les autorisations ONTAP suivantes sont requises pour la reprise après sinistre�
 |===
 
 
+[[add-permissions-in-ontap]]
 == Ajouter des autorisations dans ONTAP
 
 L'ajout d'autorisations dans ONTAP nécessite la création d'un rôle doté des autorisations requises et l'attribution de ce rôle à un utilisateur. Vous pouvez effectuer cette opération dans ONTAP à l'aide de System Manager ou de l'ONTAP CLI.
@@ -207,6 +209,7 @@ security login create -vserver <SVM> -user-or-group-name <user-name> -applicatio
 ====
 
 
+[[configure-disaster-recovery]]
 == Configurer la reprise après sinistre
 
 Après avoir créé les rôles ONTAP, vous devez link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html#step-3-discover-a-cluster["découvrez le cluster ONTAP dans la Console"^]. Lors de la découverte du cluster, vous aurez besoin de l'adresse IP du cluster ONTAP, du nom de l'utilisateur que vous avez créé et du mot de passe pour cette étape. Pour NetApp Disaster Recovery, vous devez effectuer la découverte à la fois sur le cluster source et sur le cluster de destination.

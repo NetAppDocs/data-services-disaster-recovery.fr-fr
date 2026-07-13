@@ -4,6 +4,7 @@
 
 
 
+[[support-for-on-premises-to-on-premises-vmware-vmfs-datastores]]
 === Prise en charge des banques de données VMware VMFS sur site vers sur site
 
 Cette version inclut la prise en charge des machines virtuelles montées sur des banques de données de système de fichiers de machines virtuelles VMware vSphere (VMFS) pour le stockage sur site protégé par iSCSI et FC.  Auparavant, le service fournissait un aperçu technologique prenant en charge les banques de données VMFS pour iSCSI et FC.

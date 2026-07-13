@@ -4,6 +4,7 @@
 
 
 
+[[intelligent-proxy-support]]
 === Prise en charge de proxy intelligent
 
 L'agent de NetApp Console prend en charge le proxy intelligent.  Le proxy intelligent est un moyen léger, sécurisé et efficace de connecter votre système sur site à NetApp Disaster Recovery.  Il fournit une connexion sécurisée entre votre système et NetApp Disaster Recovery sans nécessiter de VPN ou d'accès Internet direct.  Cette implémentation de proxy optimisée décharge le trafic API au sein du réseau local.
@@ -18,6 +19,7 @@ Pour plus d'informations sur la configuration générale du proxy dans la NetApp
 
 
 
+[[end-the-free-trial-any-time]]
 === Mettre fin à l'essai gratuit à tout moment
 
 Vous pouvez arrêter l'essai gratuit à tout moment ou attendre son expiration.

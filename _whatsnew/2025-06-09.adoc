@@ -4,6 +4,7 @@
 
 
 
+[[windows-local-administrator-password-solution-laps-support]]
 === Prise en charge de la solution de mot de passe d'administrateur local Windows (LAPS)
 
 Windows Local Administrator Password Solution (Windows LAPS) est une fonctionnalité Windows qui gère et sauvegarde automatiquement le mot de passe d'un compte d'administrateur local sur Active Directory.

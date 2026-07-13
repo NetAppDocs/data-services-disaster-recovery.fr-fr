@@ -18,6 +18,7 @@ Une fois une catastrophe résolue, revenez du site de reprise après sinistre au
 
 
 
+[[about-failback]]
 == À propos du failback
 
 En cas de retour en arrière, NetApp Disaster Recovery réplique (resynchronise) toutes les modifications vers la machine virtuelle source d'origine avant d'inverser le sens de la réplication. Ce processus débute à partir d'une relation qui a basculé vers une cible et comprend les étapes suivantes :
@@ -32,12 +33,14 @@ En cas de retour en arrière, NetApp Disaster Recovery réplique (resynchronise)
 
 
 
+[[before-you-begin]]
 == Avant de commencer
 
 Si vous utilisez une protection basée sur un datastore, les machines virtuelles ajoutées au datastore peuvent être ajoutées à ce dernier lors du processus de basculement. Si cela s'est produit, assurez-vous de fournir les informations de mappage supplémentaires pour ces machines virtuelles avant de lancer le basculement. Pour modifier le mappage des ressources, consultez link:manage.html#manage-replication-plans["Gérer les plans de réplication"].
 
 
 
+[[steps]]
 == Étapes
 
 [role="tabbed-block"]

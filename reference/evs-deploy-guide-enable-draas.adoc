@@ -15,6 +15,7 @@ Pour plus d'informations sur les licences NetApp Disaster Recovery , consultezli
 
 
 
+[[license-types]]
 == Types de licences
 
 Il existe deux principaux types de licences :
@@ -25,6 +26,7 @@ Il existe deux principaux types de licences :
 
 
 
+[[size-your-disaster-recovery-capacity-needs]]
 == Évaluez vos besoins en capacité de reprise après sinistre
 
 Avant d’acheter votre licence, vous devez comprendre la capacité de stockage ONTAP que vous devez protéger.  L’un des avantages de l’utilisation du stockage NetApp ONTAP est la grande efficacité avec laquelle NetApp stocke vos données.  Toutes les données stockées dans un volume ONTAP (comme les machines virtuelles hébergeant une banque de données VMware) sont stockées de manière très efficace.  ONTAP utilise par défaut trois types d'efficacité de stockage lors de l'écriture de données sur un stockage physique : compactage, déduplication et compression.  Le résultat net est une efficacité de stockage comprise entre 1,5:1 et 4:1 selon les types de données stockées.  En fait, NetApp propose une https://www.netapp.com/media/79014-ng-937-Efficiency-Guarantee-Customer-Flyer.pdf["garantie d'efficacité de stockage"^] pour certaines charges de travail.

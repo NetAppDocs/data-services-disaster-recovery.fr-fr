@@ -21,6 +21,7 @@ TIP: Assurez-vous que la source et la destination utilisent le même agent NetAp
 
 
 
+[[add-a-site]]
 == Ajouter un site
 
 Lors de l'ajout d'un site à Disaster Recovery, vous devez distinguer selon le type de ressources dans le site. Vous pouvez ajouter soit des vCenters soit des clusters Kubernetes.
@@ -40,6 +41,7 @@ Après avoir ajouté un site à NetApp Disaster Recovery, vous devez associer de
 
 
 
+[[add-resources-to-a-site]]
 == Ajouter des ressources à un site
 
 Si vous avez ajouté des vCenters dans les versions précédentes et que vous souhaitez personnaliser la planification de la découverte, vous devez modifier le site du serveur vCenter et définir la planification.
@@ -153,6 +155,7 @@ Après avoir ajouté des ressources, sélectionnez *Suivi des tâches* pour suiv
 
 
 
+[[add-subnet-mapping-for-a-vcenter-site]]
 == Ajouter un mappage de sous-réseau pour un site vCenter
 
 Vous pouvez gérer les adresses IP lors des opérations de basculement à l'aide du mappage de sous-réseaux, qui vous permet d'ajouter des sous-réseaux pour chaque vCenter.  Lorsque vous faites cela, vous définissez le CIDR IPv4, la passerelle par défaut et le DNS pour chaque réseau virtuel.
@@ -205,6 +208,7 @@ TIP: La notation CIDR est une méthode de spécification des adresses IP et de l
 
 
 
+[[select-subnet-mapping-for-a-replication-plan]]
 === Sélectionner le mappage de sous-réseau pour un plan de réplication
 
 Lorsque vous créez un plan de réplication, vous pouvez sélectionner le mappage de sous-réseau pour le plan de réplication.
@@ -233,6 +237,7 @@ NOTE: S'il existe deux machines virtuelles (par exemple, l'une est Linux et l'au
 
 
 
+[[edit-the-vcenter-server-site-and-customize-the-discovery-schedule]]
 == Modifier le site du serveur vCenter et personnaliser le calendrier de découverte
 
 Vous pouvez modifier le site du serveur vCenter pour personnaliser la planification de la découverte.  Par exemple, si vous disposez d’un grand nombre de machines virtuelles, vous pouvez définir la planification de découverte pour qu’elle s’exécute toutes les 23 heures et 59 minutes.  Si vous disposez d'un petit nombre de machines virtuelles, vous pouvez définir la planification de découverte pour qu'elle s'exécute toutes les 12 heures.
@@ -257,6 +262,7 @@ image:sites-edit-schedule.png["Capture d'écran de la modification du calendrier
 
 
 
+[[refresh-discovery-manually]]
 == Actualiser la découverte manuellement
 
 Vous pouvez actualiser la découverte manuellement à tout moment.  Ceci est utile si vous avez ajouté ou supprimé des machines virtuelles et que vous souhaitez mettre à jour les informations dans NetApp Disaster Recovery.

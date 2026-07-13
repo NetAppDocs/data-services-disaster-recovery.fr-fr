@@ -4,6 +4,7 @@
 
 
 
+[[support-for-multiple-console-agents-in-on-premises-environments]]
 === Prise en charge de plusieurs agents de console dans les environnements sur site
 
 Si vous utilisez la reprise après sinistre sur site, vous pouvez désormais déployer un agent Console pour chaque instance vCenter, ce qui améliore la résilience.
@@ -14,6 +15,7 @@ Pour plus d'informations sur l'agent Console dans le cadre de la reprise après 
 
 
 
+[[add-vms-after-failover-for-replication-plans-using-datastore-based-protection]]
 === Ajoutez des machines virtuelles après le basculement pour les plans de réplication utilisant la protection basée sur le datastore.
 
 En cas de basculement, tout plan de réplication utilisant une protection basée sur la banque de données inclut les machines virtuelles ajoutées à la banque de données, à condition qu'elles aient été découvertes. Vous devez fournir les détails de mappage des machines virtuelles ajoutées avant que le basculement ne soit terminé.
@@ -22,6 +24,7 @@ Pour plus d'informations, voir link:https://docs.netapp.com/us-en/data-services-
 
 
 
+[[new-email-notifications]]
 === Nouvelles notifications par e-mail
 
 Le service de reprise après sinistre envoie désormais des notifications par e-mail pour les événements suivants :
@@ -34,18 +37,21 @@ Le service de reprise après sinistre envoie désormais des notifications par e-
 
 
 
+[[swagger-improvements]]
 === Améliorations de Swagger
 
 Vous pouvez désormais accéder à la documentation Swagger directement depuis Disaster Recovery. Dans Disaster Recovery, sélectionnez **Paramètres** puis **Documentation API**. Vous devez être en mode privé ou navigation privée pour accéder à link:https://api.bluexp.netapp.com/v1/services/draas/api/api-doc/draas["le lien"^].
 
 
 
+[[improved-user-interfaces]]
 === Interfaces utilisateur améliorées
 
 La solution de reprise après sinistre offre désormais des avertissements et des résolutions d'erreurs améliorés. Cette version corrige une erreur qui empêchait l'affichage des tâches annulées dans l'interface utilisateur. Les tâches annulées sont désormais visibles. Un nouvel avertissement s'affiche également lorsque le même réseau de destination est associé à plusieurs réseaux sources différents.
 
 
 
+[[retain-vm-folder-structure-added-as-default-in-replication-plans]]
 === Conserver la structure de dossiers des machines virtuelles ajoutée par défaut dans les plans de réplication
 
 Lors de la création d'une réplication, le comportement par défaut consiste désormais à conserver la structure des dossiers de la machine virtuelle. Si le répertoire cible de récupération ne possède pas l'arborescence de dossiers d'origine, la fonction de récupération après sinistre la crée. Vous pouvez désélectionner cette option pour ignorer l'arborescence des dossiers d'origine.

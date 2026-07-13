@@ -4,6 +4,7 @@
 
 
 
+[[asa-r2-support-for-vms-and-datastores-on-vmfs-storage]]
 === Prise en charge ASA r2 pour les machines virtuelles et les banques de données sur le stockage VMFS
 
 Cette version de NetApp Disaster Recovery prend en charge ASA r2 pour les machines virtuelles et les banques de données sur le stockage VMFS.  Sur un système ASA r2, le logiciel ONTAP prend en charge les fonctionnalités SAN essentielles tout en supprimant les fonctionnalités non prises en charge dans les environnements SAN.

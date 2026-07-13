@@ -1,0 +1,55 @@
+= Mises à jour Kubernetes
+:allow-uri-read: 
+
+
+
+
+[[kubernetes-updates]]
+=== Mises à jour Kubernetes
+
+La reprise après sinistre a introduit les modifications suivantes pour les charges de travail basées sur Kubernetes :
+
+
+
+==== Gérez Trident Protect depuis le menu Sites
+
+La solution de reprise après sinistre prend désormais en charge la gestion de Trident Protect directement depuis le menu Sites de l'interface utilisateur de la solution de reprise après sinistre. Vous pouvez mettre à niveau Trident Protect ou le supprimer de la solution de reprise après sinistre, ce qui simplifie la gestion de vos ressources Kubernetes.
+
+Pour plus d'informations, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/manage.html["Gérer les sites"^].
+
+
+
+[[vmware-updates]]
+=== Mises à jour VMware
+
+La reprise après sinistre a introduit les modifications suivantes pour les charges de travail basées sur VMware :
+
+
+
+==== Basculement des datastores vides
+
+Les plans de réplication incluant des banques de données vides peuvent désormais être basculés avec succès sans qu'il soit nécessaire de les exclure du plan ni de forcer le basculement. Lors du basculement, la reprise après sinistre monte automatiquement la banque de données vide sur le site de reprise après sinistre, permettant d'ajouter des machines virtuelles et de les protéger pour les opérations de retour arrière.
+
+Pour plus d'informations, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/failover.html["Basculement vers un site distant"^].
+
+
+
+==== Mappage automatique des réseaux vCenter
+
+Vous pouvez désormais configurer les relations de mappage réseau au niveau de vCenter (c’est-à-dire en dehors de la boîte de dialogue du plan de réplication). Une fois configuré, Disaster Recovery applique automatiquement ces mappages réseau lorsque vous ajoutez ou modifiez un plan de réplication, ce qui simplifie la gestion des plans de réplication.
+
+La reprise après sinistre continue de prendre en charge les modifications par plan. Les mappages réseau existants définis dans un plan de réplication peuvent toujours être modifiés réseau par réseau ; ces mappages prévalent sur les définitions au niveau vCenter.
+
+
+
+[[disaster-recovery-viewer-role-tightening]]
+=== Restriction du rôle du spectateur en cas de reprise après sinistre
+
+La possibilité de consulter l'onglet « Mise à niveau du système » a été supprimée du rôle de visionneur de reprise après sinistre. Cette modification aligne le rôle sur une expérience plus adaptée aux utilisateurs en lecture seule. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^].
+
+
+
+[[system-performance-enhancements]]
+=== Améliorations des performances du système
+
+La stratégie de reprise après sinistre a introduit des modifications visant à réduire la consommation des ressources système et à améliorer les performances opérationnelles.

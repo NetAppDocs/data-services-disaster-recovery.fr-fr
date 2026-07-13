@@ -27,6 +27,7 @@ link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-re
 
 
 
+[[manage-vcenter-sites]]
 == Gérer les sites vCenter
 
 Vous pouvez modifier le nom du site vCenter et le type de site (sur site ou AWS).
@@ -41,6 +42,7 @@ Vous pouvez modifier le nom du site vCenter et le type de site (sur site ou AWS)
 
 
 
+[[manage-resource-groups]]
 == Gérer les groupes de ressources
 
 Vous pouvez créer des groupes de ressources par machines virtuelles ou par banques de données.  Ils peuvent être ajoutés lors de la création du plan de réplication ou ultérieurement.
@@ -71,6 +73,7 @@ Pour plus de détails sur la création d'un groupe de ressources, reportez-vous 
 
 
 
+[[manage-replication-plans]]
 == Gérer les plans de réplication
 
 Vous pouvez désactiver, activer et supprimer les plans de réplication.  Vous pouvez modifier les horaires.
@@ -108,6 +111,7 @@ image:../use/dr-plan-list.png["Liste des plans de réplication"]
 
 
 
+[[reconcile-snapshots-on-demand]]
 === Rapprocher les instantanés à la demande
 
 La reprise après sinistre supprime automatiquement les instantanés de la source toutes les 24 heures.  Si vous constatez que les instantanés ne sont pas synchronisés entre la source et la destination, vous devez résoudre cette incohérence afin de garantir la cohérence entre les sites.
@@ -126,6 +130,7 @@ image:../use/dr-plan-list.png["Liste des plans de réplication"]
 
 
 
+[[delete-a-replication-plan]]
 === Supprimer un plan de réplication
 
 Si vous supprimez un plan de réplication, vous pouvez également supprimer les snapshots principaux et secondaires créés par le plan.
@@ -142,6 +147,7 @@ Si vous supprimez un plan de réplication, vous pouvez également supprimer les 
 
 
 
+[[change-retention-count-for-failover-schedules]]
 === Modifier le nombre de rétentions pour les planifications de basculement
 
 Modifier le nombre de rétentions vous permet d'augmenter ou de diminuer le nombre de snapshots enregistrés.
@@ -161,7 +167,38 @@ image:../use/dr-plan-failover-edit.png["Modifier la page des mappages de bascule
 
 
 
-== Afficher les informations sur les magasins de données
+[[manage-trident-protect]]
+== Gérer Trident Protect
+
+Depuis l'interface utilisateur de reprise après sinistre, vous pouvez mettre à niveau ou supprimer Trident Protect.
+
+.Mettre à niveau Trident Protect
+. Dans la section Reprise après sinistre, sélectionnez **Sites** dans la barre latérale.
+. Sélectionnez **Kubernetes** dans le menu déroulant.
+. Dans le menu d'actions du cluster que vous souhaitez modifier, sélectionnez **Mettre à niveau le cluster**.
+. Dans le menu déroulant **Sélectionnez la version cible**, choisissez la version de Trident Protect vers laquelle vous souhaitez effectuer la mise à niveau. Vous devriez consulter la link:https://docs.netapp.com/us-en/trident/trident-rn.html["Notes de version de Trident"^] avant la mise à niveau afin de comprendre les différences entre les versions et leur impact sur votre cluster.
+. Sélectionnez **Mise à niveau** pour lancer la mise à niveau.
+
+
+.Supprimer Trident Protect
+. Dans la section Reprise après sinistre, sélectionnez **Sites** dans la barre latérale.
+. Sélectionnez **Kubernetes** dans le menu déroulant.
+. Dans le menu Actions du site que vous souhaitez modifier, sélectionnez **Supprimer le cluster**.
+. Examinez la boîte de dialogue, puis exécutez la commande de désinstallation sur le cluster dont vous souhaitez supprimer Trident Protect : `helm uninstall trident-protect -n trident-protect`.
+. Pour terminer la suppression de Trident Protect, revenez à l'interface utilisateur de reprise après sinistre et sélectionnez **Supprimer le site**.
+
+
+.Supprimer un cluster d'un site
+. Dans la section Reprise après sinistre, sélectionnez **Sites** dans la barre latérale.
+. Sélectionnez **Kubernetes** dans le menu déroulant.
+. Dans le menu Actions du site que vous souhaitez modifier, sélectionnez **Supprimer le cluster**.
+. Consultez le menu de dialogue, puis sélectionnez **Supprimer du site**. Assurez-vous de choisir la bonne option pour poursuivre le fonctionnement de Trident Protect.
+
+
+
+
+[[view-datastore-information]]
+== Afficher les informations du datastore
 
 Vous pouvez afficher des informations sur le nombre de magasins de données existants sur la source et sur la cible.
 
@@ -176,6 +213,7 @@ Vous pouvez afficher des informations sur le nombre de magasins de données exis
 
 
 
+[[view-virtual-machines-information]]
 == Afficher les informations sur les machines virtuelles
 
 Vous pouvez afficher des informations sur le nombre de machines virtuelles existantes sur la source et sur la cible, ainsi que sur le processeur, la mémoire et la capacité disponible.

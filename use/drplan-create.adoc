@@ -12,13 +12,16 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 
 
 [role="lead"]
-Une fois que vous avez ajouté des ressources et des sites, vous êtes prêt à créer un _plan de réplication_. Les plans de réplication gèrent la protection des données. La création de la réplication implique de désigner les sites source et de destination, de sélectionner les groupes de ressources et de choisir comment les applications doivent être restaurées et mises sous tension. Par exemple, vous pouvez regrouper des machines virtuelles (VM) associées à une application ou regrouper des applications ayant des niveaux similaires.
+Après avoir ajouté des ressources et des sites, créez un _plan de réplication_ pour gérer la protection des données. La création du plan de réplication consiste à désigner les sites source et de destination, à sélectionner les groupes de ressources et à choisir la manière dont les applications doivent être restaurées et mises sous tension. Par exemple, vous pouvez regrouper des machines virtuelles (VM) associées à une application ou regrouper des applications qui présentent des niveaux similaires.
+
+Lorsque vous créez un plan de réplication, vous pouvez également modifier les calendriers de conformité et de test, en effectuant des basculements de test sans impacter vos données de production.
 
 *Rôle requis de la console NetApp* Le rôle de super administrateur, d'administrateur de reprise après sinistre, d'administrateur de basculement de reprise après sinistre ou d'administrateur d'application de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
-*À propos de cette tâche*
 
-Vous pouvez créer un plan de réplication et également modifier les calendriers de conformité et de test.  Exécutez des tests de basculement de machines virtuelles sans affecter les charges de travail de production.
+
+[[about-replication-plans]]
+== À propos des plans de réplication
 
 Vous pouvez protéger plusieurs machines virtuelles sur plusieurs banques de données.  NetApp Disaster Recovery crée des groupes de cohérence ONTAP pour tous les volumes ONTAP hébergeant des banques de données de machines virtuelles protégées.
 
@@ -29,7 +32,10 @@ Vous ne pouvez activer la protection que si le plan de réplication se trouve da
 * Test de basculement validé
 
 
-*Instantanés du plan de réplication*
+
+
+[[replication-plan-snapshots]]
+=== Instantanés du plan de réplication
 
 La récupération après sinistre conserve le même nombre de snapshots sur les clusters source et de destination.  Par défaut, le service exécute un processus de réconciliation de snapshots toutes les 24 heures pour garantir que le nombre de snapshots sur les clusters source et de destination est le même.
 
@@ -46,11 +52,15 @@ Les situations suivantes peuvent entraîner une différence dans le nombre de sn
 
 Dans ces cas, Disaster Recovery supprime les anciens snapshots des clusters source et de destination lors de la prochaine vérification de cohérence.  Ou, l'administrateur peut effectuer un nettoyage instantané immédiat en sélectionnant *Actions*image:icon-horizontal-dots.png["Menu Actions à points horizontaux"] icône sur le plan de réplication et en sélectionnant *Nettoyer les snapshots*.
 
-Le service effectue des contrôles de symétrie des instantanés toutes les 24 heures.
+La reprise après sinistre effectue des vérifications de symétrie des instantanés toutes les 24 heures.
 
-*Avant de commencer*
+
+
+[[before-you-begin]]
+== Avant de commencer
 
 * Avant de créer une relation SnapMirror , configurez le cluster et le peering SVM en dehors de Disaster Recovery.
+* Si vous configurez des mappages réseau au niveau de vCenter, la reprise après sinistre reconnaît ces mappages lors de la création du plan de réplication. Si vous modifiez ou ajoutez le mappage réseau au niveau de vCenter après la création du plan de réplication, la reprise après sinistre reconnaît ces mappages lorsque vous modifiez manuellement le plan de réplication.
 * Avec Google Cloud, vous ne pouvez ajouter qu'un seul volume ou datastore à un plan de réplication.
 
 
@@ -59,7 +69,8 @@ TIP: Organisez vos machines virtuelles ou clusters Kubernetes avant de déployer
 
 
 
-== Créer le plan
+[[create-the-replication-plan]]
+== Créer le plan de réplication
 
 Un assistant vous guide à travers ces étapes :
 
@@ -79,6 +90,7 @@ Lorsque vous créez le plan, suivez ces directives :
 
 
 
+[[select-vcenter-servers]]
 === Sélectionner les serveurs vCenter
 
 Tout d’abord, vous sélectionnez le vCenter source, puis sélectionnez le vCenter de destination.
@@ -102,6 +114,7 @@ image:dr-plan-create-name2.png["Capture d'écran montrant la page du serveur vCe
 
 
 
+[[select-applications-to-replicate-and-assign-resource-groups]]
 === Sélectionnez les applications à répliquer et attribuez des groupes de ressources
 
 L'étape suivante consiste à regrouper les machines virtuelles, les banques de données ou les clusters Kubernetes nécessaires en groupes de ressources fonctionnels. Les groupes de ressources permettent de protéger un ensemble de ressources, comme un cluster Kubernetes ou une machine virtuelle, à l'aide d'un instantané commun.
@@ -168,6 +181,7 @@ Lors de la dénomination d'un groupe de ressources, seuls les caractères minusc
 ====
 
 
+[[map-source-resources-to-the-target]]
 === Mapper les ressources sources vers la cible
 
 À l’étape Mappage des ressources, spécifiez comment les ressources de l’environnement source doivent être mappées à la cible.  Lorsque vous créez un plan de réplication, vous pouvez définir un délai et un ordre de démarrage pour chaque machine virtuelle du plan.  Cela vous permet de définir une séquence de démarrage des machines virtuelles.
@@ -453,6 +467,7 @@ NOTE: Si vous souhaitez créer une relation SnapMirror dans ce service, le clust
 
 
 
+[[add-test-failover-mappings]]
 === Ajouter des mappages de basculement de test
 
 .Étapes
@@ -469,6 +484,7 @@ TIP: Vous pourrez ensuite tester l'ensemble du plan.  Vous configurez actuelleme
 
 
 
+[[review-the-replication-plan]]
 === Revoir le plan de réplication
 
 Enfin, prenez quelques instants pour examiner le plan de réplication.
@@ -486,6 +502,7 @@ Le plan est ajouté à la liste des plans.
 
 
 
+[[modify-a-replication-plan]]
 == Modifier un plan de réplication
 
 Vous pouvez modifier la planification d'un plan de réplication pour tester la conformité et vous assurer que les tests de basculement se terminent avec succès.

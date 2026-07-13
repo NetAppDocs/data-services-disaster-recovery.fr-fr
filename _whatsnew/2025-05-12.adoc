@@ -4,6 +4,7 @@
 
 
 
+[[subnet-mapping]]
 === Cartographie des sous-réseaux
 
 Avec cette version, vous pouvez gérer les adresses IP lors du basculement d'une nouvelle manière à l'aide du mappage de sous-réseaux, qui vous permet d'ajouter des sous-réseaux pour chaque vCenter.  Lorsque vous faites cela, vous définissez le CIDR IPv4, la passerelle par défaut et le DNS pour chaque réseau virtuel.
@@ -26,6 +27,7 @@ Pour plus d'informations sur l'intégration du mappage de sous-réseaux dans vos
 
 
 
+[[skip-protection]]
 === Protection contre les sauts
 
 Vous pouvez désormais ignorer la protection afin que le service ne crée pas automatiquement une relation de protection inverse après un basculement de plan de réplication.  Cela est utile si vous souhaitez effectuer des opérations supplémentaires sur le site restauré avant de le remettre en ligne dans NetApp Disaster Recovery.
@@ -40,6 +42,7 @@ Pour plus de détails sur la protection contre le contournement, veuillez consul
 
 
 
+[[snapmirror-schedule-updates-in-the-replication-plan]]
 === Mises à jour planifiées de SnapMirror dans le plan de réplication
 
 NetApp Disaster Recovery prend désormais en charge l’utilisation de solutions de gestion de snapshots externes telles que le planificateur de politiques ONTAP SnapMirror natif ou les intégrations tierces avec ONTAP.  Si chaque banque de données (volume) du plan de réplication dispose déjà d'une relation SnapMirror gérée ailleurs, vous pouvez utiliser ces snapshots comme points de récupération dans NetApp Disaster Recovery.

@@ -16,6 +16,7 @@ La NetApp Console prend en charge l'utilisation de plusieurs agents de console d
 
 
 
+[[before-you-begin]]
 == Avant de commencer
 
 * Vous devez avoirxref:../get-started/dr-prerequisites.html#create-the-netapp-console-agent[Au moins deux agents Console ont été ajoutés à votre environnement de travail.] .
@@ -24,6 +25,7 @@ La NetApp Console prend en charge l'utilisation de plusieurs agents de console d
 
 
 
+[[steps]]
 == Étapes
 
 . Dans la section Reprise après sinistre, sélectionnez **Sites**.
@@ -43,6 +45,7 @@ image:edit-vcenter.png["Capture d'écran modifiant l'agent de la console"]
 
 
 
+[[more-information]]
 == Plus d'informations
 
 * link:https://docs.netapp.com/us-en/console-setup-admin/task-install-agent-on-prem.html["En savoir plus sur les agents de console"^]

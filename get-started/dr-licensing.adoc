@@ -37,6 +37,7 @@ Une fois l'essai gratuit terminé ou la licence expirée, vous pouvez toujours e
 
 
 
+[[try-it-out-using-a-30-day-free-trial]]
 == Essayez-le en utilisant un essai gratuit de 30 jours
 
 Vous pouvez essayer NetApp Disaster Recovery en utilisant un essai gratuit de 30 jours.
@@ -70,6 +71,7 @@ Pour plus de détails, consultez link:../use/sites-add.html["Ajouter des sites"]
 
 
 
+[[after-the-trial-ends-subscribe-through-one-of-the-marketplaces]]
 == Une fois l'essai terminé, abonnez-vous via l'une des places de marché
 
 Une fois l’essai gratuit terminé, vous pouvez acheter une licence auprès de NetApp ou vous abonner via AWS Marketplace ou Microsoft Azure Marketplace. Cette procédure fournit un aperçu de haut niveau sur la manière de s'abonner directement sur l'une des places de marché.
@@ -92,6 +94,7 @@ Vous pouvez afficher les détails de l'abonnement sur la page d'abonnement de la
 
 
 
+[[after-the-trial-ends-purchase-a-byol-license-through-netapp]]
 == Une fois la période d'essai terminée, achetez une licence BYOL via NetApp
 
 Une fois la période d’essai terminée, vous pouvez acheter une licence auprès de votre représentant commercial NetApp .
@@ -104,6 +107,7 @@ https://docs.netapp.com/us-en/console-licenses-subscriptions/task-manage-data-se
 
 
 
+[[update-your-license-when-it-expires]]
 == Mettez à jour votre licence lorsqu'elle expire
 
 Si votre durée de licence approche de la date d'expiration ou si votre capacité sous licence atteint la limite, vous en serez informé dans l'interface utilisateur de NetApp Disaster Recovery .  Vous pouvez mettre à jour votre licence NetApp Disaster Recovery avant son expiration afin d'éviter toute interruption de votre capacité à accéder à vos données numérisées.
@@ -115,6 +119,7 @@ https://docs.netapp.com/us-en/console-licenses-subscriptions/task-manage-data-se
 
 
 
+[[end-the-free-trial]]
 == Mettre fin à l'essai gratuit
 
 Vous pouvez arrêter l'essai gratuit à tout moment ou attendre son expiration.

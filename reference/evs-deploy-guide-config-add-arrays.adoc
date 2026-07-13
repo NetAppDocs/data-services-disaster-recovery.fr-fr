@@ -19,6 +19,7 @@ Vous devez effectuer les opérations suivantes :
 
 
 
+[[add-on-premises-storage-arrays-to-netapp-console-system]]
 == Ajouter des baies de stockage sur site au système NetApp Console
 
 Ajoutez des ressources de stockage ONTAP sur site à votre système de NetApp Console .
@@ -51,6 +52,7 @@ image:evs-canvas-add-working-env-4-5.png["Ajouter une image système"]
 
 
 
+[[add-amazon-fsx-for-netapp-ontap-storage-instances-to-netapp-console-system]]
 == Ajoutez des instances de stockage Amazon FSx for NetApp ONTAP au système NetApp Console
 
 Ensuite, ajoutez des ressources de stockage Amazon FSx for NetApp ONTAP à votre système de NetApp Console .

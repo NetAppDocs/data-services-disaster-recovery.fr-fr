@@ -16,12 +16,14 @@ Les limitations connues identifient les plates-formes, les appareils ou les fonc
 
 
 
+[[wait-until-failback-completes-before-running-discovery]]
 == Attendez que la restauration soit terminée avant d'exécuter la découverte
 
 Une fois le basculement terminé, ne lancez pas la découverte manuellement sur le vCenter source.  Attendez que la restauration soit terminée, puis lancez la découverte sur le vCenter source.
 
 
 
+[[netapp-console-might-not-discover-amazon-fsx-for-netapp-ontap]]
 == La NetApp Console risque de ne pas détecter Amazon FSx for NetApp ONTAP
 
 Parfois, la NetApp Console ne détecte pas les clusters Amazon FSx for NetApp ONTAP .  Cela peut être dû au fait que les informations d'identification FSx n'étaient pas correctes.
@@ -47,6 +49,7 @@ Cela redécouvre le magasin de données, ses machines virtuelles et sa relation 
 
 
 
+[[limitations-with-google-cloud-netapp-volumes]]
 == Limitations des Google Cloud NetApp Volumes
 
 * Après avoir exécuté un test de basculement, vous devez attendre au moins 52 heures avant de pouvoir supprimer le volume cloné.  Vous devez supprimer le volume manuellement.  Après 52 heures, vous pourrez tester à nouveau le basculement.

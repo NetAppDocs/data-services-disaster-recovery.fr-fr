@@ -4,6 +4,7 @@
 
 
 
+[[kubernetes-updates]]
 === Mises à jour Kubernetes
 
 La reprise après sinistre a introduit les modifications suivantes pour les charges de travail basées sur Kubernetes :
@@ -34,6 +35,7 @@ Pour plus d'informations, voir link:https://docs.netapp.com/us-en/data-services-
 
 
 
+[[vmware-updates]]
 === Mises à jour VMware
 
 

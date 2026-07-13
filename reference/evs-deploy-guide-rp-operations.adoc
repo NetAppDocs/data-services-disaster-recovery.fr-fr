@@ -13,6 +13,7 @@ Utilisez NetApp Disaster Recovery avec Amazon EVS et Amazon FSx for NetApp ONTAP
 
 
 
+[[fail-over]]
 == Basculement
 
 L’opération principale que vous devrez peut-être effectuer est celle que vous espérez ne jamais voir se produire : basculer vers le centre de données DR (destination) en cas de panne catastrophique sur le site de production sur site.
@@ -43,6 +44,7 @@ image:evs-rp-failover-dialog.png["Boîte de dialogue de basculement"]
 
 
 
+[[test-failover]]
 == Test de basculement
 
 Un basculement de test est similaire à un basculement, à l’exception de deux différences.
@@ -72,6 +74,7 @@ image:evs-test-failover-dialog.png["Boîte de dialogue de test de basculement"]
 
 
 
+[[run-a-compliance-check]]
 == Exécuter un contrôle de conformité
 
 Les contrôles de conformité sont exécutés toutes les trois heures, par défaut.  À tout moment, vous pouvez souhaiter exécuter manuellement une vérification de conformité.
@@ -87,6 +90,7 @@ image:evs-rp-menu-compliance-check.png["Option de menu Exécuter la vérificatio
 
 
 
+[[refresh-resources]]
 == Actualiser les ressources
 
 Chaque fois que vous apportez des modifications à votre infrastructure virtuelle (par exemple, l'ajout ou la suppression de machines virtuelles, l'ajout ou la suppression de banques de données ou le déplacement de machines virtuelles entre des banques de données), vous devez effectuer une actualisation des clusters vCenter concernés dans le service NetApp Disaster Recovery .  Le service effectue cette opération automatiquement une fois toutes les 24 heures par défaut, mais une actualisation manuelle garantit que les dernières informations sur l'infrastructure virtuelle sont disponibles et prises en compte pour la protection DR.
@@ -101,6 +105,7 @@ image::evs-rp-menu-refresh-resources.png[Option de menu Actualiser les ressource
 
 
 
+[[migrate]]
 == Émigrer
 
 Bien que NetApp Disaster Recovery soit principalement utilisé pour les cas d’utilisation de reprise après sinistre, il peut également permettre des déplacements ponctuels d’un ensemble de machines virtuelles du site source vers le site de destination.  Cela pourrait être destiné à un projet de migration concertée vers le cloud ou pourrait être utilisé pour éviter des catastrophes, telles que des intempéries, des conflits politiques ou d'autres événements catastrophiques temporaires potentiels.
@@ -115,6 +120,7 @@ image::evs-rp-menu-migrate.png[Option de menu Migrer]
 
 
 
+[[take-a-snapshot-now]]
 == Prenez un instantané maintenant
 
 À tout moment, vous pouvez prendre un instantané immédiat du plan de réplication.  Cet instantané est inclus dans les considérations de NetApp Disaster Recovery définies par le nombre de rétentions d'instantanés du plan de réplication.
@@ -128,6 +134,7 @@ image::evs-rp-menu-take-snapshot-now.png[Option de menu Prendre un instantané m
 
 
 
+[[disable-or-enable-replication-plan]]
 == Désactiver ou activer le plan de réplication
 
 Vous devrez peut-être arrêter temporairement le plan de réplication pour effectuer une opération ou une maintenance susceptible d'avoir un impact sur le processus de réplication.  Le service fournit une méthode pour arrêter et démarrer la réplication.
@@ -144,6 +151,7 @@ image::evs-rp-menu-disable-enable.png[Option de menu Désactiver/Activer]
 
 
 
+[[clean-up-old-snapshots]]
 == Nettoyer les anciens instantanés
 
 Vous souhaiterez peut-être nettoyer les anciens instantanés qui ont été conservés sur les sites source et de destination.  Cela peut se produire si le nombre de rétentions d'instantanés du plan de réplication est modifié.
@@ -157,6 +165,7 @@ image::evs-rp-menu-cleanup-old-snapshots.png[Option de menu Nettoyer les anciens
 
 
 
+[[reconcile-snapshots]]
 == Réconcilier les instantanés
 
 Étant donné que le service orchestre les snapshots de volume ONTAP , il est possible pour un administrateur de stockage ONTAP de supprimer directement les snapshots à l'aide d' ONTAP System Manager, de l'interface de ligne de commande ONTAP ou des API REST ONTAP à l'insu du service.  Le service supprime automatiquement tous les snapshots sur la source qui ne se trouvent pas sur le cluster de destination toutes les 24 heures.  Cependant, vous pouvez effectuer cette opération à la demande.  Cette fonctionnalité vous permet de garantir que les instantanés sont cohérents sur tous les sites.
@@ -170,6 +179,7 @@ image::evs-rp-menu-reconcile-snapshots.png[Option de menu Réconcilier les insta
 
 
 
+[[delete-replication-plan]]
 == Supprimer le plan de réplication
 
 Si le plan de réplication n’est plus nécessaire, vous pouvez le supprimer.
@@ -183,6 +193,7 @@ image::evs-rp-menu-delete.png[Supprimer l'option de menu]
 
 
 
+[[edit-schedules]]
 == Modifier les horaires
 
 Deux opérations sont effectuées automatiquement selon un calendrier régulier : les tests de basculement et les contrôles de conformité.
@@ -196,6 +207,7 @@ image::evs-rp-menu-edit-schedules.png[Option de menu Modifier les horaires]
 
 
 
+[[change-compliance-check-interval]]
 === Modifier l'intervalle de vérification de conformité
 
 Par défaut, les contrôles de conformité sont effectués toutes les trois heures.  Vous pouvez modifier cet intervalle à n'importe quel moment entre 30 minutes et 24 heures.
@@ -206,6 +218,7 @@ image::evs-rp-edit-compliance-check-schedule.png[Calendrier de contrôle de conf
 
 
 
+[[schedule-automated-test-failovers]]
 === Planifier des basculements de tests automatisés
 
 Les basculements de test sont exécutés manuellement par défaut.  Vous pouvez planifier des basculements de test automatiques, ce qui permet de garantir que vos plans de réplication fonctionnent comme prévu.  Pour en savoir plus sur le processus de basculement des tests, consultezlink:../use/failover.html["Tester le processus de basculement"] .

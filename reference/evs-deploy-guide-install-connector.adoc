@@ -15,6 +15,7 @@ Pour NetApp Disaster Recovery, les actions effectuées orchestrent les clusters 
 
 
 
+[[installation]]
 == Installation
 
 * Pour utiliser la récupération après sinistre, installez l'agent Console en mode standard. Pour en savoir plus sur les types d'installation de l'agent Console, visitez https://docs.netapp.com/us-en/console-setup-admin/concept-modes.html["Découvrez les modes de déploiement de la NetApp Console"^].

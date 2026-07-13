@@ -4,6 +4,7 @@
 
 
 
+[[folder-hierarchy-retention]]
 === conservation de la hiérarchie des dossiers
 
 Par défaut, la reprise après sinistre conserve la hiérarchie d'inventaire des machines virtuelles (structure des dossiers) lors d'un basculement.  Si le dossier requis n'est pas présent sur la cible de récupération, la fonction de récupération après sinistre le crée.
@@ -14,6 +15,7 @@ Pour plus d'informations, voir link:https://docs.netapp.com/us-en/data-services-
 
 
 
+[[streamlined-console-agent-updating]]
 === Mise à jour simplifiée de l'agent de console
 
 La reprise après sinistre prend désormais en charge un processus simplifié pour l'utilisation de plusieurs agents Console dans un environnement de travail.  Pour changer d'agent de console, vous devez modifier la configuration de votre vCenter, redécouvrir les informations d'identification et actualiser les plans de réplication pour utiliser le nouvel agent de console.
