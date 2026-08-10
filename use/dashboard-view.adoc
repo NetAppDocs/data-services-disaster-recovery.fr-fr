@@ -12,7 +12,7 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 
 
 [role="lead"]
-À l’aide du tableau de bord de NetApp Disaster Recovery , vous pouvez déterminer l’état de vos sites de reprise après sinistre et vos plans de réplication.  Vous pouvez rapidement déterminer quels sites et quels plans sont sains, déconnectés ou dégradés.
+À l'aide du tableau de bord NetApp Disaster Recovery, vous pouvez déterminer l'état de santé de vos sites de reprise après sinistre et de vos plans de réplication. Vous pouvez facilement évaluer quels sites et plans sont sains, déconnectés ou dégradés. Vous pouvez également consulter les avertissements récents et les tâches ayant échoué, voir quelles charges de travail sont protégées ou non, et obtenir un aperçu de la capacité.
 
 *Rôle requis de la NetApp Console* Le rôle de super administrateur, d’administrateur de reprise après sinistre, d’administrateur d’application de reprise après sinistre ou de visionneur de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
@@ -23,15 +23,15 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 +
 image:dr-dashboard.png["Tableau de bord de NetApp Disaster Recovery"]
 
-. Consultez les informations suivantes sur le tableau de bord :
+. Consultez les informations de santé sur le tableau de bord :
 +
 ** *Sites* : Consultez l'état de santé de vos sites.  Un site peut avoir l'un des statuts suivants :
 +
-*** *En cours d'exécution* : le vCenter est connecté, sain et en cours d'exécution.
-*** *En panne* : Le vCenter n'est pas accessible ou rencontre des problèmes de connectivité.
-*** *Problème* : Le vCenter n'est pas accessible ou rencontre des problèmes de connectivité.
+*** *En fonctionnement* : Le site est connecté, sain et en cours d’exécution.
+*** *Hors service* : Le site est inaccessible ou rencontre des problèmes de connexion.
+*** *Problème* : Le site rencontre des problèmes de connectivité.
 +
-Pour voir les détails du site, sélectionnez *Afficher tout* pour un statut ou *Afficher les sites* pour les voir tous.
+Pour afficher les détails, sélectionnez **Afficher tous les sites**.
 
 
 
@@ -39,19 +39,14 @@ Pour voir les détails du site, sélectionnez *Afficher tout* pour un statut ou 
 +
 *** *Prêt*
 *** *Échoué*
+*** *Avertissement*
 +
-Pour consulter les détails du plan de réplication, sélectionnez *Afficher tout* pour un statut ou *Afficher les plans de réplication* pour les voir tous.
+Pour consulter les détails du plan de réplication, sélectionnez *Afficher tous les plans de réplication*.
 
 
 
-** *Groupes de ressources* : Affichez l'état de vos groupes de ressources.  Un groupe de ressources peut avoir l’un des statuts suivants :
-** *VM protégées* : Les machines virtuelles font partie d'un groupe de ressources.
-** *VM non protégées* : Les machines virtuelles ne font pas partie d'un groupe de ressources.
-+
-Pour consulter les détails, sélectionnez le lien *Afficher* sous chaque élément.
-
-** Le nombre de basculements, de basculements de test et de migrations.  Par exemple, si vous avez créé deux plans et migré vers les destinations, le nombre de migrations apparaît comme « 2 ».
 
 
-. Passez en revue toutes les opérations dans le volet Activité.  Pour afficher toutes les opérations sur le moniteur de tâches, sélectionnez *Afficher toutes les tâches*.
+. Consultez la section *Avertissements et tâches récents* pour voir les tâches et avertissements les plus récemment exécutés ainsi que leur statut associé. Sélectionnez *Afficher toutes les tâches* pour voir toutes les tâches.
+. Consultez l'état de la découverte et de la protection pour voir le nombre de charges de travail détectées et une ventilation numérique des charges de travail protégées et non protégées, classées par type. Vous pouvez également consulter la capacité totale détectée de toutes les charges de travail et les charges de travail par type.
 

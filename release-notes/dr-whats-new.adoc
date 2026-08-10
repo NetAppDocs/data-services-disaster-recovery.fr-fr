@@ -16,6 +16,56 @@ Découvrez les nouveautés en matière de NetApp Disaster Recovery.
 
 
 
+[[10-august-2026]]
+== 10 août 2026
+
+Version 4.3.6
+
+
+
+[[improved-dashboard]]
+=== Tableau de bord amélioré
+
+Le tableau de bord de NetApp Disaster Recovery a été mis à jour pour offrir une expérience améliorée et une vue d'ensemble complète de l'ensemble de votre infrastructure NetApp Disaster Recovery. Le nouveau tableau de bord comprend :
+
+* *Visibilité unifiée des charges de travail* — Surveillez les charges de travail VMware et Kubernetes ainsi que l’état de santé de l’infrastructure sous-jacente à partir d’une interface unique.
+* *Détection proactive des problèmes* — Le tableau de bord met désormais automatiquement en évidence les problèmes environnementaux, permettant un diagnostic plus rapide et un délai de résolution réduit.
+* *Utilisation des capacités* — Les indicateurs de capacité sont désormais présentés directement dans le tableau de bord, ce qui permet de mieux comprendre la consommation des ressources.
+
+
+Pour plus d'informations, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/dashboard-view.html["Consultez l'état de vos plans de NetApp Disaster Recovery sur le tableau de bord"^].
+
+
+
+[[improved-reports]]
+=== Rapports améliorés
+
+Les fonctionnalités de reporting ont été étendues afin de fournir une analyse plus approfondie des activités de NetApp Disaster Recovery au sein de votre environnement :
+
+* Générez des rapports adaptés aux charges de travail VMware, aux charges de travail Kubernetes ou aux deux, ce qui vous offre la flexibilité de personnaliser les rapports pour votre public.
+* Chaque rapport fournit un résumé complet des activités pour une période spécifiée, assurant une visibilité totale sur les événements dans votre environnement NetApp Disaster Recovery.
+
+
+Pour plus d'informations, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/reports.html["Créer des rapports de NetApp Disaster Recovery"^].
+
+
+
+[[user-job-logging]]
+=== Journalisation des tâches utilisateur
+
+NetApp Disaster Recovery a amélioré la responsabilité et l'auditabilité des tâches grâce à la journalisation des tâches au niveau utilisateur. Chaque tâche exécutée enregistre désormais l'utilisateur qui l'a lancée, fournissant une piste d'audit claire à des fins de conformité et de dépannage. Les tâches déclenchées automatiquement par NetApp Disaster Recovery sont identifiées comme « système », ce qui permet de distinguer facilement les activités initiées par l'utilisateur de celles initiées par le service.
+
+Pour plus d'informations, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/monitor-jobs.html["Surveiller les tâches de NetApp Disaster Recovery"^].
+
+
+
+[[performance-and-resource-optimization]]
+=== Optimisation des performances et des ressources
+
+Diverses améliorations internes ont été apportées afin de réduire la consommation globale des ressources système et d'améliorer les performances des opérations de NetApp Disaster Recovery.
+
+
+
 [[13-july-2026]]
 == 13 juillet 2026
 

@@ -26,7 +26,11 @@ Vous pouvez surveiller toutes les tâches de NetApp Disaster Recovery et déterm
 . Dans la navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
 . Dans le menu, sélectionnez *Surveillance des tâches*.
 . Explorez tous les travaux liés aux opérations et examinez leurs horodatages et leur statut.
-. Pour afficher les détails d’une tâche particulière, sélectionnez cette ligne.
+. Pour afficher les détails d’un travail particulier, sélectionnez cette ligne. Vous pouvez télécharger les détails du travail pour les consulter hors ligne en sélectionnant le menu d’actions, puis **Télécharger les détails du travail**.
++
+
+TIP: Lors de la consultation des détails d'une tâche, NetApp Disaster Recovery indique l'utilisateur qui a lancé la tâche. Si le responsable est « système », cela signifie que NetApp Disaster Recovery a lancé la tâche.
+
 . Pour actualiser les informations, sélectionnez *Actualiser*.
 
 
@@ -46,5 +50,5 @@ Vous pouvez annuler une tâche en cours ou en attente si elle est bloquée ou po
 +
 Le travail doit être dans un état « En cours » ou « En file d'attente ».
 
-. Dans la colonne Actions, sélectionnez *Annuler le travail*.
+. Sélectionnez le menu Actions, puis **Annuler la tâche**.
 
