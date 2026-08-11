@@ -4,7 +4,7 @@ permalink: support/task-get-help.html
 keywords: help, ticket, open support case, support, netapp support, technical support, call support, phone number, open ticket, web ticket, open an issue 
 summary: 'NetApp propose une assistance pour la console de différentes manières. De nombreuses options d"auto-assistance gratuites sont disponibles 24h/24 et 7j/7, telles que des articles de base de connaissances (KB) et un forum communautaire. Votre inscription au service d"assistance inclut une assistance technique à distance via un système de tickets en ligne.' 
 ---
-= Obtenir de l'aide
+= Obtenez de l'aide pour NetApp Disaster Recovery
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

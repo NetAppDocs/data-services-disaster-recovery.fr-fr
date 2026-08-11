@@ -4,7 +4,7 @@ permalink: use/manage.html
 keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter, replication plans, resource groups 
 summary: Vous pouvez obtenir un aperçu rapide de toutes vos ressources NetApp Disaster Recovery et gérer les sites vCenter, les groupes de ressources et les plans de réplication. 
 ---
-= Gérez les sites, les groupes de ressources, les plans de réplication, les banques de données et les informations sur les machines virtuelles avec NetApp Disaster Recovery
+= Gérez les sites, les groupes de ressources et les plans de réplication avec NetApp Disaster Recovery
 :hardbreaks:
 :allow-uri-read: 
 :icons: font

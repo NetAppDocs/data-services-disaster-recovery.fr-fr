@@ -56,6 +56,42 @@ La reprise après sinistre effectue des vérifications de symétrie des instanta
 
 
 
+[[considerations-for-platform-managed-backups]]
+=== Considérations relatives aux sauvegardes gérées par la plateforme
+
+Si vous prévoyez d'utiliser des sauvegardes gérées par la plateforme (c'est-à-dire des instantanés gérés par ONTAP), il est recommandé d'utiliser la stratégie de réplication *MirrorAll*. Consultez le tableau pour comprendre l'impact des différentes stratégies de réplication SnapMirror et pourquoi *MirrorAll* est l'option recommandée.
+
+[cols="10,10,80"]
+|===
+
+
+| Politique | Recommandation | Remarques 
+
+
+| *MirrorAll* | Recommandé | N’utilisez pas les instantanés de transfert SnapMirror pour les opérations de basculement ou de restauration. 
+
+
+| *MirrorVault* .2+| Recommandation alternative .2+| Assurez-vous que les instantanés sélectionnés lors du basculement ou du retour arrière sont présents sur les volumes source et de destination. Dans le cas contraire, l’erreur suivante s’affichera : « Transition vers l’état ‘snapmirrored’ échouée. Motif : Aucun instantané commun trouvé. » 
+
+
+| *Asynchrone* 
+
+
+| *MirrorLatest* | _NON_ recommandé | Cette politique a pour conséquence que la destination ne dispose en réalité que d'un seul instantané commun pour le basculement, ce qui est sous-optimal pour les scénarios de reprise après sinistre. 
+|===
+
+
+[[considerations-for-disaster-recovery-managed-backups]]
+=== Considérations relatives aux sauvegardes gérées par NetApp Disaster Recovery
+
+Lors de l'utilisation de sauvegardes gérées par la reprise après sinistre, les directives suivantes s'appliquent aux relations SnapMirror créées en dehors de NetApp Disaster Recovery :
+
+* Les relations SnapMirror peuvent prendre en charge les politiques de réplication MirrorAll, MirrorVault, MirrorLatest et asynchrone.
+* Ne planifiez *pas* de mises à jour pour ces relations, car elles seront gérées par le service NetApp Disaster Recovery.
+
+
+
+
 [[before-you-begin]]
 == Avant de commencer
 
@@ -437,7 +473,10 @@ Cette section peut être activée ou désactivée en fonction de votre sélectio
 
 image:dr-plan-datastore-platform.png["Capture d'écran montrant Ajouter un plan de réplication > Mappage des ressources > banques de données"]
 
-* *Utiliser les sauvegardes gérées par la plateforme et les planifications de conservation* : si vous utilisez une solution de gestion des snapshots externe, cochez cette case.  NetApp Disaster Recovery prend en charge l’utilisation de solutions de gestion de snapshots externes telles que le planificateur de politiques ONTAP SnapMirror natif ou des intégrations tierces.  Si chaque banque de données (volume) du plan de réplication dispose déjà d'une relation SnapMirror gérée ailleurs, vous pouvez utiliser ces snapshots comme points de récupération dans NetApp Disaster Recovery.
+
+TIP: Examinez le <<Considérations relatives aux sauvegardes gérées par la plateforme>> avant de faire ces sélections.
+
+* *Utilisez les sauvegardes et les calendriers de rétention gérés par la plateforme* : Si vous utilisez une solution externe de gestion des snapshots, cochez cette case. La reprise après sinistre prend en charge l’utilisation de solutions externes de gestion des snapshots, telles que le planificateur de stratégies natif ONTAP SnapMirror ou les intégrations tierces. Si chaque datastore (volume) du plan de réplication possède déjà une relation SnapMirror gérée ailleurs, vous pouvez utiliser ces snapshots comme points de restauration dans NetApp Disaster Recovery.
 +
 Lorsque cette option est sélectionnée, NetApp Disaster Recovery ne configure pas de planification de sauvegarde.  Cependant, vous devez toujours configurer un calendrier de conservation, car des instantanés peuvent toujours être pris pour des opérations de test, de basculement et de restauration automatique.
 

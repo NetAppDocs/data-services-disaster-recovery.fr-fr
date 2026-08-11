@@ -4,7 +4,7 @@ permalink: use/dashboard-view.html
 keywords: disaster recovery remediate, disaster recovery, failover, failback, replication, bluexp, netapp 
 summary: NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les flux de travail de reprise après sinistre. 
 ---
-= Consultez l'état de vos plans de NetApp Disaster Recovery sur le tableau de bord
+= Affichez l'état de santé de vos plans de reprise après sinistre dans NetApp Disaster Recovery
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
