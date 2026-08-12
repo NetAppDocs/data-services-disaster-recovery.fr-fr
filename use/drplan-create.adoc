@@ -71,7 +71,7 @@ Si vous prévoyez d'utiliser des sauvegardes gérées par la plateforme (c'est-�
 | *MirrorAll* | Recommandé | N’utilisez pas les instantanés de transfert SnapMirror pour les opérations de basculement ou de restauration. 
 
 
-| *MirrorVault* .2+| Recommandation alternative .2+| Assurez-vous que les instantanés sélectionnés lors du basculement ou du retour arrière sont présents sur les volumes source et de destination. Dans le cas contraire, l’erreur suivante s’affichera : « Transition vers l’état ‘snapmirrored’ échouée. Motif : Aucun instantané commun trouvé. » 
+| *MirrorVault* .2+| Recommandation alternative .2+| Assurez-vous que les instantanés sélectionnés lors du basculement ou du retour arrière sont présents sur les volumes source et de destination. Dans le cas contraire, l’erreur suivante s’affichera : « Transition vers l’état ‘snapmirrored’ échouée. Motif : Aucun instantané commun trouvé. » N’utilisez pas les instantanés de transfert SnapMirror pour les opérations de basculement ou de restauration. 
 
 
 | *Asynchrone* 
