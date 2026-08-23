@@ -12,7 +12,7 @@ summary: 'L’examen des rapports de reprise après sinistre peut vous aider à 
 
 
 [role="lead"]
-NetApp Disaster Recovery vous aide à analyser votre niveau de préparation à la reprise après sinistre. Les rapports fournissent des informations sur les plans de réplication, notamment le nombre de groupes de ressources, de machines virtuelles ou de clusters Kubernetes, et de banques de données couverts par le plan. Ils affichent également l'état de conformité, un résumé des tâches et les paramètres de sauvegarde, y compris l'objectif de point de récupération (RPO) et le nombre de rétentions.
+Utilisez les rapports NetApp Disaster Recovery pour évaluer la préparation à la reprise après sinistre. Les rapports fournissent des détails sur les plans de réplication, y compris le nombre de groupes de ressources, de machines virtuelles, de clusters Kubernetes et de banques de données couverts par chaque plan. Les rapports indiquent également l’état de conformité, les résumés des tâches et les paramètres de sauvegarde, tels que l’objectif de point de récupération (RPO) et le nombre de rétentions.
 
 Vous pouvez télécharger des rapports au format PDF, HTML ou JSON.
 
@@ -23,8 +23,8 @@ Le lien de téléchargement du rapport est valable pendant six heures après que
 . Dans la navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
 . Dans la barre de navigation de gauche de la NetApp Console , sélectionnez *Plans de réplication*.
 . Sélectionnez *Créer un rapport*.
-. Choisissez la *charge de travail* à laquelle le rapport doit s'appliquer : Kubernetes, VMware ou toutes.
-. Choisissez le *type de fichier* (PDF, HTML ou JSON) et la *période* (entre le jour précédent et sept jours précédents) que le rapport doit couvrir.
+. Choisissez la *charge de travail* à laquelle le rapport doit s'appliquer : Kubernetes, VMware ou Toutes.
+. Choisissez le *type de fichier* (PDF, HTML ou JSON) et la *période* (des sept derniers jours à aujourd'hui) pour le rapport.
 +
 image::report.png[Capture d'écran de la création du rapport]
 

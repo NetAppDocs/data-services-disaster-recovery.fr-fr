@@ -12,7 +12,7 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 
 
 [role="lead"]
-Une fois une catastrophe résolue, revenez du site de reprise après sinistre au site source pour revenir aux opérations normales.  Vous pouvez sélectionner l'instantané à partir duquel effectuer la récupération.
+Une fois le sinistre résolu, effectuez un basculement du site de reprise d'activité vers le site source pour reprendre les opérations normales. Vous pouvez choisir l'instantané à utiliser pour la restauration.
 
 *Rôle NetApp Console requis* Le rôle Super admin, Disaster recovery admin ou Disaster recovery failover admin est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
@@ -21,7 +21,7 @@ Une fois une catastrophe résolue, revenez du site de reprise après sinistre au
 [[about-failback]]
 == À propos du failback
 
-En cas de retour en arrière, NetApp Disaster Recovery réplique (resynchronise) toutes les modifications vers la machine virtuelle source d'origine avant d'inverser le sens de la réplication. Ce processus débute à partir d'une relation qui a basculé vers une cible et comprend les étapes suivantes :
+En cas de retour en arrière, NetApp Disaster Recovery réplique (resynchronise) toutes les modifications sur la machine virtuelle source d'origine avant d'inverser le sens de la réplication. Ce processus démarre après le basculement d'une relation vers la cible et comprend les étapes suivantes :
 
 * Effectuer un contrôle de conformité sur le site récupéré.
 * Actualisez les informations vCenter pour chaque cluster vCenter identifié comme situé sur le site récupéré.
@@ -36,7 +36,7 @@ En cas de retour en arrière, NetApp Disaster Recovery réplique (resynchronise)
 [[before-you-begin]]
 == Avant de commencer
 
-Si vous utilisez une protection basée sur un datastore, les machines virtuelles ajoutées au datastore peuvent être ajoutées à ce dernier lors du processus de basculement. Si cela s'est produit, assurez-vous de fournir les informations de mappage supplémentaires pour ces machines virtuelles avant de lancer le basculement. Pour modifier le mappage des ressources, consultez link:manage.html#manage-replication-plans["Gérer les plans de réplication"].
+Si vous utilisez une protection basée sur la banque de données, des machines virtuelles peuvent être ajoutées à la banque de données lors d'un basculement. Si cela s'est produit, assurez-vous de fournir les informations de mappage supplémentaires pour ces machines virtuelles avant d'initier le retour arrière. Pour modifier le mappage des ressources, consultez link:manage.html#manage-replication-plans["Gérer les plans de réplication"].
 
 
 
@@ -53,7 +53,7 @@ Si vous utilisez une protection basée sur un datastore, les machines virtuelles
 +
 image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]
 
-. Identifiez le plan de réplication que vous souhaitez effectuer un retour arrière. Sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"], survolez *Récupérer* puis sélectionnez *Retour arrière*.
+. Identifiez le plan de réplication que vous souhaitez effectuer un retour arrière. Sélectionnez l’option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"], survolez *Recover* puis sélectionnez *Failback*.
 . Choisissez l'instantané de la banque de données à partir duquel effectuer la restauration. Sélectionnez *Créer un instantané maintenant* pour lancer un nouvel instantané ou *Sélectionner* pour choisir parmi les instantanés disponibles.
 +
 image:failback.png["Capture d'écran de la boîte de dialogue de restauration"]
@@ -71,7 +71,7 @@ Pour suivre l'avancement de la tâche, sélectionnez *Suivi des tâches* dans le
 +
 image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]
 
-. Identifiez le plan de réplication que vous souhaitez effectuer un retour arrière. Sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"], survolez *Récupérer* puis sélectionnez *Retour arrière*.
+. Identifiez le plan de réplication que vous souhaitez effectuer un retour arrière. Sélectionnez l’option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"], survolez *Recover* puis sélectionnez *Failback*.
 . Choisissez l'instantané du cluster à partir duquel effectuer la restauration. Sélectionnez *Créer un instantané maintenant* pour lancer un nouvel instantané ou *Utiliser le dernier instantané* pour utiliser l'instantané le plus récent et réussi.
 . Saisissez « Failback » pour confirmer l'opération, puis sélectionnez *Failback*.
 

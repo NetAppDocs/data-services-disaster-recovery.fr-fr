@@ -76,7 +76,7 @@ Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-servi
 [[vm-name-aliasing]]
 === Alias de nom de machine virtuelle
 
-Lorsque vous créez un plan de réplication, vous pouvez désormais ajouter un préfixe et un suffixe aux noms de machines virtuelles sur le site de reprise après sinistre.  Cela vous permet d’utiliser un nom plus descriptif pour les machines virtuelles du plan.
+Lors de la création d'un plan de réplication, vous pouvez désormais ajouter un préfixe et un suffixe aux noms des machines virtuelles sur le site de reprise après sinistre. Cela vous permet d'utiliser un nom plus descriptif pour les machines virtuelles du plan.
 
 Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
 

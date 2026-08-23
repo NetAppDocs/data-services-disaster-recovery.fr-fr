@@ -12,13 +12,16 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 
 
 [role="lead"]
-En cas de sinistre, basculez votre site VMware principal sur site vers un autre site VMware sur site ou VMware Cloud sur AWS.  Vous pouvez tester le processus de basculement pour garantir sa réussite lorsque vous en avez besoin.
+En cas de sinistre, basculez votre site VMware principal sur site vers un autre site VMware sur site ou vers VMware Cloud on AWS. Vous pouvez également tester le processus de basculement au préalable afin de vérifier que la reprise se déroule comme prévu.
 
 *Rôle NetApp Console requis* Le rôle Super admin, Disaster recovery admin ou Disaster recovery failover admin est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
-*À propos de cette tâche*
 
-Lors d’un basculement, la reprise après sinistre utilise par défaut la copie instantanée SnapMirror la plus récente, bien que vous puissiez sélectionner une instantanée spécifique à partir d’une instantanée à un instant donné (conformément à la politique de rétention de SnapMirror). Utilisez l'option de point dans le temps si les répliques les plus récentes sont compromises, par exemple lors d'une attaque de ransomware.
+
+[[about-this-task]]
+== À propos de cette tâche
+
+Lors d'un basculement, NetApp Disaster Recovery utilise par défaut la copie instantanée SnapMirror la plus récente, bien que vous puissiez sélectionner une copie instantanée spécifique à un instant donné (conformément à la politique de rétention de SnapMirror). Utilisez l'option d'instantané pour un point dans le temps si les répliques les plus récentes sont compromises, par exemple lors d'une attaque par rançongiciel.
 
 Ce processus diffère selon que le site de production est sain ou non et que vous effectuez un basculement vers le site de reprise après sinistre pour des raisons autres qu'une défaillance critique de l'infrastructure :
 
@@ -33,7 +36,7 @@ Cette procédure rompt la relation de réplication, place les machines virtuelle
 [[test-the-failover-process]]
 == Tester le processus de basculement
 
-Avant de procéder à un basculement en direct, vous pouvez effectuer un test pour vérifier votre préparation. Les charges de travail restent en ligne pendant le processus de test.
+Avant de procéder à un basculement en direct, vous pouvez effectuer un test pour vérifier la préparation. Les charges de travail restent en ligne pendant le processus de test.
 
 Lors d'un test de basculement, NetApp Disaster Recovery crée temporairement des machines virtuelles. NetApp Disaster Recovery mappe un datastore temporaire, qui sert de support au volume FlexClone, aux hôtes ESXi.
 
@@ -62,7 +65,7 @@ Pour un test de basculement, Disaster Recovery effectue les opérations suivante
 . Sur la droite, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] et sélectionnez *Tester le basculement*.
 . Sur la page de test de basculement, choisissez l’instantané pour le test de basculement : sélectionnez **Créer un instantané maintenant** ou **Sélectionner** pour choisir un instantané existant. Si vous choisissez **Sélectionner**, choisissez l’instantané existant.
 +
-Saisissez ensuite « Test failover » et sélectionnez *Test fail over*.
+Saisissez ensuite « Test failover » et sélectionnez *Test failover*.
 
 . Une fois le test terminé, nettoyez l’environnement de test.
 
@@ -86,7 +89,7 @@ Une fois le test de basculement terminé, vous devez nettoyer l’environnement 
 [[fail-over-the-source-site-to-a-disaster-recovery-site]]
 == Basculer le site source vers un site de reprise après sinistre
 
-En cas de sinistre, basculez à la demande votre site VMware principal sur site vers un autre site VMware sur site ou VMware Cloud sur AWS avec FSx pour NetApp ONTAP.
+En cas de sinistre, basculez à la demande votre site VMware principal sur site vers un autre site VMware sur site ou vers VMware Cloud on AWS avec FSx pour NetApp ONTAP.
 
 Le processus de basculement implique les opérations suivantes :
 
@@ -125,9 +128,9 @@ image:dr-plan-failover3.png["Page de basculement"]
 
 . Sur la page de basculement, créez un nouvel instantané maintenant ou choisissez un instantané existant que la banque de données utilisera comme base de récupération. La valeur par défaut est la plus récente.
 +
-Un instantané de la source actuelle sera pris et répliqué vers la destination actuelle avant que le basculement ne se produise.
+Une capture instantanée de la source actuelle sera effectuée et répliquée vers la destination actuelle avant le basculement.
 
-. Sélectionnez *Forcer le basculement* si vous souhaitez que le basculement se produise même si une erreur est détectée qui empêcherait normalement le basculement de se produire.
+. Sélectionnez *Forcer le basculement* si vous souhaitez que le basculement se poursuive même lorsque le service détecte une erreur qui le bloquerait normalement.
 . Sélectionnez *Ignorer la protection* si vous souhaitez que le service ne crée pas automatiquement une relation de protection inverse SnapMirror après un basculement du plan de réplication. Cette option est utile si vous souhaitez effectuer des opérations supplémentaires sur le site restauré avant de le remettre en ligne dans NetApp Disaster Recovery.
 +
 

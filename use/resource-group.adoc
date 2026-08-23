@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: use/resource-group.html 
 keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter, replication plan, protection, disaster, recovery, virtual machines, vm 
-summary: 'Les groupes de ressources vous permettent d"organiser un ensemble de ressources dépendantes en groupes logiques répondant à vos besoins.' 
+summary: 'Les groupes de ressources vous permettent d"organiser les ressources dépendantes en groupes logiques qui répondent à vos besoins.' 
 ---
-= Créer un groupe de ressources pour organiser les machines virtuelles ensemble dans NetApp Disaster Recovery
+= Créez un groupe de ressources dans NetApp Disaster Recovery
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
@@ -12,7 +12,7 @@ summary: 'Les groupes de ressources vous permettent d"organiser un ensemble de r
 
 
 [role="lead"]
-Une fois que vous avez ajouté des ressources aux sites, vous pouvez créer des groupes de ressources pour organiser les machines virtuelles, les banques de données ou les clusters Kubernetes comme une seule unité. Les groupes de ressources vous permettent d'organiser un ensemble de ressources dépendantes en groupes logiques répondant à vos besoins. Par exemple, vous pouvez regrouper les machines virtuelles associées à une application ou regrouper des applications ayant des niveaux similaires. Autre exemple, les groupes peuvent contenir des ordres de démarrage différé qui peuvent être exécutés lors de la reprise.
+Après avoir ajouté des ressources aux sites, créez des groupes de ressources pour organiser les machines virtuelles, les banques de données ou les clusters Kubernetes en une seule unité. Les groupes de ressources vous permettent d'organiser les ressources dépendantes en groupes logiques répondant à vos besoins. Par exemple, vous pouvez regrouper les machines virtuelles d'une même application ou les applications partageant des niveaux similaires. Les groupes de ressources peuvent également inclure des ordres de démarrage différé exécutés lors de la récupération.
 
 *Rôle requis de la NetApp Console* Le rôle de super administrateur, d’administrateur de reprise après sinistre ou d’administrateur d’application de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
@@ -27,7 +27,7 @@ Vous pouvez créer des groupes de ressources à l’aide des méthodes suivantes
 
 
 
-TIP: Chaque groupe de ressources peut inclure une ou plusieurs machines virtuelles, un datastore ou un cluster Kubernetes. Les machines virtuelles s'allument selon l'ordre dans lequel elles sont incluses dans le plan de réplication. Vous pouvez modifier l'ordre en faisant glisser les machines virtuelles ou les datastores vers le haut ou vers le bas de la liste du groupe de ressources.
+TIP: Chaque groupe de ressources peut inclure une ou plusieurs machines virtuelles, banques de données ou clusters Kubernetes. Les machines virtuelles seront mises sous tension selon l'ordre dans lequel vous les incluez dans le plan de réplication. Vous pouvez modifier l'ordre en faisant glisser les machines virtuelles ou les banques de données vers le haut ou vers le bas de la liste du groupe de ressources.
 
 .À propos des groupes de ressources
 Les groupes de ressources vous permettent de combiner des machines virtuelles, des banques de données ou des applications Kubernetes en une seule unité.
@@ -35,9 +35,9 @@ Les groupes de ressources vous permettent de combiner des machines virtuelles, d
 Par exemple, une application de point de vente peut utiliser plusieurs machines virtuelles pour les bases de données, la logique métier et les vitrines.  Vous pouvez gérer toutes ces machines virtuelles avec un seul groupe de ressources.  Configurez des groupes de ressources pour appliquer les règles du plan de réplication pour l’ordre de démarrage des machines virtuelles, la connexion réseau et la récupération de toutes les machines virtuelles nécessaires à l’application.
 
 .Comment ça marche ?
-NetApp Disaster Recovery protège les machines virtuelles en répliquant les volumes ONTAP sous-jacents et les LUN hébergeant les machines virtuelles dans le groupe de ressources.  Pour ce faire, le système interroge vCenter pour connaître le nom de chaque magasin de données hébergeant des machines virtuelles dans un groupe de ressources.  NetApp Disaster Recovery identifie ensuite le volume ONTAP source ou le LUN hébergeant ce magasin de données.  Toute la protection est effectuée au niveau du volume ONTAP à l’aide de la réplication SnapMirror .
+NetApp Disaster Recovery protège les machines virtuelles en répliquant les volumes ONTAP et les LUN sous-jacents hébergeant les machines virtuelles dans le groupe de ressources. Pour ce faire, le système interroge vCenter pour obtenir le nom de chaque datastore hébergeant des machines virtuelles dans un groupe de ressources. NetApp Disaster Recovery identifie ensuite le volume ONTAP ou le LUN source hébergeant cette banque de données. Toute la protection est effectuée au niveau du volume ONTAP à l’aide de la réplication SnapMirror.
 
-Si les machines virtuelles du groupe de ressources sont hébergées sur différents magasins de données, NetApp Disaster Recovery utilise l'une des méthodes suivantes pour créer un instantané cohérent avec les données des volumes ONTAP ou des LUN.
+Si les machines virtuelles du groupe de ressources sont hébergées sur des banques de données différentes, NetApp Disaster Recovery utilise l'une des méthodes suivantes pour créer un instantané cohérent des données des volumes ou LUNs ONTAP.
 
 [cols="30,65a"]
 |===
@@ -113,7 +113,7 @@ image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de
 . Sélectionnez *Ajouter*.
 . Saisissez un **nom** pour le groupe de ressources et sélectionnez le **cluster** Kubernetes dans le menu déroulant.
 . Sélectionnez les *espaces de noms* à ajouter au groupe de ressources.
-. Classifiez les *types de ressources*. Par défaut, la sélection est « Tout inclure », ce qui désigne plusieurs types de ressources
+. Classifiez les *types de ressources*. Par défaut, la sélection est « Tout inclure », ce qui désigne plusieurs types de ressources.
 . Vous pouvez éventuellement inclure des *sélecteurs d'étiquettes*.
 +
 image:kubernetes-resource-group.png["Capture d'écran de l'ajout d'un groupe de ressources Kubernetes"]

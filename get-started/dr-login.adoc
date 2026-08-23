@@ -12,9 +12,9 @@ summary: Commencez à utiliser NetApp Disaster Recovery en accédant au service 
 
 
 [role="lead"]
-Vous utilisez la NetApp Console pour vous connecter au service NetApp Disaster Recovery .
+Connectez-vous à NetApp Disaster Recovery via la NetApp Console.
 
-Pour vous connecter, vous pouvez utiliser vos informations d'identification du site de support NetApp ou vous inscrire pour une connexion au cloud NetApp à l'aide de votre e-mail et d'un mot de passe. https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-logging-in.html["En savoir plus sur la connexion"^] .
+Pour vous connecter, utilisez vos identifiants du site d'assistance NetApp ou inscrivez-vous à une connexion cloud NetApp avec votre adresse e-mail et votre mot de passe. https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-logging-in.html["En savoir plus sur la connexion"^].
 
 Des tâches spécifiques nécessitent des rôles d’utilisateur spécifiques. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"]. https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
@@ -35,8 +35,8 @@ image:draas-landing6-free-trial.png["Capture d'écran de la page de destination 
 Sinon, le tableau de bord de NetApp Disaster Recovery s’affiche.
 
 +
-** Si vous n’avez pas encore ajouté d’agent de NetApp Console , vous devrez en ajouter un. Pour ajouter l'agent, reportez-vous à https://docs.netapp.com/us-en/console-setup-admin/concept-connectors.html["En savoir plus sur les agents de console"^] .
-** Si vous êtes un utilisateur de la NetApp Console avec un agent existant, lorsque vous sélectionnez « Récupération après sinistre », un message s'affiche concernant l'inscription.
+** Si vous n'avez pas encore ajouté un agent NetApp Console, ajoutez-en un. Pour plus de détails, consultez https://docs.netapp.com/us-en/console-setup-admin/concept-connectors.html["En savoir plus sur les agents de console"^].
+** Si vous êtes un utilisateur de la console NetApp disposant d'un agent existant, lorsque vous sélectionnez *Reprise après sinistre*, un message concernant l'inscription apparaît.
 ** Si vous utilisez déjà le service, lorsque vous sélectionnez « Récupération après sinistre », le tableau de bord apparaît.
 
 

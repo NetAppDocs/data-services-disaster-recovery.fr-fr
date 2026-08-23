@@ -12,9 +12,7 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 
 
 [role="lead"]
-Après avoir ajouté des ressources et des sites, créez un _plan de réplication_ pour gérer la protection des données. La création du plan de réplication consiste à désigner les sites source et de destination, à sélectionner les groupes de ressources et à choisir la manière dont les applications doivent être restaurées et mises sous tension. Par exemple, vous pouvez regrouper des machines virtuelles (VM) associées à une application ou regrouper des applications qui présentent des niveaux similaires.
-
-Lorsque vous créez un plan de réplication, vous pouvez également modifier les calendriers de conformité et de test, en effectuant des basculements de test sans impacter vos données de production.
+Après avoir ajouté des ressources et des sites, créez un plan de réplication pour protéger vos données. Le plan définit les sites source et de destination, les groupes de ressources, les mappages de récupération et le comportement de mise sous tension de vos applications. Vous pouvez également configurer les planifications de conformité et de test et effectuer des basculements de test sans affecter les données de production.
 
 *Rôle requis de la console NetApp* Le rôle de super administrateur, d'administrateur de reprise après sinistre, d'administrateur de basculement de reprise après sinistre ou d'administrateur d'application de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
@@ -23,7 +21,7 @@ Lorsque vous créez un plan de réplication, vous pouvez également modifier les
 [[about-replication-plans]]
 == À propos des plans de réplication
 
-Vous pouvez protéger plusieurs machines virtuelles sur plusieurs banques de données.  NetApp Disaster Recovery crée des groupes de cohérence ONTAP pour tous les volumes ONTAP hébergeant des banques de données de machines virtuelles protégées.
+Vous pouvez protéger plusieurs machines virtuelles sur plusieurs banques de données. NetApp Disaster Recovery crée des groupes de cohérence ONTAP pour tous les volumes ONTAP hébergeant des banques de données de machines virtuelles protégées.
 
 Vous ne pouvez activer la protection que si le plan de réplication se trouve dans l'un des états suivants :
 
@@ -44,7 +42,7 @@ Les situations suivantes peuvent entraîner une différence dans le nombre de sn
 * Certaines situations peuvent amener les opérations ONTAP en dehors de la reprise après sinistre à ajouter ou supprimer des snapshots du volume :
 +
 ** S'il manque des instantanés sur le site source, les instantanés correspondants sur le site de destination peuvent être supprimés, en fonction de la stratégie SnapMirror par défaut pour la relation.
-** S'il manque des instantanés sur le site de destination, le service peut supprimer les instantanés correspondants sur le site source lors du prochain processus de rapprochement d'instantanés planifié, en fonction de la stratégie SnapMirror par défaut pour la relation.
+** Si des instantanés sont manquants sur le site de destination, le service peut supprimer les instantanés correspondants sur le site source lors du prochain processus de réconciliation des instantanés planifié, en fonction de la politique SnapMirror par défaut pour la relation.
 
 
 * Une réduction du nombre de rétentions d'instantanés du plan de réplication peut amener le service à supprimer les instantanés les plus anciens sur les sites source et de destination pour respecter le nombre de rétention nouvellement réduit.
@@ -108,7 +106,7 @@ TIP: Organisez vos machines virtuelles ou clusters Kubernetes avant de déployer
 [[create-the-replication-plan]]
 == Créer le plan de réplication
 
-Un assistant vous guide à travers ces étapes :
+L'assistant vous guide à travers ces étapes :
 
 * Sélectionnez les serveurs vCenter.
 * Sélectionnez les ressources (VMs, datastore, espaces de noms) que vous souhaitez répliquer et attribuez des groupes de ressources.
@@ -160,10 +158,10 @@ Lorsque vous créez des groupes de ressources, tenez compte des points suivants�
 * Avant d'ajouter des ressources à des groupes de ressources, effectuez d'abord une découverte manuelle ou planifiée. Cela garantit que les ressources sont découvertes et répertoriées dans le groupe de ressources.
 * Assurez-vous qu'au moins une machine virtuelle est présente dans la banque de données. Si aucune machine virtuelle n'est présente dans la banque de données, la banque de données ne sera pas détectée.
 * Un seul magasin de données ne doit pas héberger de machines virtuelles protégées par plusieurs plans de réplication.
-* N’hébergez pas de ressources protégées et non protégées sur le même datastore. Si des ressources protégées et non protégées sont hébergées sur le même datastore, vous risquez de rencontrer les problèmes suivants :
+* N’hébergez pas de ressources protégées et non protégées sur le même datastore. Si des ressources protégées et non protégées sont hébergées sur le même datastore, vous pouvez rencontrer les problèmes suivants :
 +
 ** La capacité utilisée de ce volume peut être prise en compte dans le calcul de la licence, car NetApp Disaster Recovery utilise SnapMirror, ce qui signifie que le système réplique des volumes ONTAP entiers. Dans ce cas, l’espace de volume consommé par les ressources protégées et non protégées serait inclus dans ce calcul.
-** Si le groupe de ressources et ses ressources associées doivent être basculés vers le site de reprise après sinistre, les ressources non protégées n'existeront plus sur le site source à la suite du processus de basculement, ce qui entraînera l'échec des ressources non protégées sur le site source. De plus, NetApp Disaster Recovery ne démarrera pas ces ressources non protégées sur le site de basculement.
+** Si le groupe de ressources et ses ressources associées doivent être basculés vers le site de reprise d'activité après sinistre, toutes les ressources non protégées n'existeront plus sur le site source à la suite du processus de basculement, ce qui entraînera l'échec des ressources non protégées sur le site source. De plus, NetApp Disaster Recovery ne démarrera pas ces ressources non protégées sur le site de basculement.
 
 
 
@@ -186,8 +184,8 @@ image:dr-plan-create-apps-vms6.png["Capture d'écran montrant la page Ajouter un
 
 . Sur la moitié droite de la page, examinez les machines virtuelles ou les datastores sélectionnés.
 +
-** Pour supprimer une VM ou une banque de données, survolez le nom de la source de données, puis sélectionnez *X*.
-** Pour organiser les ressources en plusieurs groupes de ressources, sélectionnez *Cliquez pour ajouter un autre groupe de ressources*. Après avoir ajouté le groupe de ressources, vous pouvez glisser-déposer des ressources entre les groupes. Sélectionnez l'icône en forme de crayon* pour modifier le nom du groupe de ressources.
+** Pour supprimer une VM ou une banque de données, placez le pointeur sur le nom de la ressource, puis sélectionnez *X*.
+** Pour organiser les ressources en plusieurs groupes de ressources, sélectionnez *Cliquez pour ajouter un autre groupe de ressources*. Après avoir ajouté le groupe de ressources, vous pouvez faire glisser et déposer des ressources entre les groupes. Sélectionnez l'icône en forme de crayon pour modifier le nom du groupe de ressources.
 +
 image:dr-plan-create-apps-datastores.png["Capture d'écran montrant la page Ajouter un plan de réplication > Applications à répliquer"]
 
@@ -290,11 +288,11 @@ NOTE: Pour Kubernetes, il s'agit de la dernière étape de la création d'une r�
 
 ==== Section des ressources de calcul
 
-La section Ressources de calcul définit où les machines virtuelles seront restaurées après un basculement.  Mappez le centre de données et le cluster vCenter source vers un centre de données et un cluster cibles.
+La section Ressources de calcul définit l'emplacement de restauration des machines virtuelles après un basculement. Associez le centre de données et le cluster vCenter source au centre de données et au cluster cibles.
 
-En option, les machines virtuelles peuvent être redémarrées sur un hôte vCenter ESXi spécifique.  Si VMWare DRS est activé, vous pouvez déplacer automatiquement la machine virtuelle vers un autre hôte si nécessaire pour respecter la politique DR configurée.
+Il est possible de redémarrer les machines virtuelles sur un hôte ESXi vCenter spécifique. Si VMware DRS est activé, vous pouvez déplacer la machine virtuelle automatiquement vers un autre hôte si nécessaire pour respecter la stratégie de reprise après sinistre configurée.
 
-En option, vous pouvez placer toutes les machines virtuelles de ce plan de réplication dans un dossier unique avec vCenter.  Cela fournit un moyen simple d’organiser rapidement les machines virtuelles basculées dans vCenter.
+Vous pouvez également placer toutes les machines virtuelles de ce plan de réplication dans un dossier unique au sein de l’inventaire vCenter. Cela vous permet d’organiser rapidement les machines virtuelles basculées dans le vCenter.
 
 Sélectionnez la flèche vers le bas à côté de *Ressources de calcul*.
 
@@ -319,7 +317,7 @@ NOTE: Cette section est uniquement requise pour vCenters. Vous n'avez pas besoin
 
 NOTE: Vous pouvez affecter plusieurs réseaux virtuels sources au même réseau virtuel cible.  Cela pourrait cependant créer des conflits de configuration du réseau IP.  Vous pouvez mapper plusieurs réseaux sources à un seul réseau cible pour garantir que tous les réseaux sources ont la même configuration.
 
-Dans l’onglet Mappages de basculement, sélectionnez la flèche vers le bas à côté de *Réseaux virtuels*.  Sélectionnez le LAN virtuel source et le LAN virtuel cible.
+Dans l'onglet Mappages de basculement, sélectionnez la flèche vers le bas en regard de *Réseaux virtuels*. Sélectionnez le réseau virtuel source et le réseau virtuel cible.
 
 Sélectionnez le mappage réseau vers le LAN virtuel approprié.  Les réseaux locaux virtuels doivent déjà être provisionnés, sélectionnez donc le réseau local virtuel approprié pour mapper la machine virtuelle.
 
@@ -351,7 +349,7 @@ Cette section peut afficher des champs différents en fonction de votre sélecti
 Vous pouvez augmenter ou diminuer le nombre de processeurs virtuels attribués à chaque machine virtuelle basculée.  Cependant, chaque machine virtuelle nécessite au moins un processeur virtuel.  Vous pouvez modifier le nombre de processeurs virtuels et de DRAM virtuelle attribués à chaque machine virtuelle.  La raison la plus courante pour laquelle vous souhaiterez peut-être modifier les paramètres par défaut du processeur virtuel et de la DRAM virtuelle est si les nœuds du cluster vCenter cible ne disposent pas d'autant de ressources disponibles que le cluster vCenter source.
 
 
-NOTE: Activez les paramètres avancés pour ajouter les paramètres *Scripts* et *cohérent au niveau des applications*.
+NOTE: Activez les *paramètres avancés* pour configurer les *scripts* et la *cohérence au niveau des applications*.
 
 *Paramètres réseau* NetApp Disaster Recovery prend en charge un large éventail d'options de configuration pour les réseaux de machines virtuelles. Il peut être nécessaire de les modifier si le site cible possède des réseaux virtuels utilisant des paramètres TCP/IP différents de ceux des réseaux virtuels de production du site source.
 
@@ -360,7 +358,7 @@ Au niveau le plus basique (et par défaut), les paramètres utilisent simplement
 Le service prend en charge les paramètres réseau de configuration IP statique ou Dynamic Host Configuration Protocol (DHCP) pour les machines virtuelles.  DHCP fournit une méthode basée sur des normes permettant de configurer dynamiquement les paramètres TCP/IP d'un port réseau hôte.  DHCP doit fournir, au minimum, une adresse TCP/IP et peut également fournir une adresse de passerelle par défaut (pour le routage vers une connexion Internet externe), un masque de sous-réseau et une adresse de serveur DNS.  DHCP est couramment utilisé pour les périphériques informatiques des utilisateurs finaux tels que les ordinateurs de bureau, les ordinateurs portables et les connexions de téléphones portables des employés, mais il peut également être utilisé pour tout périphérique informatique réseau tel que les serveurs.
 
 * Option *Utiliser les mêmes paramètres de masque de sous-réseau, DNS et de passerelle* : Étant donné que ces paramètres sont généralement les mêmes pour toutes les machines virtuelles connectées aux mêmes réseaux virtuels, il peut être plus simple de les configurer une seule fois et de laisser Disaster Recovery utiliser les paramètres pour toutes les machines virtuelles du groupe de ressources protégé par le plan de réplication.  Si certaines machines virtuelles utilisent des paramètres différents, vous devez décocher cette case et fournir ces paramètres pour chaque machine virtuelle.
-* *Type d'adresse IP* : reconfigurez la configuration des machines virtuelles pour qu'elle corresponde aux exigences du réseau virtuel cible.  NetApp Disaster Recovery propose deux options : DHCP ou IP statique.  Pour les adresses IP statiques, configurez le masque de sous-réseau, la passerelle et les serveurs DNS.  Saisissez également les informations d’identification des machines virtuelles.
+* *Type d'adresse IP* : reconfigurez la configuration de la machine virtuelle pour qu'elle corresponde aux exigences du réseau virtuel cible. NetApp Disaster Recovery propose deux options : DHCP ou IP statique. Pour les IP statiques, configurez le masque de sous-réseau, la passerelle et les serveurs DNS. Saisissez également les informations d'identification pour les machines virtuelles.
 +
 ** *DHCP* : sélectionnez ce paramètre si vous souhaitez que vos machines virtuelles obtiennent des informations de configuration réseau à partir d'un serveur DHCP.  Si vous choisissez cette option, vous fournissez uniquement les informations d’identification de la machine virtuelle.
 ** *IP statique* : sélectionnez ce paramètre si vous souhaitez spécifier manuellement les informations de configuration IP.  Vous pouvez sélectionner l'une des options suivantes : identique à la source, différent de la source ou mappage de sous-réseau.  Si vous choisissez la même chose que la source, vous n'avez pas besoin de saisir d'informations d'identification.  D'autre part, si vous choisissez d'utiliser des informations différentes de la source, vous pouvez fournir les informations d'identification, l'adresse IP de la machine virtuelle, le masque de sous-réseau, le DNS et les informations de passerelle.  Les informations d’identification du système d’exploitation invité de la machine virtuelle doivent être fournies soit au niveau global, soit au niveau de chaque machine virtuelle.
@@ -381,7 +379,7 @@ Pour permettre l'exécution de scripts avec le système d'exploitation invité d
 ** Des informations d'identification utilisateur appropriées doivent être fournies avec des privilèges de système d'exploitation invité adéquats pour exécuter le script.
 ** Vous pouvez éventuellement inclure une valeur de délai d'expiration en secondes pour le script.
 +
-*VM exécutant Microsoft Windows* : peuvent exécuter des scripts Windows batch (.bat) ou PowerShell (ps1).  Les scripts Windows peuvent utiliser des arguments de ligne de commande.  Formatez chaque argument dans le `arg_name$value` format, où `arg_name` est le nom de l'argument et `$value` est la valeur de l'argument et un point-virgule sépare chaque `argument$value` paire.
+*Machines virtuelles exécutant Microsoft Windows* : peuvent exécuter soit des scripts batch Windows (.bat), soit des scripts PowerShell (ps1). Les scripts Windows peuvent utiliser des arguments de ligne de commande. Formatez chaque argument au format  `arg_name$value` où  `arg_name` est le nom de l’argument et  `$value` est la valeur de l’argument, et un point-virgule sépare chaque paire  `argument$value`.
 
 +
 *VM exécutant Linux* : peuvent exécuter n'importe quel script shell (.sh) pris en charge par la version de Linux utilisée par la VM.  Les scripts Linux peuvent utiliser des arguments de ligne de commande.  Fournissez des arguments dans une liste de valeurs séparées par des points-virgules.  Les arguments nommés ne sont pas pris en charge.  Ajoutez chaque argument à la `Arg[x]` liste d'arguments et référencez chaque valeur à l'aide d'un pointeur dans le `Arg[x]` tableau, par exemple, `value1;value2;value3` .
@@ -407,7 +405,7 @@ NOTE: Vous pouvez configurer la DRAM en gigaoctets (Gio) ou en mégaoctets (Mio)
 La reprise après sinistre démarre en parallèle toutes les machines virtuelles ayant le même numéro d'ordre de démarrage.
 
 +
-** Démarrage séquentiel : attribuez à chaque machine virtuelle un numéro unique pour démarrer dans l'ordre attribué, par exemple, 1, 2, 3, 4, 5.
+** Démarrage séquentiel : attribuez à chaque VM un numéro unique pour les démarrer dans l’ordre attribué, par exemple, 1,2,3,4,5.
 ** Démarrage simultané : attribuez le même numéro à toutes les machines virtuelles pour les démarrer en même temps, par exemple, 1,1,1,1,2,2,3,4,4.
 
 
@@ -428,7 +426,7 @@ De nombreuses machines virtuelles hébergent des serveurs de bases de données t
 
 Les instantanés cohérents avec les applications garantissent que la base de données est dans un état cohérent lorsque l'instantané est pris.  Ceci est important car cela garantit que la base de données peut être restaurée à un état cohérent après une opération de basculement ou de restauration.
 
-Les données gérées par le serveur de base de données peuvent être hébergées sur le même magasin de données que la machine virtuelle hébergeant le serveur de base de données, ou elles peuvent être hébergées sur un magasin de données différent.  Le tableau suivant présente les configurations prises en charge pour les snapshots cohérents avec les applications dans la reprise après sinistre :
+Les données gérées par le serveur de base de données peuvent se trouver sur le même datastore que la machine virtuelle qui héberge le serveur de base de données, ou sur un datastore différent. Le tableau suivant présente les configurations prises en charge pour les snapshots cohérents au niveau des applications dans NetApp Disaster Recovery :
 
 [cols="20,20,40a"]
 |===
@@ -455,7 +453,7 @@ Bien que les données de la base de données ne puissent pas être répliquées,
 |===
 Lors d'une sauvegarde planifiée, Disaster Recovery met en veille le serveur de base de données, puis prend un instantané de la machine virtuelle hébergeant le serveur de base de données.  Cela garantit que la base de données est dans un état cohérent lorsque l'instantané est pris.
 
-* Pour les machines virtuelles Windows, le service utilise le service Microsoft Volume Shadow Copy Service (VSS) pour se coordonner avec l’un ou l’autre serveur de base de données.
+* Pour les machines virtuelles Windows, le service utilise le service Microsoft Volume Shadow Copy (VSS) pour se coordonner avec chaque type de serveur de base de données.
 * Pour les machines virtuelles Linux, le service utilise un ensemble de scripts pour placer le serveur Oracle en mode de sauvegarde.
 
 
@@ -478,7 +476,7 @@ TIP: Examinez le <<Considérations relatives aux sauvegardes gérées par la pla
 
 * *Utilisez les sauvegardes et les calendriers de rétention gérés par la plateforme* : Si vous utilisez une solution externe de gestion des snapshots, cochez cette case. La reprise après sinistre prend en charge l’utilisation de solutions externes de gestion des snapshots, telles que le planificateur de stratégies natif ONTAP SnapMirror ou les intégrations tierces. Si chaque datastore (volume) du plan de réplication possède déjà une relation SnapMirror gérée ailleurs, vous pouvez utiliser ces snapshots comme points de restauration dans NetApp Disaster Recovery.
 +
-Lorsque cette option est sélectionnée, NetApp Disaster Recovery ne configure pas de planification de sauvegarde.  Cependant, vous devez toujours configurer un calendrier de conservation, car des instantanés peuvent toujours être pris pour des opérations de test, de basculement et de restauration automatique.
+Lorsque cette option est sélectionnée, NetApp Disaster Recovery ne configure pas de planification de sauvegarde. Cependant, vous devez tout de même configurer une planification de rétention, car des instantanés peuvent toujours être pris pour des opérations de test, de basculement et de restauration après basculement.
 
 +
 Une fois cette configuration effectuée, le service ne prend aucun instantané planifié régulièrement, mais s'appuie plutôt sur l'entité externe pour prendre et mettre à jour ces instantanés.
@@ -490,7 +488,7 @@ Une fois cette configuration effectuée, le service ne prend aucun instantané p
 
 TIP: Le nombre d'instantanés conservés ainsi que le taux de modification des données entre chaque instantané déterminent la quantité d'espace de stockage consommée sur la source et la destination.  Plus vous conservez d'instantanés, plus l'espace de stockage consommé est important.
 
-* *Magasins de données source et cible* : si plusieurs relations SnapMirror (en éventail) existent, vous pouvez sélectionner la destination à utiliser.  Si un volume possède déjà une relation SnapMirror établie, les banques de données source et cible correspondantes s'affichent.  Si un volume ne possède pas de relation SnapMirror , vous pouvez en créer une maintenant en sélectionnant un cluster cible, en sélectionnant une SVM cible et en fournissant un nom de volume.  Le service créera le volume et la relation SnapMirror .
+* *Magasins de données source et cible* : Si plusieurs relations SnapMirror (de distribution) existent, vous pouvez sélectionner la destination à utiliser. Si une relation SnapMirror est déjà établie pour un volume, les magasins de données source et cible correspondants s’affichent. Si un volume n’a pas de relation SnapMirror, vous pouvez en créer une maintenant en sélectionnant un cluster de destination, une SVM de destination et en indiquant un nom de volume. Le service créera le volume et la relation SnapMirror.
 +
 
 NOTE: Si vous souhaitez créer une relation SnapMirror dans ce service, le cluster et son peering SVM doivent déjà avoir été configurés en dehors de NetApp Disaster Recovery.
@@ -499,7 +497,7 @@ NOTE: Si vous souhaitez créer une relation SnapMirror dans ce service, le clust
 ** Si les machines virtuelles proviennent du même volume et du même SVM, le service effectue un instantané ONTAP standard et met à jour les destinations secondaires.
 ** Si les machines virtuelles proviennent de volumes différents et du même SVM, le service crée un instantané du groupe de cohérence en incluant tous les volumes et met à jour les destinations secondaires.
 ** Si les machines virtuelles proviennent de volumes différents et de SVM différents, le service effectue une phase de démarrage du groupe de cohérence et un instantané de la phase de validation en incluant tous les volumes dans le même cluster ou dans un cluster différent et met à jour les destinations secondaires.
-** Pendant le basculement, vous pouvez sélectionner n’importe quel instantané.  Si vous sélectionnez le dernier instantané, le service crée une sauvegarde à la demande, met à jour la destination et utilise cet instantané pour le basculement.
+** Lors du basculement, vous pouvez sélectionner n'importe quel instantané. Si vous sélectionnez le dernier instantané, le service crée une sauvegarde à la demande, met à jour la destination et utilise cet instantané pour le basculement.
 
 
 
