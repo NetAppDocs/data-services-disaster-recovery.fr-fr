@@ -93,7 +93,7 @@ IMPORTANT: Certaines versions incluent un aperçu technologique.  NetApp ne vous
 Vous pouvez utiliser les types de licences suivants :
 
 * Inscrivez-vous pour un essai gratuit de 30 jours.
-* Achetez un abonnement à la carte (PAYGO) avec Amazon Web Services (AWS) Marketplace ou Microsoft Azure Marketplace.  Cette licence vous permet d'acheter une licence à capacité protégée fixe sans aucun engagement à long terme.
+* Achetez un abonnement à la carte (PAYGO) sur la Marketplace Amazon Web Services (AWS), la Marketplace Azure ou la Marketplace Google Cloud. Cette licence vous permet d’acquérir une licence de capacité protégée fixe sans engagement à long terme.
 * Apportez votre propre licence (BYOL), qui est un fichier de licence NetApp (NLF) que vous obtenez auprès de votre représentant commercial NetApp . Vous pouvez utiliser le numéro de série de la licence pour activer le BYOL dans la NetApp Console.
 
 
@@ -104,7 +104,7 @@ La reprise après sinistre est soumise à une licence basée sur le volume de do
 Les volumes protégés peuvent héberger de nombreuses machines virtuelles.  Certains peuvent ne pas faire partie d’un groupe de ressources NetApp Disaster Recovery .  Quoi qu’il en soit, le stockage consommé par toutes les machines virtuelles sur ce volume ou LUN est utilisé par rapport à la capacité maximale de la licence.
 
 
-NOTE: Les frais de NetApp Disaster Recovery sont basés sur la capacité utilisée des banques de données sur le site source lorsqu'il existe au moins une machine virtuelle dotée d'un plan de réplication.  La capacité d'une banque de données basculée n'est pas incluse dans la capacité allouée.  Pour un BYOL, si les données dépassent la capacité autorisée, les opérations dans le service sont limitées jusqu'à ce que vous obteniez une licence de capacité supplémentaire ou que vous mettiez à niveau la licence dans la NetApp Console.
+NOTE: NetApp Disaster Recovery facture en fonction de la capacité utilisée des datastores sur le site source lorsqu'il existe au moins une machine virtuelle ou une ressource Kubernetes disposant d'un plan de réplication. La capacité d'un datastore basculé n'est pas incluse dans l'allocation de capacité. Pour un BYOL, si le volume de données dépasse la capacité autorisée, les opérations dans le service sont limitées jusqu'à l'obtention d'une licence de capacité supplémentaire ou la mise à niveau de la licence dans la NetApp Console.
 
 Pour plus de détails sur la configuration des licences pour NetApp Disaster Recovery, reportez-vous àlink:../get-started/dr-licensing.html["Configurer les licences NetApp Disaster Recovery"] .
 
