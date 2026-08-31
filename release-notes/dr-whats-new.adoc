@@ -16,6 +16,33 @@ Découvrez les nouveautés en matière de NetApp Disaster Recovery.
 
 
 
+[[31-august-2026]]
+== 31 août 2026
+
+Version 4.3.6P1
+
+
+
+[[improved-snapmirror-snapshot-management]]
+=== Gestion améliorée des instantanés SnapMirror
+
+Vous pouvez désormais déclencher un basculement à l'aide du dernier instantané, ce qui est la méthode privilégiée lorsque vous ne prenez pas de nouvel instantané.
+
+Lors de la sélection d'une ligne de base de snapshot spécifique, les snapshots de transfert SnapMirror sont masqués par défaut. En effet, ils peuvent être supprimés pendant un basculement, ce qui empêche de reprotéger la charge de travail après le basculement en raison d'une erreur « no common snapshot found ». Vous pouvez toujours utiliser ces snapshots, mais vous devrez compléter une confirmation supplémentaire pour reconnaître le risque.
+
+Pour plus d'informations, voir link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/failover.html["Basculer vers un site distant"^].
+
+
+
+[[other-improvements]]
+=== Autres améliorations
+
+* Des améliorations mineures ont été apportées pour accroître la résilience du workflow de test de basculement.
+* Une erreur de validation lors de l'ajout d'un script a été corrigée.
+
+
+
+
 [[10-august-2026]]
 == 10 août 2026
 

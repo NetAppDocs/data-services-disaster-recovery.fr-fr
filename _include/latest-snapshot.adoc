@@ -1,0 +1,6 @@
+= 
+:allow-uri-read: 
+
+
+
+NOTE: Lors de la sélection d'une ligne de base de snapshot spécifique, les snapshots de transfert SnapMirror sont masqués par défaut car ils peuvent être supprimés en cours de basculement. Cette suppression entraîne l'impossibilité de reprotéger la charge de travail après le basculement en raison d'une erreur « aucun snapshot commun trouvé ». Vous pouvez toujours utiliser les snapshots de transfert SnapMirror, mais vous devrez effectuer une confirmation supplémentaire pour reconnaître le risque.
