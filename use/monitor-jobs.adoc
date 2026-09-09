@@ -12,7 +12,7 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 
 
 [role="lead"]
-Surveillez les tâches de NetApp Disaster Recovery pour suivre leur statut et leur progression.
+Surveillez les tâches NetApp Disaster Recovery pour consulter leur historique, leur statut et leurs détails. Le suivi de l'état et de la progression des tâches vous permet de détecter les opérations défaillantes ou bloquées avant qu'elles n'affectent la capacité de reprise.
 
 
 
