@@ -12,7 +12,7 @@ summary: Avant de pouvoir créer un plan de reprise après sinistre, vous devez 
 
 
 [role="lead"]
-Avant de créer un plan de reprise d'activité, ajoutez les sites que vous souhaitez protéger dans NetApp Disaster Recovery. Un site est un ensemble de serveurs vCenter ou de clusters Kubernetes, sur site ou dans le cloud. Ajoutez à la fois le site de production et le site de reprise d'activité.
+Avant de créer un plan de reprise d'activité, ajoutez les sites que vous souhaitez protéger dans NetApp Disaster Recovery. Un site est un ensemble de serveurs vCenter ou de clusters Kubernetes, sur site ou dans le cloud. Ajoutez à la fois le site de production et le site de reprise d'activité afin que Disaster Recovery puisse coordonner les ressources utilisées pour la restauration.
 
 
 TIP: Assurez-vous que la source et la destination utilisent le même agent NetApp Console.

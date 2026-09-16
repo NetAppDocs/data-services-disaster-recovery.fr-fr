@@ -1,0 +1,82 @@
+---
+sidebar: sidebar 
+permalink: reference/trident-permissions.html 
+keywords: disaster recovery, IAM, permissions, Trident Protect, S3, StorageGrid, AppVault, cluster registration, cluster discover 
+summary: Lorsque vous utilisez NetApp Disaster Recovery, assurez-vous que vous disposez des configurations Trident Protect correctes pour découvrir et enregistrer vos clusters Kubernetes. 
+---
+= Configurer les autorisations Trident Protect pour NetApp Disaster Recovery
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+[role="lead"]
+Lorsque vous utilisez NetApp Disaster Recovery, assurez-vous que vous disposez des configurations Trident Protect correctes pour découvrir et enregistrer vos clusters Kubernetes.
+
+
+
+[[trident-protect-cluster-permissions]]
+== Autorisations du cluster Trident Protect
+
+Les autorisations de cluster suivantes sont requises pour la reprise après sinistre :
+
+[cols="3,1"]
+|===
+| Autorisation | Fonction 
+
+
+| dr:trident_cluster-view | Affichez les clusters Kubernetes enregistrés et l'inventaire des clusters utilisés par NetApp Disaster Recovery 
+
+
+| dr:trident_cluster-create | Enregistrez un cluster Kubernetes et générez les commandes de configuration. 
+
+
+| dr:trident_cluster-update | Modifier un cluster Kubernetes enregistré. 
+
+
+| dr:trident_cluster-delete | Supprimez un cluster Kubernetes enregistré. 
+
+
+| dr:trident_cluster-refresh | Exécutez la découverte du cluster Trident. 
+|===
+
+
+[[trident-protect-appvault-permissions]]
+== Autorisations Trident Protect AppVault
+
+Les autorisations AppVault suivantes sont requises pour la reprise après sinistre :
+
+[cols="3,1"]
+|===
+| Autorisation | Fonction 
+
+
+| dr:trident_appvault-view | Affichez les AppVaults Trident et les données de découverte cloud/object-store requises pour la configuration de AppVault. 
+
+
+| dr:trident_appvault-create | Créez une ressource personnalisée Trident AppVault via la reprise après sinistre. 
+|===
+
+
+[[trident-protect-credential-permissions]]
+== Autorisations d'identifiant Trident Protect
+
+Les autorisations d'identifiant suivantes sont requises avec NetApp Disaster Recovery :
+
+[cols="3,1"]
+|===
+| Autorisation | Fonction 
+
+
+| dr:credential-view | Afficher les métadonnées de l'identifiant et lister les compartiments ONTAP S3/StorageGRID pour la configuration de AppVault. 
+
+
+| dr:création d'identifiant | Enregistrez les identifiants, y compris ONTAP S3 et StorageGRID. 
+
+
+| dr:identifiant-mise à jour | Mettez à jour les identifiants, y compris ONTAP S3 et StorageGRID. 
+
+
+| dr:suppression-identifiant | Supprimez les identifiants, y compris ONTAP S3 et StorageGRID. 
+|===

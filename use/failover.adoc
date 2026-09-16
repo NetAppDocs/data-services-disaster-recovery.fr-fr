@@ -12,7 +12,9 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 
 
 [role="lead"]
-En cas de sinistre, basculez votre site VMware principal sur site vers un autre site VMware sur site ou vers VMware Cloud on AWS. Vous pouvez également tester le processus de basculement au préalable afin de vérifier que la reprise se déroule comme prévu.
+En cas de catastrophe ou d'événement similaire, utilisez NetApp Disaster Recovery pour récupérer les charges de travail critiques afin que les applications puissent reprendre sur le site de reprise après sinistre avec les mappages prévus.
+
+La reprise après sinistre prend également en charge les tests de basculement. Effectuer ces tests vous aide à vous familiariser avec le processus et confirme que la reprise fonctionne comme vous l’attendez.
 
 *Rôle NetApp Console requis* Le rôle Super admin, Disaster recovery admin ou Disaster recovery failover admin est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 

@@ -14,6 +14,16 @@ summary: 'L’examen des rapports de reprise après sinistre peut vous aider à 
 [role="lead"]
 Utilisez les rapports NetApp Disaster Recovery pour évaluer la préparation à la reprise après sinistre. Les rapports fournissent des détails sur les plans de réplication, y compris le nombre de groupes de ressources, de machines virtuelles, de clusters Kubernetes et de banques de données couverts par chaque plan. Les rapports indiquent également l’état de conformité, les résumés des tâches et les paramètres de sauvegarde, tels que l’objectif de point de récupération (RPO) et le nombre de rétentions.
 
+Utilisez les rapports pour évaluer la conformité de la réplication et l’historique de récupération avant un incident afin que vous puissiez identifier les failles de protection.
+
+
+TIP: link:dashboard-view.html["Vous pouvez consulter l'état de la protection de manière générale dans le Dashboard ou par charge de travail sur la page Workloads."]
+
+
+
+[[about-disaster-recovery-reports]]
+== À propos des rapports de reprise après sinistre
+
 Vous pouvez télécharger des rapports au format PDF, HTML ou JSON.
 
 Le lien de téléchargement du rapport est valable pendant six heures après que vous l'ayez généré.

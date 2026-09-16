@@ -19,9 +19,10 @@ Avant de configurer NetApp Disaster Recovery pour Kubernetes, préparez chaque c
 [[prerequisites]]
 == Prérequis
 
-Avant de commencer, assurez-vous que vos clusters Kubernetes et ONTAP sont configurés.
+* Avant de configurer les exigences du cluster Kubernetes, assurez-vous d'avoir configuré votre cluster Kubernetes et vos clusters ONTAP.
+* Assurez-vous d'utiliser une version prise en charge de Kubernetes. NetApp Disaster Recovery prend en charge link:https://docs.netapp.com/us-en/trident/trident-protect/trident-protect-requirements.html["toute version de Kubernetes actuellement prise en charge par Trident Protect"^].
+* Configurez l’link:../reference/trident-permissions.html["autorisations pour Trident Protect"] approprié.
 
-La reprise après sinistre prend en charge link:https://docs.netapp.com/us-en/trident/trident-protect/trident-protect-requirements.html["toute version de Kubernetes actuellement prise en charge par Trident Protect"^].
 
 
 
@@ -61,13 +62,8 @@ Si vous avez déjà installé Trident, vérifiez l'installation avec la commande
 
 
 
-[[configure-ontap-backend-and-trident-storageclass]]
-== Configurer le backend ONTAP et Trident StorageClass
-
-
-
 [[create-a-kubernetes-secret]]
-=== Créer un secret Kubernetes
+== Créer un secret Kubernetes
 
 Créez un secret Kubernetes dans l'espace de noms :
 
@@ -113,7 +109,7 @@ Vous pouvez vérifier la configuration avec la commande `kubectl get TridentBack
 
 
 [[configure-the-storage-class]]
-=== Configurer la classe de stockage
+== Configurer la classe de stockage
 
 link:https://docs.netapp.com/us-en/trident/trident-use/create-stor-class.html["Créer l'objet de classe de stockage"^]. Utilisez le provisionneur `csi.trident.netapp.io`. Par exemple :
 
@@ -215,6 +211,13 @@ Après avoir vérifié l'état de toutes les ressources, déployez ou link:https
 
 
 ====
+
+
+[[netapp-console-roles]]
+== NetApp Console rôles
+
+Après avoir effectué vos configurations Trident Protect et Kubernetes,link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["Assurez-vous de disposer des rôles NetApp Console appropriés pour NetApp Disaster Recovery afin d’effectuer la découverte, le basculement et d’autres tâches."^]
+
 
 
 [[more-information]]

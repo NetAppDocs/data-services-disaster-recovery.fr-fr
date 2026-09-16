@@ -12,7 +12,7 @@ summary: Grâce à NetApp Disaster Recovery, vous pouvez répliquer les applicat
 
 
 [role="lead"]
-Grâce à NetApp Disaster Recovery, vous pouvez répliquer les applications VMware de votre site source vers un site de reprise après sinistre distant dans le cloud en utilisant la réplication SnapMirror.
+En utilisant NetApp Disaster Recovery, vous pouvez répliquer les applications VMware de votre site source vers un site de reprise après sinistre distant dans le cloud en utilisant la réplication SnapMirror. Le maintien à jour des données de reprise sur un site distant garantit que les applications protégées peuvent être restaurées à partir des snapshots SnapMirror récents.
 
 
 TIP: Une fois que vous avez créé le plan de reprise après sinistre, identifié la récurrence dans l'assistant et lancé une réplication vers un site de reprise après sinistre, toutes les 30 minutes, NetApp Disaster Recovery vérifie que la réplication se déroule réellement conformément au plan. Vous pouvez suivre la progression dans la page Job Monitor.
