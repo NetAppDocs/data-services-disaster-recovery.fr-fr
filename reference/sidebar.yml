@@ -6,6 +6,8 @@ entries:
   url: "/reference/ontap-permissions.html"
 - title: Privilèges requis vCenter
   url: "/reference/vcenter-privileges.html"
+- title: Autorisations Trident requises
+  url: "/reference/trident-permissions.html"
 - title: Agents de la console de commutation
   url: "/reference/switch-console-agent.html"
 - title: Utiliser NetApp Disaster Recovery avec Amazon EVS
