@@ -9,14 +9,12 @@ summary: 'Introduction à NetApp Disaster Recovery à l"aide d"Amazon EVS et Ama
 
 
 [role="lead"]
-Utilisez NetApp Disaster Recovery avec Amazon EVS et Amazon FSx for NetApp ONTAP pour effectuer les opérations suivantes : basculement, test de basculement, actualisation des ressources, migration, prise d'un instantané maintenant, désactivation/activation du plan de réplication, nettoyage des anciens instantanés, rapprochement des instantanés, suppression du plan de réplication et modification des planifications.
+Après avoir configuré le plan de réplication dans NetApp Disaster Recovery, vous pouvez effectuer des basculements, tester le basculement, actualiser les ressources, migrer et gérer les instantanés et les plans de réplication. L'action principale à réaliser, outre la maintenance, est le basculement en cas de panne.
 
 
 
 [[fail-over]]
 == Basculement
-
-L’opération principale que vous devrez peut-être effectuer est celle que vous espérez ne jamais voir se produire : basculer vers le centre de données DR (destination) en cas de panne catastrophique sur le site de production sur site.
 
 Le basculement est un processus lancé manuellement.
 
@@ -63,8 +61,7 @@ Les étapes d'exécution d'un basculement de test sont identiques à celles util
 +
 image:evs-rp-menu-test-failover.png["Option de menu de test de basculement"]
 
-. Décidez si vous souhaitez obtenir le dernier état de l'environnement de production (Prendre un instantané maintenant) ou utiliser une sauvegarde de plan de réplication précédemment créée (Sélectionner)
-. Si vous avez choisi une sauvegarde créée précédemment, sélectionnez la sauvegarde à utiliser pour la récupération.
+. Choisissez l'instantané à utiliser. Pour créer la copie la plus à jour de l'environnement de production, choisissez *Prendre un instantané maintenant*. Pour utiliser un instantané précédemment capturé, choisissez *Sélectionner* puis sélectionnez l'instantané existant.
 . Tapez le mot « Test de basculement » pour vérifier que vous souhaitez continuer.
 . Sélectionnez *Tester le basculement*.
 +
@@ -93,7 +90,7 @@ image:evs-rp-menu-compliance-check.png["Option de menu Exécuter la vérificatio
 [[refresh-resources]]
 == Actualiser les ressources
 
-Chaque fois que vous apportez des modifications à votre infrastructure virtuelle (par exemple, l'ajout ou la suppression de machines virtuelles, l'ajout ou la suppression de banques de données ou le déplacement de machines virtuelles entre des banques de données), vous devez effectuer une actualisation des clusters vCenter concernés dans le service NetApp Disaster Recovery .  Le service effectue cette opération automatiquement une fois toutes les 24 heures par défaut, mais une actualisation manuelle garantit que les dernières informations sur l'infrastructure virtuelle sont disponibles et prises en compte pour la protection DR.
+Chaque fois que vous modifiez votre infrastructure virtuelle—comme l’ajout ou la suppression de machines virtuelles, l’ajout ou la suppression de banques de données, ou le déplacement de machines virtuelles entre des banques de données—vous devez effectuer une actualisation des clusters vCenter concernés dans NetApp Disaster Recovery. NetApp Disaster Recovery s’actualise automatiquement une fois toutes les 24 heures par défaut, mais une actualisation manuelle garantit que les informations les plus récentes sur l’infrastructure virtuelle sont disponibles et prises en compte pour la protection contre les sinistres.
 
 Il existe deux cas où une actualisation est nécessaire :
 
@@ -108,7 +105,7 @@ image::evs-rp-menu-refresh-resources.png[Option de menu Actualiser les ressource
 [[migrate]]
 == Émigrer
 
-Bien que NetApp Disaster Recovery soit principalement utilisé pour les cas d’utilisation de reprise après sinistre, il peut également permettre des déplacements ponctuels d’un ensemble de machines virtuelles du site source vers le site de destination.  Cela pourrait être destiné à un projet de migration concertée vers le cloud ou pourrait être utilisé pour éviter des catastrophes, telles que des intempéries, des conflits politiques ou d'autres événements catastrophiques temporaires potentiels.
+En plus d'utiliser NetApp Disaster Recovery pour gérer la réplication et le basculement en cas de sinistre, cette solution peut également prendre en charge la migration ponctuelle de machines virtuelles du site source vers le site de destination. Vous pouvez effectuer une migration ponctuelle dans le cadre d'un passage au cloud ou d'une procédure d'évitement des sinistres en réponse à des événements catastrophiques tels que des conditions météorologiques extrêmes ou des troubles politiques.
 
 . Sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à côté du plan de réplication.
 . Pour déplacer les machines virtuelles d'un plan de réplication vers le cluster Amazon EVS de destination, sélectionnez *Migrer* dans le menu Actions du plan de réplication :
@@ -168,7 +165,7 @@ image::evs-rp-menu-cleanup-old-snapshots.png[Option de menu Nettoyer les anciens
 [[reconcile-snapshots]]
 == Réconcilier les instantanés
 
-Étant donné que le service orchestre les snapshots de volume ONTAP , il est possible pour un administrateur de stockage ONTAP de supprimer directement les snapshots à l'aide d' ONTAP System Manager, de l'interface de ligne de commande ONTAP ou des API REST ONTAP à l'insu du service.  Le service supprime automatiquement tous les snapshots sur la source qui ne se trouvent pas sur le cluster de destination toutes les 24 heures.  Cependant, vous pouvez effectuer cette opération à la demande.  Cette fonctionnalité vous permet de garantir que les instantanés sont cohérents sur tous les sites.
+Parce que NetApp Disaster Recovery orchestre les instantanés de volumes ONTAP, un administrateur de stockage ONTAP peut supprimer directement des instantanés à l'aide de ONTAP System Manager, de l'interface de ligne de commande ONTAP (ONTAP CLI) ou des ONTAP REST APIs, sans que le service ne le sache. NetApp Disaster Recovery supprime automatiquement tous les instantanés sur la source qui ne sont pas présents sur le cluster de destination, et ce, toutes les 24 heures. Vous pouvez supprimer manuellement des instantanés si nécessaire. Cette fonctionnalité vous permet de garantir que les instantanés sont cohérents sur tous les sites.
 
 . Sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à côté du plan de réplication.
 . Pour supprimer les snapshots du cluster source qui n'existent pas sur le cluster de destination, sélectionnez *Réconcilier les snapshots* dans le menu Actions du plan de réplication.

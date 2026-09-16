@@ -9,7 +9,7 @@ summary: 'Introduction à NetApp Disaster Recovery à l"aide d"Amazon EVS et Ama
 
 
 [role="lead"]
-Une fois que vous avez des vCenters à protéger sur le site local et que vous disposez d'un site Amazon EVS configuré pour utiliser Amazon FSx for NetApp ONTAP que vous pouvez utiliser comme destination DR, vous pouvez créer un plan de réplication (RP) pour protéger tout ensemble de machines virtuelles hébergées sur le cluster vCenter au sein de votre site local.
+Après avoir identifié les vCenters sur site à protéger et configuré un site Amazon EVS utilisant Amazon FSx for NetApp ONTAP comme cluster de destination pour la reprise après sinistre, créez un plan de réplication pour protéger les machines virtuelles sur votre cluster vCenter sur site.
 
 
 
@@ -51,11 +51,11 @@ image:evs-create-rp-wiz-a-1-4.png["Créer un plan de réplication, sélectionner
 [[select-vm-resources-for-protection]]
 == Sélectionnez les ressources VM à protéger
 
-Il existe plusieurs façons de sélectionner les machines virtuelles à protéger. Les étapes suivantes expliquent comment protéger l’ensemble des banques de données vCenter, mais vous devez choisir la méthode qui correspond le mieux à vos besoins.
+Il existe plusieurs façons de sélectionner les machines virtuelles à protéger. Les étapes suivantes montrent comment protéger l'ensemble des banques de données vCenter, mais vous devez choisir la méthode qui correspond le mieux à vos besoins.
 
 * *Sélection de machines virtuelles individuelles* : Le bouton *Machines virtuelles* vous permet de sélectionner des machines virtuelles individuelles à protéger. Au fur et à mesure que vous sélectionnez chaque machine virtuelle, le service l’ajoute à un groupe de ressources par défaut situé à droite de l’écran.
-* *Sélectionnez les groupes de ressources précédemment créés* : Vous pouvez créer des groupes de ressources personnalisés au préalable à l’aide de l’option Groupe de ressources du menu Reprise après sinistre. Cette étape n’est pas obligatoire, car vous pouvez utiliser les deux autres méthodes pour créer un groupe de ressources dans le cadre du processus de plan de réplication. Pour plus de détails, consultez link:../use/drplan-create.html["Créer un plan de réplication"].
-* *Sélectionnez des banques de données vCenter entières* : Si vous avez beaucoup de machines virtuelles à protéger avec ce plan de réplication, il peut être moins efficace de sélectionner des machines virtuelles individuelles. Parce que Disaster Recovery utilise la réplication SnapMirror basée sur les volumes pour protéger les machines virtuelles, toutes les machines virtuelles résidant sur une banque de données seront répliquées dans le cadre du volume. Dans la plupart des cas, vous devriez faire en sorte que Disaster Recovery protège et redémarre toutes les machines virtuelles situées sur la banque de données. Utilisez cette option pour indiquer au service d’ajouter toutes les machines virtuelles hébergées sur une banque de données sélectionnée à la liste des machines virtuelles protégées.
+* *Sélectionnez les groupes de ressources précédemment créés* : Vous pouvez créer des groupes de ressources personnalisés au préalable à l’aide de l’option Groupe de ressources du menu Reprise après sinistre. Cette étape est facultative, car vous pouvez utiliser les deux autres méthodes pour créer un groupe de ressources lors de la création du plan de réplication. Pour plus d’informations, consultez link:../use/drplan-create.html["Créer un plan de réplication"].
+* *Sélectionner des datastores vCenter entiers* : Avec cette option, toutes les VM résidant sur un datastore seront répliquées dans le cadre du volume. Utilisez cette option si vous avez plusieurs VM à protéger avec le plan de réplication afin d’éviter de sélectionner les VM individuellement. Dans la plupart des cas, vous devez faire en sorte que Disaster Recovery protège et redémarre toutes les VM situées sur le datastore. Utilisez cette option pour indiquer au service d’ajouter toutes les VM hébergées sur un datastore sélectionné à la liste des VM protégées.
 
 
 .Étapes pour accéder à cette page
@@ -86,7 +86,7 @@ Après avoir sélectionné les machines virtuelles à protéger, vous devez effe
 Chaque machine virtuelle nécessite les trois premiers types d’informations.  Le mappage de banque de données est requis pour chaque banque de données hébergeant des machines virtuelles à protéger.
 
 * Les sections comportant l'icône d'avertissement (image:evs-caution-icon.png["20,20"]) nécessitent que vous fournissiez des informations de mappage.
-* Les sections marquées d'une coche (image:evs-check-icon.png["20,20"]) sont mappées ou possèdent des mappages par défaut. Vérifiez-les pour vous assurer que la configuration actuelle répond à vos exigences.
+* Les sections marquées d'une coche (image:evs-check-icon.png["20,20"]) utilisent soit des mappages par défaut, soit ont déjà été mappées. Vérifiez les mappages pour vous assurer que la configuration actuelle répond à vos exigences.
 
 
 .Cartographie des ressources d'accès
@@ -103,14 +103,14 @@ image:evs-create-rp-wiz-c0.png["Créer un plan de réplication, une page de mapp
 [[compute-resources-mapping]]
 === Cartographie des ressources de calcul
 
-Étant donné qu’un site peut héberger plusieurs centres de données virtuels et plusieurs clusters vCenter, vous devez identifier le cluster vCenter sur lequel récupérer les machines virtuelles en cas de basculement.
+Étant donné qu'un site peut héberger plusieurs centres de données virtuels et plusieurs vCenter clusters, vous devez identifier le vCenter cluster vers lequel restaurer les machines virtuelles en cas de basculement.
 
 .Étapes
 . Sélectionnez le centre de données virtuel dans la liste des centres de données situés sur le site DR.
 . Sélectionnez le cluster qui hébergera les banques de données et les machines virtuelles dans la liste des clusters au sein du centre de données virtuel sélectionné.
 . Vous pouvez également sélectionner un hôte cible dans le cluster cible.
 +
-Cette étape n'est pas nécessaire car NetApp Disaster Recovery sélectionne le premier hôte ajouté au cluster dans vCenter. À ce stade, les machines virtuelles continuent de s'exécuter sur cet hôte ESXi ou VMware DRS déplace la machine virtuelle vers un autre hôte ESXi selon les besoins, en fonction des règles DRS configurées.
+Cette étape n'est pas nécessaire car NetApp Disaster Recovery sélectionne le premier hôte ajouté au cluster dans vCenter. Les machines virtuelles continuent de s'exécuter sur cet hôte ESXi ou VMware DRS les déplace vers un autre hôte ESXi en fonction des règles DRS configurées.
 
 . Vous pouvez également indiquer le nom d'un dossier racine vCenter pour y placer les enregistrements des machines virtuelles. Cette étape peut répondre à des besoins organisationnels, mais n'est pas obligatoire.
 +
@@ -123,7 +123,7 @@ image:evs-create-rp-wiz-c-compute-resources-1-4.png["Créer un plan de réplicat
 [[map-virtual-network-resources]]
 === Cartographier les ressources du réseau virtuel
 
-Chaque machine virtuelle peut avoir une ou plusieurs cartes réseau virtuelles connectées à des réseaux virtuels au sein de l’infrastructure réseau vCenter.  Pour garantir que chaque machine virtuelle est correctement connectée aux réseaux souhaités lors du redémarrage sur le site DR, identifiez les réseaux virtuels du site DR auxquels connecter ces machines virtuelles.  Pour ce faire, mappez chaque réseau virtuel du site local à un réseau associé sur le site DR.
+Chaque machine virtuelle peut disposer d'une ou plusieurs cartes réseau virtuelles connectées à des réseaux virtuels au sein de l'infrastructure réseau vCenter. Pour garantir que chaque machine virtuelle soit correctement connectée aux réseaux souhaités lors de leur redémarrage sur le site de reprise d'activité, identifiez les réseaux virtuels du site de reprise d'activité auxquels connecter ces machines virtuelles. Pour ce faire, associez chaque réseau virtuel du site local à un réseau correspondant sur le site de reprise d'activité.
 
 . Sélectionnez le segment cible dans la liste déroulante.
 . Répétez l’étape précédente pour chaque réseau virtuel source répertorié.
@@ -153,9 +153,9 @@ Les types d'adresses IP pris en charge sont statiques et DHCP.  Pour les adresse
 * *Mappage de sous-réseau* : cette option reconfigure l'adresse IP de chaque machine virtuelle en fonction de la configuration CIDR du réseau virtuel de destination.  Pour utiliser cette fonctionnalité, assurez-vous que chaque réseau virtuel de vCenter dispose d'un paramètre CIDR défini au sein du service, tel que modifié dans les informations vCenter sur la page Sites.
 
 
-Une fois les sous-réseaux configurés, le mappage de sous-réseaux utilise le même composant d'unité de l'adresse IP pour la configuration de la machine virtuelle source et de destination, mais remplace le composant de sous-réseau de l'adresse IP en fonction des informations CIDR fournies.  Cette fonctionnalité nécessite également que les réseaux virtuels source et de destination aient la même classe d'adresse IP (la `/xx` composant du CIDR).  Cela garantit qu'il y a suffisamment d'adresses IP disponibles sur le site de destination pour héberger toutes les machines virtuelles protégées.
+Après avoir configuré les sous-réseaux, le mappage de sous-réseaux utilise la même partie hôte de l’adresse IP pour la configuration des machines virtuelles source et de destination, mais remplace la composante sous-réseau de l’adresse IP en fonction des informations CIDR fournies. Cette fonctionnalité exige également que les réseaux virtuels source et de destination aient la même classe d’adresse IP (la  `/xx` composante du CIDR). Cela garantit qu’il y a suffisamment d’adresses IP disponibles sur le site de destination pour héberger toutes les machines virtuelles protégées.
 
-Pour cette configuration EVS, nous supposons que les configurations IP source et de destination sont les mêmes et ne nécessitent aucune reconfiguration supplémentaire.
+Pour cette configuration Amazon EVS, nous supposons que les configurations IP source et de destination sont identiques et ne nécessitent aucune reconfiguration supplémentaire.
 
 .Modification de la reconfiguration des paramètres réseau
 . Sélectionnez le type d’adressage IP à utiliser pour les machines virtuelles basculées.
@@ -209,7 +209,7 @@ image:evs-create-rp-wiz-c-vm-resources-boot-delay-1-2.png["Créer un plan de ré
 La reprise après sinistre prend en charge l'exécution de certaines opérations du système d'exploitation invité pour chaque machine virtuelle :
 
 * NetApp Disaster Recovery peut effectuer des sauvegardes cohérentes au niveau des applications des machines virtuelles exécutant des bases de données Oracle et des bases de données Microsoft SQL Server.
-* NetApp Disaster Recovery peut exécuter des scripts personnalisés adaptés au système d'exploitation invité de chaque machine virtuelle. L'exécution de ces scripts requiert des identifiants utilisateur acceptés par le système d'exploitation invité et disposant de privilèges suffisants pour exécuter les opérations listées dans le script.
+* La reprise après sinistre peut exécuter des scripts personnalisés pour le système d'exploitation invité de chaque machine virtuelle. L'exécution de ces scripts requiert des identifiants utilisateur acceptés par le système d'exploitation invité et disposant de privilèges suffisants pour exécuter les opérations listées dans le script.
 
 
 .Modifier les opérations personnalisées du système d'exploitation invité de chaque machine virtuelle

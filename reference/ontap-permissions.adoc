@@ -12,14 +12,14 @@ summary: 'Lors de l"utilisation de NetApp Disaster Recovery, assurez-vous de dis
 
 
 [role="lead"]
-Lors de l'utilisation de NetApp Disaster Recovery, assurez-vous de disposer des autorisations appropriées configurées dans ONTAP pour garantir un fonctionnement correct.
+Configurez les autorisations ONTAP requises pour que NetApp Disaster Recovery puisse fonctionner correctement.
 
 
 
 [[minimum-ontap-permissions]]
 == Autorisations minimales ONTAP
 
-Les autorisations ONTAP suivantes sont requises pour la reprise après sinistre :
+La reprise après sinistre nécessite les autorisations ONTAP suivantes :
 
 [cols="3,1"]
 |===
@@ -111,7 +111,7 @@ Les autorisations ONTAP suivantes sont requises pour la reprise après sinistre�
 [[add-permissions-in-ontap]]
 == Ajouter des autorisations dans ONTAP
 
-L'ajout d'autorisations dans ONTAP nécessite la création d'un rôle doté des autorisations requises et l'attribution de ce rôle à un utilisateur. Vous pouvez effectuer cette opération dans ONTAP à l'aide de System Manager ou de l'ONTAP CLI.
+Pour ajouter des autorisations dans ONTAP, créez un rôle doté des privilèges requis et attribuez-le à un utilisateur. Vous pouvez effectuer cette opération dans ONTAP à l'aide de System Manager ou de l'interface de ligne de commande ONTAP.
 
 [role="tabbed-block"]
 ====

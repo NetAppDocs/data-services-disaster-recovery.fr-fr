@@ -12,9 +12,9 @@ summary: 'Le compte vCenter doit disposer d"un ensemble minimal de privilèges v
 
 
 [role="lead"]
-Pour que NetApp Disaster Recovery puisse fournir ses services, le compte vCenter doit disposer d'un ensemble minimal de privilèges vCenter. Ces privilèges incluent l'enregistrement et la désinscription des banques de données, le démarrage et l'arrêt des machines virtuelles (VM), ainsi que leur reconfiguration.
+Le compte vCenter pour NetApp Disaster Recovery doit disposer d’un ensemble minimal de privilèges pour enregistrer et désenregistrer des datastores, démarrer et arrêter des machines virtuelles (VM) et reconfigurer des VM.
 
-Le tableau suivant répertorie tous les privilèges requis pour que la reprise après sinistre puisse interagir avec un cluster vCenter.
+Le tableau suivant répertorie les privilèges requis par la fonction de récupération après sinistre pour fonctionner avec un cluster vCenter.
 
 [cols="1,2,2,3"]
 |===

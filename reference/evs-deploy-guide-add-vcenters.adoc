@@ -9,7 +9,7 @@ summary: 'Présentation de NetApp Disaster Recovery à l"aide d"Amazon EVS et d"
 
 
 [role="lead"]
-Une fois les sites créés, vous ajoutez désormais vos clusters vCenter à chaque site dans NetApp Disaster Recovery.  Lors de la création de chaque site, nous avons indiqué chaque type de site.  Cela indique à NetApp Disaster Recovery quel type d'accès est requis pour les vCenters hébergés dans chaque type de site.  L’un des avantages d’Amazon EVS est qu’il n’y a pas de réelle différence entre un vCenter Amazon EVS et un vCenter sur site.  Les deux nécessitent les mêmes informations de connexion et d’authentification.
+Après avoir créé les sites, ajoutez les clusters vCenter pour chaque site dans NetApp Disaster Recovery. Le type de site détermine l'accès dont NetApp Disaster Recovery a besoin pour les vCenters de ce site. Amazon EVS vCenters et les vCenters sur site utilisent les mêmes informations de connexion et d'authentification.
 
 .Étapes pour ajouter un vCenter à chaque site
 . À partir de l’option *Sites*, sélectionnez *Ajouter vCenter* pour le site souhaité.
@@ -20,13 +20,13 @@ image:evs-add-vcenter-1.png["Ajouter l'option vCenter"]
 +
 .. L'agent de la NetApp Console hébergé dans votre AWS VPC.
 .. L'adresse IP ou le nom de domaine complet du vCenter à ajouter.
-.. Si elle est différente, remplacez la valeur du port par le port TCP utilisé par votre gestionnaire de cluster vCenter.
+.. Si nécessaire, modifiez le port pour utiliser le port TCP utilisé par votre serveur vCenter.
 .. Le nom d'utilisateur vCenter pour le compte créé précédemment qui sera utilisé par NetApp Disaster Recovery pour gérer vCenter.
 
 
 
 
-. Si votre entreprise utilise une autorité de certification (CA) externe ou le magasin de certificats de point de terminaison vCenter pour accéder à vos vCenters, décochez la case *Utiliser des certificats auto-signés*.  Sinon, laissez la case cochée.
+. Si votre organisation utilise une autorité de certification externe ou le vCenter Endpoint Certificate Store, décochez la case *Utiliser des certificats auto-signés*. Sinon, laissez la case cochée.
 +
 .. Sélectionnez *Ajouter*.
 +

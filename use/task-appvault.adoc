@@ -1,0 +1,85 @@
+---
+sidebar: sidebar 
+permalink: use/task-appvault.html 
+keywords: disaster recovery, appvault, update credentials, trident protect, kubernetes, edit endpoints 
+summary: 'La gestion des AppVaults dans la reprise après sinistre vous permet de consulter l"état de la connectivité de vos AppVaults, ainsi que les identifiants et les points de terminaison des AppVaults afin d"assurer la continuité de vos plans de reprise après sinistre.' 
+---
+= Gérez AppVaults dans NetApp Disaster Recovery
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+[role="lead"]
+Les charges de travail NetApp Disaster Recovery avec Kubernetes utilisent AppVault, une cible de stockage cloud où Trident Protect enregistre les données de protection Kubernetes. La gestion des AppVaults vous permet de consulter l’état de la connectivité de vos AppVaults, ainsi que les identifiants et les points de terminaison des AppVaults, afin de garantir le bon fonctionnement de vos plans de réplication.
+
+*Rôle requis de la NetApp Console* Le rôle de super administrateur, d’administrateur de reprise après sinistre ou d’administrateur d’application de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
+
+
+
+[[add-an-appvault]]
+== Ajouter un AppVault
+
+Vous pouvez ajouter un AppVault lorsque vous créez un plan de réplication pour Kubernetes ou en créer un à partir de la page Paramètres.
+
+.Étapes
+. Dans NetApp Disaster Recovery, sélectionnez *Paramètres* dans la barre latérale.
+. Dans la carte AppVault, sélectionnez *+ Ajouter AppVault*.
+. Saisissez un *Nom* et sélectionnez l'*Agent de console* auquel AppVault doit être connecté.
+. Sélectionnez le *fournisseur de cloud* pour héberger le *AppVault*.
+. En fonction du fournisseur sélectionné, NetApp Disaster Recovery renseigne les abonnements cloud déjà configurés.
++
+Pour Azure, choisissez l’*abonnement*, le *groupe de ressources* et le *compte de stockage*.
+
++
+Pour AWS, ONTAP S3 et StorageGRID, choisissez *Compte* ou *Identifiants* et *Compartiment*.
+
+. Si vous avez sélectionné ONTAP S3 ou StorageGRID, vous pouvez éventuellement ajouter des identifiants. Sélectionnez *Ajouter des identifiants* pour afficher les options, puis ajoutez le *Nom de l’identifiant*, le *FQDN du nœud de passerelle*, le *Numéro de port*, la *Clé d’accès* et la *Clé secrète*.
+. Sélectionnez **Ajouter**.
+
+
+
+
+[[update-appvault-credentials]]
+== Mettre à jour les identifiants AppVault
+
+Si les identifiants de votre AppVault ont changé, mettez-les à jour dans la page Paramètres pour assurer la continuité de vos plans de réplication. La mise à jour des identifiants remplacera les clés de chaque AppVault qui partage cet identifiant.
+
+.Étapes
+. Dans NetApp Disaster Recovery, sélectionnez *Paramètres* dans la barre latérale.
+. Sélectionnez *Gérer AppVaults*.
+. Trouvez l’élément AppVault que vous souhaitez mettre à jour. Dans le menu Actions, sélectionnez *Mettre à jour*.
+. Vérifiez le nombre de AppVaults et de plans de réplication affectés par la modification.
+. Saisissez la nouvelle *clé secrète* et la *clé d'accès*.
+. Sélectionnez *Mettre à jour les informations d'identification* pour appliquer les modifications.
+
+
+
+
+[[edit-an-appvault-endpoint]]
+== Modifier un point de terminaison AppVault
+
+Si les paramètres de connexion à votre AppVault ont changé, mettez-les à jour pour assurer la continuité de vos plans de réplication pour les charges de travail Kubernetes.
+
+.Étapes
+. Dans NetApp Disaster Recovery, sélectionnez *Paramètres* dans la barre latérale.
+. Sélectionnez *Gérer AppVaults*.
+. Trouvez l'élément AppVault que vous souhaitez modifier. Dans le menu Actions, sélectionnez *Modifier*.
+. Saisissez le nouveau point de terminaison pour votre AppVault.
+. Sélectionnez *Enregistrer* pour appliquer le nouveau point de terminaison.
+
+
+
+
+[[delete-an-appvault]]
+== Supprimer un AppVault
+
+Si vous n'avez plus besoin d'un AppVault, vous pouvez le supprimer.
+
+.Étapes
+. Dans NetApp Disaster Recovery, sélectionnez *Paramètres* dans la barre latérale.
+. Sélectionnez *Gérer AppVaults*.
+. Trouvez le AppVault que vous souhaitez supprimer. Dans le menu Actions, sélectionnez *Supprimer*.
+. Dans la fenêtre de dialogue, sélectionnez *Supprimer* pour confirmer l'action.
+

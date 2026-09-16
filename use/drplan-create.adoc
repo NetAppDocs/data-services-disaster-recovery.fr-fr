@@ -259,13 +259,20 @@ TIP: Exécutez la commande CLI `kubectl get pvc -n <namespace>` sur l'espace de 
 Choisissez la *date et l'heure de début des instantanés et de leur conservation* (date et heure du calendrier), la *fréquence des instantanés et de leur conservation* (à quelle fréquence les instantanés sont déclenchés) et le *nombre d'instantanés conservés* (nombre d'instantanés enregistrés).
 
 +
-Lors de la configuration de la fréquence des instantanés, la valeur minimale autorisée est de cinq minutes.
+Lors de la configuration de la fréquence des instantanés, vous devez choisir une fréquence d'au moins cinq minutes.
 
 . Sélectionnez *Ajouter AppVault* pour créer le AppVault où les données de protection seront enregistrées.
 +
 .. Saisissez un *Nom* et sélectionnez l'*Agent de console* auquel AppVault doit être connecté.
 .. Sélectionnez le *fournisseur de cloud* pour héberger le *AppVault*.
-.. En fonction du fournisseur sélectionné, NetApp Disaster Recovery renseigne les abonnements cloud déjà configurés. Choisissez l’*abonnement*, le *groupe de ressources* et le *compte de stockage* pour le fournisseur de cloud.
+.. En fonction du fournisseur sélectionné, NetApp Disaster Recovery renseigne les abonnements cloud déjà configurés.
++
+Pour Azure, choisissez l’*abonnement*, le *groupe de ressources* et le *compte de stockage* pour le fournisseur de cloud.
+
++
+Pour AWS, ONTAP S3 et StorageGRID, choisissez le *Compte*, les *Identifiants* et le *Compartiment*.
+
+.. Si vous avez sélectionné ONTAP S3 ou StorageGRID, vous pouvez éventuellement ajouter des identifiants. Sélectionnez *Ajouter des identifiants* pour afficher les options, puis ajoutez le *Nom de l’identifiant*, le *FQDN du nœud de passerelle*, le *Numéro de port*, la *Clé d’accès* et la *Clé secrète*.
 .. Sélectionnez **Ajouter**.
 +
 image:kubernetes-mapping.png["Capture d'écran du mappage des classes de stockage pour Kubernetes"]
@@ -282,7 +289,29 @@ Après avoir sélectionné Ajouter, vous pouvez surveiller les différents trava
 --
 ====
 
-NOTE: Pour Kubernetes, il s'agit de la dernière étape de la création d'une réplication. Pour vCenters, continuez à <<Section des ressources de calcul>>.
+
+==== Transformations de ressources et exécutions de scripts
+
+Pour les plans de réplication Kubernetes, vous pouvez appliquer des transformations de ressources et exécuter des scripts. Ces étapes sont facultatives.
+
+.Ajouter une transformation de ressource
+L'ajout d'une transformation de ressources vous permet de modifier n'importe quel aspect d'une charge de travail lors d'un basculement. Les transformations de ressources offrent la flexibilité nécessaire pour adapter les charges de travail à différents environnements et configurations lors d'une reprise après sinistre. link:task-resource-transformation.html["Découvrez comment créer et approvisionner des transformations."^]
+
+Les transformations de ressources sont appliquées dans l'ordre où vous les indiquez.
+
+. Dans la liste déroulante, sélectionnez la transformation de ressource que vous souhaitez ajouter.
+. Choisissez les ressources auxquelles vous souhaitez appliquer la transformation, puis ajoutez les valeurs requises
+. Vérifiez l'ordre des transformations pour vous assurer que les opérations s'exécuteront dans le bon ordre.
+
+
+.Ajouter une exécution de script
+NetApp Disaster Recovery peut exécuter un script avant ou après la prise d'un instantané afin de gérer la mise en veille et la reprise d'une application. Cette action garantit que les applications sont correctement préparées avant qu'un instantané ne soit répliqué et restauré, et qu'elles peuvent reprendre leurs opérations sans interruption après un basculement.
+
+. Sélectionnez *+ Add script*.
+. Sélectionnez *Téléverser* pour choisir le fichier de script.
+. Choisissez l’*étape d’exécution* : *Pré-instantané* pour exécuter avant la création de l’instantané ou *Post-instantané* pour exécuter après.
+. Sélectionnez *Enregistrer*.
+
 
 
 

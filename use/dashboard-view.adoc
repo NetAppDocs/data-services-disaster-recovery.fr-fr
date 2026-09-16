@@ -4,7 +4,7 @@ permalink: use/dashboard-view.html
 keywords: disaster recovery remediate, disaster recovery, failover, failback, replication, bluexp, netapp 
 summary: NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les flux de travail de reprise après sinistre. 
 ---
-= Affichez l'état de santé du plan de reprise après sinistre dans NetApp Disaster Recovery
+= Consultez l’état du plan et l’état de la protection des charges de travail dans NetApp Disaster Recovery
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
@@ -12,13 +12,20 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 
 
 [role="lead"]
-Utilisez le tableau de bord NetApp Disaster Recovery pour vérifier l'état de vos sites de reprise après sinistre et de vos plans de réplication. Vous pouvez voir si les sites et les plans sont opérationnels, déconnectés ou dégradés, consulter les alertes récentes et les tâches ayant échoué, identifier les charges de travail protégées et non protégées, et visualiser la capacité en un coup d'œil.
+NetApp Disaster Recovery offre plusieurs moyens d'obtenir des informations sur les charges de travail découvertes par Disaster Recovery et sur l'état de santé de vos sites et plans de réplication.
+
+Le tableau de bord fournit des informations sur l'état de santé des sites et des plans, indiquant s'ils sont opérationnels, déconnectés ou dégradés. Il présente également les alertes récentes et les tâches ayant échoué. Il offre aussi une vue d'ensemble de la capacité et de l'état de la protection. Utilisez le tableau de bord pour consulter l'état de santé et obtenir un aperçu de vos charges de travail.
+
+La page *Charges de travail* présente la liste détaillée de chaque charge de travail VMware et Kubernetes détectée par NetApp Disaster Recovery. Elle fournit des informations associées à la charge de travail et à son état de protection. Utilisez la page Charges de travail pour consulter des informations détaillées sur les charges de travail et vérifier leur état de protection.
 
 *Rôle requis de la NetApp Console* Le rôle de super administrateur, d’administrateur de reprise après sinistre, d’administrateur d’application de reprise après sinistre ou de visionneur de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
+
+
+[[view-health-and-protection-status-in-the-dashboard]]
+== Afficher l’état de santé et de protection dans le tableau de bord
+
 .Étapes
-. Connectez-vous à la https://console.netapp.com/["NetApp Console"^] .
-. Dans la navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
 . Dans le menu NetApp Disaster Recovery , sélectionnez *Tableau de bord*.
 +
 image:dr-dashboard.png["Tableau de bord de NetApp Disaster Recovery"]
@@ -49,4 +56,46 @@ Pour consulter les détails du plan de réplication, sélectionnez *Afficher tou
 
 . Consultez la section *Avertissements et tâches récents* pour voir les tâches et avertissements les plus récemment exécutés ainsi que leur statut associé. Sélectionnez *Afficher toutes les tâches* pour voir toutes les tâches.
 . Consultez l'état de la découverte et de la protection pour voir le nombre de charges de travail détectées et une ventilation numérique des charges de travail protégées et non protégées, classées par type. Vous pouvez également consulter la capacité totale détectée de toutes les charges de travail et les charges de travail par type.
+
+
+
+
+[[review-workloads-protection-status]]
+== Vérifiez l'état de protection des charges de travail
+
+Utilisez la page Charges de travail pour consulter l'état de protection des charges de travail individuelles détectées par NetApp Disaster Recovery. Outre l'état de protection, NetApp Disaster Recovery affiche les informations suivantes pour chaque type de charge de travail :
+
+|===
+| Charges de travail Kubernetes | vCenter charges de travail 
+
+
+ a| 
+* Cluster
+* Nom
+* Espaces de noms protégés
+* Plan de réplication (le cas échéant)
+* Site
+* Statut de protection
+
+ a| 
+* Processeurs
+* Nom du centre de données
+* Nom du datastore
+* Mémoire
+* Statut de protection
+* Plan de réplication (le cas échéant)
+* Groupe de ressources (s'il existe)
+* Adresse IP vCenter
+* Nom de la charge de travail
+
+
+|===
+.Étapes
+. Dans le menu NetApp Disaster Recovery, sélectionnez *Charges de travail*.
+. Dans le menu déroulant, sélectionnez le filtre pour afficher soit les charges de travail *vCenter* ou *Kubernetes*.
++
+image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]
+
+. Vous pouvez, si vous le souhaitez, rechercher une charge de travail spécifique ou filtrer les charges de travail par statut de protection : protégée ou non protégée.
+. Consultez les informations relatives aux charges de travail et à leur état de protection. Les charges de travail protégées sont signalées par une coche verte. Les charges de travail non protégées sont marquées d'un tiret gris.
 

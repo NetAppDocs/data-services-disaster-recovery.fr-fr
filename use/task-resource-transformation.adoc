@@ -1,0 +1,88 @@
+---
+sidebar: sidebar 
+permalink: use/task-resource-transformation.html 
+keywords: disaster recovery, resource transformation, kubernetes, templates 
+summary: 'La transformation des ressources permet de modifier n"importe quel aspect d"une charge de travail lors d"un basculement. Cette fonctionnalité offre la flexibilité nécessaire pour adapter les charges de travail à différents environnements et configurations lors d"un événement de NetApp Disaster Recovery.' 
+---
+= Gérez les transformations de ressources dans NetApp Disaster Recovery
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+[role="lead"]
+Pour les charges de travail Kubernetes dans NetApp Disaster Recovery, vous pouvez créer des transformations de ressources. Une transformation de ressources vous permet de modifier n'importe quel aspect d'une charge de travail lors d'un basculement. Les transformations de ressources offrent la flexibilité nécessaire pour adapter les charges de travail à différents environnements et configurations lors d'un événement de reprise après sinistre.
+
+Les transformations de ressources sont ajoutées lorsque vous créez un plan de réplication pour Kubernetes.
+
+*Rôle requis de la NetApp Console* Le rôle de super administrateur, d’administrateur de reprise après sinistre ou d’administrateur d’application de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
+
+
+
+[[create-a-resource-transformation-template]]
+== Créer un modèle de transformation de ressources
+
+.Étapes
+. Dans NetApp Disaster Recovery, sélectionnez *Paramètres* dans la barre latérale.
+. Dans la carte Resource Transformation, sélectionnez *+ Add template*.
+. Saisissez un *nom* pour la transformation de la ressource.
+. Sélectionnez l’*opération* : ajouter, copier, déplacer, supprimer, remplacer ou tester.
+. Saisissez le *chemin JSON* et le *nom de la variable*. Ajoutez éventuellement la *valeur par défaut*.
++
+image::resource-transformation-template.png[Capture d'écran du modèle de transformation des ressources]
+
+. Pour ajouter d'autres opérations au modèle, sélectionnez *+ Add operation*. Répétez les deux étapes précédentes, puis triez les opérations selon l'ordre dans lequel elles doivent être exécutées.
+. Sélectionnez *Ajouter* pour créer le modèle.
+
+
+
+
+[[edit-a-resource-transformation]]
+== Modifier une transformation de ressource
+
+. Dans NetApp Disaster Recovery, sélectionnez *Paramètres* dans la barre latérale.
+. Dans la fiche Transformations des ressources, sélectionnez *Gérer les transformations des ressources*.
+. Trouvez la transformation de ressource que vous souhaitez modifier. Dans le menu d’actions situé à la fin de la ligne, sélectionnez *Modifier*.
+. Vous pouvez modifier tous les champs du modèle. Modifiez le *Nom*, l'*Opération* (ajouter, copier, déplacer, supprimer, remplacer ou tester) et ses valeurs associées : le *chemin JSON* et le *nom de la variable*, ou la *valeur par défaut*. Vous pouvez également ajouter des opérations ou modifier l'ordre dans lequel elles s'exécutent.
+. Sélectionnez *Enregistrer*.
+
+
+
+
+[[clone-a-resource-transformation]]
+== Cloner une transformation de ressource
+
+Vous pouvez cloner une transformation de ressource pour l'utiliser comme base pour un nouveau modèle de transformation de ressource. Les modèles clonés reprennent le nom du modèle source et sont suivis de "-v1". Par exemple, si vous clonez le modèle "scale up deployment", le clone est nommé "scale up deployment-v1".
+
+.Étapes
+. Dans NetApp Disaster Recovery, sélectionnez *Paramètres* dans la barre latérale.
+. Dans la fiche Transformations des ressources, sélectionnez *Gérer les transformations des ressources*.
+. Trouvez la transformation de ressource que vous souhaitez cloner. Dans le menu d’actions situé à la fin de cette ligne, sélectionnez *Cloner*.
+. Lorsque l'opération réussit, NetApp Disaster Recovery affiche une boîte de dialogue de confirmation dans l'interface utilisateur.
++
+Vous pouvez consulter le modèle cloné dans la liste des transformations de ressources.
+
+
+
+
+
+[[delete-a-resource-transformation]]
+== Supprimer une transformation de ressource
+
+Si vous n'avez plus besoin d'une transformation de ressource, vous pouvez la supprimer.
+
+.Étapes
+. Dans NetApp Disaster Recovery, sélectionnez *Paramètres* dans la barre latérale.
+. Dans la fiche Transformations des ressources, sélectionnez *Gérer les transformations des ressources*.
+. Recherchez la transformation de ressource que vous souhaitez supprimer. Dans le menu d’actions situé à la fin de la ligne, sélectionnez *Supprimer*.
+. Dans la boîte de dialogue, sélectionnez *Supprimer* pour confirmer l'opération.
+
+
+
+
+[[next-steps]]
+== Prochaines étapes
+
+* link:drplan-create.html["Créer un plan de réplication"]
+

@@ -1,0 +1,55 @@
+= La prise en charge de Kubernetes dans NetApp Disaster Recovery est désormais généralement disponible (GA)
+:allow-uri-read: 
+
+
+
+
+[[kubernetes-support-in-netapp-disaster-recovery-is-now-generally-available-ga]]
+=== La prise en charge de Kubernetes dans NetApp Disaster Recovery est désormais généralement disponible (GA)
+
+La prise en charge des charges de travail basées sur Kubernetes dans NetApp Disaster Recovery est désormais généralement disponible (GA). Avec la prise en charge des charges de travail basées sur Kubernetes, vous pouvez protéger les applications exécutées sur des clusters Kubernetes, y compris les environnements de virtualisation OpenShift. Disaster Recovery prend en charge toute version de Kubernetes actuellement prise en charge par Trident Protect, garantissant une intégration transparente et des capacités de reprise après sinistre robustes pour les applications conteneurisées.
+
+Pour commencer à protéger les charges de travail basées sur Kubernetes, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/get-started/task-kubernetes-requirements.html["Exigences de Kubernetes pour NetApp Disaster Recovery"^].
+
+
+
+[[resource-transformations]]
+=== Transformations des ressources
+
+La reprise après sinistre prend désormais en charge les transformations de ressources, vous permettant de modifier n'importe quel aspect d'une charge de travail lors d'un basculement. Cette fonctionnalité offre la flexibilité nécessaire pour adapter les charges de travail à différents environnements et configurations lors d'un incident de reprise après sinistre.
+
+Les transformations de ressources sont appliquées lors de la création d'un plan de réplication. Vous pouvez créer, modifier et supprimer des transformations de ressources dans la nouvelle page Paramètres. Pour plus d'informations, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/task-resource-transformation.html["Gérer les transformations des ressources"^].
+
+
+
+[[script-execution]]
+=== Exécution du script
+
+Il est désormais possible d'intégrer des scripts personnalisés au processus de basculement afin de coordonner la mise en veille et la reprise des applications. Cette fonctionnalité permet de garantir que les applications sont correctement préparées avant la réplication et la restauration d'un instantané, assurant ainsi une reprise transparente des opérations après un basculement.
+
+Pour savoir comment injecter un script personnalisé, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"^].
+
+
+
+[[new-workloads-page]]
+=== Nouvelle page Charges de travail
+
+La fonctionnalité de reprise après sinistre intègre désormais une page « Charges de travail » à son interface utilisateur, offrant une vue d'ensemble de toutes les charges de travail détectées et de leur état de protection. La page « Charges de travail » vous permet de surveiller et de gérer vos charges de travail plus efficacement.
+
+Pour plus d'informations, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/dashboard-view.html["Examiner l'état de santé et de protection dans NetApp Disaster Recovery"^].
+
+
+
+[[settings-page]]
+=== Page Paramètres
+
+La solution de reprise après sinistre propose désormais une page Paramètres permettant de gérer de manière centralisée les modèles de transformation des ressources et AppVaults. Cette page offre une interface unique pour configurer et gérer ces composants essentiels de vos plans de reprise après sinistre. Pour en savoir plus sur les options disponibles sur la page Paramètres, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/task-resource-transformation.html["Gérer les transformations des ressources"^] et link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/task-appvault.html["Gérer AppVaults"^].
+
+
+
+[[general-improvements]]
+=== Améliorations générales
+
+La fonctionnalité de reprise après sinistre a introduit des validations améliorées sur la page de création du plan de réplication afin de garantir une expérience utilisateur plus fluide et sans erreur.
+
+La reprise après sinistre a également permis d'accroître la résilience du service afin de tolérer les délais d'attente intermittents des requêtes, améliorant ainsi les performances et la fiabilité globales de l'interface utilisateur.
