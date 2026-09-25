@@ -12,7 +12,7 @@ summary: Avec NetApp Disaster Recovery, vous pouvez utiliser différents plans d
 
 
 [role="lead"]
-NetApp Disaster Recovery propose plusieurs options de licence, notamment un essai gratuit, un abonnement à la carte et la possibilité d'utiliser votre propre licence (BYOL).
+NetApp Disaster Recovery offre plusieurs options de licence, notamment un essai gratuit, un abonnement avec paiement à l’utilisation et une licence à apporter soi-même (BYOL). Confirmez votre modèle de licence avant de configurer la reprise après incident afin de vous assurer que le service répond aux besoins de votre organisation.
 
 *Rôle requis de la NetApp Console* Le rôle de super administrateur, d’administrateur de reprise après sinistre ou d’administrateur d’application de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 

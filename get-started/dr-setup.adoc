@@ -12,7 +12,7 @@ summary: Pour utiliser NetApp Disaster Recovery, effectuez quelques étapes pour
 
 
 [role="lead"]
-Pour utiliser NetApp Disaster Recovery, effectuez quelques étapes de configuration dans la NetApp Console et dans votre environnement de reprise après sinistre pris en charge.
+Pour utiliser NetApp Disaster Recovery, préparez d'abord votre environnement de reprise avant toute interruption afin que la réplication et le basculement puissent être configurés et testés avec un minimum de délais.
 
 
 TIP: Revoirlink:../get-started/dr-prerequisites.html["prérequis"] pour vous assurer que votre système est prêt.
@@ -24,10 +24,10 @@ TIP: Revoirlink:../get-started/dr-prerequisites.html["prérequis"] pour vous ass
 
 Vous pouvez utiliser NetApp Disaster Recovery dans les infrastructures suivantes :
 
-* Reprise après sinistre dans le cloud hybride qui réplique un centre de données VMware plus ONTAP sur site vers une infrastructure de reprise après sinistre AWS basée sur VMware Cloud on AWS ou Elastic VMware Service (EVS) et Amazon FSx for NetApp ONTAP.
-* Cloud privé DR qui réplique un VMware plus ONTAP vCenter sur site vers un autre VMware plus ONTAP vCenter sur site.
-* Reprise après sinistre dans le cloud qui réplique une infrastructure de reprise après sinistre AWS basée sur VMware Cloud on AWS ou EVS vers une autre infrastructure de reprise après sinistre basée sur AWS utilisant FSx pour NetApp ONTAP.
-* Reprise après sinistre dans le cloud hybride qui réplique un centre de données VMware plus ONTAP sur site vers une infrastructure de reprise après sinistre Google basée sur Google Cloud VMware Engine et Google Cloud NetApp Volumes.
+* Reprise après incident hybride dans le cloud qui réplique un centre de données sur site VMware plus ONTAP vers une infrastructure AWS de reprise après incident basée sur VMware Cloud on AWS ou Elastic VMware Service (EVS) et Amazon FSx for NetApp ONTAP.
+* Reprise après incident de cloud privé qui réplique un environnement VMware et ONTAP sur site ainsi que vCenter vers un autre environnement VMware et ONTAP sur site ainsi que vCenter.
+* Reprise après incident dans le cloud qui réplique une infrastructure de reprise après incident AWS basée sur VMware Cloud on AWS ou EVS vers une autre infrastructure de reprise après incident basée sur AWS utilisant FSx for NetApp ONTAP.
+* Reprise après incident dans le cloud hybride qui réplique un datacenter VMware et ONTAP sur site vers une infrastructure de reprise après incident Google basée sur Google Cloud VMware Engine et Google Cloud NetApp Volumes.
 
 
 
@@ -35,9 +35,9 @@ Vous pouvez utiliser NetApp Disaster Recovery dans les infrastructures suivantes
 [[hybrid-cloud-with-vmware-cloud-and-amazon-fsx-for-netapp-ontap]]
 == Cloud hybride avec VMware Cloud et Amazon FSx for NetApp ONTAP
 
-Cette méthode consiste en une infrastructure vCenter de production sur site utilisant des banques de données hébergées sur des volumes ONTAP FlexVol à l’aide d’un protocole NFS.  Le site DR se compose d'une ou plusieurs instances VMware Cloud SDDC utilisant des banques de données hébergées sur des volumes FlexVol fournis par une ou plusieurs instances FSx for ONTAP à l'aide d'un protocole NFS.
+Cette méthode repose sur une infrastructure de production sur site vCenter utilisant des datastores hébergés sur des volumes ONTAP FlexVol via le protocole NFS. Le site de reprise d'activité se compose d'une ou de plusieurs instances VMware Cloud SDDC utilisant des datastores hébergés sur des volumes FlexVol fournis par une ou plusieurs instances FSx for ONTAP via le protocole NFS.
 
-Les sites de production et de reprise après sinistre sont reliés par une connexion sécurisée compatible avec AWS. Les types de connexion courants incluent un VPN sécurisé (privé ou fourni par AWS), AWS Direct Connect ou d'autres méthodes d'interconnexion approuvées.
+Les sites de production et de reprise après sinistre sont connectés par une liaison sécurisée compatible avec AWS. Les types de connexion courants incluent un VPN sécurisé (privé ou fourni par AWS), AWS Direct Connect ou d'autres méthodes d'interconnexion approuvées.
 
 Pour la reprise après sinistre impliquant l’infrastructure cloud AWS, vous devez utiliser l’agent de console pour AWS.  L'agent doit être installé dans le même VPC que l'instance FSx for ONTAP .  Si des instances FSx for ONTAP supplémentaires ont été déployées dans d'autres VPC, le VPC hébergeant l'agent doit avoir accès aux autres VPC.
 
@@ -52,7 +52,7 @@ AWS prend en charge le déploiement de solutions dans une ou plusieurs zones de 
 * *AWS FSx for NetApp ONTAP* : Lorsque Amazon FSx for NetApp ONTAP est déployé dans une configuration multi-AZ, chaque volume appartient à un système de fichiers FSx for ONTAP, et les données sont répliquées vers le second système de fichiers. FSx for ONTAP peut être déployé dans des configurations mono-AZ ou multi-AZ. NetApp Disaster Recovery prend en charge les deux modèles de déploiement.
 
 
-*MEILLEURE PRATIQUE* : Pour la configuration d'un site de reprise après sinistre AWS, NetApp recommande d'utiliser des déploiements mono-AZ pour les instances VMware Cloud et AWS FSx for ONTAP. AWS étant utilisé pour la reprise après sinistre, l'introduction de plusieurs zones de disponibilité n'apporte aucun avantage. Les déploiements multi-AZ peuvent augmenter les coûts et la complexité.
+*MEILLEURE PRATIQUE* : Pour la configuration d'un site de reprise après incident AWS, NetApp recommande d'utiliser des déploiements mono-AZ à la fois pour VMware Cloud et pour les instances AWS FSx for ONTAP. Comme AWS est utilisé pour la reprise après incident, l'introduction de plusieurs zones de disponibilité n'apporte aucun avantage. Les déploiements multi-AZ peuvent augmenter les coûts et la complexité.
 
 
 
@@ -63,10 +63,10 @@ AWS fournit les méthodes suivantes pour connecter des centres de données priv�
 
 * *AWS Direct Connect* : Il s’agit d’une interconnexion avec le cloud AWS située dans la même zone géographique que votre centre de données privé et fournie par un partenaire AWS. Cette solution offre une connexion sécurisée et privée entre votre centre de données local et le cloud AWS sans nécessiter de connexion Internet publique. C’est la méthode de connexion la plus directe et la plus efficace proposée par AWS.
 * *AWS Internet Gateway* : cela fournit une connectivité publique entre les ressources cloud AWS et les ressources de calcul externes.  Ce type de connexion est généralement utilisé pour fournir des offres de services à des clients externes, tels que le service HTTP/HTTPS où la sécurité n'est pas une exigence.  Il n’y a aucun contrôle de qualité de service, de sécurité ou de garantie de connectivité.  Pour cette raison, cette méthode de connexion n'est pas recommandée pour connecter un centre de données de production au cloud.
-* *AWS Site-to-Site VPN* : Cette connexion de réseau privé virtuel peut fournir une connectivité sécurisée via un fournisseur d'accès Internet public. Le VPN chiffre et déchiffre toutes les données transitant vers et depuis le cloud AWS. Les VPN peuvent être basés sur des logiciels ou du matériel. Pour les applications d'entreprise, le fournisseur d'accès Internet (FAI) public doit offrir des garanties de qualité de service afin d'assurer une bande passante et une latence adéquates pour la réplication de reprise après sinistre.
+* *VPN site à site AWS* : cette connexion de réseau privé virtuel peut fournir une connectivité sécurisée via un fournisseur d’accès à Internet public. Le VPN chiffre et déchiffre toutes les données circulant vers et depuis le cloud AWS. Les VPN peuvent être logiciels ou matériels. Pour les applications d’entreprise, le fournisseur d’accès à Internet public (FAI) doit offrir des garanties de qualité de service afin d’assurer une bande passante et une latence adéquates pour la réplication de reprise après incident.
 
 
-*MEILLEURE PRATIQUE* : Pour la configuration du site AWS DR, NetApp recommande d'utiliser AWS Direct Connect.  Cette solution offre les meilleures performances et sécurité pour les applications d'entreprise.  Si ce n'est pas disponible, une connexion FAI publique haute performance ainsi qu'un VPN doivent être utilisés.  Assurez-vous que le FAI propose des niveaux de service QoS commerciaux pour garantir des performances réseau adéquates.
+*MEILLEURE PRATIQUE* : Pour la configuration d'un site de reprise après incident AWS, NetApp recommande d'utiliser AWS Direct Connect. Cette solution offre les performances et la sécurité les plus élevées pour les applications d'entreprise. Si cette solution n'est pas disponible, il convient d'utiliser une connexion publique hautes performances d'un FAI, accompagnée d'un VPN. Assurez-vous que le FAI propose des niveaux de service QoS commerciaux afin de garantir des performances réseau adéquates.
 
 
 
@@ -80,7 +80,7 @@ AWS propose les types d’interconnexions VPC à VPC suivants.  Chaque solution 
 * *AWS Transit Gateway* : il s'agit d'un type de connexion centralisé basé sur un routeur qui permet à chaque VPC de se connecter à une passerelle centrale unique, qui agit comme un hub central pour tout le trafic VPC à VPC.  Cela peut également être connecté à votre solution VPN pour permettre aux ressources du centre de données sur site d'accéder aux ressources hébergées par AWS VPC.  Ce type de connexion nécessite généralement un coût supplémentaire à mettre en œuvre.
 
 
-*MEILLEURE PRATIQUE* : Pour les solutions de reprise après sinistre utilisant VMware Cloud et un seul FSx for ONTAP VPC, NetApp recommande d’utiliser le peering VPC. Si plusieurs FSx for ONTAP VPC sont déployés, nous recommandons d’utiliser une AWS Transit Gateway afin de réduire la charge de gestion liée à la multiplication des connexions de peering VPC.
+*MEILLEURE PRATIQUE* : Pour les solutions de reprise après incident dans le cloud utilisant VMware Cloud et un seul VPC FSx for ONTAP, NetApp recommande d’utiliser le peering VPC. Si plusieurs VPC FSx for ONTAP sont déployés, nous recommandons d’utiliser une passerelle de transit AWS afin de réduire la charge de gestion liée à plusieurs connexions de peering VPC.
 
 
 
@@ -127,7 +127,7 @@ Vous pouvez utiliser NetApp Disaster Recovery pour protéger les machines virtue
 
 Pour les situations sur site vers sur site, installez l’agent de console sur l’un des sites physiques.
 
-La récupération après sinistre prend en charge la réplication de site à site à l'aide d'Ethernet et de TCP/IP.  Assurez-vous qu'une bande passante adéquate est disponible pour prendre en charge les taux de modification des données sur les machines virtuelles du site de production afin que toutes les modifications puissent être répliquées sur le site DR dans le délai de l'objectif de point de récupération (RPO).
+La reprise après sinistre prend en charge la réplication de site à site via Ethernet et TCP/IP. Assurez-vous qu’une bande passante suffisante est disponible pour prendre en charge les taux de modification des données sur les machines virtuelles du site de production afin que toutes les modifications puissent être répliquées vers le site de reprise après sinistre dans le délai de l’objectif de point de récupération (RPO).
 
 
 

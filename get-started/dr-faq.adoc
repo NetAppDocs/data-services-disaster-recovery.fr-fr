@@ -22,8 +22,6 @@ summary: Questions fréquentes concernant la reprise après sinistre NetApp pour
 Cette FAQ répond aux questions fréquentes concernant NetApp Disaster Recovery pour les charges de travail VMware et Kubernetes. Elle aborde les concepts, la terminologie, le comportement du système et les contraintes utiles lors de la mise en œuvre de configurations de reprise après sinistre et de la gestion des opérations de réplication, de migration, de basculement et de restauration.
 
 
-toc::[]
-
 
 [[getting-started]]
 == Mise en route

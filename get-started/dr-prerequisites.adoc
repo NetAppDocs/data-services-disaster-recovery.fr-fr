@@ -12,7 +12,7 @@ summary: 'Avant d"utiliser NetApp Disaster Recovery, assurez-vous que votre envi
 
 
 [role="lead"]
-Avant d'utiliser NetApp Disaster Recovery, assurez-vous que votre environnement répond aux exigences en matière de stockage ONTAP , de cluster VMware vCenter et de NetApp Console .
+Vérifiez les prérequis de stockage, de vCenter et de console avant la configuration afin que les charges de travail soient prêtes pour la réplication et la récupération.
 
 
 

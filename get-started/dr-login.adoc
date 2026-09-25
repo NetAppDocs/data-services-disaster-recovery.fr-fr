@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: get-started/dr-login.html 
-keywords: bluexp login, disaster recovery log in 
+keywords: bluexp login, disaster recovery, log in, sign in, iam roles 
 summary: Commencez à utiliser NetApp Disaster Recovery en accédant au service dans la NetApp Console. 
 ---
 = Accéder à la NetApp Disaster Recovery
@@ -12,35 +12,41 @@ summary: Commencez à utiliser NetApp Disaster Recovery en accédant au service 
 
 
 [role="lead"]
-Connectez-vous à NetApp Disaster Recovery via la NetApp Console.
+Pour vous connecter à NetApp Disaster Recovery, utilisez vos identifiants du site de support NetApp ou inscrivez-vous pour obtenir un identifiant cloud NetApp avec votre adresse e-mail et votre mot de passe https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-logging-in.html["En savoir plus sur la connexion"^].
 
-Pour vous connecter, utilisez vos identifiants du site d'assistance NetApp ou inscrivez-vous à une connexion cloud NetApp avec votre adresse e-mail et votre mot de passe. https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-logging-in.html["En savoir plus sur la connexion"^].
 
-Des tâches spécifiques nécessitent des rôles d’utilisateur spécifiques. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"]. https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
-.Étapes
-. Ouvrez un navigateur Web et accédez à la https://console.netapp.com/["NetApp Console"^] .
-+
-La page de connexion à la NetApp Console s’affiche.
+[[user-roles]]
+== Rôles des utilisateurs
 
+Dans Disaster Recovery, certaines tâches nécessitent des rôles utilisateur spécifiques. Assurez-vous d'avoir attribué aux utilisateurs les rôles corrects.
+
+Pour plus d'informations, voir : * link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["rôles et autorisations des utilisateurs dans NetApp Disaster Recovery"] * link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["NetApp Console rôles d'accès pour tous les services"^]
+
+
+
+[[log-into-disaster-recovery]]
+== Connectez-vous à Disaster Recovery
+
+. Ouvrez un navigateur web. Accédez à  https://console.netapp.com/["NetApp Console"^].
 . Connectez-vous à la NetApp Console.
 . Dans la navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
 +
 Si c'est la première fois que vous vous connectez à ce service, la page de destination apparaît et vous pouvez vous inscrire pour un essai gratuit.
 
 +
-image:draas-landing6-free-trial.png["Capture d'écran de la page de destination pour NetApp Disaster Recovery"]
+image:draas-landing6-free-trial.png["Capture d'écran de la page d'accueil pour la reprise après incident"]
 
 +
-Sinon, le tableau de bord de NetApp Disaster Recovery s’affiche.
+Sinon, le tableau de bord de reprise après incident s'affiche.
 
 +
 ** Si vous n'avez pas encore ajouté un agent NetApp Console, ajoutez-en un. Pour plus de détails, consultez https://docs.netapp.com/us-en/console-setup-admin/concept-connectors.html["En savoir plus sur les agents de console"^].
-** Si vous êtes un utilisateur de la console NetApp disposant d'un agent existant, lorsque vous sélectionnez *Reprise après sinistre*, un message concernant l'inscription apparaît.
+** Si vous êtes un utilisateur de la console disposant d'un agent existant, lorsque vous sélectionnez *Disaster recovery*, un message vous invitant à vous inscrire apparaît.
 ** Si vous utilisez déjà le service, lorsque vous sélectionnez « Récupération après sinistre », le tableau de bord apparaît.
-
-
 +
-image:dr-dashboard.png["Tableau de bord de NetApp Disaster Recovery"]
+image:dr-dashboard.png["Tableau de bord de reprise après incident"]
+
+
 
 
