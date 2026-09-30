@@ -58,7 +58,7 @@ Ces tâches nécessitent le rôle d'administrateur de reprise après sinistre.
 [role="quick-margin-para"]
 Ces tâches nécessitent le rôle de _Disaster Recovery admin_ ou de _Disaster Recovery failover admin role_.
 
-[role="quick-margin-para"]
+[role="quick-margin-list"]
 * link:../use/failover.html["Basculer les applications vers un site distant"]
 * link:../use/failback.html["Rétablir les applications vers le site source d'origine"]
 
