@@ -56,6 +56,10 @@ image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de
 . Identifiez le plan de réplication que vous souhaitez effectuer un retour arrière. Sélectionnez l’option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"], survolez *Recover* puis sélectionnez *Failback*.
 . Choisissez l'instantané de la banque de données à partir duquel effectuer la restauration. Sélectionnez *Créer un instantané maintenant* pour lancer un nouvel instantané ou *Sélectionner* pour choisir parmi les instantanés disponibles.
 +
+
+NOTE: Si vous utilisez des instantanés inviolables SnapLock, vous devez utiliser l'option *Prendre un instantané maintenant*. Sinon, l'opération échouera.
+
++
 image:failback.png["Capture d'écran de la boîte de dialogue de restauration"]
 
 . Saisissez « Failback » pour confirmer l'opération, puis sélectionnez *Failback*.

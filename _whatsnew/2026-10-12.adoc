@@ -1,0 +1,35 @@
+= Ordre de démarrage optionnel pour les groupes de ressources Kubernetes
+:allow-uri-read: 
+
+
+
+
+[[optional-boot-order-for-kubernetes-resource-groups]]
+=== Ordre de démarrage optionnel pour les groupes de ressources Kubernetes
+
+NetApp Disaster Recovery prend désormais en charge la définition d’un ordre de démarrage optionnel pour les groupes de ressources dans un plan de réplication Kubernetes, en spécifiant un ordre de priorité et un délai optionnel pour les ressources. Cette option vous permet de démarrer les ressources en même temps lorsque cela est nécessaire et de différer le démarrage des ressources qui dépendent d’autres ressources, afin que vos applications reviennent en ligne de manière saine.
+
+Pour plus d'informations, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["créer un plan de réplication"^].
+
+
+
+[[snaplock-volume-support]]
+=== SnapLock prise en charge des volumes
+
+La reprise après sinistre prend désormais en charge les volumes SnapLock, ce qui vous permet de basculer vers des copies Snapshot inviolables.. Lors de l'exécution d'un rétablissement avec des volumes SnapLock, vous devez utiliser l'option *Take snapshot now* pour garantir la réussite du rétablissement.
+
+Pour plus d'informations, consultez les instructions pour link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/failover.html["basculement"^] et link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/failback.html["retour arrière"^].
+
+
+
+[[simplified-refresh-and-compliance-runs]]
+=== Exécutions simplifiées d’actualisation et de conformité
+
+Les actualisations pour vCenter, les plans de réplication et la conformité ont été simplifiées en une seule tâche afin de permettre une exécution plus rapide. Pour voir cette modification, découvrez comment link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/monitor-jobs.html["surveiller les tâches"^].
+
+
+
+[[kubernetes-compliance-checks]]
+=== Contrôles de conformité Kubernetes
+
+Disaster Recovery a ajouté des contrôles de conformité pour identifier les environnements de travail manquants pour les charges de travail Kubernetes. Ces contrôles de conformité contribuent à garantir l'état de santé des charges de travail afin de préserver l'intégrité de vos plans de réplication.

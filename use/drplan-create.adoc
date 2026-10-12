@@ -12,7 +12,7 @@ summary: NetApp Disaster Recovery est un service de reprise après sinistre bas�
 
 
 [role="lead"]
-Après avoir ajouté des ressources et des sites, créez un plan de réplication pour protéger vos données. Le plan définit les sites source et de destination, les groupes de ressources, les mappages de récupération et le comportement de mise sous tension de vos applications. Vous pouvez également configurer les planifications de conformité et de test et effectuer des basculements de test sans affecter les données de production.
+Après avoir ajouté des ressources et des sites, créez un _plan de réplication_ pour protéger vos données avec NetApp Disaster Recovery. Le plan définit les sites source et de destination, les groupes de ressources, les mappages de reprise et le comportement de mise sous tension de vos applications. Vous pouvez également configurer des planifications de conformité et de test, et effectuer des basculements de test sans affecter les données de production.
 
 *Rôle requis de la console NetApp* Le rôle de super administrateur, d'administrateur de reprise après sinistre, d'administrateur de basculement de reprise après sinistre ou d'administrateur d'application de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
@@ -290,7 +290,7 @@ Après avoir sélectionné Ajouter, vous pouvez surveiller les différents trava
 ====
 
 
-==== Transformations de ressources et exécutions de scripts
+==== Transformations de ressources, exécutions de scripts et ordre de démarrage
 
 Pour les plans de réplication Kubernetes, vous pouvez appliquer des transformations de ressources et exécuter des scripts. Ces étapes sont facultatives.
 
@@ -311,6 +311,14 @@ NetApp Disaster Recovery peut exécuter un script avant ou après la prise d'un 
 . Sélectionnez *Téléverser* pour choisir le fichier de script.
 . Choisissez l’*étape d’exécution* : *Pré-instantané* pour exécuter avant la création de l’instantané ou *Post-instantané* pour exécuter après.
 . Sélectionnez *Enregistrer*.
+
+
+.Définissez l’ordre de démarrage
+Pour les plans de réplication comprenant plusieurs groupes de ressources, vous pouvez éventuellement définir un ordre de démarrage afin de garantir que les ressources qui doivent être mises en ligne ensemble le soient, tandis que les groupes de ressources qui dépendent d’autres groupes ne seront mises en ligne que lorsque ceux dont elles dépendent le seront.
+
+. Sélectionnez la section *Boot order and delay*.
+. Désignez une valeur d’*Order* de démarrage pour chaque ressource du plan de réplication, en commençant par un. Toute ressource devant démarrer en même temps doit se voir attribuer le même numéro.
+. Définissez le temps *Delay* en minutes. Si des ressources doivent être retardées, indiquez la durée du délai en minutes.
 
 
 

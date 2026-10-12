@@ -1,0 +1,6 @@
+= 
+:allow-uri-read: 
+
+
+
+NOTE: Si vous utilisez des instantanés inviolables SnapLock, vous devez utiliser l'option *Prendre un instantané maintenant*. Sinon, l'opération échouera.
