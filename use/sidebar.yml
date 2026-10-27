@@ -8,8 +8,16 @@ entries:
   url: "/use/sites-add.html"
 - title: Créer un groupe de ressources
   url: "/use/resource-group.html"
-- title: Créer un plan de réplication
-  url: "/use/drplan-create.html"
+- title: Plans de réplication
+  entries:
+  - title: Découvrez le plan de réplication
+    url: "/use/concept-replication-plan.html"
+  - title: Créer un plan de réplication VMware
+    url: "/use/task-replication-plan-vmware.html"
+  - title: Créer un plan de réplication Kubernetes
+    url: "/use/task-replication-plan-kubernetes.html"
+  - title: Modifier un plan de réplication
+    url: "/use/task-replication-plan-modify.html"
 - title: Répliquer sur un autre site
   url: "/use/replicate.html"
 - title: Migrer vers un autre site

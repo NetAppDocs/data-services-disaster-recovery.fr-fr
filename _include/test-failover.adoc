@@ -1,0 +1,5 @@
+= 
+:allow-uri-read: 
+
+
+Si vous prévoyez d'effectuer des tests de basculement dans le cadre de votre plan de réplication, vous devez fournir un ensemble de correspondances de basculement de test afin de garantir que les machines virtuelles démarrées pendant le test de basculement n'interfèrent pas avec les machines virtuelles de production. Pour ce faire, vous pouvez soit attribuer des adresses IP différentes aux machines virtuelles de test, soit mapper les cartes réseau virtuelles des machines virtuelles de test à un réseau différent, isolé de la production, mais ayant la même configuration IP (appelé « bubble » ou « réseau de test »).

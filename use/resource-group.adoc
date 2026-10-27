@@ -23,21 +23,29 @@ Vous pouvez regrouper les machines virtuelles elles-mêmes ou les machines virtu
 Vous pouvez créer des groupes de ressources à l’aide des méthodes suivantes :
 
 * À partir de l'option Groupes de ressources
-* Lors de la création d'un plan de reprise après sinistre ou de réplication. Si vous avez de nombreuses machines virtuelles hébergées par un cluster vCenter source, il peut être plus simple de créer les groupes de ressources lors de la création du plan de réplication. Pour obtenir des instructions sur la création de groupes de ressources lors de la création d'un plan de réplication, consultez link:drplan-create.html["Créer un plan de réplication"].
+* Lors de la création d'un plan de reprise après sinistre ou de réplication. Si vous avez de nombreuses machines virtuelles hébergées par un cluster vCenter source, il peut être plus simple de créer les groupes de ressources lors de la création du plan de réplication. Pour obtenir des instructions sur la création de groupes de ressources lors de la création d'un plan de réplication, consultez link:task-replication-plan-vmware.html["Créer un plan de réplication"].
 
 
 
 TIP: Chaque groupe de ressources peut inclure une ou plusieurs machines virtuelles, banques de données ou clusters Kubernetes. Les machines virtuelles seront mises sous tension selon l'ordre dans lequel vous les incluez dans le plan de réplication. Vous pouvez modifier l'ordre en faisant glisser les machines virtuelles ou les banques de données vers le haut ou vers le bas de la liste du groupe de ressources.
 
-.À propos des groupes de ressources
+
+
+[[about-resource-groups]]
+== À propos des groupes de ressources
+
 Les groupes de ressources vous permettent de combiner des machines virtuelles, des banques de données ou des applications Kubernetes en une seule unité.
 
 Par exemple, une application de point de vente peut utiliser plusieurs machines virtuelles pour les bases de données, la logique métier et les vitrines.  Vous pouvez gérer toutes ces machines virtuelles avec un seul groupe de ressources.  Configurez des groupes de ressources pour appliquer les règles du plan de réplication pour l’ordre de démarrage des machines virtuelles, la connexion réseau et la récupération de toutes les machines virtuelles nécessaires à l’application.
 
-.Comment ça marche ?
-NetApp Disaster Recovery protège les machines virtuelles en répliquant les volumes ONTAP et les LUN sous-jacents hébergeant les machines virtuelles dans le groupe de ressources. Pour ce faire, le système interroge vCenter pour obtenir le nom de chaque datastore hébergeant des machines virtuelles dans un groupe de ressources. NetApp Disaster Recovery identifie ensuite le volume ONTAP ou le LUN source hébergeant cette banque de données. Toute la protection est effectuée au niveau du volume ONTAP à l’aide de la réplication SnapMirror.
 
-Si les machines virtuelles du groupe de ressources sont hébergées sur des banques de données différentes, NetApp Disaster Recovery utilise l'une des méthodes suivantes pour créer un instantané cohérent des données des volumes ou LUNs ONTAP.
+
+[[how-resource-groups-work]]
+=== Comment fonctionnent les groupes de ressources
+
+Disaster Recovery protège les machines virtuelles en répliquant les volumes ONTAP et les LUN sous-jacents qui hébergent les machines virtuelles dans le groupe de ressources. Pour ce faire, le système interroge vCenter pour obtenir le nom de chaque datastore hébergeant des machines virtuelles dans un groupe de ressources. Disaster Recovery identifie ensuite le volume ONTAP source ou la LUN source qui héberge ce datastore. Toute la protection est effectuée au niveau du volume ONTAP à l'aide de la réplication SnapMirror.
+
+Si les VM du groupe de ressources sont hébergées sur différents datastores, la reprise après sinistre utilise l’une des méthodes suivantes pour créer un instantané cohérent des données des volumes ONTAP ou des LUN.
 
 [cols="30,65a"]
 |===
@@ -58,18 +66,23 @@ Si les machines virtuelles du groupe de ressources sont hébergées sur des banq
 
 
 |===
-Lorsque vous créez des groupes de ressources, tenez compte des points suivants :
 
-* Avant d’ajouter des banques de données à des groupes de ressources, démarrez d’abord une découverte manuelle ou une découverte planifiée des machines virtuelles.  Cela garantit que les machines virtuelles sont découvertes et répertoriées dans le groupe de ressources.  Si vous ne démarrez pas une découverte manuelle, les machines virtuelles risquent de ne pas être répertoriées dans le groupe de ressources.
-* Assurez-vous qu’il existe au moins une machine virtuelle dans le magasin de données.  S’il n’y a aucune machine virtuelle dans le magasin de données, Disaster Recovery ne découvre pas le magasin de données.
+
+[[best-practices-for-resource-groups]]
+== Meilleures pratiques pour les groupes de ressources
+
+Lorsque vous créez des groupes de ressources, tenez compte des scénarios suivants :
+
+* Avant d’ajouter des datastores ou des namespace à des groupes de ressources, lancez une découverte manuelle ou attendez qu’une découverte planifiée s’exécute. Cela garantit que les VM sont détectées et répertoriées dans le groupe de ressources. Si vous ne lancez pas de découverte manuelle, les ressources risquent de ne pas être répertoriées dans le groupe de ressources.
+* Assurez-vous qu'au moins une ressource (VM ou namespace) est présente dans la banque de données. S'il n'y a aucune ressource dans la banque de données, Disaster Recovery ne détecte pas la banque de données.
 * Un seul magasin de données ne doit pas héberger de machines virtuelles protégées par plusieurs plans de réplication.
-* N'hébergez pas de machines virtuelles protégées et non protégées sur le même magasin de données.  Si des machines virtuelles protégées et non protégées sont hébergées sur le même magasin de données, les problèmes suivants peuvent survenir :
+* N’hébergez pas de ressources protégées et non protégées sur le même datastore. Si des ressources protégées et non protégées sont hébergées sur le même datastore, les problèmes suivants pourraient survenir :
 +
-** Étant donné que NetApp Disaster Recovery utilise SnapMirror et que le système réplique l'intégralité des volumes ONTAP , la capacité utilisée de ce volume est utilisée pour les considérations de licence.  Dans ce cas, l’espace de volume consommé par les machines virtuelles protégées et non protégées serait inclus dans ce calcul.
-** Si le groupe de ressources et ses banques de données associées doivent être basculés vers le site de reprise après sinistre, toutes les machines virtuelles non protégées (machines virtuelles ne faisant pas partie du groupe de ressources, mais hébergées sur le volume ONTAP ) n'existeront plus sur le site source à partir du processus de basculement, ce qui entraînera l'échec des machines virtuelles non protégées sur le site source.  De plus, NetApp Disaster Recovery ne démarrera pas ces machines virtuelles non protégées sur le site vCenter de basculement.
+** Étant donné que Disaster Recovery utilise SnapMirror et que le système réplique des volumes ONTAP entiers, la capacité utilisée de ce volume est prise en compte pour le calcul des licences. Dans ce cas, l’espace du volume consommé par les VM protégées et non protégées serait inclus dans ce calcul.
+** Si le groupe de ressources et ses entités associées doivent basculer vers le site de reprise d’activité après sinistre, toutes les ressources non protégées (VM ou namespace ne faisant pas partie du groupe de ressources, mais hébergés sur le volume ONTAP) n’existeront plus sur le site source du fait du processus de basculement, ce qui entraînera l’échec des VM non protégées sur le site source. De plus, Disaster Recovery ne démarrera pas ces ressources non protégées sur le site de basculement.
 
 
-* Pour qu'une machine virtuelle soit protégée, elle doit être incluse dans un groupe de ressources.
+* Pour protéger une ressource, elle doit être incluse dans un groupe de ressources.
 
 
 *BONNE PRATIQUE* : Organisez vos machines virtuelles avant de déployer NetApp Disaster Recovery afin de minimiser la prolifération des datastores. Placez les machines virtuelles nécessitant une protection sur un sous-ensemble de datastores et celles qui ne seront pas protégées sur un autre sous-ensemble de datastores. Assurez-vous que les machines virtuelles d’un même datastore ne soient pas protégées par différents plans de réplication.

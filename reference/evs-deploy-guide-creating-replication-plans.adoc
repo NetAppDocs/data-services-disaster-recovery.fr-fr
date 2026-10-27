@@ -36,7 +36,7 @@ Cela ouvre l’assistant Créer un plan de réplication.
 .Étapes
 . Saisissez un nom unique pour le plan de réplication.
 +
-Seuls les caractères alphanumériques et les traits de soulignement (_) sont autorisés pour les noms de plans de réplication.
+Seuls les caractères alphanumériques et les traits de soulignement (_) sont autorisés dans les noms des plans de réplication.
 
 . Sélectionnez un cluster vCenter source.
 . Sélectionnez un cluster vCenter de destination.
@@ -54,7 +54,7 @@ image:evs-create-rp-wiz-a-1-4.png["Créer un plan de réplication, sélectionner
 Il existe plusieurs façons de sélectionner les machines virtuelles à protéger. Les étapes suivantes montrent comment protéger l'ensemble des banques de données vCenter, mais vous devez choisir la méthode qui correspond le mieux à vos besoins.
 
 * *Sélection de machines virtuelles individuelles* : Le bouton *Machines virtuelles* vous permet de sélectionner des machines virtuelles individuelles à protéger. Au fur et à mesure que vous sélectionnez chaque machine virtuelle, le service l’ajoute à un groupe de ressources par défaut situé à droite de l’écran.
-* *Sélectionnez les groupes de ressources précédemment créés* : Vous pouvez créer des groupes de ressources personnalisés au préalable à l’aide de l’option Groupe de ressources du menu Reprise après sinistre. Cette étape est facultative, car vous pouvez utiliser les deux autres méthodes pour créer un groupe de ressources lors de la création du plan de réplication. Pour plus d’informations, consultez link:../use/drplan-create.html["Créer un plan de réplication"].
+* *Sélectionnez les groupes de ressources précédemment créés* : Vous pouvez créer des groupes de ressources personnalisés au préalable à l’aide de l’option Groupe de ressources du menu Reprise après sinistre. Cette étape est facultative, car vous pouvez utiliser les deux autres méthodes pour créer un groupe de ressources lors de la création du plan de réplication. Pour plus de détails, consultez link:../use/task-replication-plan-vmware.html["Créer un plan de réplication"].
 * *Sélectionner des datastores vCenter entiers* : Avec cette option, toutes les VM résidant sur un datastore seront répliquées dans le cadre du volume. Utilisez cette option si vous avez plusieurs VM à protéger avec le plan de réplication afin d’éviter de sélectionner les VM individuellement. Dans la plupart des cas, vous devez faire en sorte que Disaster Recovery protège et redémarre toutes les VM situées sur le datastore. Utilisez cette option pour indiquer au service d’ajouter toutes les VM hébergées sur un datastore sélectionné à la liste des VM protégées.
 
 

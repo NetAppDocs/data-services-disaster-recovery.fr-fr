@@ -84,5 +84,5 @@ Si vous n'avez plus besoin d'une transformation de ressource, vous pouvez la sup
 [[next-steps]]
 == Prochaines étapes
 
-* link:drplan-create.html["Créer un plan de réplication"]
+* link:task-replication-plan-kubernetes.html["Créer un plan de réplication pour les charges de travail Kubernetes"]
 

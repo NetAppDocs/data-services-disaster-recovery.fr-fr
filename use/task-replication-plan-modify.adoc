@@ -1,0 +1,60 @@
+---
+sidebar: sidebar 
+permalink: use/task-replication-plan-modify.html 
+keywords: disaster recovery, bluexp disaster recovery, failover, replication plan, modify, compliance time, test failover 
+summary: Modifiez un plan de réplication pour ajuster le délai de conformité ou les paramètres de basculement. 
+---
+= Modifier un plan de réplication dans NetApp Disaster Recovery
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+[role="lead"]
+Dans NetApp Disaster Recovery, vous pouvez modifier l’impact du délai de conformité d’un plan de réplication et vous assurer que les tests de basculement se terminent avec succès.
+
+Vous pouvez modifier le délai de conformité et tester l'impact du basculement. Pour modifier la récurrence du plan, les mappages de basculement ou les machines virtuelles, supprimez le plan de réplication et créez-en un nouveau.
+
+
+
+[[modifiable-fields]]
+== Champs modifiables
+
+* *Impact sur le temps de conformité* : Lorsqu'un plan de réplication est créé, le service crée un calendrier de conformité par défaut.  Le temps de conformité par défaut est de 30 minutes.  Pour modifier cette heure, vous pouvez utiliser la fonction Modifier la planification dans le plan de réplication.
+* *Test d'impact du basculement* : Vous pouvez tester un processus de basculement à la demande ou selon une planification. Cela vous permet de tester le basculement d'une machine virtuelle vers une destination spécifiée dans un plan de réplication.
++
+Un basculement de test crée un volume FlexClone , monte la banque de données et déplace la charge de travail sur cette banque de données.  Une opération de basculement de test n'a _pas_ d'impact sur les charges de travail de production, la relation SnapMirror utilisée sur le site de test et les charges de travail protégées qui doivent continuer à fonctionner normalement.
+
+
+
+En fonction du calendrier, le test de basculement s'exécute et garantit que les charges de travail se déplacent vers la destination spécifiée par le plan de réplication.
+
+
+
+[[modify-a-replication-plan]]
+== Modifier un plan de réplication
+
+. Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
++
+image:dr-plan-list.png["Capture d'écran montrant la liste des plans de réplication"]
+
+. Sélectionnez les *Actions*image:icon-horizontal-dots.png["Menu Actions à points horizontaux"] icône et sélectionnez *Modifier les horaires*.
+. Saisissez la fréquence en minutes à laquelle vous souhaitez que NetApp Disaster Recovery vérifie la conformité des tests.
+. Pour vérifier que vos tests de basculement sont sains, cochez *Exécuter les basculements selon un calendrier mensuel*.
++
+.. Sélectionnez le jour du mois et l’heure à laquelle vous souhaitez que ces tests soient exécutés.
+.. Saisissez la date au format aaaa-mm-jj à laquelle vous souhaitez que le test commence.
++
+image:dr-plan-schedule-edit2.png["Capture d'écran montrant où vous pouvez modifier les horaires"]
+
+
+
+. *Utiliser un instantané à la demande pour le basculement de test planifié* : Pour prendre un nouvel instantané avant de lancer le basculement de test automatisé, cochez cette case.
+. Pour nettoyer l'environnement de test une fois le test de basculement terminé, cochez *Nettoyer automatiquement après le basculement du test* et entrez le nombre de minutes que vous souhaitez attendre avant le début du nettoyage.
++
+
+NOTE: Ce processus désenregistre les machines virtuelles temporaires de l’emplacement de test, supprime le volume FlexClone qui a été créé et démonte les banques de données temporaires.
+
+. Sélectionnez *Enregistrer*.
+

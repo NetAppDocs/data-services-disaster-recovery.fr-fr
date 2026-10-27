@@ -56,4 +56,4 @@ La solution de reprise après sinistre offre désormais des avertissements et de
 
 Lors de la création d'un plan de réplication, la structure des dossiers de la machine virtuelle est désormais conservée par défaut. Si la cible de récupération ne possède pas l'arborescence de dossiers d'origine, Disaster Recovery la crée. Vous pouvez désélectionner cette option pour ignorer l'arborescence de dossiers d'origine.
 
-Pour plus d'informations, voir link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"^].
+Pour plus d'informations, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/task-replication-plan-vmware.html["Créer un plan de réplication"^].

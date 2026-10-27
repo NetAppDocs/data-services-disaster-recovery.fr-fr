@@ -31,8 +31,10 @@ indexpage:
     links:
     - title: Ajouter des vCenters à un site
       url: "/use/sites-add.html"
-    - title: Créer un plan de reprise après sinistre
-      url: "/use/drplan-create.html"
+    - title: Créer un plan de reprise après sinistre VMware
+      url: "/use/task-replication-plan-vmware.html"
+    - title: Créer un plan de reprise après sinistre Kubernetes
+      url: "/use/task-replication-plan-kubernetes.html"
     - title: Répliquer des applications sur un autre site
       url: "/use/replicate.html"
     - title: Migrer des applications vers un autre site

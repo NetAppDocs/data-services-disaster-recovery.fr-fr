@@ -53,4 +53,4 @@ Lorsque l'option est sélectionnée, NetApp Disaster Recovery ne configure pas d
 
 Une fois cette configuration effectuée, le service ne prend aucun instantané planifié régulièrement, mais s'appuie plutôt sur l'entité externe pour prendre et mettre à jour ces instantanés.
 
-Pour plus de détails sur l'utilisation de solutions de snapshots externes dans le plan de réplication, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails sur l'utilisation de solutions de snapshots externes dans le plan de réplication, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/task-replication-plan-vmware.html["Créer un plan de réplication"].

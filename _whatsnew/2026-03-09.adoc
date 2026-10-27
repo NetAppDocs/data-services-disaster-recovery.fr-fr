@@ -9,7 +9,7 @@
 
 Lors de la création d'un plan de réplication dans Disaster Recovery, vous pouvez désormais exclure certains datastores de la réplication. Pour les situations où une machine virtuelle est configurée pour utiliser plusieurs datastores, cela vous permet de limiter ceux qui sont répliqués.
 
-Pour plus de détails, voir link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"^].
+Pour plus de détails, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/task-replication-plan-vmware.html["Créer un plan de réplication"^].
 
 
 
@@ -27,7 +27,7 @@ Pour plus d'informations, consultez link:https://docs.netapp.com/us-en/data-serv
 
 La fonctionnalité de reprise après sinistre inclut désormais de nouvelles options de menu permettant de déclencher des actualisations vCenter depuis le tableau de bord du plan de réplication. Vous pouvez accéder au sous-menu depuis le menu Actions du tableau de bord du plan de réplication : sélectionnez **État du plan** puis **Actualiser la source vCenter / Actualiser la cible vCenter**.
 
-Pour plus d'informations, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html#modify-a-replication-plan["Modifier un plan de réplication"^].
+Pour plus d'informations, consultez link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/task-replication-plan-modify.html["Modifier un plan de réplication"^].
 
 
 

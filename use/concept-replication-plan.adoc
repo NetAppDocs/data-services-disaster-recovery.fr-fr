@@ -1,0 +1,136 @@
+---
+sidebar: sidebar 
+permalink: use/concept-replication-plan.html 
+keywords: disaster recovery, bluexp disaster recovery, failover, replication plan, snapmirror, snapshot, backup, best practices 
+summary: 'Avant de déployer votre réplication dans NetApp Disaster Recovery, familiarisez-vous avec les bonnes pratiques afin de garantir l"efficacité de votre stratégie de reprise après sinistre.' 
+---
+= Optimisez votre plan de réplication dans NetApp Disaster Recovery
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+[role="lead"]
+Le plan de réplication est un élément essentiel de votre stratégie de reprise après sinistre, définissant la fréquence des instantanés, l'ordre de démarrage, le mappage réseau et d'autres détails clés du basculement et du retour à la normale. Avant de créer un plan de réplication dans NetApp Disaster Recovery, assurez-vous de comprendre le fonctionnement des plans de réplication et les bonnes pratiques.
+
+
+
+[[about-replication-plans]]
+== À propos des plans de réplication
+
+Vous pouvez protéger plusieurs VM, datastores ou namespace avec un seul plan de réplication. Disaster Recovery crée des groupes de cohérence ONTAP pour tous les volumes ONTAP qui hébergent des ressources de données protégées.
+
+
+
+[[resource-planning]]
+== Planification des ressources
+
+Organisez vos machines virtuelles ou namespace avant d'affecter des ressources à un plan de réplication afin de minimiser leur prolifération. Placez les ressources nécessitant une protection sur un sous-ensemble de datastores et placez les ressources qui ne seront pas protégées sur un autre sous-ensemble de datastores. Pour organiser les groupes de ressources avant de créer le plan de réplication, consultez link:resource-group.html["Créer un groupe de ressources"].
+
+
+
+[[test-failover]]
+== Test de basculement
+
+Lors de la création du plan de réplication, vous avez la possibilité de configurer des mappages de basculement de test uniques.
+
+Si vous prévoyez d'effectuer des tests de basculement dans le cadre de votre plan de réplication, vous devez fournir un ensemble de correspondances de basculement de test afin de garantir que les machines virtuelles démarrées pendant le test de basculement n'interfèrent pas avec les machines virtuelles de production. Pour ce faire, vous pouvez soit attribuer des adresses IP différentes aux machines virtuelles de test, soit mapper les cartes réseau virtuelles des machines virtuelles de test à un réseau différent, isolé de la production, mais ayant la même configuration IP (appelé « bubble » ou « réseau de test »).
+
+
+
+[[snapshots]]
+== Snapshots
+
+La récupération après sinistre conserve le même nombre de snapshots sur les clusters source et de destination.  Par défaut, le service exécute un processus de réconciliation de snapshots toutes les 24 heures pour garantir que le nombre de snapshots sur les clusters source et de destination est le même.
+
+Les situations suivantes peuvent entraîner une différence dans le nombre de snapshots entre les clusters source et de destination :
+
+* Certaines situations peuvent amener les opérations ONTAP en dehors de la reprise après sinistre à ajouter ou supprimer des snapshots du volume :
++
+** S'il manque des instantanés sur le site source, les instantanés correspondants sur le site de destination peuvent être supprimés, en fonction de la stratégie SnapMirror par défaut pour la relation.
+** Si des instantanés sont manquants sur le site de destination, le service peut supprimer les instantanés correspondants sur le site source lors du prochain processus de réconciliation des instantanés planifié, en fonction de la politique SnapMirror par défaut pour la relation.
+
+
+* Une réduction du nombre de rétentions d'instantanés du plan de réplication peut amener le service à supprimer les instantanés les plus anciens sur les sites source et de destination pour respecter le nombre de rétention nouvellement réduit.
+
+
+Dans ces cas, Disaster Recovery supprime les anciens snapshots des clusters source et de destination lors de la prochaine vérification de cohérence.  Ou, l'administrateur peut effectuer un nettoyage instantané immédiat en sélectionnant *Actions*image:icon-horizontal-dots.png["Menu Actions à points horizontaux"] icône sur le plan de réplication et en sélectionnant *Nettoyer les snapshots*.
+
+La reprise après sinistre effectue des vérifications de symétrie des instantanés toutes les 24 heures.
+
+
+
+[[platform-managed-backups]]
+== Sauvegardes gérées par la plateforme
+
+Si vous prévoyez d'utiliser des sauvegardes gérées par la plateforme (c'est-à-dire des instantanés gérés par ONTAP), il est recommandé d'utiliser la stratégie de réplication *MirrorAll*. Consultez le tableau pour comprendre l'impact des différentes stratégies de réplication SnapMirror et pourquoi *MirrorAll* est l'option recommandée.
+
+[cols="10,10,80"]
+|===
+
+
+| Politique | Recommandation | Remarques 
+
+
+| *MirrorAll* | Recommandé | N’utilisez pas les instantanés de transfert SnapMirror pour les opérations de basculement ou de restauration. 
+
+
+| *MirrorVault* .2+| Recommandation alternative .2+| Assurez-vous que les instantanés sélectionnés lors du basculement ou du retour arrière sont présents sur les volumes source et de destination. Dans le cas contraire, l’erreur suivante s’affichera : « Transition vers l’état ‘snapmirrored’ échouée. Motif : Aucun instantané commun trouvé. » N’utilisez pas les instantanés de transfert SnapMirror pour les opérations de basculement ou de restauration. 
+
+
+| *Asynchrone* 
+
+
+| *MirrorLatest* | _NON_ recommandé | Cette politique a pour conséquence que la destination ne dispose en réalité que d'un seul instantané commun pour le basculement, ce qui est sous-optimal pour les scénarios de reprise après sinistre. 
+|===
+
+
+[[disaster-recovery-managed-backups]]
+== Sauvegardes gérées par Disaster Recovery
+
+Lors de l'utilisation de sauvegardes gérées par la reprise après sinistre, les directives suivantes s'appliquent aux relations SnapMirror créées en dehors de NetApp Disaster Recovery :
+
+* Les relations SnapMirror peuvent prendre en charge les politiques de réplication MirrorAll, MirrorVault, MirrorLatest et asynchrone.
+* Ne planifiez *pas* de mises à jour pour ces relations, car elles seront gérées par le service NetApp Disaster Recovery.
+
+
+
+
+[[application-consistent-replicas]]
+== Répliques cohérentes avec l'application
+
+De nombreuses machines virtuelles hébergent des serveurs de bases de données tels qu'Oracle ou Microsoft SQL Server.  Ces serveurs de base de données nécessitent des instantanés cohérents avec les applications pour garantir que la base de données est dans un état cohérent lorsque l'instantané est pris.
+
+Les instantanés cohérents avec les applications garantissent que la base de données est dans un état cohérent lorsque l'instantané est pris.  Ceci est important car cela garantit que la base de données peut être restaurée à un état cohérent après une opération de basculement ou de restauration.
+
+Les données gérées par le serveur de base de données peuvent se trouver sur le même datastore que la machine virtuelle qui héberge le serveur de base de données, ou sur un datastore différent. Le tableau suivant présente les configurations prises en charge pour les snapshots cohérents au niveau des applications dans NetApp Disaster Recovery :
+
+[cols="20,20,40a"]
+|===
+| Emplacement des données | Soutenu | Remarques 
+
+
+| Dans le même datastore vCenter que la machine virtuelle | Oui  a| 
+Étant donné que le serveur de base de données et la base de données résident tous deux sur le même magasin de données, le serveur et les données seront synchronisés lors du basculement.
+
+
+
+| Dans une banque de données vCenter différente de la machine virtuelle | Non  a| 
+La récupération après sinistre ne peut pas identifier quand les données d’un serveur de base de données se trouvent sur une autre banque de données vCenter.  Le service ne peut pas répliquer les données, mais peut répliquer la machine virtuelle du serveur de base de données.
+
+Bien que les données de la base de données ne puissent pas être répliquées, le service garantit que le serveur de base de données exécute toutes les étapes nécessaires pour garantir que la base de données est mise au repos au moment de la sauvegarde de la machine virtuelle.
+
+
+
+| Au sein d'une source de données externe | Non  a| 
+Si les données résident sur un LUN monté sur invité ou sur un partage NFS, Disaster Recovery ne peut pas répliquer les données, mais peut répliquer la machine virtuelle du serveur de base de données.
+
+Bien que les données de la base de données ne puissent pas être répliquées, le service garantit que le serveur de base de données exécute toutes les étapes nécessaires pour garantir que la base de données est mise au repos au moment de la sauvegarde de la machine virtuelle.
+
+|===
+Lors d'une sauvegarde planifiée, Disaster Recovery met en veille le serveur de base de données, puis prend un instantané de la machine virtuelle hébergeant le serveur de base de données.  Cela garantit que la base de données est dans un état cohérent lorsque l'instantané est pris.
+
+* Pour les machines virtuelles Windows, le service utilise le service Microsoft Volume Shadow Copy (VSS) pour se coordonner avec chaque type de serveur de base de données.
+* Pour les machines virtuelles Linux, le service utilise un ensemble de scripts pour placer le serveur Oracle en mode de sauvegarde.
+

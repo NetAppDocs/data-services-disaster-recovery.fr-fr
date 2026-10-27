@@ -1,0 +1,342 @@
+---
+sidebar: sidebar 
+permalink: use/task-replication-plan-vmware.html 
+keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter, replication plan, protection, disaster, recovery, virtual machines, vm 
+summary: NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les workflows de reprise après sinistre. Une fois que vous avez ajouté des sites vCenter, vous êtes prêt à créer un plan de reprise après sinistre ou de réplication pour vos workloads VMware. 
+---
+= Créez un plan de réplication pour les workloads VMware dans NetApp Disaster Recovery
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+[role="lead"]
+Après avoir ajouté des sites et des ressources vCenter, créez un _plan de réplication_ pour protéger vos workloads VMware avec NetApp Disaster Recovery. Ce plan définit les vCenters source et de destination, les groupes de ressources, les mappages de récupération et le comportement de mise sous tension de vos VM. Vous pouvez également configurer des planifications de conformité et de test, et effectuer des basculements de test sans affecter les données de production.
+
+*Rôle requis de la console NetApp* Le rôle de super administrateur, d'administrateur de reprise après sinistre, d'administrateur de basculement de reprise après sinistre ou d'administrateur d'application de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
+
+
+NOTE: Pour protéger les workloads Kubernetes, voir link:task-replication-plan-kubernetes.html["Créer un plan de réplication Kubernetes"].
+
+
+
+[[before-you-begin]]
+== Avant de commencer
+
+* Avant de créer une relation SnapMirror , configurez le cluster et le peering SVM en dehors de Disaster Recovery.
+* Si vous configurez des mappages réseau au niveau de vCenter, la reprise après sinistre reconnaît ces mappages lors de la création du plan de réplication. Si vous modifiez ou ajoutez le mappage réseau au niveau de vCenter après la création du plan de réplication, la reprise après sinistre reconnaît ces mappages lorsque vous modifiez manuellement le plan de réplication.
+* Avec Google Cloud, vous ne pouvez ajouter qu'un seul volume ou datastore à un plan de réplication.
+* Vous ne pouvez activer la protection que si le plan de réplication se trouve dans l’un des états suivants : Ready, Failback committed ou Test failover committed.
+
+
+
+
+[[create-the-replication-plan]]
+== Créer le plan de réplication
+
+Lorsque vous créez le plan, suivez ces directives :
+
+* Utilisez les mêmes identifiants pour toutes les VM du plan.
+* Utilisez le même script pour toutes les machines virtuelles du plan.
+* Utilisez le même sous-réseau, le même DNS et la même passerelle pour toutes les machines virtuelles du plan.
+
+
+
+
+[[select-vcenter-servers]]
+=== Sélectionner les serveurs vCenter
+
+Tout d'abord, sélectionnez le vCenter source et le vCenter de destination.
+
+.Étapes
+. Dans le menu Disaster Recovery, sélectionnez *Replication plans*.
+. Dans le menu déroulant, choisissez *vCenter*.
++
+image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]
+
+. Sélectionnez *Ajouter*.
+. Saisissez un nom pour le plan de réplication.
++
+Le nom ne peut contenir que des lettres, des chiffres et des traits de soulignement. Les espaces, les tirets et autres caractères spéciaux ne sont pas pris en charge.
+
+. Sous *Source vCenter*, sélectionnez le vCenter où se trouvent les données dans le menu déroulant. Sous *Target*, sélectionnez le vCenter à utiliser comme destination de reprise après sinistre.
++
+image:dr-plan-create-name2.png["Capture d'écran montrant la page du serveur vCenter"]
+
+. Sélectionnez *Suivant*.
+
+
+
+
+[[select-applications-to-replicate-and-assign-resource-groups]]
+=== Sélectionnez les applications à répliquer et attribuez des groupes de ressources
+
+Regroupez les machines virtuelles ou les banques de données requises dans des groupes de ressources fonctionnels. Les groupes de ressources vous permettent de protéger un ensemble de machines virtuelles avec un instantané commun. Vous pouvez affecter des machines virtuelles à des groupes de ressources en dehors du flux de travail du plan de réplication. Pour des recommandations sur la planification, consultez link:resource-group.html["meilleures pratiques pour les groupes de ressources"].
+
+.Étapes
+. Si vous avez des groupes de ressources existants, sélectionnez **Resource groups**, choisissez le groupe de ressources puis **Next**.
++
+Si vous n'avez pas de groupes de ressources existants ou si vous devez ajouter des ressources à l'un d'eux, sélectionnez *Machines virtuelles* (VMs) ou *Datastores*.
+
+. Sélectionnez les machines virtuelles ou les datastores que vous souhaitez ajouter au plan de réplication dans la liste générée automatiquement. Pour les machines virtuelles, vous pouvez filtrer par datastore. Lorsque vous sélectionnez un datastore ou une machine virtuelle, il est automatiquement ajouté à un groupe de ressources.
++
+image:dr-plan-create-apps-vms6.png["Capture d'écran montrant la page Ajouter un plan de réplication > Applications à répliquer"]
+
+. Sur la moitié droite de la page, examinez les machines virtuelles ou les datastores sélectionnés.
++
+** Pour supprimer une VM ou une banque de données, placez le pointeur sur le nom de la ressource, puis sélectionnez *X*.
+** Pour organiser les ressources en plusieurs groupes de ressources, sélectionnez *Cliquez pour ajouter un autre groupe de ressources*. Après avoir ajouté le groupe de ressources, vous pouvez faire glisser et déposer des ressources entre les groupes. Sélectionnez l'icône en forme de crayon pour modifier le nom du groupe de ressources.
++
+image:dr-plan-create-apps-datastores.png["Capture d'écran montrant la page Ajouter un plan de réplication > Applications à répliquer"]
+
+
+
+. Sélectionnez *Suivant*.
+
+
+
+
+[[map-source-resources-to-the-target]]
+=== Mapper les ressources sources vers la cible
+
+Dans la section « Mappage des ressources », indiquez comment les ressources de l'environnement source doivent être mises en correspondance avec l'environnement cible. Lors de la création d'un plan de réplication, vous pouvez définir un délai et un ordre de démarrage pour chaque machine virtuelle du plan. Cela vous permet de définir une séquence de démarrage pour les machines virtuelles.
+
+Si vous prévoyez d'effectuer des tests de basculement dans le cadre de votre plan de réplication, vous devez fournir un ensemble de correspondances de basculement de test afin de garantir que les machines virtuelles démarrées pendant le test de basculement n'interfèrent pas avec les machines virtuelles de production. Pour ce faire, vous pouvez soit attribuer des adresses IP différentes aux machines virtuelles de test, soit mapper les cartes réseau virtuelles des machines virtuelles de test à un réseau différent, isolé de la production, mais ayant la même configuration IP (appelé « bubble » ou « réseau de test »).
+
+.Avant de commencer
+Si vous souhaitez créer une relation SnapMirror dans ce service, le cluster et le peering de sa SVM doivent déjà avoir été configurés en dehors de la reprise après sinistre.
+
+.Étapes
+. Sur la page de mappage des ressources, cochez la case pour utiliser les mêmes mappages pour les opérations de basculement et de test.
++
+image:dr-plan-resource-mapping2.png["Plan de réplication, onglet Mappage des ressources"]
+
+. Dans l'onglet Mappages de basculement, sélectionnez la flèche vers le bas à droite de chaque ressource et mappez les ressources dans chaque section :
++
+** Ressources de calcul
+** Réseaux virtuels
+** Machines virtuelles
+** Magasins de données
+
+
+
+
+
+
+==== Ressources de calcul
+
+La section Ressources de calcul définit l'emplacement de restauration des machines virtuelles après un basculement. Associez le centre de données et le cluster vCenter source au centre de données et au cluster cibles.
+
+Il est possible de redémarrer les machines virtuelles sur un hôte ESXi vCenter spécifique. Si VMware DRS est activé, vous pouvez déplacer la machine virtuelle automatiquement vers un autre hôte si nécessaire pour respecter la stratégie de reprise après sinistre configurée.
+
+Vous avez également la possibilité de placer toutes les machines virtuelles de ce plan de réplication dans un dossier unique de l’inventaire vCenter. Cela permet d’organiser facilement et rapidement les machines virtuelles basculées dans le vCenter.
+
+.Étapes
+. Sélectionnez la flèche vers le bas à côté de *Ressources de calcul*.
+. Veuillez fournir les informations suivantes :
++
+** *Centres de données source et cible*
+** *Groupe cible*
+** *Hôte cible* (facultatif) : après avoir sélectionné le cluster, vous pouvez définir ces informations.
+** *Dossier* (facultatif)
+
+
+
+
+
+TIP: Si un vCenter dispose d’un Distributed Resource Scheduler (DRS) configuré pour gérer plusieurs hôtes dans un cluster, vous n’avez pas besoin de sélectionner un hôte. Si vous sélectionnez un hôte, Disaster Recovery placera toutes les machines virtuelles sur l’hôte sélectionné. * *Dossier cible des machines virtuelles* (facultatif) : Créez un nouveau dossier racine pour stocker les machines virtuelles sélectionnées.
+
+
+
+==== Réseaux virtuels
+
+Les machines virtuelles utilisent des cartes réseau virtuelles connectées à des réseaux virtuels. Lors d'un basculement, le service connecte ces cartes réseau virtuelles aux réseaux virtuels définis dans l'environnement VMware de destination. Pour chaque réseau virtuel source utilisé par les machines virtuelles du groupe de ressources, Disaster Recovery nécessite l'attribution d'un réseau virtuel de destination.
+
+
+NOTE: Vous pouvez affecter plusieurs réseaux virtuels sources au même réseau virtuel cible.  Cela pourrait cependant créer des conflits de configuration du réseau IP.  Vous pouvez mapper plusieurs réseaux sources à un seul réseau cible pour garantir que tous les réseaux sources ont la même configuration.
+
+.Étapes
+. Dans l'onglet Mappages de basculement, sélectionnez la flèche vers le bas en regard de *Réseaux virtuels*.
+. La reprise après sinistre renseigne automatiquement les réseaux virtuels sources. Pour chaque réseau source, sélectionnez le réseau de destination approprié dans le menu déroulant.
+
+
+
+
+==== Machines virtuelles
+
+Vous pouvez configurer chaque machine virtuelle du groupe de ressources protégé par le plan de réplication en fonction de l'environnement virtuel vCenter de destination en définissant l'une des options suivantes :
+
+* Le nombre de CPU virtuels
+* La quantité de DRAM virtuelle
+* La configuration de l'adresse IP
+* La possibilité d'exécuter des scripts shell du système d'exploitation invité dans le cadre du processus de basculement
+* La possibilité de modifier les noms des machines virtuelles ayant échoué en utilisant un préfixe et un suffixe uniques
+* La possibilité de définir l'ordre de redémarrage lors du basculement de la machine virtuelle
+
+
+Dans l’onglet Mappages de basculement, sélectionnez la flèche vers le bas à côté de *Machines virtuelles*.
+
+La valeur par défaut pour les machines virtuelles est mappée.  Le mappage par défaut utilise les mêmes paramètres que ceux utilisés par les machines virtuelles dans l'environnement de production (même adresse IP, même masque de sous-réseau et même passerelle).
+
+Si vous apportez des modifications aux paramètres par défaut, vous devez modifier le champ IP cible sur « Différent de la source ».
+
+
+NOTE: Si vous modifiez les paramètres sur « Différent de la source », vous devez fournir les informations d’identification du système d’exploitation invité de la machine virtuelle.
+
+Cette section peut afficher des champs différents en fonction de votre sélection.
+
+Vous pouvez augmenter ou diminuer le nombre de processeurs virtuels attribués à chaque machine virtuelle basculée.  Cependant, chaque machine virtuelle nécessite au moins un processeur virtuel.  Vous pouvez modifier le nombre de processeurs virtuels et de DRAM virtuelle attribués à chaque machine virtuelle.  La raison la plus courante pour laquelle vous souhaiterez peut-être modifier les paramètres par défaut du processeur virtuel et de la DRAM virtuelle est si les nœuds du cluster vCenter cible ne disposent pas d'autant de ressources disponibles que le cluster vCenter source.
+
+
+NOTE: Activez l'option *Paramètres avancés* pour ajouter des scripts et configurer la cohérence au niveau des applications.
+
+*Paramètres réseau* NetApp Disaster Recovery prend en charge un large éventail d'options de configuration pour les réseaux de machines virtuelles. Il peut être nécessaire de les modifier si le site cible possède des réseaux virtuels utilisant des paramètres TCP/IP différents de ceux des réseaux virtuels de production du site source.
+
+Au niveau le plus basique (et par défaut), les paramètres utilisent simplement les mêmes paramètres réseau TCP/IP pour chaque machine virtuelle sur le site de destination que ceux utilisés sur le site source.  Cela nécessite que vous configuriez les mêmes paramètres TCP/IP sur les réseaux virtuels source et de destination.
+
+La reprise après sinistre prend en charge les paramètres réseau avec une configuration IP statique ou Dynamic Host Configuration Protocol (DHCP) pour les machines virtuelles. DHCP fournit une méthode normalisée pour configurer dynamiquement les paramètres TCP/IP d'un port réseau hôte. DHCP doit fournir, au minimum, une adresse TCP/IP et peut également fournir une adresse de passerelle par défaut (pour l'acheminement vers une connexion Internet externe), un masque de sous-réseau et une adresse de serveur DNS. DHCP est couramment utilisé pour les périphériques informatiques des utilisateurs finaux, tels que les connexions des postes de travail, des ordinateurs portables et des téléphones mobiles des employés, mais il peut également être utilisé pour tout périphérique informatique réseau, tel que les serveurs.
+
+* Option *Utiliser les mêmes paramètres de masque de sous-réseau, DNS et de passerelle* : Étant donné que ces paramètres sont généralement les mêmes pour toutes les machines virtuelles connectées aux mêmes réseaux virtuels, il peut être plus simple de les configurer une seule fois et de laisser Disaster Recovery utiliser les paramètres pour toutes les machines virtuelles du groupe de ressources protégé par le plan de réplication.  Si certaines machines virtuelles utilisent des paramètres différents, vous devez décocher cette case et fournir ces paramètres pour chaque machine virtuelle.
+* *Type d'adresse IP* : Reconfigurez la configuration de la VM pour qu'elle corresponde aux exigences du réseau virtuel cible. La reprise après sinistre propose deux options : DHCP ou adresse IP statique. Pour les adresses IP statiques, configurez le masque de sous-réseau, la passerelle et les serveurs DNS. Saisissez également les identifiants des VM.
++
+** *DHCP* : sélectionnez ce paramètre si vous souhaitez que vos machines virtuelles obtiennent des informations de configuration réseau à partir d'un serveur DHCP.  Si vous choisissez cette option, vous fournissez uniquement les informations d’identification de la machine virtuelle.
+** *IP statique* : sélectionnez ce paramètre si vous souhaitez spécifier manuellement les informations de configuration IP.  Vous pouvez sélectionner l'une des options suivantes : identique à la source, différent de la source ou mappage de sous-réseau.  Si vous choisissez la même chose que la source, vous n'avez pas besoin de saisir d'informations d'identification.  D'autre part, si vous choisissez d'utiliser des informations différentes de la source, vous pouvez fournir les informations d'identification, l'adresse IP de la machine virtuelle, le masque de sous-réseau, le DNS et les informations de passerelle.  Les informations d’identification du système d’exploitation invité de la machine virtuelle doivent être fournies soit au niveau global, soit au niveau de chaque machine virtuelle.
++
+Cela peut être très utile lors de la récupération de grands environnements vers des clusters cibles plus petits ou pour effectuer des tests de reprise après sinistre sans avoir à provisionner une infrastructure VMware physique individuelle.
+
++
+image:dr-plan-vm-subnet-option2.png["Capture d'écran montrant Ajouter un plan de réplication > Mappage des ressources > machines virtuelles"]
+
+
+
+* *Scripts* : Vous pouvez inclure des scripts personnalisés hébergés par le système d’exploitation invité au format .sh, .bat ou .ps1 en tant que post-processus. Grâce aux scripts personnalisés, la reprise après sinistre peut exécuter votre script après un basculement, un retour en arrière et une migration de processus. Par exemple, vous pouvez utiliser un script personnalisé pour reprendre toutes les transactions de la base de données une fois le basculement terminé. Ce service peut exécuter des scripts au sein de machines virtuelles fonctionnant sous Microsoft Windows ou toute variante Linux prise en charge avec des paramètres de ligne de commande. Vous pouvez attribuer un script à des machines virtuelles individuelles ou à toutes les machines virtuelles du plan de réplication.
++
+Pour permettre l'exécution de scripts avec le système d'exploitation invité de la machine virtuelle, les conditions suivantes doivent être remplies :
+
++
+** VMware Tools doit être installé sur la machine virtuelle.
+** Des informations d'identification utilisateur appropriées doivent être fournies avec des privilèges de système d'exploitation invité adéquats pour exécuter le script.
+** Vous pouvez éventuellement inclure une valeur de délai d'expiration en secondes pour le script.
++
+*Machines virtuelles exécutant Microsoft Windows* : peuvent exécuter soit des scripts batch Windows (.bat), soit des scripts PowerShell (ps1). Les scripts Windows peuvent utiliser des arguments de ligne de commande. Formatez chaque argument au format  `arg_name$value` où  `arg_name` est le nom de l’argument et  `$value` est la valeur de l’argument, et un point-virgule sépare chaque paire  `argument$value`.
+
++
+*VM exécutant Linux* : peuvent exécuter n'importe quel script shell (.sh) pris en charge par la version de Linux utilisée par la VM.  Les scripts Linux peuvent utiliser des arguments de ligne de commande.  Fournissez des arguments dans une liste de valeurs séparées par des points-virgules.  Les arguments nommés ne sont pas pris en charge.  Ajoutez chaque argument à la `Arg[x]` liste d'arguments et référencez chaque valeur à l'aide d'un pointeur dans le `Arg[x]` tableau, par exemple, `value1;value2;value3` .
+
+
+
+* *Rétrograder la version matérielle de la VM et l'enregistrer* : Sélectionnez cette option si la version de l'hôte ESX de destination est antérieure à celle de la source afin qu'elles correspondent lors de l'enregistrement.
+* *Conserver la hiérarchie des dossiers d'origine* : Par défaut, la reprise après sinistre conserve la hiérarchie de l'inventaire des machines virtuelles (structure des dossiers) en cas de basculement. Si le répertoire cible de récupération ne possède pas l'arborescence de dossiers d'origine, la fonction de récupération après sinistre la crée.
++
+Décochez cette case pour ignorer l'arborescence des dossiers d'origine.
+
+* *Préfixe et suffixe de la VM cible* : Dans les détails de la VM, vous pouvez éventuellement ajouter un préfixe et un suffixe à chaque nom de VM basculée. Cela peut être utile pour différencier les VM basculées des VM de production exécutées sur le même cluster vCenter. Par exemple, vous pouvez ajouter le préfixe « DR- » et le suffixe « -failover » au nom de la VM. Certaines personnes ajoutent un deuxième vCenter de production pour héberger temporairement des VM sur un autre site en cas de sinistre. L’ajout d’un préfixe ou d’un suffixe peut vous aider à identifier rapidement les VM basculées. Vous pouvez également utiliser le préfixe ou le suffixe dans des scripts personnalisés.
++
+Vous pouvez utiliser la méthode alternative de définition du dossier de la machine virtuelle cible dans la section Ressources de calcul.
+
+* *CPU* et *Mémoire (Go)* : Dans les détails de la VM, vous pouvez éventuellement redimensionner le CPU et la mémoire de la VM.
++
+
+NOTE: Vous pouvez configurer la DRAM en gigaoctets (Gio) ou en mégaoctets (Mio).  Bien que chaque machine virtuelle nécessite au moins un Mio de RAM, la quantité réelle doit garantir que le système d'exploitation invité de la machine virtuelle et toutes les applications en cours d'exécution peuvent fonctionner efficacement.
+
+* *Ordre de démarrage* : vous pouvez modifier l’ordre de démarrage après un basculement pour toutes les machines virtuelles sélectionnées dans les groupes de ressources. Par défaut, toutes les machines virtuelles démarrent ensemble en parallèle ; toutefois, vous pouvez apporter des modifications à cette étape. Cela permet de garantir que toutes vos machines virtuelles de priorité 1 sont en cours d’exécution avant le démarrage des machines virtuelles des priorités suivantes.
++
+La reprise après sinistre démarre en parallèle toutes les machines virtuelles ayant le même numéro d'ordre de démarrage.
+
++
+** Démarrage séquentiel : attribuez à chaque VM un numéro unique pour les démarrer dans l’ordre attribué, par exemple, 1,2,3,4,5.
+** Démarrage simultané : attribuez le même numéro à toutes les machines virtuelles pour les démarrer en même temps, par exemple, 1,1,1,1,2,2,3,4,4.
+
+
+* *Délai de démarrage* : ajustez le délai en minutes de l'action de démarrage, indiquant la durée pendant laquelle la machine virtuelle attendra avant de démarrer le processus de mise sous tension.  Entrez une valeur comprise entre 0 et 10 minutes.
+* *Cohérent au niveau des applications* : Indiquez s'il faut créer des copies d'instantané cohérentes au niveau des applications. Le service mettra l'application en veille, puis prendra un instantané pour obtenir un état cohérent de l'application. Cette fonctionnalité est prise en charge avec Oracle exécuté sous Windows et Linux et SQL Server exécuté sous Windows. Voir plus de détails ci-dessous.
++
+Vous devez activer le bouton *Paramètres avancés* pour cette option. Si vous activez la cohérence au niveau des applications, vous devez fournir des identifiants sous la forme d'un nom d'utilisateur et d'un mot de passe.
+
+
+
+image:dr-plan-resource-mapping-vm-boot-order.png["Capture d'écran montrant la section VM des mappages de ressources"]
+
+
+
+==== Créer des répliques cohérentes avec les applications
+
+Pour activer les répliques cohérentes avec les applications des machines virtuelles et de leurs banques de données d'hébergement, cochez la case en regard de *Créer des répliques cohérentes avec les applications* pour chaque machine virtuelle et fournissez les informations d'identification de connexion invité avec les privilèges appropriés.
+
+Pour en savoir plus sur le fonctionnement des répliques cohérentes au niveau des applications, consultez link:concept-replication-plan.html#application-consistent-replicas["En savoir plus sur les répliques cohérentes au niveau des applications"].
+
+
+
+==== Magasins de données
+
+Les banques de données VMware sont hébergées sur des volumes ONTAP FlexVol ou des LUN ONTAP iSCSI ou FC à l'aide de VMware VMFS.  Utilisez la section Banques de données pour définir le cluster ONTAP cible, la machine virtuelle de stockage (SVM) et le volume ou LUN pour répliquer les données sur disque vers la destination.
+
+Sélectionnez la flèche vers le bas à côté de *Datastores*. En fonction de la sélection des VMs, les mappages de datastore sont automatiquement sélectionnés.
+
+Cette section peut être activée ou désactivée en fonction de votre sélection.
+
+image:dr-plan-datastore-platform.png["Capture d'écran montrant Ajouter un plan de réplication > Mappage des ressources > banques de données"]
+
+
+TIP: Examinez le link:concept-replication-plan.html#platform-managed-backups["des informations sur les sauvegardes gérées par la plateforme (c'est-à-dire les instantanés gérés par ONTAP)"] avant de faire ces sélections.
+
+* *Utiliser les sauvegardes et les calendriers de conservation gérés par la plateforme* : si vous utilisez une solution externe de gestion des snapshots, cochez cette case. La reprise après sinistre prend en charge l’utilisation de solutions externes de gestion des snapshots, telles que le planificateur de stratégie natif ONTAP SnapMirror ou les intégrations tierces. Si chaque banque de données (volume) du plan de réplication a déjà une relation SnapMirror gérée ailleurs, vous pouvez utiliser ces snapshots comme points de restauration dans la reprise après sinistre.
++
+Lorsque cette option est sélectionnée, Disaster Recovery ne configure pas de planification de sauvegarde. Toutefois, vous devez tout de même configurer une planification de conservation, car des instantanés peuvent toujours être pris pour les opérations de test, de basculement et de rétablissement.
+
++
+Une fois cette configuration effectuée, le service ne prend aucun instantané planifié régulièrement, mais s'appuie plutôt sur l'entité externe pour prendre et mettre à jour ces instantanés.
+
+* *Heure de début des sauvegardes et de la conservation* : Saisissez la date et l’heure auxquelles vous souhaitez que les sauvegardes et la conservation commencent à s’exécuter.
+* *Fréquence des sauvegardes et de leur conservation* : Indiquez l’intervalle de temps en heures et minutes. Par exemple, si vous indiquez 1 heure, le service prendra un snapshot chaque heure.
+* *Retention count for all datastores* : Saisissez le nombre de snapshots que vous souhaitez conserver.
++
+
+TIP: Le nombre d'instantanés conservés ainsi que le taux de modification des données entre chaque instantané déterminent la quantité d'espace de stockage consommée sur la source et la destination.  Plus vous conservez d'instantanés, plus l'espace de stockage consommé est important.
+
+* *Magasins de données source et cible* : Si plusieurs relations SnapMirror (de distribution) existent, vous pouvez sélectionner la destination à utiliser. Si une relation SnapMirror est déjà établie pour un volume, les magasins de données source et cible correspondants s’affichent. Si un volume n’a pas de relation SnapMirror, vous pouvez en créer une maintenant en sélectionnant un cluster de destination, une SVM de destination et en indiquant un nom de volume. Le service créera le volume et la relation SnapMirror.
++
+
+NOTE: Si vous souhaitez créer une relation SnapMirror dans ce service, le cluster et le peering de sa SVM doivent déjà avoir été configurés en dehors de la reprise après sinistre.
+
++
+** Si les machines virtuelles proviennent du même volume et du même SVM, le service effectue un instantané ONTAP standard et met à jour les destinations secondaires.
+** Si les machines virtuelles proviennent de volumes différents et du même SVM, le service crée un instantané du groupe de cohérence en incluant tous les volumes et met à jour les destinations secondaires.
+** Si les machines virtuelles proviennent de volumes différents et de SVM différents, le service effectue une phase de démarrage du groupe de cohérence et un instantané de la phase de validation en incluant tous les volumes dans le même cluster ou dans un cluster différent et met à jour les destinations secondaires.
+** Lors du basculement, vous pouvez sélectionner n'importe quel instantané. Si vous sélectionnez le dernier instantané, le service crée une sauvegarde à la demande, met à jour la destination et utilise cet instantané pour le basculement.
+
+
+
+
+
+
+[[add-test-failover-mappings]]
+=== Ajouter des mappages de basculement de test
+
+.Étapes
+. Pour définir des mappages différents pour l'environnement de test, décochez la case et sélectionnez l'onglet *Mappages de test*.
+. Parcourez chaque onglet comme précédemment, mais cette fois pour l’environnement de test.
++
+Dans l'onglet Test mappings, les mappages VM et Datastores sont désactivés.
+
++
+
+TIP: Vous pourrez ensuite tester l'ensemble du plan.  Vous configurez actuellement les mappages pour l’environnement de test.
+
+
+
+
+
+[[review-the-replication-plan]]
+=== Revoir le plan de réplication
+
+Vérifiez le plan de réplication pour vous assurer que vos sélections sont correctes. Vous pouvez link:task-replication-plan-modify.html["modifier des champs sélectifs d'un plan de réplication"]. Vous pouvez également le désactiver ou le supprimer ultérieurement.
+
+.Étapes
+. Consultez les informations dans chaque onglet : Détails du plan, Mappage de basculement et Machines virtuelles.
+. Sélectionnez *Ajouter un plan*.
++
+Le plan est ajouté à la liste des plans.
+
+

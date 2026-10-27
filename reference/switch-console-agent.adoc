@@ -12,7 +12,7 @@ summary: 'Découvrez les exigences relatives à l"utilisation de plusieurs agent
 
 
 [role="lead"]
-La NetApp Console prend en charge l'utilisation de plusieurs agents de console dans un seul environnement de travail.  L'utilisation de plusieurs agents Console peut s'avérer utile pour maintenir l'accès aux ressources pendant la maintenance d'un autre agent Console ou en cas de défaillance d'un agent Console.  Chaque agent Console possédant un identifiant unique, un changement incorrect d'agent Console peut compromettre la disponibilité des ressources dans un environnement de travail.
+La NetApp Console prend en charge l’utilisation de plusieurs agents Console avec un seul environnement de travail. L’utilisation de plusieurs agents Console peut s’avérer utile pour maintenir l’accès aux ressources pendant la maintenance d’un autre agent Console ou en cas de défaillance d’un agent Console. Étant donné que chaque agent Console possède un identifiant unique, un basculement incorrect entre les agents Console peut compromettre la disponibilité des ressources dans un environnement de travail.
 
 
 

@@ -1,0 +1,192 @@
+---
+sidebar: sidebar 
+permalink: use/task-replication-plan-kubernetes.html 
+keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, kubernetes, trident protect, namespace, replication plan, appvault, resource transformation, storage class, protection, disaster, recovery 
+summary: NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les workflows de reprise après sinistre. Après avoir ajouté des clusters Kubernetes, vous êtes prêt à créer un plan de réplication pour protéger vos workloads Kubernetes. 
+---
+= Créez un plan de réplication pour les workloads Kubernetes dans NetApp Disaster Recovery
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+[role="lead"]
+Après avoir ajouté des ressources et des sites Kubernetes, créez un _plan de réplication_ pour protéger vos workloads Kubernetes avec NetApp Disaster Recovery. Le plan définit les clusters source et de destination, les groupes de ressources, les mappages de namespace et de classes de stockage, la planification des instantanés, ainsi que les transformations de ressources et les scripts facultatifs pour vos applications.
+
+*Rôle requis de la console NetApp* Le rôle de super administrateur, d'administrateur de reprise après sinistre, d'administrateur de basculement de reprise après sinistre ou d'administrateur d'application de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
+
+
+NOTE: Pour créer un plan de réplication pour les workloads VMware, consultez link:task-replication-plan-vmware.html["Créer un plan de réplication VMware"].
+
+
+
+[[before-you-begin]]
+== Avant de commencer
+
+* Avant de créer une relation SnapMirror, configurez le peering du cluster et de la machine virtuelle de stockage (SVM) en dehors de Disaster Recovery.
+* Avant d’ajouter des namespaces à un groupe de ressources, effectuez une découverte manuelle. Cela garantit que les namespaces sont détectés et répertoriés dans le groupe de ressources.
+* Créez un AppVault où Trident Protect enregistre les données de protection. Vous pouvez créer un AppVault lors de la création du plan de réplication ou à l’avance. Pour plus d’informations, consultez link:task-appvault.html["Gérer AppVaults"].
+
+
+
+TIP: Organisez vos clusters Kubernetes et vos namespace avant de déployer NetApp Disaster Recovery afin de minimiser la prolifération. Pour organiser les groupes de ressources avant de créer le plan de réplication, consultez link:resource-group.html["Créer un groupe de ressources"].
+
+
+
+[[create-the-replication-plan]]
+== Créer le plan de réplication
+
+Lorsque vous créez le plan, suivez ces directives :
+
+* Utilisez les mêmes identifiants pour tous les clusters Kubernetes du plan.
+* Utilisez le même script pour tous les clusters Kubernetes du plan.
+* Vous ne pouvez activer la protection que si le plan de réplication se trouve dans l’un des états suivants : Ready, Failback committed ou Test failover committed.
+
+
+
+
+[[select-kubernetes-clusters]]
+=== Sélectionner les clusters Kubernetes
+
+Tout d'abord, sélectionnez les clusters source et de destination pour le plan de réplication.
+
+.Étapes
+. Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
+. Dans le menu déroulant, choisissez *Kubernetes*.
++
+image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]
+
+. Sélectionnez *Ajouter*.
+. Saisissez un nom pour le plan de réplication.
+. Pour *Source*, sélectionnez le cluster Kubernetes à désigner comme source.
+. Pour *Cible*, sélectionnez le cluster Kubernetes à utiliser comme destination de reprise après sinistre.
+. Sélectionnez *Suivant*.
+
+
+
+
+[[select-resource-groups]]
+=== Sélectionnez des groupes de ressources
+
+Ensuite, sélectionnez les groupes de ressources qui contiennent les namespace Kubernetes que vous souhaitez protéger. Les groupes de ressources vous permettent de protéger un ensemble de namespace à l’aide d’un instantané commun.
+
+Lors de la sélection des groupes de ressources, tenez compte des éléments suivants :
+
+* Avant d'ajouter des namespace aux groupes de ressources, effectuez une découverte manuelle. Cela garantit que les ressources sont détectées et répertoriées dans le groupe de ressources.
+* Les espaces de noms Kubernetes d'un groupe de ressources doivent appartenir au même cluster ONTAP.
+* Lors de la dénomination d'un groupe de ressources, seuls les caractères minuscules et les chiffres sont autorisés.
+
+
+.Étapes
+. Si vous avez déjà des groupes de ressources, sélectionnez-les dans la liste.
++
+Si vous n'avez pas de groupes de ressources existants ou si vous devez ajouter des ressources à un groupe, sélectionnez *+ Créer un nouveau groupe de ressources*. Suivez les instructions pour link:resource-group.html["ajouter des espaces de noms à un groupe de ressources"].
+
+. Dans la colonne alternative, examinez les groupes de ressources sélectionnés.
+. Sélectionnez *Suivant*.
+
+
+
+
+[[map-source-resources-to-the-target]]
+=== Mapper les ressources sources vers la cible
+
+À l’étape de mappage des ressources, indiquez comment les ressources du cluster source sont mappées sur le cluster cible. Définissez également la planification des instantanés et l’AppVault où les données seront stockées.
+
+.Avant de commencer
+Si vous souhaitez créer une relation SnapMirror, configurez une relation de peering dans ONTAP.
+
+.Étapes
+. Choisissez les correspondances d'espaces de noms pour chaque espace de noms dans chaque groupe de ressources. Par défaut, NetApp Disaster Recovery sélectionne la cible identique à la source. Vous pouvez choisir un espace de noms différent dans le cluster de destination.
+. Définissez le mappage de classe de stockage pour chaque groupe de ressources. La classe de stockage doit être liée à une machine virtuelle de stockage ONTAP appairée avec l'environnement source. La classe de stockage par défaut du cluster est utilisée si vous n'en désignez pas.
++
+
+TIP: Pour afficher la classe de stockage, exécutez la commande CLI `kubectl get pvc -n <namespace>` sur le namespace.
+
+. Configurez la planification des instantanés. Choisissez la *date et l’heure de début des instantanés et de leur conservation*, la *fréquence des instantanés et de leur conservation* (à quelle fréquence les instantanés sont déclenchés) et le *nombre d’instantanés conservés* (nombre d’instantanés enregistrés).
++
+Lors de la configuration de la fréquence des instantanés, vous devez choisir une fréquence d'au moins cinq minutes.
+
+. Sélectionnez *Ajouter AppVault* pour créer l’AppVault dans lequel les données de protection seront enregistrées. Vous pouvez également link:task-appvault.html["gérer AppVaults"] depuis la page Paramètres.
++
+.. Saisissez un *Nom* et sélectionnez l'*Agent de console* auquel AppVault doit être connecté.
+.. Sélectionnez le *fournisseur* de cloud pour héberger AppVault.
+.. En fonction du fournisseur sélectionné, NetApp Disaster Recovery renseigne les abonnements cloud déjà configurés.
++
+Pour Azure, choisissez l’*abonnement*, le *groupe de ressources* et le *compte de stockage* pour le fournisseur de cloud.
+
++
+Pour AWS, ONTAP S3 et StorageGRID, choisissez le *Compte*, les *Identifiants* et le *Bucket*.
+
+.. Si vous avez sélectionné ONTAP S3 ou StorageGRID, vous pouvez éventuellement ajouter des identifiants. Sélectionnez *Ajouter des identifiants* pour afficher les options, puis ajoutez le *Nom de l’identifiant*, le *FQDN du nœud de passerelle*, le *Numéro de port*, la *Clé d’accès* et la *Clé secrète*.
+.. Sélectionnez *Ajouter*.
++
+image:kubernetes-mapping.png["Capture d'écran du mappage des classes de stockage pour Kubernetes"]
+
+
+
+. Sélectionnez *Suivant*.
+
+
+
+
+[[add-resource-transformations-script-executions-and-boot-order]]
+=== Ajouter des transformations de ressources, des exécutions de scripts et l'ordre de démarrage
+
+Pour les plans de réplication Kubernetes, vous pouvez appliquer des transformations de ressources, exécuter des scripts et définir un ordre de démarrage. Ces étapes sont facultatives.
+
+.Ajouter une transformation de ressource
+L'ajout d'une transformation de ressources vous permet de modifier n'importe quel aspect d'un workload lors d'un basculement. Les transformations de ressources offrent la flexibilité nécessaire pour adapter les workloads à différents environnements et configurations lors d'un événement de reprise après sinistre. link:task-resource-transformation.html["Apprenez à créer des transformations de ressources."^]
+
+Les transformations de ressources sont appliquées dans l'ordre où vous les indiquez.
+
+. Dans la liste déroulante, sélectionnez la transformation de ressource que vous souhaitez ajouter.
+. Choisissez les ressources auxquelles vous souhaitez appliquer la transformation, puis ajoutez les valeurs requises.
+. Vérifiez l'ordre des transformations pour vous assurer que les opérations s'exécuteront dans le bon ordre.
+
+
+.Ajouter une exécution de script
+NetApp Disaster Recovery peut exécuter un script avant ou après la prise d'un instantané afin de gérer la mise en veille et la reprise d'une application. Cette action garantit que les applications sont correctement préparées avant qu'un instantané ne soit répliqué et restauré, et qu'elles peuvent reprendre leurs opérations sans interruption après un basculement.
+
+. Sélectionnez *+ Add script*.
+. Sélectionnez *Téléverser* pour choisir le fichier de script.
+. Choisissez l’*étape d’exécution* : *Pré-instantané* pour exécuter avant la création de l’instantané ou *Post-instantané* pour exécuter après.
+. Sélectionnez *Enregistrer*.
+
+
+.Définissez l’ordre de démarrage
+Pour les plans de réplication comprenant plusieurs groupes de ressources, vous pouvez définir un ordre de démarrage. Cet ordre garantit que les ressources devant être mises en ligne simultanément le sont, et que les groupes de ressources dépendant d'autres groupes ne sont mises en ligne qu'une fois les groupes dont elles dépendent opérationnels.
+
+. Sélectionnez la section *Boot order and delay*.
+. Attribuez une valeur de démarrage *Order* à chaque ressource du plan de réplication, en commençant par un. Attribuez le même numéro à toutes les ressources qui doivent démarrer en même temps.
+. Définissez le délai *Delay* en minutes. Si des ressources doivent être retardées, indiquez la durée de ce délai.
+
+
+
+
+[[review-and-create-the-replication-plan]]
+=== Examiner et créer le plan de réplication
+
+Enfin, vérifiez et confirmez les paramètres de votre plan de réplication.
+
+
+TIP: Vous pouvez ultérieurement désactiver ou supprimer le plan de réplication.
+
+.Étapes
+. Vérifiez les mappages de basculement.
+. Sélectionnez *Ajouter* pour créer le plan de réplication.
++
+Après avoir sélectionné *Ajouter*, vous pouvez suivre les différentes tâches dans *Suivi des tâches*.
+
+
+
+
+
+[[more-information]]
+== Plus d'informations
+
+* link:resource-group.html["Créer un groupe de ressources"]
+* link:task-appvault.html["Gérer AppVaults"]
+* link:task-resource-transformation.html["Gérer les modèles de transformation des ressources"]
+

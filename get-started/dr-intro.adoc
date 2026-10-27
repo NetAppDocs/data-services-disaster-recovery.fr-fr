@@ -165,7 +165,7 @@ Si cette vérification réussit, Disaster Recovery exécute les étapes d'initia
 
 Une fois que Disaster Recovery a créé et initialisé toutes les relations, à chaque sauvegarde planifiée, le service exécute les étapes de protection des données suivantes :
 
-. Pour chaque machine virtuelle marquée comme « cohérente avec l’application », utilisez VMtools pour placer l’application prise en charge dans un état de sauvegarde.
+. Pour chaque machine virtuelle marquée comme « cohérente au niveau de l’application », utilisez VMware Tools pour placer l’application prise en charge dans un état de sauvegarde.
 . Créez un nouvel instantané de tous les volumes ONTAP hébergeant des banques de données VMware protégées.
 . Effectuez une opération de mise à jour SnapMirror pour répliquer ces snapshots sur le cluster ONTAP de destination.
 . Déterminez si le nombre de snapshots conservés a dépassé la rétention maximale de snapshots définie dans le plan de réplication et supprimez tous les snapshots superflus des volumes source et de destination.

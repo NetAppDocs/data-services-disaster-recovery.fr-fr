@@ -42,7 +42,7 @@ Voici comment :
 
 Lorsque vous créez un plan de réplication et mappez des ressources de calcul, vous pouvez désormais mapper des dossiers afin que les machines virtuelles soient récupérées dans un dossier que vous spécifiez pour le centre de données, le cluster et l'hôte.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, consultez https://docs.netapp.com/us-en/data-services-disaster-recovery/use/task-replication-plan-vmware.html["Créer un plan de réplication"].
 
 
 
@@ -60,7 +60,7 @@ Se référer à https://docs.netapp.com/us-en/data-services-disaster-recovery/us
 
 Lorsque vous créez un plan de réplication, vous pouvez désormais définir un délai de démarrage pour chaque machine virtuelle du plan.  Cela vous permet de définir une séquence de démarrage des machines virtuelles afin de garantir que toutes vos machines virtuelles de priorité 1 s'exécutent avant le démarrage des machines virtuelles de priorité suivante.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, consultez https://docs.netapp.com/us-en/data-services-disaster-recovery/use/task-replication-plan-vmware.html["Créer un plan de réplication"].
 
 
 
@@ -69,7 +69,7 @@ Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-servi
 
 Lorsque vous créez un plan de réplication, vous pouvez désormais voir le système d’exploitation de chaque machine virtuelle du plan.  Cela est utile pour décider comment regrouper les machines virtuelles dans un groupe de ressources.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, consultez https://docs.netapp.com/us-en/data-services-disaster-recovery/use/task-replication-plan-vmware.html["Créer un plan de réplication"].
 
 
 
@@ -78,7 +78,7 @@ Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-servi
 
 Lors de la création d'un plan de réplication, vous pouvez désormais ajouter un préfixe et un suffixe aux noms des machines virtuelles sur le site de reprise après sinistre. Cela vous permet d'utiliser un nom plus descriptif pour les machines virtuelles du plan.
 
-Pour plus de détails, reportez-vous à https://docs.netapp.com/us-en/data-services-disaster-recovery/use/drplan-create.html["Créer un plan de réplication"] .
+Pour plus de détails, consultez https://docs.netapp.com/us-en/data-services-disaster-recovery/use/task-replication-plan-vmware.html["Créer un plan de réplication"].
 
 
 

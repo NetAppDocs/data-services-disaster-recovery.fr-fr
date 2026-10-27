@@ -1,0 +1,19 @@
+= 
+:allow-uri-read: 
+
+
+Lorsque vous créez des groupes de ressources, tenez compte des scénarios suivants :
+
+* Avant d’ajouter des datastores ou des namespace à des groupes de ressources, lancez une découverte manuelle ou attendez qu’une découverte planifiée s’exécute. Cela garantit que les VM sont détectées et répertoriées dans le groupe de ressources. Si vous ne lancez pas de découverte manuelle, les ressources risquent de ne pas être répertoriées dans le groupe de ressources.
+* Assurez-vous qu'au moins une ressource (VM ou namespace) est présente dans la banque de données. S'il n'y a aucune ressource dans la banque de données, Disaster Recovery ne détecte pas la banque de données.
+* Un seul magasin de données ne doit pas héberger de machines virtuelles protégées par plusieurs plans de réplication.
+* N’hébergez pas de ressources protégées et non protégées sur le même datastore. Si des ressources protégées et non protégées sont hébergées sur le même datastore, les problèmes suivants pourraient survenir :
++
+** Étant donné que Disaster Recovery utilise SnapMirror et que le système réplique des volumes ONTAP entiers, la capacité utilisée de ce volume est prise en compte pour le calcul des licences. Dans ce cas, l’espace du volume consommé par les VM protégées et non protégées serait inclus dans ce calcul.
+** Si le groupe de ressources et ses entités associées doivent basculer vers le site de reprise d’activité après sinistre, toutes les ressources non protégées (VM ou namespace ne faisant pas partie du groupe de ressources, mais hébergés sur le volume ONTAP) n’existeront plus sur le site source du fait du processus de basculement, ce qui entraînera l’échec des VM non protégées sur le site source. De plus, Disaster Recovery ne démarrera pas ces ressources non protégées sur le site de basculement.
+
+
+* Pour protéger une ressource, elle doit être incluse dans un groupe de ressources.
+
+
+*BONNE PRATIQUE* : Organisez vos machines virtuelles avant de déployer NetApp Disaster Recovery afin de minimiser la prolifération des datastores. Placez les machines virtuelles nécessitant une protection sur un sous-ensemble de datastores et celles qui ne seront pas protégées sur un autre sous-ensemble de datastores. Assurez-vous que les machines virtuelles d’un même datastore ne soient pas protégées par différents plans de réplication.
