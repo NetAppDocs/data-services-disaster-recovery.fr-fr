@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: use/sites-add.html 
-keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter 
-summary: Avant de pouvoir créer un plan de reprise après sinistre, vous devez ajouter un site vCenter principal et un site de reprise après sinistre vCenter cible dans NetApp Disaster Recovery. 
+keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter, kubernetes, trident protect, openshift 
+summary: Avant de pouvoir créer un plan de reprise après sinistre, vous devez ajouter un site principal et un site cible de reprise après sinistre, qui peuvent être des sites vCenter ou des sites Kubernetes, dans NetApp Disaster Recovery. 
 ---
 = Ajouter des sites dans NetApp Disaster Recovery
 :hardbreaks:
@@ -47,7 +47,7 @@ Après avoir ajouté un site à NetApp Disaster Recovery, vous devez associer de
 Si vous avez ajouté des vCenters dans les versions précédentes et que vous souhaitez personnaliser la planification de la découverte, vous devez modifier le site du serveur vCenter et définir la planification.
 
 
-TIP: NetApp Disaster Recovery effectue une découverte toutes les 24 heures. Après avoir configuré un site, vous pouvez ensuite modifier le vCenter ou le cluster Kubernetes pour personnaliser la planification de la découverte selon vos besoins. Par exemple, si vous avez un grand nombre de machines virtuelles, vous pouvez définir la planification de la découverte pour qu'elle s'exécute toutes les 23 heures et 59 minutes. Si vous avez un petit nombre de machines virtuelles, vous pouvez définir la planification de la découverte pour qu'elle s'exécute toutes les 12 heures. L'intervalle minimum est de 30 minutes et le maximum est de 24 heures.
+TIP: Disaster Recovery effectue une détection une fois toutes les 24 heures. Après avoir configuré un site, vous pouvez ensuite modifier le vCenter ou le cluster Kubernetes afin de personnaliser la planification de la détection en fonction de vos besoins. Par exemple, si vous avez un grand nombre de VM, vous pouvez définir la planification de la détection pour qu'elle s'exécute toutes les 23 heures et 59 minutes. Si vous avez un petit nombre de VM, vous pouvez définir la planification de la détection pour qu'elle s'exécute toutes les 12 heures. L'intervalle minimal est de 30 minutes et l'intervalle maximal est de 24 heures.
 
 Vous devez d’abord effectuer quelques découvertes manuelles pour obtenir les informations les plus récentes sur votre environnement.  Après cela, vous pouvez définir le calendrier pour qu'il s'exécute automatiquement.
 
@@ -125,7 +125,7 @@ image:sites-list2.png["Capture d'écran de la page Sites"]
 
 
 
-Une fois les vCenter ajoutés, NetApp Disaster Recovery effectue une découverte approfondie des environnements vCenter, notamment les clusters vCenter, les hôtes ESXi, les banques de données, l'empreinte de stockage, les détails des machines virtuelles, les répliques SnapMirror et les réseaux de machines virtuelles.
+Une fois les vCenters ajoutés, Disaster Recovery effectue une détection approfondie des environnements vCenter, notamment les clusters vCenter, les hôtes ESXi, les datastores, l’empreinte de stockage, les détails des machines virtuelles, les réplicas SnapMirror et les réseaux de machines virtuelles.
 
 --
 .Kubernetes
@@ -160,7 +160,7 @@ Après avoir ajouté des ressources, sélectionnez *Suivi des tâches* pour suiv
 
 Vous pouvez gérer les adresses IP lors des opérations de basculement à l'aide du mappage de sous-réseaux, qui vous permet d'ajouter des sous-réseaux pour chaque vCenter.  Lorsque vous faites cela, vous définissez le CIDR IPv4, la passerelle par défaut et le DNS pour chaque réseau virtuel.
 
-En cas de basculement, NetApp Disaster Recovery utilise le CIDR du réseau mappé pour attribuer à chaque vNIC une nouvelle adresse IP.
+En cas de basculement, Disaster Recovery utilise le CIDR du réseau mappé pour attribuer à chaque vNIC une nouvelle adresse IP.
 
 Par exemple:
 
@@ -170,7 +170,7 @@ Par exemple:
 
 VM1 dispose d'une vNIC (10.1.1.50) connectée à NetworkA.  NetworkA est mappé à NetworkB dans les paramètres du plan de réplication.
 
-Lors du basculement, NetApp Disaster Recovery remplace la partie réseau de l'adresse IP d'origine (10.1.1) et conserve l'adresse hôte (.50) de l'adresse IP d'origine (10.1.1.50).  Pour VM1, NetApp Disaster Recovery examine les paramètres CIDR pour NetworkB et utilise la partie réseau NetworkB 192.168.1 tout en conservant la partie hôte (.50) pour créer la nouvelle adresse IP pour VM1.  La nouvelle IP devient 192.168.1.50.
+Lors du basculement, Disaster Recovery remplace la partie réseau de l’adresse IP d’origine (10.1.1) et conserve la partie hôte (.50) de l’adresse IP d’origine (10.1.1.50). Pour VM1, Disaster Recovery examine les paramètres CIDR de NetworkB et utilise la partie réseau de NetworkB, 192.168.1, tout en conservant la partie hôte (.50) pour créer la nouvelle adresse IP de VM1. La nouvelle adresse IP devient 192.168.1.50.
 
 En résumé, l’adresse de l’hôte reste la même, tandis que l’adresse réseau est remplacée par celle configurée dans le mappage de sous-réseau du site.  Cela vous permet de gérer plus facilement la réaffectation des adresses IP lors du basculement, en particulier si vous avez des centaines de réseaux et des milliers de machines virtuelles à gérer.
 
@@ -181,7 +181,7 @@ L'utilisation du mappage de sous-réseau est un processus facultatif en deux ét
 
 
 .Étapes
-. Dans le menu NetApp Disaster Recovery , sélectionnez *Sites*.
+. Dans le menu Disaster Recovery, sélectionnez *Sites*.
 . Des actionsimage:icon-vertical-dots.png["Icône Actions"] icône sur la droite, sélectionnez *Ajouter un sous-réseau*.
 +
 image:dr-sites-subnet-menu.png["Capture d'écran du menu Ajouter un sous-réseau"]
@@ -220,7 +220,7 @@ L'utilisation du mappage de sous-réseau est un processus facultatif en deux ét
 
 
 .Étapes
-. Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
+. Dans le menu Disaster Recovery, sélectionnez *Replication plans*.
 . Sélectionnez *Ajouter* pour ajouter un plan de réplication.
 . Remplissez les champs de la manière habituelle en ajoutant les serveurs vCenter, en sélectionnant les groupes de ressources ou les applications et en complétant les mappages.
 . Dans la page Plan de réplication > Mappage des ressources, sélectionnez la section *Machines virtuelles*.
@@ -247,7 +247,7 @@ Si vous disposez de vCenters de versions antérieures et que vous souhaitez modi
 Si vous ne souhaitez pas planifier la découverte, vous pouvez désactiver l'option de découverte planifiée et actualiser la découverte manuellement à tout moment.
 
 .Étapes
-. Dans le menu NetApp Disaster Recovery , sélectionnez *Sites*.
+. Dans le menu Disaster Recovery, sélectionnez *Sites*.
 . Sélectionnez le site que vous souhaitez modifier.
 . Sélectionnez les actionsimage:icon-vertical-dots.png["Icône Actions"] icône sur la droite et sélectionnez *Modifier*.
 . Dans la fenêtre Paramètres, modifiez les champs selon vos besoins.
@@ -265,10 +265,10 @@ image:sites-edit-schedule.png["Capture d'écran de la modification du calendrier
 [[refresh-discovery-manually]]
 == Actualiser la découverte manuellement
 
-Vous pouvez actualiser la découverte manuellement à tout moment.  Ceci est utile si vous avez ajouté ou supprimé des machines virtuelles et que vous souhaitez mettre à jour les informations dans NetApp Disaster Recovery.
+Vous pouvez actualiser manuellement la découverte à tout moment. Cela s'avère utile si vous avez ajouté ou supprimé des machines virtuelles et souhaitez mettre à jour les informations dans Disaster Recovery.
 
 .Étapes
-. Dans le menu NetApp Disaster Recovery , sélectionnez *Sites*.
+. Dans le menu Disaster Recovery, sélectionnez *Sites*.
 . Sélectionnez le site que vous souhaitez actualiser.
 . Sélectionnez les actionsimage:icon-vertical-dots.png["Icône Actions"] icône sur la droite et sélectionnez *Actualiser*.
 

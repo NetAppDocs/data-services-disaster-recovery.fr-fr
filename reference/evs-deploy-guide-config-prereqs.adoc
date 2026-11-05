@@ -13,10 +13,10 @@ Assurez-vous de consulter et de respecter les exigences pour configurer Amazon E
 
 .Prérequis
 * Examinez le link:../get-started/dr-prerequisites.html["Prérequis généraux pour NetApp Disaster Recovery"].
-* Créez un compte utilisateur vCenter avec les privilèges VMware spécifiques requis pour NetApp Disaster Recovery pour effectuer les opérations nécessaires.
+* Créez un compte utilisateur vCenter disposant des privilèges VMware spécifiques requis pour que Disaster Recovery puisse effectuer les opérations nécessaires.
 +
 
-NOTE: Il est recommandé de **ne pas** utiliser le compte administrateur par défaut "\administrator@vsphere.com". À la place, vous devez créer un compte utilisateur spécifique à NetApp Disaster Recovery sur tous les clusters vCenter qui participeront au processus de reprise après sinistre. Pour obtenir la liste des privilèges spécifiques requis, consultez link:vcenter-privileges.html["Privilèges vCenter nécessaires pour la NetApp Disaster Recovery"].
+NOTE: Il est recommandé de **ne pas** utiliser le compte administrateur par défaut « \administrator@vsphere.com ». Vous devez plutôt créer un compte utilisateur dédié à la reprise après sinistre sur tous les clusters vCenter qui participeront au processus de reprise après sinistre. Pour obtenir la liste des privilèges spécifiques requis, consultez link:vcenter-privileges.html["vCenter privilèges nécessaires à la reprise après sinistre"].
 
 * Assurez-vous que toutes les banques de données vCenter qui hébergeront des machines virtuelles protégées par NetApp Disaster Recovery sont situées sur des ressources de stockage NetApp ONTAP.
 +

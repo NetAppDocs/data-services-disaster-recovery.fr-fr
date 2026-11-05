@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: use/task-replication-plan-modify.html 
-keywords: disaster recovery, bluexp disaster recovery, failover, replication plan, modify, compliance time, test failover 
+keywords: disaster recovery, bluexp disaster recovery, failover, replication plan, modify, compliance time, test failover, vmware, kubernetes 
 summary: Modifiez un plan de réplication pour ajuster le délai de conformité ou les paramètres de basculement. 
 ---
 = Modifier un plan de réplication dans NetApp Disaster Recovery
@@ -14,7 +14,7 @@ summary: Modifiez un plan de réplication pour ajuster le délai de conformité 
 [role="lead"]
 Dans NetApp Disaster Recovery, vous pouvez modifier l’impact du délai de conformité d’un plan de réplication et vous assurer que les tests de basculement se terminent avec succès.
 
-Vous pouvez modifier le délai de conformité et tester l'impact du basculement. Pour modifier la récurrence du plan, les mappages de basculement ou les machines virtuelles, supprimez le plan de réplication et créez-en un nouveau.
+Vous pouvez modifier le délai de conformité et tester l'impact du basculement. Pour modifier la récurrence du plan, les mappages de basculement ou les ressources associées, supprimez le plan de réplication et créez-en un nouveau.
 
 
 
@@ -22,9 +22,9 @@ Vous pouvez modifier le délai de conformité et tester l'impact du basculement.
 == Champs modifiables
 
 * *Impact sur le temps de conformité* : Lorsqu'un plan de réplication est créé, le service crée un calendrier de conformité par défaut.  Le temps de conformité par défaut est de 30 minutes.  Pour modifier cette heure, vous pouvez utiliser la fonction Modifier la planification dans le plan de réplication.
-* *Test d'impact du basculement* : Vous pouvez tester un processus de basculement à la demande ou selon une planification. Cela vous permet de tester le basculement d'une machine virtuelle vers une destination spécifiée dans un plan de réplication.
+* *Test d'impact du basculement* : Vous pouvez tester un processus de basculement à la demande ou selon une planification. Cela vous permet de tester le basculement de machines virtuelles ou d'applications Kubernetes vers une destination spécifiée dans un plan de réplication.
 +
-Un basculement de test crée un volume FlexClone , monte la banque de données et déplace la charge de travail sur cette banque de données.  Une opération de basculement de test n'a _pas_ d'impact sur les charges de travail de production, la relation SnapMirror utilisée sur le site de test et les charges de travail protégées qui doivent continuer à fonctionner normalement.
+Un basculement de test crée un volume FlexClone® et, pour les workloads VMware, monte le datastore et déplace le workload sur ce datastore. Une opération de basculement de test n'a _aucun_ impact sur les workloads de production, la relation SnapMirror utilisée sur le site de test et les workloads protégés qui doivent continuer à fonctionner normalement.
 
 
 
@@ -35,12 +35,12 @@ En fonction du calendrier, le test de basculement s'exécute et garantit que les
 [[modify-a-replication-plan]]
 == Modifier un plan de réplication
 
-. Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
+. Dans le menu Disaster Recovery, sélectionnez *Replication plans*.
 +
 image:dr-plan-list.png["Capture d'écran montrant la liste des plans de réplication"]
 
-. Sélectionnez les *Actions*image:icon-horizontal-dots.png["Menu Actions à points horizontaux"] icône et sélectionnez *Modifier les horaires*.
-. Saisissez la fréquence en minutes à laquelle vous souhaitez que NetApp Disaster Recovery vérifie la conformité des tests.
+. Sélectionnez le menu *Actions* image:icon-horizontal-dots.png["Menu Actions à points horizontaux"] puis sélectionnez *Modifier les calendriers*.
+. Indiquez la fréquence, en minutes, à laquelle vous souhaitez que Disaster Recovery vérifie la conformité des tests.
 . Pour vérifier que vos tests de basculement sont sains, cochez *Exécuter les basculements selon un calendrier mensuel*.
 +
 .. Sélectionnez le jour du mois et l’heure à laquelle vous souhaitez que ces tests soient exécutés.
@@ -54,7 +54,29 @@ image:dr-plan-schedule-edit2.png["Capture d'écran montrant où vous pouvez modi
 . Pour nettoyer l'environnement de test une fois le test de basculement terminé, cochez *Nettoyer automatiquement après le basculement du test* et entrez le nombre de minutes que vous souhaitez attendre avant le début du nettoyage.
 +
 
-NOTE: Ce processus désenregistre les machines virtuelles temporaires de l’emplacement de test, supprime le volume FlexClone qui a été créé et démonte les banques de données temporaires.
+NOTE: Ce processus supprime le volume FlexClone® créé et retire les ressources de test temporaires de l'emplacement de test. Pour les workloads VMware, il désenregistre également les VM temporaires et démonte les datastores temporaires.
 
 . Sélectionnez *Enregistrer*.
+
+
+
+
+[[delete-or-disable-a-replication-plan]]
+== Supprimer ou désactiver un plan de réplication
+
+Vous pouvez désactiver temporairement un plan de réplication si, par exemple, vous devez appliquer des mises à jour ou effectuer une maintenance qui affecterait l’intégrité du plan de réplication et de ses opérations associées.
+
+Vous pouvez également supprimer un plan de réplication si vous n’en avez plus besoin ou si vous devez y apporter des modifications importantes qui ne relèvent pas d’une simple modification.
+
+.Étapes
+. Dans le menu Disaster Recovery, sélectionnez *Replication plans*.
++
+image:dr-plan-list.png["Capture d'écran montrant la liste des plans de réplication"]
+
+. Sélectionnez le menu *Actions* image:icon-horizontal-dots.png["Menu Actions à points horizontaux"] pour le plan de réplication que vous souhaitez désactiver ou supprimer.
+. Sélectionnez *Supprimer* ou *Désactiver*.
+. Consultez les instructions dans la fenêtre contextuelle. Pour désactiver, sélectionnez *Désactiver*.
++
+Si vous choisissez *Supprimer*, sélectionnez les snapshots ou métadonnées associés à supprimer avec le plan de réplication : *Supprimer les snapshots primaires*, *Supprimer les snapshots secondaires* ou *Supprimer les métadonnées des snapshots*. Dans la zone de texte, saisissez « delete » pour confirmer l’opération, puis sélectionnez *Supprimer*.
+
 

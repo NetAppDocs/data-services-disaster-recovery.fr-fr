@@ -9,7 +9,7 @@ summary: Avant de pouvoir protéger votre infrastructure de machines virtuelles,
 
 
 [role="lead"]
-Avant de pouvoir protéger votre infrastructure de machines virtuelles, identifiez les clusters VMware vCenter qui hébergent les machines virtuelles à protéger et où se trouvent ces vCenters.  La première étape consiste à créer un site pour représenter les centres de données source et de destination.  Un site est un domaine de défaillance ou un domaine de récupération.
+Avant de pouvoir protéger votre infrastructure de machines virtuelles avec NetApp Disaster Recovery, identifiez quels clusters VMware vCenter hébergent les machines virtuelles à protéger et où se trouvent ces vCenters. La première étape consiste à créer un site pour représenter les centres de données source et de destination. Un site est un domaine de défaillance ou un domaine de reprise.
 
 Vous devez créer les éléments suivants :
 
@@ -26,7 +26,7 @@ Créez un site vCenter de production.
 
 .Étapes
 . Dans la barre de navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
-. À partir de n’importe quelle page de NetApp Disaster Recovery, sélectionnez l’option *Sites*.
+. Depuis n'importe quelle page de Disaster Recovery, sélectionnez l'option *Sites*.
 +
 image:evs-create-site-op-1.png["Option Sites"]
 
@@ -51,7 +51,7 @@ Si vous disposez d’autres sites vCenter de production, vous pouvez les ajouter
 
 Créez un site DR pour Amazon EVS à l’aide Amazon FSx for NetApp ONTAP .
 
-. À partir de n’importe quelle page de NetApp Disaster Recovery, sélectionnez l’option *Sites*.
+. Depuis n'importe quelle page de Disaster Recovery, sélectionnez l'option *Sites*.
 +
 image:evs-create-site-op-1.png["Option Sites"]
 

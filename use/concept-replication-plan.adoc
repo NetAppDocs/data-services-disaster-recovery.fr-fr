@@ -89,7 +89,7 @@ Si vous prévoyez d'utiliser des sauvegardes gérées par la plateforme (c'est-�
 [[disaster-recovery-managed-backups]]
 == Sauvegardes gérées par Disaster Recovery
 
-Lors de l'utilisation de sauvegardes gérées par la reprise après sinistre, les directives suivantes s'appliquent aux relations SnapMirror créées en dehors de NetApp Disaster Recovery :
+Lors de l'utilisation de sauvegardes gérées par la reprise après sinistre, les directives suivantes s'appliquent aux relations SnapMirror créées en dehors de la reprise après sinistre :
 
 * Les relations SnapMirror peuvent prendre en charge les politiques de réplication MirrorAll, MirrorVault, MirrorLatest et asynchrone.
 * Ne planifiez *pas* de mises à jour pour ces relations, car elles seront gérées par le service NetApp Disaster Recovery.
@@ -104,7 +104,7 @@ De nombreuses machines virtuelles hébergent des serveurs de bases de données t
 
 Les instantanés cohérents avec les applications garantissent que la base de données est dans un état cohérent lorsque l'instantané est pris.  Ceci est important car cela garantit que la base de données peut être restaurée à un état cohérent après une opération de basculement ou de restauration.
 
-Les données gérées par le serveur de base de données peuvent se trouver sur le même datastore que la machine virtuelle qui héberge le serveur de base de données, ou sur un datastore différent. Le tableau suivant présente les configurations prises en charge pour les snapshots cohérents au niveau des applications dans NetApp Disaster Recovery :
+Les données gérées par le serveur de base de données peuvent se trouver sur le même datastore que la machine virtuelle qui héberge le serveur de base de données ou sur un datastore différent. Le tableau suivant présente les configurations prises en charge pour les snapshots cohérents au niveau des applications dans Disaster Recovery :
 
 [cols="20,20,40a"]
 |===

@@ -4,14 +4,14 @@ permalink: reference/evs-deploy-guide-enable-draas.html
 keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter,amazon elastic vmware service 
 summary: 'Introduction à NetApp Disaster Recovery à l"aide d"Amazon EVS et Amazon FSx for NetApp ONTAP.  NetApp Disaster Recovery est une offre de produit sous licence qui doit être achetée avant de pouvoir être utilisée.  Il existe plusieurs types de licences et plusieurs façons d’acheter des licences.' 
 ---
-= Ajoutez le service NetApp Disaster Recovery à votre compte NetApp Console pour Amazon EVS
+= Ajoutez NetApp Disaster Recovery à votre compte Console pour Amazon EVS
 :allow-uri-read: 
 
 
 [role="lead"]
 NetApp Disaster Recovery est une offre de produit sous licence qui doit être achetée avant de pouvoir être utilisée.  Il existe plusieurs types de licences et plusieurs façons d’acheter des licences.  Une licence vous donne le droit de protéger une quantité spécifique de données pendant une durée déterminée.
 
-Pour plus d'informations sur les licences NetApp Disaster Recovery , consultezlink:../get-started/dr-licensing.html["Configurer les licences pour NetApp Disaster Recovery"] .
+Pour plus d'informations sur les licences de reprise après sinistre, consultez link:../get-started/dr-licensing.html["Configurer les licences pour la reprise après sinistre"].
 
 
 
@@ -20,8 +20,8 @@ Pour plus d'informations sur les licences NetApp Disaster Recovery , consultezli
 
 Il existe deux principaux types de licences :
 
-* NetApp propose unelink:../get-started/dr-licensing.html["Licence d'essai de 30 jours"] que vous pouvez utiliser pour évaluer NetApp Disaster Recovery à l'aide de vos ressources ONTAP et VMware.  Cette licence offre 30 jours d'utilisation pour une quantité illimitée de capacité protégée.
-* Achetez une licence de production si vous souhaitez une protection DR au-delà de la période d’essai de 30 jours.  Cette licence peut être achetée via les places de marché de n'importe quel partenaire cloud de NetApp, mais pour ce guide, nous vous recommandons d'acheter votre licence de place de marché pour NetApp Disaster Recovery à l'aide d'Amazon AWS Marketplace.  Pour en savoir plus sur l'achat d'une licence via Amazon Marketplace, consultezlink:../get-started/dr-licensing.html["Abonnez-vous via AWS Marketplace"] .
+* NetApp propose une link:../get-started/dr-licensing.html["Licence d'essai de 30 jours"] que vous pouvez utiliser pour évaluer la reprise après sinistre à l’aide de vos ressources ONTAP et VMware. Cette licence offre 30 jours d’utilisation pour une capacité protégée illimitée.
+* Achetez une licence de production si vous souhaitez bénéficier d’une protection de reprise après sinistre au-delà de la période d’essai de 30 jours. Cette licence peut être achetée sur les marketplaces de n’importe lequel des partenaires cloud de NetApp, mais pour ce guide, nous vous recommandons d’acheter votre licence marketplace pour Disaster Recovery via l’Amazon AWS Marketplace. Pour en savoir plus sur l’achat d’une licence via l’Amazon Marketplace, consultez link:../get-started/dr-licensing.html["Abonnez-vous via AWS Marketplace"].
 
 
 
@@ -31,7 +31,7 @@ Il existe deux principaux types de licences :
 
 Avant d’acheter votre licence, vous devez comprendre la capacité de stockage ONTAP que vous devez protéger.  L’un des avantages de l’utilisation du stockage NetApp ONTAP est la grande efficacité avec laquelle NetApp stocke vos données.  Toutes les données stockées dans un volume ONTAP (comme les machines virtuelles hébergeant une banque de données VMware) sont stockées de manière très efficace.  ONTAP utilise par défaut trois types d'efficacité de stockage lors de l'écriture de données sur un stockage physique : compactage, déduplication et compression.  Le résultat net est une efficacité de stockage comprise entre 1,5:1 et 4:1 selon les types de données stockées.  En fait, NetApp propose une https://www.netapp.com/media/79014-ng-937-Efficiency-Guarantee-Customer-Flyer.pdf["garantie d'efficacité de stockage"^] pour certaines charges de travail.
 
-Cela peut vous être bénéfique car NetApp Disaster Recovery calcule la capacité à des fins de licence une fois que toutes les efficacités de stockage ONTAP ont été appliquées.  Par exemple, supposons que vous ayez provisionné une banque de données NFS de 100 téraoctets (Tio) dans vCenter pour héberger 100 machines virtuelles que vous souhaitez protéger à l'aide du service.  De plus, supposons que lorsque les données sont écrites sur le volume ONTAP , les techniques d'efficacité de stockage appliquées automatiquement entraînent une consommation de seulement 33 Tio par ces machines virtuelles (efficacité de stockage 3:1).  NetApp Disaster Recovery doit être concédé sous licence uniquement pour 33 Tio, et non pour 100 Tio.  Cela peut représenter un avantage considérable sur le coût total de possession de votre solution DR par rapport à d’autres solutions DR.
+Cela peut vous être avantageux, car Disaster Recovery calcule la capacité à des fins de licence après l’application de toutes les optimisations de stockage ONTAP. Par exemple, supposons que vous ayez provisionné un datastore NFS de 100 téraoctets (Tio) dans vCenter pour héberger 100 VM que vous souhaitez protéger à l’aide du service. Supposons également que, lorsque les données sont écrites sur le volume ONTAP, les techniques d’optimisation du stockage appliquées automatiquement fassent que ces VM ne consomment que 33 Tio (optimisation du stockage de 3:1). Disaster Recovery doit être licencié uniquement pour 33 Tio, et non pour 100 Tio. Cela peut représenter un très grand avantage pour le coût de possession total de votre solution de reprise après sinistre par rapport à d’autres solutions de reprise après sinistre.
 
 .Étapes
 . Pour déterminer la quantité de données consommée sur chaque volume hébergeant une banque de données VMware à protéger, déterminez la consommation de capacité sur disque en exécutant la commande ONTAP CLI pour chaque volume : `volume show-space -volume < _volume name_ > -vserver < _SVM name_ >` .

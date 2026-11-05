@@ -102,9 +102,9 @@ La reprise après sinistre prend en charge les topologies suivantes :
 Pour la liste complète, voir link:dr-prerequisites.html["Prérequis pour la reprise après sinistre"].
 
 .Qu'est-ce qu'un agent de Console et pourquoi est-il nécessaire ?
-Un agent Console est un composant logiciel qui permet à la NetApp Console de communiquer avec vos clusters de stockage ONTAP et VMware vCenter. Il est requis pour que la reprise après sinistre fonctionne correctement. L’agent réside dans votre réseau privé (soit un centre de données sur site, soit un VPC cloud) et communique avec vos instances de stockage ONTAP et vos clusters vCenter.
+Un agent Console est un composant logiciel qui permet à la NetApp Console de communiquer avec votre stockage ONTAP et vos clusters VMware vCenter ou vos clusters Kubernetes. Il est nécessaire au bon fonctionnement de Disaster Recovery. L’agent réside dans votre réseau privé (soit dans un centre de données sur site, soit dans un VPC cloud) et communique avec vos instances de stockage ONTAP et vos clusters vCenter ou vos clusters Kubernetes.
 
-Pour une reprise après sinistre entre environnements locaux, installez l'agent Console local sur le site de reprise après sinistre. Pour une reprise après sinistre vers AWS, installez l'agent Console pour AWS dans votre VPC AWS. Les clusters vCenter source et de destination doivent utiliser le même agent Console. La reprise après sinistre fonctionne uniquement avec le déploiement de l'agent en mode standard.
+Pour la reprise après sinistre d’un environnement on-premises vers un autre, installez le Console agent on-premises sur le site de reprise après sinistre. Pour la reprise après sinistre d’un environnement on-premises vers AWS, installez le Console agent for AWS dans votre VPC AWS. Les clusters vCenter source et de destination, ou les clusters Kubernetes, doivent utiliser le même Console agent. La reprise après sinistre fonctionne uniquement avec le déploiement du Console agent en mode standard.
 
 .De quoi un cluster Kubernetes a-t-il besoin avant de pouvoir être protégé ?
 Chaque cluster Kubernetes doit avoir NetApp Trident installé, un backend ONTAP et une classe de stockage configurés, ainsi que les CRD de snapshots de volumes et le contrôleur installés. Les applications doivent utiliser des volumes persistants provisionnés via la classe de stockage Trident. Lorsque vous ajoutez un cluster Kubernetes en tant que site, NetApp Disaster Recovery vous guide pour installer et enregistrer Trident Protect sur ce cluster. Voir link:task-kubernetes-requirements.html["Exigences relatives au cluster Kubernetes pour la reprise après sinistre"] pour les commandes étape par étape et les vérifications.
@@ -118,7 +118,7 @@ Chaque cluster Kubernetes doit avoir NetApp Trident installé, un backend ONTAP 
 Un site est un conteneur logique, généralement associé à un centre de données physique ou à un emplacement cloud, qui héberge un ou plusieurs clusters vCenter ou clusters Kubernetes. Vous ajoutez à la fois un site source (production) et un site de destination (reprise après sinistre) avant de créer un plan de réplication.
 
 .Qu'est-ce qu'un groupe de ressources et comment est-il utilisé ?
-Un groupe de ressources est un conteneur logique qui vous permet de gérer plusieurs machines virtuelles, banques de données ou espaces de noms et ressources Kubernetes comme une seule unité, afin qu'elles puissent être protégées à l'aide d'un instantané commun. Une machine virtuelle ne peut appartenir qu'à un seul groupe de ressources à la fois. Vous pouvez créer un groupe de ressources pour chaque application ou charge de travail que vous souhaitez protéger, et les machines virtuelles s'allument selon l'ordre de démarrage que vous configurez au sein du groupe.
+Un groupe de ressources est un conteneur logique qui vous permet de gérer plusieurs machines virtuelles, datastores ou espaces de noms et ressources Kubernetes comme une seule entité, afin qu'ils puissent être protégés par un instantané commun. Une machine virtuelle ne peut appartenir qu'à un seul groupe de ressources à la fois. Vous pouvez créer un groupe de ressources pour chaque application ou workload que vous souhaitez protéger.
 
 .Qu'est-ce qu'un plan de réplication dans NetApp Disaster Recovery ?
 Un plan de réplication est un ensemble de règles définissant la fréquence des sauvegardes et la gestion des événements de basculement. Il sélectionne les sites source et de destination, attribue les groupes de ressources, définit les mappages de récupération et configure le comportement à la mise sous tension. Les plans définissent l'objectif de point de récupération (RPO) en fonction de la fréquence de la réplication des données.
@@ -173,24 +173,24 @@ Oui. Vous pouvez migrer des applications VMware d'un site source vers un autre s
 == Basculement et tests
 
 .Puis-je tester mon plan de reprise après sinistre sans impacter les charges de travail de production ?
-Oui. Lors d'un test de basculement, NetApp Disaster Recovery crée des machines virtuelles temporaires à partir d'un nouveau volume FlexClone de l'instantané sélectionné et mappe un datastore temporaire basé sur FlexClone aux hôtes ESXi. Cette opération ne consomme pas de capacité physique supplémentaire, ne modifie pas le volume source d'origine et ne perturbe ni la relation SnapMirror ni les charges de travail de production, qui continuent de se répliquer normalement. Après le test, nettoyez l'environnement de test à l'aide de l'action *Nettoyer le test de basculement*. Voir link:../use/failover.html["Basculer les applications vers un site distant"].
+Oui. Un test de basculement ne modifie pas le volume source d'origine et ne perturbe ni la relation SnapMirror ni les workloads de production, qui continuent de se répliquer normalement. Pour les workloads VMware, Disaster Recovery crée des VM temporaires à partir d'un volume FlexClone de l'instantané sélectionné et associe un datastore temporaire reposant sur FlexClone aux hôtes ESXi. Pour les workloads Kubernetes, le test restaure les applications protégées et les volumes persistants sur le cluster de destination. Après le test, nettoyez l'environnement de test à l'aide de l'action *Clean up failover test*. Voir link:../use/failover.html["Basculer les applications vers un site distant"].
 
 .Que se passe-t-il lors d'une opération de basculement ?
 . Disaster Recovery effectue des vérifications préalables sur le cluster de destination et la relation SnapMirror .
 . Si la dernière version instantanée a été sélectionnée, il effectue une mise à jour SnapMirror pour répliquer les dernières modifications.
-. Les machines virtuelles sources sont hors tension.
+. Les workloads source protégés sont arrêtés (pour VMware, les machines virtuelles protégées sont mises hors tension).
 . La relation SnapMirror est rompue et le volume cible est rendu accessible en lecture/écriture.
 . En fonction de la sélection de l'instantané, le système de fichier actif est restauré à l'instantané spécifié.
-. Les banques de données sont créées et montées sur le cluster ou l’hôte VMware ou VMC (les banques de données VMFS reçoivent également un iGroup mappé à chaque LUN).
-. Les machines virtuelles cibles sont enregistrées dans vCenter en tant que nouveaux datastores.
-. Les machines virtuelles cibles sont mises sous tension selon l'ordre de démarrage dans le groupe de ressources.
-. Si la source vCenter est toujours active, les machines virtuelles côté source en cours de basculement sont mises hors tension.
-. Toutes les machines virtuelles cohérentes au niveau des applications sont désactivées.
-. Si les clusters vCenter et ONTAP source sont toujours actifs, une relation SnapMirror inverse est créée pour répliquer les modifications vers le site source d'origine (sauf si l'option *Ignorer la protection* a été sélectionnée).
+. Les volumes répliqués sont mis à disposition sur le site de reprise après sinistre en fonction des informations du plan de réplication. Pour les workloads VMware, des datastores sont créés et montés sur le cluster ou l’hôte VMware ou VMC (les datastores VMFS reçoivent également un iGroup mappé à chaque LUN). Pour les workloads Kubernetes, les volumes sont mis à disposition sur le cluster de destination.
+. Les ressources cibles sont enregistrées auprès de l'hôte de destination.
+. Les ressources cibles sont mises sous tension en fonction de l'ordre de démarrage défini dans le plan de réplication, si un ordre de démarrage a été spécifié.
+. Si les workloads protégés sur la source sont toujours actifs, ils sont arrêtés.
+. Toutes les ressources cohérentes au niveau des applications sont réactivées.
+. Si les clusters source et ONTAP sont toujours actifs, une relation SnapMirror inverse est créée pour répliquer les modifications vers le site source d'origine (sauf si l'option *Ignorer la protection* a été sélectionnée).
 
 
-.Puis-je personnaliser l'ordre de démarrage des machines virtuelles lors d'un basculement ?
-Oui. Par défaut, toutes les machines virtuelles démarrent ensemble en parallèle, mais vous pouvez attribuer à chaque machine virtuelle un numéro séquentiel (par exemple, 1, 2, 3) pour contrôler l’ordre de démarrage, ou attribuer le même numéro à plusieurs machines virtuelles pour les démarrer simultanément. Vous pouvez également définir un délai de démarrage (0 à 10 minutes) par machine virtuelle afin d’échelonner le démarrage, ce qui est utile pour garantir que les machines virtuelles prioritaires soient en cours d’exécution avant le démarrage des machines virtuelles de priorité inférieure.
+.Puis-je personnaliser l'ordre de démarrage des entités dans un plan de réplication lors d'un basculement ?
+Oui. Vous configurez l'ordre de démarrage dans le plan de réplication. Par défaut, toutes les entités démarrent ensemble en parallèle, mais vous pouvez attribuer à chaque entité un numéro séquentiel (par exemple, 1, 2, 3) pour contrôler l'ordre de démarrage, ou attribuer le même numéro à plusieurs ressources pour les démarrer simultanément. Vous pouvez également définir un délai de démarrage (0 à 10 minutes) par ressource pour échelonner les démarrages, ce qui est utile pour garantir que les ressources prioritaires s'exécutent en premier. L'ordre de démarrage est pris en charge pour les workloads VMware et Kubernetes.
 
 
 
@@ -201,11 +201,11 @@ Oui. Par défaut, toutes les machines virtuelles démarrent ensemble en parallè
 La restauration des opérations (Failback) rétablit le fonctionnement du site source d'origine après la résolution d'un sinistre. À partir d'une relation ayant basculé vers la cible, NetApp Disaster Recovery resynchronise les modifications avec la machine virtuelle ou le cluster Kubernetes source d'origine avant d'inverser le sens de la réplication. Processus :
 
 . Effectue un contrôle de conformité sur le site récupéré.
-. Actualise les informations vCenter pour chaque cluster vCenter du site récupéré.
-. Sur le site cible, il éteint et désenregistre les machines virtuelles, et démonte les volumes.
+. Actualise les informations de découverte pour chaque vCenter cluster ou cluster Kubernetes sur le site récupéré.
+. Sur le site cible, arrêtez les workloads protégés (pour VMware, mettez hors tension et désenregistrez les machines virtuelles) et démontez les volumes.
 . Rompt la relation SnapMirror sur la source d'origine pour la rendre en lecture/écriture.
 . Resynchronise la relation SnapMirror pour inverser le sens de la réplication.
-. Met sous tension et enregistre les machines virtuelles sources, et monte les volumes sur la source.
+. Démarre les charges de travail protégées sur la source (pour VMware, met sous tension et enregistre les machines virtuelles sources) et monte les volumes sur la source.
 
 
 Voir link:../use/failback.html["Rétablissez les applications sur la source d'origine"].

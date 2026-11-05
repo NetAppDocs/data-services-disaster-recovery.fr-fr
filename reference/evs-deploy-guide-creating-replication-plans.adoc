@@ -254,7 +254,7 @@ image:evs-create-rp-wiz-c-datastore-mapping.png["Créer un plan de réplication 
 [[verify-settings]]
 == Vérifiez les paramètres
 
-Après avoir ajouté les informations du plan de réplication dans NetApp Disaster Recovery, vérifiez que les informations que vous avez saisies sont correctes. Il s'agit de la dernière étape.
+Après avoir ajouté les informations du plan de réplication dans Disaster Recovery, vérifiez que les informations que vous avez saisies sont correctes. Il s'agit de la dernière étape.
 
 .Étapes
 . Sélectionnez *Enregistrer* pour vérifier vos paramètres avant d'activer le plan de réplication.

@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: use/manage.html 
-keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter, replication plans, resource groups 
-summary: Vous pouvez obtenir un aperçu rapide de toutes vos ressources NetApp Disaster Recovery et gérer les sites vCenter, les groupes de ressources et les plans de réplication. 
+keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter, kubernetes, trident protect, replication plans, resource groups 
+summary: Vous pouvez obtenir un aperçu rapide de toutes vos ressources NetApp Disaster Recovery et gérer les sites, les groupes de ressources et les plans de réplication pour les charges de travail VMware et Kubernetes. 
 ---
 = Gérez les sites, les groupes de ressources et les plans de réplication avec NetApp Disaster Recovery
 :hardbreaks:
@@ -14,29 +14,30 @@ summary: Vous pouvez obtenir un aperçu rapide de toutes vos ressources NetApp D
 [role="lead"]
 NetApp Disaster Recovery offre des aperçus et des perspectives plus détaillées sur toutes vos ressources :
 
-* Sites
+* Sites (vCenter et Kubernetes)
 * Groupes de ressources
 * Plans de réplication
-* Magasins de données
-* Machines virtuelles
+* Datastores (VMware)
+* Machines virtuelles (VMware)
+* Clusters Kubernetes et Trident Protect
 
 
 Les tâches nécessitent différents rôles de NetApp Console .  Pour plus de détails, consultez la section *Rôle de NetApp Console requis* dans chaque tâche.
 
-link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"]. https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
+link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["Découvrez les rôles et les autorisations des utilisateurs dans Disaster Recovery"]. https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
 
 
 [[manage-vcenter-sites]]
 == Gérer les sites vCenter
 
-Vous pouvez modifier le nom et le type du site vCenter (sur site ou AWS).
+Vous pouvez modifier le nom et le type du site vCenter (sur site ou AWS). Pour gérer les clusters et les sites Kubernetes, consultez link:manage.html#manage-trident-protect["Gérer Trident Protect"].
 
 *Rôle requis de NetApp Console* Le rôle d'administrateur d'organisation, d'administrateur de dossier ou de projet, ou d'administrateur de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
 .Étapes
 . Dans le menu, sélectionnez *Sites*.
-. Sélectionnez l'option *Actions*image:../use/icon-vertical-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à droite du nom du vCenter et sélectionnez *Modifier*.
+. Sélectionnez l'option *Actions* image:../use/icon-vertical-dots.png["Icône du menu Actions dans le service de reprise après sinistre"] à droite du nom vCenter et sélectionnez *Modifier*.
 . Modifiez le nom et l’emplacement du site vCenter.
 
 
@@ -45,7 +46,7 @@ Vous pouvez modifier le nom et le type du site vCenter (sur site ou AWS).
 [[manage-resource-groups]]
 == Gérer les groupes de ressources
 
-Vous pouvez créer des groupes de ressources par machines virtuelles ou par banques de données. Vous pouvez les ajouter lors de la création du plan de réplication ou ultérieurement.
+Vous pouvez créer des groupes de ressources en fonction des machines virtuelles, des banques de données ou des ressources Kubernetes. Vous pouvez les ajouter lors de la création du plan de réplication ou ultérieurement.
 
 *Rôle requis de la NetApp Console* Le rôle de super administrateur, d’administrateur de reprise après sinistre ou d’administrateur d’application de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
@@ -68,7 +69,7 @@ Pour plus de détails sur la création d'un groupe de ressources, reportez-vous 
 .Étapes
 . Dans le menu, sélectionnez *Groupes de ressources*.
 . Pour ajouter un groupe de ressources, sélectionnez *Ajouter un groupe*.
-. Vous pouvez modifier ou supprimer le groupe de ressources en sélectionnant l'option *Actions*.image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] .
+. Vous pouvez modifier ou supprimer le groupe de ressources en sélectionnant l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service de reprise après sinistre"].
 
 
 
@@ -89,7 +90,7 @@ Vous pouvez désactiver, activer et supprimer les plans de réplication. Vous po
 +
 image:../use/dr-plan-list.png["Liste des plans de réplication"]
 
-. Pour afficher les détails du plan, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] et sélectionnez *Afficher les détails du plan*.
+. Pour consulter les détails du plan, sélectionnez l’option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service de reprise après sinistre"] et sélectionnez *Afficher les détails du plan*.
 . Effectuez l’une des opérations suivantes :
 +
 ** Pour modifier les détails du plan (modifier la récurrence), sélectionnez l'onglet *Détails du plan* et sélectionnez l'icône *Modifier* à droite.
@@ -98,8 +99,8 @@ image:../use/dr-plan-list.png["Liste des plans de réplication"]
 
 
 . Revenez à la liste des plans en sélectionnant « Plans de réplication » dans le fil d'Ariane à gauche.
-. Pour effectuer des actions sur le plan, dans la liste des plans de réplication, sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à droite du plan puis choisissez une action : *Modifier les planifications*, *Tester le basculement*, *Basculer*, *Rétablir*, *Migrer*, *Prendre un instantané maintenant*, *Nettoyer les anciens instantanés*, *Désactiver*, *Activer* ou *Supprimer*.
-. Pour définir ou modifier un calendrier de basculement de test ou définir la vérification de la fréquence de conformité, sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à droite du plan et sélectionnez *Modifier les horaires*.
+. Pour effectuer des actions sur le plan, dans la liste des plans de réplication, sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service de reprise après sinistre"] à droite du plan puis choisissez une action : *Modifier les planifications*, *Tester le basculement*, *Basculer*, *Rétablir*, *Migrer*, *Prendre un instantané maintenant*, *Nettoyer les anciens instantanés*, *Désactiver*, *Activer* ou *Supprimer*.
+. Pour définir ou modifier un calendrier de basculement de test ou définir la fréquence de vérification de la conformité, sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service de reprise après sinistre"] à droite du plan et sélectionnez *Modifier les calendriers*.
 +
 .. Dans la page Modifier les planifications, entrez la fréquence en minutes à laquelle vous souhaitez que la vérification de conformité de basculement se produise.
 .. Cochez *Exécuter les tests de basculement selon un calendrier*.
@@ -123,7 +124,7 @@ La reprise après sinistre supprime automatiquement les instantanés de la sourc
 +
 image:../use/dr-plan-list.png["Liste des plans de réplication"]
 
-. Dans la liste des plans de réplication, sélectionnez l'option *Actions*.image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] puis *Réconcilier les instantanés*.
+. Dans la liste des plans de réplication, sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service de reprise après sinistre"] puis *Réconcilier les instantanés*.
 . Consultez les informations de rapprochement.
 . Sélectionnez *Réconcilier*.
 
@@ -139,7 +140,7 @@ Si vous supprimez un plan de réplication, vous pouvez également supprimer les 
 
 .Étapes
 . Dans le menu, sélectionnez *Plans de réplication*.
-. Sélectionnez l'option *Actions*image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"] à droite du plan et sélectionnez *Supprimer*.
+. Sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service de reprise après sinistre"] à droite du plan et sélectionnez *Supprimer*.
 . Choisissez si vous souhaitez supprimer les instantanés principaux, les instantanés secondaires ou uniquement les métadonnées créées par le plan.
 . Saisissez « supprimer » pour confirmer la suppression.
 . Sélectionnez *Supprimer*.
@@ -200,7 +201,7 @@ Depuis l'interface utilisateur de reprise après sinistre, vous pouvez mettre à
 [[view-datastore-information]]
 == Afficher les informations du datastore
 
-Vous pouvez consulter le nombre de banques de données existantes sur les sites source et cible.
+Pour les workloads VMware, vous pouvez voir combien de datastores existent sur les sites source et cible.
 
 *Rôle requis de la NetApp Console* Le rôle de super administrateur, d'administrateur de reprise après sinistre, d'administrateur de basculement de reprise après sinistre, d'administrateur d'application de reprise après sinistre ou de visualiseur de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 
@@ -216,7 +217,7 @@ Vous pouvez consulter le nombre de banques de données existantes sur les sites 
 [[view-virtual-machines-information]]
 == Afficher les informations sur les machines virtuelles
 
-Vous pouvez consulter le nombre de machines virtuelles présentes sur les sites source et cible, ainsi que le processeur, la mémoire et la capacité disponible.
+Pour les workloads VMware, vous pouvez consulter le nombre de machines virtuelles présentes sur les sites source et cible, ainsi que le CPU, la mémoire et la capacité disponible.
 
 *Rôle requis de la NetApp Console* Le rôle de super administrateur, d'administrateur de reprise après sinistre, d'administrateur de basculement de reprise après sinistre, d'administrateur d'application de reprise après sinistre ou de visualiseur de reprise après sinistre est requis pour effectuer cette tâche. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-disaster-rec-roles.html["En savoir plus sur les rôles et les autorisations des utilisateurs dans NetApp Disaster Recovery"^]. link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["En savoir plus sur les rôles d'accès à la NetApp Console pour tous les services"^].
 

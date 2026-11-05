@@ -4,7 +4,7 @@ permalink: use/dashboard-view.html
 keywords: disaster recovery remediate, disaster recovery, failover, failback, replication, bluexp, netapp 
 summary: NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les flux de travail de reprise après sinistre. 
 ---
-= Consultez l’état du plan et l’état de la protection des charges de travail dans NetApp Disaster Recovery
+= Consultez l’état de santé et de protection du plan dans NetApp Disaster Recovery
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
@@ -26,9 +26,9 @@ La page *Charges de travail* présente la liste détaillée de chaque charge de 
 == Afficher l’état de santé et de protection dans le tableau de bord
 
 .Étapes
-. Dans le menu NetApp Disaster Recovery , sélectionnez *Tableau de bord*.
+. Dans le menu Disaster Recovery, sélectionnez *Dashboard*.
 +
-image:dr-dashboard.png["Tableau de bord de NetApp Disaster Recovery"]
+image:dr-dashboard.png["Tableau de bord de reprise après incident"]
 
 . Consultez les informations de santé sur le tableau de bord :
 +
@@ -91,7 +91,7 @@ Utilisez la page Charges de travail pour consulter l'état de protection des cha
 
 |===
 .Étapes
-. Dans le menu NetApp Disaster Recovery, sélectionnez *Charges de travail*.
+. Dans le menu Disaster Recovery, sélectionnez *Workloads*.
 . Dans le menu déroulant, sélectionnez le filtre pour afficher soit les charges de travail *vCenter* ou *Kubernetes*.
 +
 image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]

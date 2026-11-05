@@ -28,7 +28,7 @@ Avant de lancer la migration, créez un plan de réplication et configurez-le po
 . Dans la navigation de gauche de la NetApp Console , sélectionnez *Protection* > *Reprise après sinistre*.
 . Dans le menu, sélectionnez *Plans de réplication*.
 . Sélectionnez le plan de réplication.
-. À droite, sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"], survolez *Récupérer* puis sélectionnez *Migrer*.
+. À droite, sélectionnez l'option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service de reprise après sinistre"], survolez *Récupérer* puis sélectionnez *Migrer*.
 . Dans la boîte de dialogue, choisissez *Prendre un instantané maintenant* pour créer un nouvel instantané pour la migration ou *Sélectionner* pour choisir un instantané existant pour la migration.
 . Saisissez « Migrate » dans la zone de texte pour confirmer l'opération, puis sélectionnez *Migrate*.
 

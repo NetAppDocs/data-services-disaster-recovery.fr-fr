@@ -1,17 +1,18 @@
 ---
 indexpage:
   title: Documentation sur la NetApp Disaster Recovery
-  summary: Avec NetApp Disaster Recovery, vous pouvez répliquer vos charges de travail
-    VMware sur site exécutant le stockage ONTAP vers un centre de données VMware défini
-    par logiciel dans un cloud public en tant que site de reprise après sinistre utilisant
-    le stockage cloud NetApp.
-  keywords: disaster, disaster recovery, bluexp, replicate, replication, cloud storage
-  lead: La reprise après sinistre dans le cloud est une solution robuste et économique
-    pour protéger les charges de travail contre les pannes de site et les événements
-    de corruption des données (par exemple, les ransomwares). Avec NetApp Disaster
-    Recovery, vous pouvez répliquer vos charges de travail VMware sur site exécutant
-    un stockage ONTAP vers un centre de données VMware défini par logiciel dans un
-    cloud public ou vers un autre site sur site servant de site de reprise après sinistre.
+  summary: Avec NetApp Disaster Recovery, vous pouvez répliquer vos workloads VMware
+    et Kubernetes sur site exécutés sur le stockage ONTAP vers un site de reprise
+    après sinistre.
+  keywords: disaster, disaster recovery, bluexp, replicate, replication, cloud storage,
+    vmware, kubernetes, trident protect, openshift
+  lead: La reprise après sinistre dans le cloud est un moyen résilient et rentable
+    de protéger les workloads contre les pannes de site et les événements de corruption
+    des données (par exemple, les ransomwares). Avec NetApp Disaster Recovery, vous
+    pouvez protéger vos workloads VMware et Kubernetes sur site exécutés sur un stockage
+    ONTAP en les répliquant vers un site de reprise après sinistre, tel qu'un autre
+    site sur site ou, pour les workloads VMware, un centre de données VMware défini
+    par logiciel dans un cloud public.
   tiles:
   - title: Commencer
     links:
@@ -29,7 +30,7 @@ indexpage:
       url: "/get-started/dr-faq.html"
   - title: Utiliser NetApp Disaster Recovery
     links:
-    - title: Ajouter des vCenters à un site
+    - title: Ajouter des sites
       url: "/use/sites-add.html"
     - title: Créer un plan de reprise après sinistre VMware
       url: "/use/task-replication-plan-vmware.html"

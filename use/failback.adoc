@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: use/failback.html 
-keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter 
+keywords: disaster recovery, bluexp disaster recovery, failover, failback, replicate, fail over, fail back, vmware, vcenter, kubernetes, trident protect, openshift 
 summary: NetApp Disaster Recovery est un service de reprise après sinistre basé sur le cloud qui automatise les flux de travail de reprise après sinistre. 
 ---
-= Restaurez les applications à la source d'origine avec NetApp Disaster Recovery
+= Basculement de retour vers le site source avec NetApp Disaster Recovery
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
@@ -21,14 +21,14 @@ Une fois le sinistre résolu, effectuez un basculement du site de reprise d'acti
 [[about-failback]]
 == À propos du failback
 
-En cas de retour en arrière, NetApp Disaster Recovery réplique (resynchronise) toutes les modifications sur la machine virtuelle source d'origine avant d'inverser le sens de la réplication. Ce processus démarre après le basculement d'une relation vers la cible et comprend les étapes suivantes :
+Lors du failback, NetApp Disaster Recovery réplique (resynchronise) toutes les modifications vers les charges de travail source d'origine avant d'inverser le sens de la réplication. Ce processus démarre après le basculement d'une relation vers la cible et comprend les étapes suivantes. Les charges de travail Kubernetes suivent la même séquence que les charges de travail VMware ; les détails spécifiques à VMware sont indiqués entre parenthèses.
 
 * Effectuer un contrôle de conformité sur le site récupéré.
-* Actualisez les informations vCenter pour chaque cluster vCenter identifié comme situé sur le site récupéré.
-* Sur le site cible, mettez hors tension et désenregistrez les machines virtuelles, puis démontez les volumes.
+* Actualisez les informations de découverte pour chaque cluster vCenter ou cluster Kubernetes identifié comme étant situé sur le site récupéré.
+* Sur le site cible, arrêtez les charges de travail protégées (pour VMware, mettez hors tension et désenregistrez les machines virtuelles), et démontez les volumes.
 * Rompre la relation SnapMirror sur la source d'origine pour la rendre en lecture/écriture.
 * Resynchronisez la relation SnapMirror pour inverser la réplication.
-* Mettez sous tension et enregistrez les machines virtuelles sources, puis montez les volumes sur la source.
+* Démarrez les charges de travail protégées sur la source (pour VMware, mettez sous tension et enregistrez les machines virtuelles sources), puis montez les volumes sur la source.
 
 
 
@@ -36,7 +36,7 @@ En cas de retour en arrière, NetApp Disaster Recovery réplique (resynchronise)
 [[before-you-begin]]
 == Avant de commencer
 
-Si vous utilisez une protection basée sur la banque de données, des machines virtuelles peuvent être ajoutées à la banque de données lors d'un basculement. Si cela s'est produit, assurez-vous de fournir les informations de mappage supplémentaires pour ces machines virtuelles avant d'initier le retour arrière. Pour modifier le mappage des ressources, consultez link:manage.html#manage-replication-plans["Gérer les plans de réplication"].
+Pour les charges de travail VMware, si vous utilisez une protection basée sur le datastore, des machines virtuelles peuvent être ajoutées au datastore lors d'un basculement. Dans ce cas, assurez-vous de fournir les informations de mappage supplémentaires pour ces machines virtuelles avant d'initier le basculement de retour. Pour modifier le mappage des ressources, consultez link:manage.html#manage-replication-plans["Gérer les plans de réplication"].
 
 
 
@@ -48,12 +48,12 @@ Si vous utilisez une protection basée sur la banque de données, des machines v
 .vCenter
 --
 .Étapes
-. Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
+. Dans le menu Disaster Recovery, sélectionnez *Replication plans*.
 . Dans le menu déroulant, définissez le filtre sur *VMware*.
 +
 image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]
 
-. Identifiez le plan de réplication que vous souhaitez effectuer un retour arrière. Sélectionnez l’option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"], survolez *Recover* puis sélectionnez *Failback*.
+. Identifiez le plan de réplication que vous souhaitez effectuer un retour arrière. Sélectionnez l’option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service de reprise après sinistre"], survolez *Recover* puis sélectionnez *Failback*.
 . Choisissez l'instantané de la banque de données à partir duquel effectuer la restauration. Sélectionnez *Créer un instantané maintenant* pour lancer un nouvel instantané ou *Sélectionner* pour choisir parmi les instantanés disponibles.
 +
 
@@ -70,12 +70,12 @@ Pour suivre l'avancement de la tâche, sélectionnez *Suivi des tâches* dans le
 --
 .Kubernetes
 --
-. Dans le menu NetApp Disaster Recovery , sélectionnez *Plans de réplication*.
+. Dans le menu Disaster Recovery, sélectionnez *Replication plans*.
 . Dans le menu déroulant, filtrez sur les plans de réplication *Kubernetes*.
 +
 image::site-type-toggle.png[Capture d'écran du bouton de basculement du type de site]
 
-. Identifiez le plan de réplication que vous souhaitez effectuer un retour arrière. Sélectionnez l’option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service NetApp Disaster Recovery"], survolez *Recover* puis sélectionnez *Failback*.
+. Identifiez le plan de réplication que vous souhaitez effectuer un retour arrière. Sélectionnez l’option *Actions* image:../use/icon-horizontal-dots.png["Icône du menu Actions dans le service de reprise après sinistre"], survolez *Recover* puis sélectionnez *Failback*.
 . Choisissez l'instantané du cluster à partir duquel effectuer la restauration. Sélectionnez *Créer un instantané maintenant* pour lancer un nouvel instantané ou *Utiliser le dernier instantané* pour utiliser l'instantané le plus récent et réussi.
 . Saisissez « Failback » pour confirmer l'opération, puis sélectionnez *Failback*.
 
