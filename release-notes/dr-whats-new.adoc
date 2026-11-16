@@ -16,6 +16,22 @@ Découvrez les nouveautés en matière de NetApp Disaster Recovery.
 
 
 
+[[09-november-2026]]
+== 09 novembre 2026
+
+Version 4.3.9
+
+
+
+[[job-monitoring-enhancement-when-rerunning-jobs]]
+=== Amélioration de la surveillance des tâches lors de leur réexécution
+
+Si vous relancez certaines opérations ayant échoué, été annulées ou expiré, NetApp Disaster Recovery enregistre désormais ces opérations comme de nouvelles tâches et identifie l’utilisateur à l’origine de l’action. Auparavant, Disaster Recovery listait les nouvelles tâches sous la tâche initiale. Cette amélioration crée une piste d’audit plus visible pour les tâches dans Disaster Recovery tant que la demande n’a pas été caviardée. Elle s’applique uniquement aux tâches de découverte, de resynchronisation, de conformité, de protection, de plan de réplication et de conservation des sauvegardes. Les opérations de relance de failback, de failover et de migration ne sont pas listées comme de nouvelles tâches. Seule la tâche la plus récente d’une chaîne de relance est admissible, et une seule relance au maximum peut être mise en file d’attente derrière une tâche en cours d’exécution.
+
+Pour plus d’informations, voir link:https://docs.netapp.com/us-en/data-services-disaster-recovery/use/monitor-jobs.html["Surveiller les tâches dans Disaster Recovery"^].
+
+
+
 [[12-october-2026]]
 == 12 octobre 2026
 
